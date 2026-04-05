@@ -1878,8 +1878,8 @@
       ceremonyTimeSub:  "",
       ceremonyVenue:    "Parroquía pepito",
       ceremonyVenueSub: "Barrio Mesopotamia",
-      ceremonyAddress:  "Crafr 3736 727",
-      ceremonyMapsUrl:  "https://maps.google.com?q=",
+      ceremonyAddress:  "",
+      ceremonyMapsUrl:  "https://maps.app.goo.gl/eeN5xHBuHWC3S2fp6",
 
       /* ── Recepción ────────────────────────────────────────── */
       receptionTitle:    "Recepción",
@@ -1887,13 +1887,13 @@
       receptionTimeSub:  "Puertas abiertas desde 06:30 Pm",
       receptionVenue:    "Casa Santana",
       receptionVenueSub: "Ultima casa barrio altagracia",
-      receptionAddress:  "Cr 83 hm 637 82",
-      receptionMapsUrl:  "https://maps.google.com?q=Hacienda+Villa+del+Alba+Madrid",
+      receptionAddress:  "",
+      receptionMapsUrl:  "https://maps.app.goo.gl/xXnzGjeSkQ2rTbVA9",
 
       /* ── Vestimenta ───────────────────────────────────────── */
       dressCodeEyebrow: "Dress Code",
       dressCode:        "Formal elegante",
-      dressCodeSub:     "Nos reservamos el blamco y azul",
+      dressCodeSub:     "Nos reservamos el blanco y azul",
       dressCodeNote:    "Recuerda que tunja es una ciudad muy fría Así que trae tu abrigo",
 
       /* ── Regalos ──────────────────────────────────────────── */
@@ -2005,9 +2005,15 @@
       setText('evDay',   String(date.getDate()).padStart(2, '0'));
       setText('evYear',  String(date.getFullYear()));
 
+      /* Formatea "HH:MM" → "HH:MM h" para mostrar en pantalla */
+      function fmtTime(t) {
+        if (!t) return '';
+        return /^\d{1,2}:\d{2}$/.test(t.trim()) ? t.trim() + ' h' : t;
+      }
+
       /* Celebración Eucarística */
       setText('ceremonyTitle',    c.ceremonyTitle);
-      setText('ceremonyTime',     c.ceremonyTime);
+      setText('ceremonyTime',     fmtTime(c.ceremonyTime));
       setText('ceremonyTimeSub',  c.ceremonyTimeSub);
       setText('ceremonyVenue',    c.ceremonyVenue);
       setText('ceremonyVenueSub', c.ceremonyVenueSub);
@@ -2017,7 +2023,7 @@
 
       /* Recepción */
       setText('receptionTitle',    c.receptionTitle);
-      setText('receptionTime',     c.receptionTime);
+      setText('receptionTime',     fmtTime(c.receptionTime));
       setText('receptionTimeSub',  c.receptionTimeSub);
       setText('receptionVenue',    c.receptionVenue);
       setText('receptionVenueSub', c.receptionVenueSub);
@@ -2216,6 +2222,9 @@
       function update() {
         const now    = new Date();
         const target = parseDate(siteContent.eventDateRaw);
+        /* Añadir hora exacta de la ceremonia si está disponible */
+        const tParts = (siteContent.ceremonyTime || '').match(/^(\d{1,2}):(\d{2})$/);
+        if (tParts) target.setHours(+tParts[1], +tParts[2], 0, 0);
         const diff   = target - now;
 
         if (diff <= 0) {
