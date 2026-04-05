@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,17 +33,21 @@
        fuentes y espaciado en toda la página de una sola vez.
        ═══════════════════════════════════════════════════════════ */
     :root {
-      /* Paleta modo claro */
-      --c-bg:           #FAF8F5;
-      --c-bg-alt:       #F2EDE5;
-      --c-surface:      rgba(255,255,255,0.65);
-      --c-gold:         #C5A46A;
-      --c-gold-dim:     #E4D4B6;
-      --c-rose:         #CFA8A8;
-      --c-sage:         #8FA494;
-      --c-text:         #2A2720;
-      --c-text-mid:     #6A6460;
-      --c-text-muted:   #A09890;
+      /* Paleta — tema oscuro fijo */
+      --c-bg:         #18160F;
+      --c-bg-alt:     #201E16;
+      --c-surface:    rgba(24,22,15,0.80);
+      --c-gold:       #D4B07A;
+      --c-gold-dim:   #5C4A2E;
+      --c-rose:       #B89292;
+      --c-sage:       #7A9488;
+      --c-text:       #EDE8E0;
+      --c-text-mid:   #B0A898;
+      --c-text-muted: #706A60;
+      --sh-soft:      0 4px 30px rgba(0,0,0,0.35);
+      --sh-medium:    0 10px 48px rgba(0,0,0,0.45);
+      /* Color del sobre (editable desde el editor) */
+      --c-envelope:   #18160F;
 
       /* Tipografía */
       --f-serif:  'Cormorant Garamond', Georgia, serif;
@@ -63,9 +67,7 @@
       --r-lg:   22px;
       --r-full: 9999px;
 
-      /* Sombras */
-      --sh-soft:   0 4px 30px rgba(0,0,0,0.05);
-      --sh-medium: 0 10px 48px rgba(0,0,0,0.09);
+      /* Sombras — (overridden above for dark) */
 
       /* Transiciones */
       --t-fast: 0.2s ease;
@@ -73,21 +75,7 @@
       --t-slow: 0.9s ease;
     }
 
-    /* ── Modo oscuro ──────────────────────────────────────── */
-    [data-theme="dark"] {
-      --c-bg:         #18160F;
-      --c-bg-alt:     #201E16;
-      --c-surface:    rgba(24,22,15,0.80);
-      --c-gold:       #D4B07A;
-      --c-gold-dim:   #5C4A2E;
-      --c-rose:       #B89292;
-      --c-sage:       #7A9488;
-      --c-text:       #EDE8E0;
-      --c-text-mid:   #B0A898;
-      --c-text-muted: #706A60;
-      --sh-soft:      0 4px 30px rgba(0,0,0,0.35);
-      --sh-medium:    0 10px 48px rgba(0,0,0,0.45);
-    }
+    /* Tema oscuro es el único — variables en :root arriba */
 
     /* ═══════════════════════════════════════════════════════════
        RESET & BASE
@@ -828,7 +816,7 @@
       position: fixed;
       inset: 0;
       z-index: 9999;
-      background: var(--c-bg);
+      background: var(--c-envelope);
       cursor: pointer;
       overflow: hidden;
       /* iOS Safari: necesario para que los divs reciban tap */
@@ -1211,6 +1199,25 @@
       border: 1px solid rgba(255,255,255,0.1);
     }
     .editor-btn--success { background: var(--c-sage); color: #1a1814; }
+    .editor-save-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.45rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .editor-btn-clear {
+      background: none;
+      border: none;
+      color: #706a60;
+      font-family: var(--f-sans);
+      font-size: 0.7rem;
+      cursor: pointer;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      transition: color var(--t-fast);
+    }
+    .editor-btn-clear:hover { color: #c08080; }
 
     /* Tarjetas de galería */
     .gallery-card {
@@ -1369,7 +1376,7 @@
   <!-- ════════════════════════════════════════════════════════════
        BOTÓN DE MODO OSCURO
        ════════════════════════════════════════════════════════════ -->
-  <button class="theme-btn" id="themeBtn" aria-label="Cambiar entre modo claro y oscuro">
+  <button class="theme-btn" id="themeBtn" aria-label="Cambiar entre modo claro y oscuro" hidden>
     <!-- Luna (visible en modo claro) -->
     <svg class="i-moon" width="16" height="16" viewBox="0 0 24 24" fill="none"
          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1668,6 +1675,41 @@
        elementos del body (audio, musicPlayer, envOverlay, etc.)          */
     let _initialHTML;
 
+    /* ── Persistencia en localStorage ────────────────────────── */
+    const _STORAGE_KEY   = 'inv_content';
+    const _COLORS_KEY    = 'inv_colors';
+
+    function saveToStorage() {
+      try {
+        localStorage.setItem(_STORAGE_KEY, JSON.stringify(siteContent));
+      } catch(e) {}
+    }
+
+    function saveColorsToStorage(colorMap) {
+      try {
+        const prev = JSON.parse(localStorage.getItem(_COLORS_KEY) || '{}');
+        localStorage.setItem(_COLORS_KEY, JSON.stringify({ ...prev, ...colorMap }));
+      } catch(e) {}
+    }
+
+    function restoreFromStorage() {
+      try {
+        const saved = localStorage.getItem(_STORAGE_KEY);
+        if (saved) Object.assign(siteContent, JSON.parse(saved));
+
+        const colors = JSON.parse(localStorage.getItem(_COLORS_KEY) || '{}');
+        const root   = document.documentElement;
+        Object.entries(colors).forEach(([k, v]) => root.style.setProperty(k, v));
+      } catch(e) {}
+    }
+
+    function clearStorage() {
+      try {
+        localStorage.removeItem(_STORAGE_KEY);
+        localStorage.removeItem(_COLORS_KEY);
+      } catch(e) {}
+    }
+
     /* ──────────────────────────────────────────────────────────
        EDITA AQUÍ — toda la información de la boda
        ────────────────────────────────────────────────────────── */
@@ -1878,20 +1920,8 @@
 
     /* ── Modo oscuro ──────────────────────────────────────── */
     function initTheme() {
-      const btn  = document.getElementById('themeBtn');
-      const html = document.documentElement;
-      const saved = localStorage.getItem('weddingTheme');
-      const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-      if (saved === 'dark' || (!saved && sysDark)) {
-        html.setAttribute('data-theme', 'dark');
-      }
-
-      btn.addEventListener('click', () => {
-        const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        html.setAttribute('data-theme', next);
-        localStorage.setItem('weddingTheme', next);
-      });
+      /* Tema oscuro fijo — el toggle fue removido por diseño */
+      document.documentElement.setAttribute('data-theme', 'dark');
     }
 
     /* ── Animaciones de scroll ────────────────────────────── */
@@ -2270,12 +2300,13 @@
 
       /* ── Colores editables ───────────────────────────────── */
       const colorVars = [
-        { v: '--c-gold',   label: 'Dorado'  },
-        { v: '--c-rose',   label: 'Rosa'    },
-        { v: '--c-sage',   label: 'Salvia'  },
-        { v: '--c-bg',     label: 'Fondo'   },
-        { v: '--c-bg-alt', label: 'Fondo 2' },
-        { v: '--c-text',   label: 'Texto'   },
+        { v: '--c-gold',       label: 'Dorado'  },
+        { v: '--c-rose',       label: 'Rosa'    },
+        { v: '--c-sage',       label: 'Salvia'  },
+        { v: '--c-bg',         label: 'Fondo'   },
+        { v: '--c-bg-alt',     label: 'Fondo 2' },
+        { v: '--c-text',       label: 'Texto'   },
+        { v: '--c-envelope',   label: 'Sobre'   },
       ];
 
       /* ── Construir UI ────────────────────────────────────── */
@@ -2384,6 +2415,16 @@
         }
       });
 
+      /* ── Indicador de guardado ───────────────────────────── */
+      const saveIndicator = document.getElementById('editorSaveIndicator');
+      let saveTimer;
+      function flashSaved() {
+        if (!saveIndicator) return;
+        saveIndicator.style.opacity = '1';
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(() => { saveIndicator.style.opacity = '0'; }, 2000);
+      }
+
       /* ── Actualización en tiempo real ────────────────────── */
       let renderTimer;
       bodyEl.addEventListener('input', e => {
@@ -2391,10 +2432,12 @@
         if (el.dataset.key !== undefined) {
           siteContent[el.dataset.key] = el.value;
           clearTimeout(renderTimer);
-          renderTimer = setTimeout(render, 80);
+          renderTimer = setTimeout(() => { render(); saveToStorage(); flashSaved(); }, 80);
         }
         if (el.dataset.var) {
           root.style.setProperty(el.dataset.var, el.value);
+          saveColorsToStorage({ [el.dataset.var]: el.value });
+          flashSaved();
         }
         /* Galería — editar URL */
         if (el.dataset.gsrc !== undefined) {
@@ -2479,6 +2522,13 @@
         }
       });
 
+      /* ── Limpiar cambios guardados ──────────────────────── */
+      document.getElementById('editorClearStorage').addEventListener('click', () => {
+        if (!confirm('¿Borrar todos los cambios guardados y volver a los valores originales?')) return;
+        clearStorage();
+        location.reload();
+      });
+
       /* ── Copiar configuración JS ─────────────────────────── */
       document.getElementById('editorCopy').addEventListener('click', () => {
         const btn = document.getElementById('editorCopy');
@@ -2535,6 +2585,7 @@
     /* ── Arranque ─────────────────────────────────────────── */
     document.addEventListener('DOMContentLoaded', () => {
       _initialHTML = document.documentElement.outerHTML; /* DOM completo, antes de render */
+      restoreFromStorage(); /* restaurar cambios guardados antes de pintar */
       render();
       initTheme();
       initHeroBg();
@@ -2570,6 +2621,10 @@
     </div>
     <div class="editor-body" id="editorBody">
       <!-- campos generados por JS -->
+    </div>
+    <div class="editor-save-bar">
+      <span id="editorSaveIndicator" style="opacity:0;transition:opacity 0.4s;font-family:var(--f-sans);font-size:0.7rem;color:var(--c-sage)">✓ Cambios guardados</span>
+      <button class="editor-btn-clear" id="editorClearStorage" title="Borrar cambios guardados y restaurar valores originales">↺ Limpiar</button>
     </div>
     <div class="editor-footer">
       <button class="editor-btn editor-btn--secondary" id="editorCopy">Copiar JS</button>
