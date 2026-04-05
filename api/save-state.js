@@ -33,10 +33,24 @@ export default async function handler(req, res) {
       const r = await fetch(apiBase, { headers: ghHeaders });
       if (r.status === 404) return res.status(404).json({ error: 'Sin estado guardado' });
       if (!r.ok) return res.status(r.status).json({ error: `GitHub ${r.status}` });
-      const { content } = await r.json();
-      const json = JSON.parse(Buffer.from(content, 'base64').toString('utf-8'));
-      return res.status(200).json(json);
+
+      const meta = await r.json();
+
+      /* Archivos > 1 MB: GitHub devuelve content:null y download_url */
+      let raw;
+      if (meta.content) {
+        raw = Buffer.from(meta.content, 'base64').toString('utf-8');
+      } else if (meta.download_url) {
+        const dl = await fetch(meta.download_url);
+        if (!dl.ok) throw new Error(`download_url fetch failed: ${dl.status}`);
+        raw = await dl.text();
+      } else {
+        throw new Error('GitHub no devolvió contenido del archivo');
+      }
+
+      return res.status(200).json(JSON.parse(raw));
     } catch (e) {
+      console.error('save-state GET error:', e.message);
       return res.status(500).json({ error: e.message });
     }
   }
