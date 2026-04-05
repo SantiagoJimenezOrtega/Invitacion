@@ -1489,6 +1489,39 @@
     }
     .gallery-add-btn:hover { background: rgba(197,164,106,0.08); border-color: var(--c-gold); }
 
+    /* Vista previa de imagen / audio subidos */
+    .editor-media-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .editor-media-thumb {
+      width: 100%; height: 110px;
+      object-fit: cover; display: block;
+    }
+    .editor-media-audio-badge {
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--c-gold);
+      padding: 0.9rem 0;
+    }
+    .editor-media-change {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: none; border-top: 1px solid rgba(255,255,255,0.08);
+      color: #ede8e0;
+      font-family: var(--f-sans);
+      font-size: 0.75rem;
+      cursor: pointer;
+      padding: 0.45rem;
+      transition: background var(--t-fast);
+    }
+    .editor-media-change:hover { background: rgba(255,255,255,0.11); }
+
     /* Sección publicar en Vercel */
     .editor-publish {
       border-top: 1px solid rgba(197,164,106,0.18);
@@ -2996,32 +3029,66 @@
           </div>
         </div>`;
 
-      const sectionsHtml = sections.map(s => `
-        <div class="editor-section">
-          <div class="editor-section-title">${escHtml(s.title)}</div>
-          ${s.fields.map(f => {
-            const val = siteContent[f.key] ?? '';
-            if (f.type === 'textarea') {
+      function buildSectionsHtml() {
+        return sections.map(s => `
+          <div class="editor-section">
+            <div class="editor-section-title">${escHtml(s.title)}</div>
+            ${s.fields.map(f => {
+              const val = siteContent[f.key] ?? '';
+              if (f.type === 'textarea') {
+                return `<div class="editor-field">
+                  <label>${escHtml(f.label)}</label>
+                  <textarea data-key="${f.key}">${escHtml(val)}</textarea>
+                </div>`;
+              }
+              if (f.type === 'image-url') {
+                const isUploaded = val.startsWith('data:');
+                return `<div class="editor-field">
+                  <label>${escHtml(f.label)}</label>
+                  ${isUploaded
+                    ? `<div class="editor-media-card">
+                         <img class="editor-media-thumb" src="${escAttr(val)}" alt="" />
+                         <button class="editor-media-change" data-upload-key="${f.key}">↺ Cambiar imagen</button>
+                       </div>`
+                    : `<div class="input-with-upload">
+                         <input type="text" data-key="${f.key}" value="${escAttr(val)}" placeholder="https://..." />
+                         <button class="upload-img-btn" data-upload-key="${f.key}" title="Subir imagen">📁</button>
+                       </div>`
+                  }
+                </div>`;
+              }
               return `<div class="editor-field">
                 <label>${escHtml(f.label)}</label>
-                <textarea data-key="${f.key}">${escHtml(val)}</textarea>
+                <input type="${f.type || 'text'}" data-key="${f.key}" value="${escAttr(val)}" />
               </div>`;
-            }
-            if (f.type === 'image-url') {
-              return `<div class="editor-field">
-                <label>${escHtml(f.label)}</label>
-                <div class="input-with-upload">
-                  <input type="text" data-key="${f.key}" value="${escAttr(val)}" placeholder="https://..." />
-                  <button class="upload-img-btn" data-upload-key="${f.key}" title="Subir imagen desde tu dispositivo">📁</button>
-                </div>
-              </div>`;
-            }
-            return `<div class="editor-field">
-              <label>${escHtml(f.label)}</label>
-              <input type="${f.type || 'text'}" data-key="${f.key}" value="${escAttr(val)}" />
-            </div>`;
-          }).join('')}
-        </div>`).join('');
+            }).join('')}
+          </div>`).join('');
+      }
+
+      function buildMusicHtml() {
+        const audioSrc  = siteContent.musicSrc ?? '';
+        const isUploaded = audioSrc.startsWith('data:');
+        return `
+          <div class="editor-section">
+            <div class="editor-section-title">Música de fondo</div>
+            <div class="editor-field">
+              <label>Archivo de música</label>
+              ${isUploaded
+                ? `<div class="editor-media-card">
+                     <div class="editor-media-audio-badge">🎵 Audio cargado</div>
+                     <button class="editor-media-change" data-upload-key="musicSrc" data-upload-type="audio">↺ Cambiar audio</button>
+                   </div>`
+                : `<div class="input-with-upload">
+                     <input type="text" data-key="musicSrc" value="${escAttr(audioSrc)}" placeholder="URL de MP3 o sube un archivo" />
+                     <button class="upload-img-btn" data-upload-key="musicSrc" data-upload-type="audio" title="Subir audio">🎵</button>
+                   </div>`
+              }
+            </div>
+            <p style="font-size:0.7rem;color:#706a60;line-height:1.5">
+              Soporta MP3, OGG o WAV. La música inicia cuando el invitado abre el sobre.
+            </p>
+          </div>`;
+      }
 
       /* ── Galería ─────────────────────────────────────────── */
       function buildGalleryCard(img, i) {
@@ -3056,27 +3123,14 @@
         document.getElementById('editorGallerySection').innerHTML = buildGallerySection();
       }
 
-      const musicHtml = `
-        <div class="editor-section">
-          <div class="editor-section-title">Música de fondo</div>
-          <div class="editor-field">
-            <label>Archivo de música</label>
-            <div class="input-with-upload">
-              <input type="text" data-key="musicSrc" value="${escAttr(siteContent.musicSrc ?? '')}" placeholder="URL de MP3 o sube un archivo" />
-              <button class="upload-img-btn" data-upload-key="musicSrc" data-upload-type="audio" title="Subir archivo de audio">🎵</button>
-            </div>
-          </div>
-          <p style="font-size:0.7rem;color:#706a60;line-height:1.5">
-            Soporta MP3, OGG o WAV. La música inicia cuando el invitado abre el sobre.
-            Puedes subir el archivo directamente o pegar una URL.
-          </p>
-        </div>`;
-
-      bodyEl.innerHTML = colorHtml + sectionsHtml + musicHtml +
-        `<div class="editor-section">
-          <div class="editor-section-title">Galería de fotos</div>
-          <div id="editorGallerySection">${buildGallerySection()}</div>
-        </div>`;
+      function rebuildBody() {
+        bodyEl.innerHTML = colorHtml + buildSectionsHtml() + buildMusicHtml() +
+          `<div class="editor-section">
+            <div class="editor-section-title">Galería de fotos</div>
+            <div id="editorGallerySection">${buildGallerySection()}</div>
+          </div>`;
+      }
+      rebuildBody();
 
       /* ── Scroll al campo activo en móvil (teclado virtual) ── */
       bodyEl.addEventListener('focusin', e => {
@@ -3166,11 +3220,9 @@
           const accept   = isAudio ? 'audio/*' : 'image/*';
           pickFile(accept, (dataUrl) => {
             siteContent[key] = dataUrl;
-            /* actualizar input visible */
-            const inp = upKey.closest('.input-with-upload')?.querySelector('input');
-            if (inp) inp.value = dataUrl;
+            saveToStorage();
+            rebuildBody();
             if (isAudio) {
-              /* recargar el reproductor */
               const audio = document.getElementById('bgAudio');
               if (audio) { audio.src = dataUrl; audio.load(); }
               document.getElementById('musicPlayer').hidden = false;
@@ -3216,18 +3268,56 @@
         location.reload();
       });
 
-      /* ── Copiar configuración JS ─────────────────────────── */
-      document.getElementById('editorCopy').addEventListener('click', () => {
-        const btn = document.getElementById('editorCopy');
-        navigator.clipboard.writeText(buildConfigStr()).then(() => {
-          btn.textContent = '¡Copiado!';
+      /* ── Guardar estado en servidor (cross-device sync) ──── */
+      document.getElementById('editorSave').addEventListener('click', async () => {
+        const btn = document.getElementById('editorSave');
+        btn.disabled = true;
+        btn.textContent = 'Guardando…';
+        try {
+          const colors = {};
+          ['--c-bg','--c-bg-alt','--c-gold','--c-rose','--c-sage','--c-text','--c-envelope'].forEach(v => {
+            const val = document.documentElement.style.getPropertyValue(v).trim();
+            if (val) colors[v] = val;
+          });
+          const res = await fetch('/api/save-state', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ siteContent, colors })
+          });
+          if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || `Error ${res.status}`);
+          btn.textContent = '✓ Guardado';
           btn.classList.add('editor-btn--success');
           setTimeout(() => {
-            btn.textContent = 'Copiar JS';
+            btn.textContent = '💾 Guardar';
             btn.classList.remove('editor-btn--success');
+            btn.disabled = false;
           }, 2200);
-        });
+        } catch (e) {
+          btn.textContent = '✕ ' + e.message;
+          setTimeout(() => {
+            btn.textContent = '💾 Guardar';
+            btn.disabled = false;
+          }, 3000);
+        }
       });
+
+      /* ── Cargar estado desde servidor al abrir el editor ─── */
+      (async () => {
+        try {
+          const res = await fetch('/api/save-state');
+          if (!res.ok) return;
+          const { siteContent: sc, colors } = await res.json();
+          if (sc) Object.assign(siteContent, sc);
+          if (colors) {
+            Object.entries(colors).forEach(([k, v]) => {
+              document.documentElement.style.setProperty(k, v);
+            });
+          }
+          saveToStorage();
+          render();
+          rebuildBody();
+        } catch (_) { /* sin estado en servidor — continuar con localStorage */ }
+      })();
 
       /* ── Generar HTML limpio (sin editor) ───────────────── */
       function buildCleanHtml() {
@@ -3237,13 +3327,25 @@
         /* 1. Reemplazar bloque siteContent con valores actuales */
         html = html.replace(
           /const siteContent\s*=\s*\{[\s\S]*?\};\s*\n(\s*\/\* ─+\s*FIN)/,
-          newConfig + ';\n    \n    $1'
+          (_, fin) => newConfig + ';\n    \n    ' + fin
         );
 
-        /* 2. Eliminar bloques CSS/JS del editor */
+        /* 2. Inyectar colores CSS editados como bloque :root */
+        const _cssVars = ['--c-bg','--c-bg-alt','--c-gold','--c-rose','--c-sage','--c-text','--c-envelope'];
+        const _overrides = _cssVars
+          .map(v => { const val = document.documentElement.style.getPropertyValue(v).trim(); return val ? `    ${v}: ${val};` : ''; })
+          .filter(Boolean).join('\n');
+        if (_overrides) {
+          html = html.replace('</head>', `  <style>:root {\n${_overrides}\n  }</style>\n</head>`);
+        }
+
+        /* 3. Eliminar llamada a restoreFromStorage() — invitados no deben cargar caché local */
+        html = html.replace(/\n\s*restoreFromStorage\(\);[^\n]*/g, '');
+
+        /* 4. Eliminar bloques CSS/JS del editor */
         html = html.replace(/\/\* EDITOR:S \*\/[\s\S]*?\/\* EDITOR:E \*\//g, '');
 
-        /* 3. Eliminar bloques HTML del editor */
+        /* 5. Eliminar bloques HTML del editor */
         html = html.replace(/<!-- EDITOR:S -->[\s\S]*?<!-- EDITOR:E -->/g, '');
 
         return '<!DOCTYPE html>\n' + html;
@@ -3255,7 +3357,7 @@
         let html = _initialHTML;
         html = html.replace(
           /const siteContent\s*=\s*\{[\s\S]*?\};\s*\n(\s*\/\* ─+\s*FIN)/,
-          newConfig + ';\n    \n    $1'
+          (_, fin) => newConfig + ';\n    \n    ' + fin
         );
         return '<!DOCTYPE html>\n' + html;
       }
@@ -3390,7 +3492,7 @@
       <button class="editor-btn-clear" id="editorClearStorage" title="Borrar cambios guardados y restaurar valores originales">↺ Limpiar</button>
     </div>
     <div class="editor-footer">
-      <button class="editor-btn editor-btn--secondary" id="editorCopy">Copiar JS</button>
+      <button class="editor-btn editor-btn--secondary" id="editorSave">💾 Guardar</button>
       <button class="editor-btn editor-btn--secondary" id="editorPreview">👁 Preview</button>
       <button class="editor-btn editor-btn--primary" id="editorExport">⬇ Descargar HTML</button>
     </div>
