@@ -831,7 +831,11 @@
       background: var(--c-bg);
       cursor: pointer;
       overflow: hidden;
-      /* Transición de desaparición — la invitación se revela con fade */
+      /* iOS Safari: necesario para que los divs reciban tap */
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
       transition: opacity 2s cubic-bezier(0.45, 0, 0.55, 1),
                   visibility 2s;
     }
@@ -840,7 +844,13 @@
       visibility: hidden;
       pointer-events: none;
     }
-    body.env-locked { overflow: hidden; }
+    body.env-locked {
+      overflow: hidden;
+      /* iOS Safari: overflow:hidden solo no bloquea el scroll táctil */
+      position: fixed;
+      width: 100%;
+      top: 0;
+    }
 
     /* Pliegues del sobre — 3 triángulos que cubren la pantalla completa.
        Tonos casi imperceptibles para no distraer del sello central.   */
@@ -1040,7 +1050,10 @@
       position: fixed;
       top: 0; right: 0;
       width: min(400px, 100vw);
-      height: 100dvh;
+      /* iOS Safari: 100dvh puede ser incorrecto; 100% en fixed = viewport correcto */
+      height: 100%;
+      max-height: 100vh;
+      max-height: 100dvh;
       background: #1a1814;
       color: #ede8e0;
       z-index: 9999;
@@ -1090,7 +1103,11 @@
     .editor-body {
       flex: 1;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
       padding: 1.25rem 1.5rem 1.5rem;
+      /* Espacio extra abajo para que el teclado virtual no tape campos */
+      padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
       display: flex;
       flex-direction: column;
       gap: 1.75rem;
@@ -1994,12 +2011,13 @@
 
       let opened = false;
 
-      function openEnvelope() {
+      function openEnvelope(e) {
+        if (e && e.type === 'touchend') e.preventDefault(); /* evita click posterior */
         if (opened) return;
         opened = true;
 
-        /* Arrancar música inmediatamente — debe ser en respuesta directa al gesto */
-        if (typeof _musicAutoStart === 'function') _musicAutoStart();
+        /* Arrancar música — envuelto en try-catch para que un error no bloquee la animación */
+        try { if (typeof _musicAutoStart === 'function') _musicAutoStart(); } catch (_) {}
 
         /* Paso 1: iniciar apertura (sello se rompe + solapa rota en 3D) */
         overlay.classList.add('opening');
@@ -2026,11 +2044,11 @@
         setTimeout(() => overlay.remove(), 3500);
       }
 
-      /* Clic / tap / scroll / rueda — cualquier interacción abre el sobre */
-      overlay.addEventListener('click',      openEnvelope);
-      overlay.addEventListener('touchstart', openEnvelope, { passive: true });
-      overlay.addEventListener('wheel',      openEnvelope, { passive: true, once: true });
-      overlay.addEventListener('pointerdown',openEnvelope);
+      /* Clic / tap / rueda — cualquier interacción abre el sobre */
+      overlay.addEventListener('click',    openEnvelope);
+      /* touchend es más fiable que touchstart en iOS Safari para disparar play() */
+      overlay.addEventListener('touchend', openEnvelope);
+      overlay.addEventListener('wheel',    openEnvelope, { passive: true, once: true });
 
       /* Teclado: Enter, Espacio o cualquier otra tecla */
       overlay.addEventListener('keydown', e => {
@@ -2052,13 +2070,22 @@
       const player = document.getElementById('musicPlayer');
       const btn    = document.getElementById('musicBtn');
 
-      if (!src) return;
+      if (!src || !audio) return;
 
       audio.src = src;
       audio.volume = 0.45;
+      audio.load();
       player.hidden = false;
 
       let playing = false;
+
+      /* Desbloquea AudioContext en iOS — debe llamarse dentro de un gesto */
+      function unlockAudio() {
+        try {
+          const Ctx = window.AudioContext || window.webkitAudioContext;
+          if (Ctx) { const ctx = new Ctx(); ctx.resume(); ctx.close(); }
+        } catch (_) {}
+      }
 
       function toggleMusic() {
         if (playing) {
@@ -2077,8 +2104,13 @@
 
       btn.addEventListener('click', toggleMusic);
 
-      /* Llamado por initEnvelope tras abrir el sobre */
-      _musicAutoStart = () => { if (!playing) toggleMusic(); };
+      /* Llamado por initEnvelope — dentro del handler de gesto del usuario */
+      _musicAutoStart = () => {
+        if (!playing) {
+          unlockAudio();   /* desbloquea iOS antes de play */
+          toggleMusic();
+        }
+      };
     }
 
     /* EDITOR:S */
@@ -2342,6 +2374,15 @@
           <div class="editor-section-title">Galería de fotos</div>
           <div id="editorGallerySection">${buildGallerySection()}</div>
         </div>`;
+
+      /* ── Scroll al campo activo en móvil (teclado virtual) ── */
+      bodyEl.addEventListener('focusin', e => {
+        if (e.target.matches('input, textarea, select')) {
+          setTimeout(() => {
+            e.target.scrollIntoView({ block: 'center', behavior: 'smooth' });
+          }, 350); /* esperar a que el teclado termine de abrirse */
+        }
+      });
 
       /* ── Actualización en tiempo real ────────────────────── */
       let renderTimer;
