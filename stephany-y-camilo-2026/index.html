@@ -1,0 +1,2410 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ═══════════════════════════════════════════════════════
+       SEO & METADATOS — EDITA AQUÍ
+       ═══════════════════════════════════════════════════════ -->
+  <title id="pageTitle">Sofía &amp; Mateo — Te invitamos a nuestra boda</title>
+  <meta name="description" content="Con amor y alegría, Sofía y Mateo te invitan a celebrar su boda. Una velada íntima y especial que no querrás perderte.">
+  <meta name="robots" content="noindex">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sofía &amp; Mateo — Te invitamos a nuestra boda">
+  <meta property="og:description" content="Con amor y emoción, queremos que seas parte de este día tan especial.">
+  <meta property="og:image" content="assets/og-cover.jpg">
+  <!-- Reemplaza og:url con la URL donde publicarás la invitación -->
+  <meta property="og:url" content="https://tu-dominio.com">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon (SVG inline en assets/favicon.svg) -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Google Fonts — Cormorant Garamond (serif) + Jost (sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&amp;family=Jost:wght@200;300;400;500&amp;display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       VARIABLES GLOBALES — Edita aquí para cambiar colores,
+       fuentes y espaciado en toda la página de una sola vez.
+       ═══════════════════════════════════════════════════════════ */
+    :root {
+      /* Paleta — tema oscuro fijo */
+      --c-bg:         #18160F;
+      --c-bg-alt:     #201E16;
+      --c-surface:    rgba(24,22,15,0.80);
+      --c-gold:       #D4B07A;
+      --c-gold-dim:   #5C4A2E;
+      --c-rose:       #B89292;
+      --c-sage:       #7A9488;
+      --c-text:       #EDE8E0;
+      --c-text-mid:   #B0A898;
+      --c-text-muted: #706A60;
+      --sh-soft:      0 4px 30px rgba(0,0,0,0.35);
+      --sh-medium:    0 10px 48px rgba(0,0,0,0.45);
+      /* Color del sobre (editable desde el editor) */
+      --c-envelope:   #18160F;
+
+      /* Tipografía */
+      --f-serif:  'Cormorant Garamond', Georgia, serif;
+      --f-sans:   'Jost', system-ui, sans-serif;
+
+      /* Espaciado */
+      --sp-xs:  0.5rem;
+      --sp-sm:  1rem;
+      --sp-md:  2rem;
+      --sp-lg:  4rem;
+      --sp-xl:  7rem;
+      --sp-xxl: 11rem;
+
+      /* Bordes */
+      --r-sm:   4px;
+      --r-md:   10px;
+      --r-lg:   22px;
+      --r-full: 9999px;
+
+      /* Sombras — (overridden above for dark) */
+
+      /* Transiciones */
+      --t-fast: 0.2s ease;
+      --t-base: 0.4s ease;
+      --t-slow: 0.9s ease;
+    }
+
+    /* Tema oscuro es el único — variables en :root arriba */
+
+    /* ═══════════════════════════════════════════════════════════
+       RESET & BASE
+       ═══════════════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      font-family: var(--f-sans);
+      font-weight: 300;
+      background-color: var(--c-bg);
+      color: var(--c-text);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background-color var(--t-slow), color var(--t-slow);
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+    a   { color: inherit; text-decoration: none; }
+    button { font-family: var(--f-sans); }
+
+    /* ═══════════════════════════════════════════════════════════
+       HELPERS TIPOGRÁFICOS
+       ═══════════════════════════════════════════════════════════ */
+    .eyebrow {
+      font-family: var(--f-sans);
+      font-size: 0.67rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--c-gold);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-sm);
+      margin: var(--sp-md) 0;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      max-width: 72px;
+      height: 1px;
+      background: var(--c-gold);
+      opacity: 0.4;
+    }
+    .divider__glyph {
+      color: var(--c-gold);
+      font-size: 0.85rem;
+      opacity: 0.7;
+      line-height: 1;
+    }
+
+    .rule {
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: var(--c-gold);
+      opacity: 0.5;
+      margin: var(--sp-sm) auto;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       ANIMACIONES DE SCROLL
+       ═══════════════════════════════════════════════════════════ */
+    .anim-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
+    }
+    .anim-fade {
+      opacity: 0;
+      transition: opacity 1.1s ease;
+    }
+    .anim-up.in, .anim-fade.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.20s; }
+    .d3 { transition-delay: 0.34s; }
+    .d4 { transition-delay: 0.50s; }
+    .d5 { transition-delay: 0.68s; }
+
+    /* ═══════════════════════════════════════════════════════════
+       BOTÓN TEMA (esquina superior derecha)
+       ═══════════════════════════════════════════════════════════ */
+    .theme-btn {
+      position: fixed;
+      top: 1.1rem;
+      right: 1.1rem;
+      z-index: 200;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--r-full);
+      border: 1px solid var(--c-gold-dim);
+      background: var(--c-surface);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--c-gold);
+      transition: background var(--t-base), color var(--t-base), border-color var(--t-base), box-shadow var(--t-base);
+      box-shadow: var(--sh-soft);
+    }
+    .theme-btn:hover  { background: var(--c-gold); color: #fff; border-color: var(--c-gold); }
+    .theme-btn:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 3px; }
+    .theme-btn .i-sun  { display: none; }
+    .theme-btn .i-moon { display: block; }
+    [data-theme="dark"] .theme-btn .i-sun  { display: block; }
+    [data-theme="dark"] .theme-btn .i-moon { display: none; }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIÓN 1 — HERO / PORTADA
+       ═══════════════════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: var(--sp-lg) var(--sp-sm) 5rem;
+    }
+
+    /* Imagen de fondo — Ken-Burns sutil al cargar */
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center 30%;
+      background-repeat: no-repeat;
+      transform: scale(1.06);
+      transition: transform 9s cubic-bezier(0.25,0.46,0.45,0.94);
+      z-index: 0;
+    }
+    .hero__bg.loaded { transform: scale(1); }
+
+    /* Degradado — suaviza la foto y hace el texto legible */
+    .hero__veil {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        180deg,
+        rgba(250,248,245,0.22)  0%,
+        rgba(250,248,245,0.52) 35%,
+        rgba(250,248,245,0.78) 65%,
+        rgba(250,248,245,0.97) 100%
+      );
+      transition: background var(--t-slow);
+    }
+    [data-theme="dark"] .hero__veil {
+      background: linear-gradient(
+        180deg,
+        rgba(24,22,15,0.22)  0%,
+        rgba(24,22,15,0.52) 35%,
+        rgba(24,22,15,0.78) 65%,
+        rgba(24,22,15,0.97) 100%
+      );
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 560px;
+      width: 100%;
+      padding: 0 var(--sp-sm);
+    }
+
+    .hero__intro {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 3.5vw, 1.3rem);
+      color: var(--c-text-mid);
+      margin: var(--sp-sm) 0 var(--sp-md);
+    }
+
+    .hero__names {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(3.4rem, 14vw, 6.8rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--c-text);
+      margin: 0;
+    }
+
+    .hero__names .amp {
+      display: block;
+      font-size: 0.62em;
+      font-style: italic;
+      color: var(--c-gold);
+      margin: 0.12em 0;
+      line-height: 1;
+    }
+
+    .hero__date-line {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--c-text-muted);
+      margin-top: var(--sp-md);
+    }
+
+    /* Scroll cue ─────────────── */
+    .scroll-cue {
+      position: absolute;
+      bottom: 1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+      cursor: pointer;
+      color: var(--c-text-muted);
+      transition: opacity var(--t-base);
+    }
+    .scroll-cue:hover { opacity: 0.5; }
+    .scroll-cue__label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .scroll-cue__arrow {
+      animation: bob 2.2s ease-in-out infinite;
+    }
+    @keyframes bob {
+      0%,100% { transform: translateY(0); }
+      55%      { transform: translateY(7px); }
+    }
+
+    /* Pétalo decorativo ─────── */
+    .petal {
+      position: absolute;
+      border-radius: 50% 0 50% 0;
+      background: var(--c-rose);
+      opacity: 0;
+      pointer-events: none;
+      animation: petalDrift linear infinite;
+    }
+    @keyframes petalDrift {
+      0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+      8%   { opacity: 0.13; }
+      92%  { opacity: 0.06; }
+      100% { transform: translateY(102vh) rotate(400deg); opacity: 0; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIÓN 2 — ANUNCIO
+       ═══════════════════════════════════════════════════════════ */
+    .announce {
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .announce__headline {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(1.9rem, 7vw, 3.4rem);
+      line-height: 1.15;
+      color: var(--c-text);
+      margin: var(--sp-sm) 0 var(--sp-md);
+    }
+    .announce__headline em {
+      font-style: italic;
+      color: var(--c-gold);
+    }
+
+    .announce__body {
+      font-size: 0.93rem;
+      color: var(--c-text-mid);
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.9;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIÓN 3 — HISTORIA
+       ═══════════════════════════════════════════════════════════ */
+    .story {
+      background: var(--c-bg-alt);
+      padding: var(--sp-xl) var(--sp-sm);
+      transition: background var(--t-slow);
+    }
+
+    .story__grid {
+      max-width: 920px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-lg);
+      align-items: center;
+    }
+    @media (min-width: 760px) {
+      .story__grid {
+        grid-template-columns: 5fr 6fr;
+        gap: var(--sp-xl);
+      }
+    }
+
+    /* Imagen con marco dorado offset */
+    .story__img-wrap {
+      position: relative;
+    }
+    .story__img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: var(--r-lg);
+      box-shadow: var(--sh-medium);
+      display: block;
+    }
+    .story__img-frame {
+      position: absolute;
+      top: -1rem;
+      left: -1rem;
+      right: 1rem;
+      bottom: 1rem;
+      border: 1px solid var(--c-gold);
+      border-radius: var(--r-lg);
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    .story__text { text-align: left; }
+    @media (max-width: 759px) { .story__text { text-align: center; } }
+
+    .story__title {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(1.7rem, 5vw, 2.5rem);
+      line-height: 1.2;
+      margin: var(--sp-sm) 0;
+      color: var(--c-text);
+      white-space: pre-line;
+    }
+
+    .story__body {
+      font-size: 0.93rem;
+      color: var(--c-text-mid);
+      line-height: 1.95;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       GALERÍA HORIZONTAL
+       ═══════════════════════════════════════════════════════════ */
+    .gallery {
+      background: var(--c-bg);
+      overflow: hidden;
+      transition: background var(--t-slow);
+    }
+    .gallery__track {
+      display: flex;
+      gap: 0.6rem;
+      padding: 0.6rem 0;
+      width: max-content;
+      animation: gallery-scroll 30s linear infinite;
+      will-change: transform;
+    }
+    .gallery:hover .gallery__track { animation-play-state: paused; }
+    @keyframes gallery-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .gallery__item {
+      flex: 0 0 auto;
+      width: 200px;
+      height: 280px;
+      border-radius: var(--r-md);
+      overflow: hidden;
+    }
+    @media (min-width: 600px) {
+      .gallery__item { width: 240px; height: 320px; }
+    }
+    .gallery__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--t-slow);
+    }
+    .gallery__item:hover img { transform: scale(1.05); }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIÓN 4 — DETALLES DEL EVENTO
+       ═══════════════════════════════════════════════════════════ */
+    .event {
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      background: var(--c-bg);
+      transition: background var(--t-slow);
+    }
+    .event__inner { max-width: 720px; margin: 0 auto; }
+
+    /* Fecha grande tipográfica */
+    .event__date {
+      margin: var(--sp-md) 0 var(--sp-lg);
+    }
+    .event__month {
+      font-size: 0.66rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--c-gold);
+      margin-bottom: 0.3rem;
+    }
+    .event__day {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(5rem, 18vw, 10rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--c-text);
+      margin-bottom: 0.35rem;
+    }
+    .event__year {
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--c-text-muted);
+      margin-top: 0.4rem;
+    }
+
+    /* Tarjetas de detalle */
+    .event__cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-sm);
+      margin: var(--sp-lg) 0 var(--sp-md);
+    }
+    @media (min-width: 560px) {
+      .event__cards { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+    }
+
+    .detail-card {
+      padding: 1.5rem 1rem;
+      border-radius: var(--r-md);
+      background: var(--c-bg-alt);
+      border: 1px solid transparent;
+      transition: border-color var(--t-base), box-shadow var(--t-base), background var(--t-slow);
+    }
+    .detail-card:hover {
+      border-color: var(--c-gold-dim);
+      box-shadow: var(--sh-soft);
+    }
+    .detail-card__glyph {
+      font-size: 1rem;
+      color: var(--c-gold);
+      margin-bottom: 0.6rem;
+      opacity: 0.8;
+    }
+    .detail-card__lbl {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--c-text-muted);
+      margin-bottom: 0.35rem;
+    }
+    .detail-card__val {
+      font-family: var(--f-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--c-text);
+      line-height: 1.3;
+    }
+    .detail-card__sub {
+      font-size: 0.78rem;
+      color: var(--c-text-mid);
+      margin-top: 0.25rem;
+      line-height: 1.4;
+    }
+
+    .event__address {
+      font-size: 0.88rem;
+      color: var(--c-text-mid);
+      margin-bottom: var(--sp-sm);
+    }
+
+    /* Secciones independientes de ceremonia y recepción */
+    .event-block {
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      background: var(--c-bg);
+      transition: background var(--t-slow);
+    }
+    .event-block--alt { background: var(--c-bg-alt); }
+    /* Dentro del fondo alternado, las tarjetas usan el color contrario */
+    .event-block--alt .detail-card { background: var(--c-bg); }
+    .event-block__inner { max-width: 480px; margin: 0 auto; }
+
+    /* Título del bloque de evento */
+    .event__block-title {
+      font-family: var(--f-serif);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--c-gold);
+      letter-spacing: 0.02em;
+      margin-bottom: var(--sp-md);
+    }
+    .event__cards--2 {
+      grid-template-columns: repeat(2, 1fr) !important;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIÓN VESTIMENTA
+       ═══════════════════════════════════════════════════════════ */
+    .dress {
+      background: var(--c-bg-alt);
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      transition: background var(--t-slow);
+    }
+    .dress__inner { max-width: 540px; margin: 0 auto; }
+    .dress__badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 76px; height: 76px;
+      border-radius: 50%;
+      border: 1px solid var(--c-gold-dim);
+      color: var(--c-gold);
+      margin: 1.6rem auto 0;
+    }
+    .dress__title {
+      font-family: var(--f-serif);
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--c-text);
+      margin: 1.2rem 0 0;
+      line-height: 1.1;
+    }
+    .dress__sub {
+      font-size: 0.9rem;
+      color: var(--c-text-mid);
+      line-height: 1.8;
+      max-width: 360px;
+      margin: 0.8rem auto 0;
+    }
+    .dress__note {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+      font-style: italic;
+      margin-top: 1rem;
+    }
+
+    /* Sección regalos */
+    .gifts {
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      background: var(--c-bg);
+      transition: background var(--t-slow);
+    }
+    .gifts__title {
+      font-family: var(--f-serif);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 300;
+      color: var(--c-text);
+      margin: var(--sp-sm) 0;
+    }
+    .gifts__text {
+      font-size: 1rem;
+      color: var(--c-text-mid);
+      max-width: 520px;
+      margin: 0 auto var(--sp-sm);
+      line-height: 1.8;
+    }
+    .gifts__note {
+      font-size: 0.85rem;
+      color: var(--c-gold);
+      font-style: italic;
+    }
+
+    /* Botones */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.85rem 2rem;
+      border-radius: var(--r-full);
+      font-family: var(--f-sans);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: background var(--t-base), color var(--t-base), border-color var(--t-base), transform var(--t-fast), box-shadow var(--t-base);
+      -webkit-appearance: none;
+    }
+    .btn:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 4px; }
+    .btn:active        { transform: translateY(1px) !important; }
+
+    .btn--gold {
+      background: var(--c-gold);
+      color: #fff;
+    }
+    .btn--gold:hover {
+      background: var(--c-text);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+    }
+    [data-theme="dark"] .btn--gold:hover { background: var(--c-gold); filter: brightness(1.15); }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--c-text);
+      border: 1px solid var(--c-gold-dim);
+    }
+    .btn--outline:hover {
+      background: var(--c-gold);
+      color: #fff;
+      border-color: var(--c-gold);
+      transform: translateY(-2px);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--c-text-mid);
+      border: 1px solid rgba(197,164,106,0.3);
+    }
+    .btn--ghost:hover {
+      border-color: var(--c-gold);
+      color: var(--c-gold);
+      transform: translateY(-1px);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIÓN 5 — RSVP
+       ═══════════════════════════════════════════════════════════ */
+    .rsvp {
+      background: var(--c-bg-alt);
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      transition: background var(--t-slow);
+    }
+    .rsvp__inner { max-width: 540px; margin: 0 auto; }
+
+    .rsvp__title {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      color: var(--c-text);
+      margin-bottom: 0.4rem;
+    }
+    .rsvp__sub {
+      font-size: 0.9rem;
+      color: var(--c-text-mid);
+    }
+
+    /* Formulario */
+    .rsvp__form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-sm);
+      margin-top: var(--sp-lg);
+      text-align: left;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 0.35rem; }
+
+    .field__label {
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--c-text-muted);
+    }
+
+    .field__input,
+    .field__select,
+    .field__textarea {
+      width: 100%;
+      padding: 0.85rem 1.2rem;
+      border: 1px solid var(--c-gold-dim);
+      border-radius: var(--r-md);
+      background: var(--c-bg);
+      color: var(--c-text);
+      font-family: var(--f-sans);
+      font-size: 0.9rem;
+      font-weight: 300;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-slow), color var(--t-slow);
+    }
+    .field__input:focus,
+    .field__select:focus,
+    .field__textarea:focus {
+      border-color: var(--c-gold);
+      box-shadow: 0 0 0 3px rgba(197,164,106,0.15);
+    }
+    .field__input::placeholder,
+    .field__textarea::placeholder { color: var(--c-text-muted); }
+
+    .field__select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C5A46A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1.2rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    .field__textarea {
+      min-height: 96px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .rsvp__note {
+      font-size: 0.77rem;
+      color: var(--c-text-muted);
+      text-align: center;
+      margin-top: 0.4rem;
+    }
+
+    /* Estado de éxito */
+    .rsvp__success {
+      display: none;
+      padding: var(--sp-lg) 0;
+    }
+    .rsvp__success.show { display: block; }
+    .rsvp__success__icon {
+      font-size: 2rem;
+      color: var(--c-gold);
+      margin-bottom: var(--sp-sm);
+    }
+    .rsvp__success__title {
+      font-family: var(--f-serif);
+      font-size: 2rem;
+      font-weight: 300;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIÓN 6 — CIERRE
+       ═══════════════════════════════════════════════════════════ */
+    .closing {
+      background: var(--c-bg);
+      padding: var(--sp-xxl) var(--sp-sm);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: background var(--t-slow);
+    }
+
+    /* Línea vertical que baja desde arriba */
+    .closing::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 72px;
+      background: linear-gradient(to bottom, transparent, var(--c-gold));
+      opacity: 0.35;
+    }
+
+    .closing__inner { max-width: 520px; margin: 0 auto; }
+
+    .closing__quote {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.55rem, 5vw, 2.4rem);
+      line-height: 1.45;
+      color: var(--c-text);
+      margin: var(--sp-md) 0 var(--sp-sm);
+    }
+
+    .closing__attribution {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--c-gold);
+      margin-bottom: var(--sp-md);
+    }
+
+    .closing__cta-text {
+      font-size: 0.83rem;
+      color: var(--c-text-mid);
+      margin-bottom: var(--sp-sm);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RSVP MODAL
+       ═══════════════════════════════════════════════════════════ */
+    .rsvp-modal {
+      position: fixed; inset: 0; z-index: 1100;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .rsvp-modal[hidden] { display: none; }
+    .rsvp-modal__backdrop {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .rsvp-modal__box {
+      position: relative; z-index: 1;
+      background: var(--c-bg-alt);
+      border: 1px solid rgba(197,164,106,0.22);
+      border-radius: var(--r-lg);
+      max-width: 460px; width: 100%;
+      max-height: 92dvh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 2rem 1.8rem;
+      animation: modal-in 0.35s cubic-bezier(.25,.46,.45,.94);
+    }
+    @keyframes modal-in {
+      from { opacity: 0; transform: translateY(28px) scale(0.97); }
+      to   { opacity: 1; transform: none; }
+    }
+    .rsvp-modal__close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: none; border: none;
+      color: var(--c-text-mid); font-size: 1.1rem;
+      cursor: pointer; padding: 0.3rem 0.6rem; line-height: 1;
+      border-radius: var(--r-sm);
+      transition: color var(--t-fast);
+    }
+    .rsvp-modal__close:hover { color: var(--c-text); }
+
+    /* ═══════════════════════════════════════════════════════════
+       CUENTA REGRESIVA
+       ═══════════════════════════════════════════════════════════ */
+    .countdown {
+      background: var(--c-bg);
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      transition: background var(--t-slow);
+    }
+    .countdown__grid {
+      display: flex; justify-content: center; gap: 2rem;
+      flex-wrap: wrap; margin-top: 2.5rem;
+    }
+    .countdown__unit {
+      display: flex; flex-direction: column; align-items: center;
+      min-width: 64px;
+    }
+    .countdown__num {
+      font-family: var(--f-display);
+      font-size: clamp(2.6rem, 7vw, 4rem);
+      color: var(--c-gold);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .countdown__sep {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: rgba(197,164,106,0.35);
+      align-self: flex-start;
+      padding-top: 0.1em;
+    }
+    .countdown__label {
+      font-family: var(--f-sans);
+      font-size: 0.6rem; letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--c-text-muted); margin-top: 0.4rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOTOS DEL EVENTO
+       ═══════════════════════════════════════════════════════════ */
+    .photos {
+      background: var(--c-bg-alt);
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      transition: background var(--t-slow);
+    }
+    .photos__inner { max-width: 480px; margin: 0 auto; }
+    .photos__title {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      color: var(--c-text);
+      margin-bottom: 0.8rem;
+    }
+    .photos__text {
+      font-size: 0.9rem; color: var(--c-text-mid); line-height: 1.7;
+    }
+    .photos__qr {
+      margin: 2rem auto 0; display: flex; justify-content: center;
+    }
+    .photos__qr img {
+      width: 180px; height: 180px;
+      border-radius: var(--r-md);
+      border: 2px solid rgba(197,164,106,0.3);
+      padding: 0.5rem; background: #fff;
+    }
+    .photos__actions { margin-top: 1.8rem; }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════ */
+    .site-footer {
+      background: var(--c-bg-alt);
+      border-top: 1px solid var(--c-gold-dim);
+      padding: var(--sp-md) var(--sp-sm);
+      text-align: center;
+      transition: background var(--t-slow);
+    }
+    .site-footer__text {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      color: var(--c-text-muted);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE TWEAKS
+       ═══════════════════════════════════════════════════════════ */
+    @media (max-width: 380px) {
+      :root {
+        --sp-lg:  3rem;
+        --sp-xl:  4.5rem;
+        --sp-xxl: 7rem;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SOBRE FULL-SCREEN — INTRO
+       El sobre ocupa toda la pantalla. Solo el sello es visible.
+       Al hacer click: el sello se rompe, la solapa se abre en 3D,
+       y la invitación aparece con un fade-in suave.
+       ═══════════════════════════════════════════════════════════ */
+
+    /* Overlay = pantalla completa = el sobre */
+    .env-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--c-envelope);
+      cursor: pointer;
+      overflow: hidden;
+      /* iOS Safari: necesario para que los divs reciban tap */
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: opacity 2s cubic-bezier(0.45, 0, 0.55, 1),
+                  visibility 2s;
+    }
+    .env-overlay.dismissed {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    body.env-locked {
+      overflow: hidden;
+      /* iOS Safari: overflow:hidden solo no bloquea el scroll táctil */
+      position: fixed;
+      width: 100%;
+      top: 0;
+    }
+
+    /* Pliegues del sobre — 3 triángulos que cubren la pantalla completa.
+       Tonos casi imperceptibles para no distraer del sello central.   */
+    .env__fold {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    /* Triángulo inferior (apunta hacia el centro) */
+    .env__fold--btm {
+      clip-path: polygon(0% 100%, 100% 100%, 50% 50%);
+      background: rgba(0,0,0,0.028);
+    }
+    /* Triángulo izquierdo */
+    .env__fold--left {
+      clip-path: polygon(0% 0%, 0% 100%, 50% 50%);
+      background: rgba(0,0,0,0.016);
+    }
+    /* Triángulo derecho */
+    .env__fold--right {
+      clip-path: polygon(100% 0%, 100% 100%, 50% 50%);
+      background: rgba(0,0,0,0.016);
+    }
+    [data-theme="dark"] .env__fold--btm   { background: rgba(0,0,0,0.16); }
+    [data-theme="dark"] .env__fold--left  { background: rgba(0,0,0,0.10); }
+    [data-theme="dark"] .env__fold--right { background: rgba(0,0,0,0.10); }
+
+    /* Solapa superior — SVG triángulo que rota en 3D al abrir.
+       Cubre el 54% superior de la pantalla, apex en el centro.    */
+    .env__flap-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 54%;
+      z-index: 5;
+      overflow: visible;
+      pointer-events: none;
+    }
+    .env__flap {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transform-origin: top center;
+      will-change: transform;
+      transition: none;
+    }
+    /* Rotación 3D de la solapa al abrir — efecto sobre real */
+    .env-overlay.opening .env__flap {
+      transform: perspective(2600px) rotateX(-162deg);
+      transition: transform 1.2s cubic-bezier(0.38, 0.0, 0.20, 1) 0.06s;
+    }
+    /* Tono de la solapa — apenas visible, un toque más oscuro */
+    .env__flap-poly { fill: rgba(0,0,0,0.032); }
+    [data-theme="dark"] .env__flap-poly { fill: rgba(0,0,0,0.22); }
+
+    /* Sello de lacre — centrado en la pantalla, elemento principal */
+    .env__seal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 20;
+      width: clamp(84px, 15vw, 112px);
+      height: clamp(84px, 15vw, 112px);
+      border-radius: 50%;
+      /* Degradado dorado que simula la textura del lacre */
+      background: radial-gradient(circle at 38% 30%,
+        #E8C580 0%,
+        #C89836 48%,
+        #9C7620 82%,
+        #7A5C18 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      /* Sombras para dar profundidad al sello */
+      box-shadow:
+        0 8px 48px rgba(0,0,0,0.20),
+        0 2px 10px rgba(0,0,0,0.10),
+        inset 0 2px 5px rgba(255,255,255,0.30),
+        inset 0 -2px 5px rgba(0,0,0,0.22);
+      transition: transform 0.4s cubic-bezier(0.34, 1.3, 0.64, 1),
+                  box-shadow 0.4s ease;
+      /* Animación de entrada */
+      animation: sealAppear 1.3s cubic-bezier(0.34, 1.26, 0.64, 1) 0.7s both;
+    }
+    @keyframes sealAppear {
+      from { opacity: 0; transform: translate(-50%,-50%) scale(0.55); }
+      to   { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+    }
+    /* Rim decorativo interior del sello */
+    .env__seal::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.22);
+      pointer-events: none;
+    }
+    /* Hover: sello respira ligeramente */
+    .env-overlay:not(.opening) .env__seal:hover {
+      transform: translate(-50%, -50%) scale(1.06);
+      box-shadow:
+        0 12px 56px rgba(0,0,0,0.24),
+        0 3px 12px rgba(0,0,0,0.12),
+        inset 0 2px 5px rgba(255,255,255,0.30),
+        inset 0 -2px 5px rgba(0,0,0,0.22);
+    }
+    /* Animación de rotura del sello al abrir */
+    .env-overlay.opening .env__seal {
+      animation: sealCrack 0.62s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+      pointer-events: none;
+    }
+    @keyframes sealCrack {
+      0%  { transform: translate(-50%,-50%) scale(1);          opacity: 1;   }
+      16% { transform: translate(-50%,-50%) scale(1.16) rotate(-7deg);       }
+      36% { transform: translate(-50%,-50%) scale(0.88) rotate(6deg);        }
+      60% { transform: translate(-50%,-50%) scale(1.08) rotate(-3deg);       opacity: 0.75; }
+      100%{ transform: translate(-50%,-50%) scale(0.18) rotate(-5deg);       opacity: 0;   }
+    }
+    /* Iniciales del sello */
+    .env__seal-txt {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: clamp(1.3rem, 3.2vw, 1.9rem);
+      color: rgba(255,255,255,0.94);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.28);
+      user-select: none;
+      letter-spacing: 0.04em;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Texto de invitación — fijado al bottom center */
+    .env-hint {
+      position: absolute;
+      bottom: clamp(1.8rem, 5vh, 3.2rem);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      white-space: nowrap;
+      pointer-events: none;
+      font-family: var(--f-sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--c-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      /* Entrada retrasada + pulso continuo */
+      animation: hintAppear 0.9s ease 1.5s both,
+                 hintFloat  3.2s ease-in-out 2.4s infinite;
+    }
+    @keyframes hintAppear {
+      from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    @keyframes hintFloat {
+      0%,100% { opacity: 0.45; transform: translateX(-50%) translateY(0); }
+      50%      { opacity: 0.90; transform: translateX(-50%) translateY(-4px); }
+    }
+    /* Ocultar el hint al iniciar la apertura */
+    .env-overlay.opening .env-hint {
+      opacity: 0 !important;
+      transition: opacity 0.2s ease;
+      animation: none;
+    }
+
+    
+
+    /* Reproductor de música */
+    .music-player {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 9997;
+    }
+    .music-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--c-text);
+      cursor: pointer;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--sh-soft);
+      transition: background var(--t-fast), transform var(--t-fast);
+    }
+    .music-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.08); }
+    .music-btn.playing { animation: musicPulse 2.4s ease-in-out infinite; }
+    @keyframes musicPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(197,164,106,0.35); }
+      50%       { box-shadow: 0 0 0 10px rgba(197,164,106,0); }
+    }
+
+    
+
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SOBRE FULL-SCREEN — INTRO
+       El overlay ES el sobre. Ocupa toda la pantalla.
+       Solo el sello de lacre es visible al centro.
+       Click en cualquier punto → el sello se rompe, la solapa
+       se abre en 3D y la invitación aparece con fade-in.
+       ════════════════════════════════════════════════════════════ -->
+  <div class="env-overlay" id="envOverlay" role="dialog" aria-modal="true" tabindex="0" aria-label="Invitación de boda — toca para abrir">
+
+    <!-- Los 3 pliegues crean las líneas diagonales del sobre.
+         Tonos casi iguales al fondo para no distraer del sello. -->
+    <div class="env__fold env__fold--btm" aria-hidden="true"></div>
+    <div class="env__fold env__fold--left" aria-hidden="true"></div>
+    <div class="env__fold env__fold--right" aria-hidden="true"></div>
+
+    <!-- Solapa superior full-screen — SVG polygon rotado en 3D al abrir.
+         Usar SVG (no div+clip-path) evita el bug de Chrome con 3D+clip. -->
+    <div class="env__flap-wrap" aria-hidden="true">
+      <svg class="env__flap" id="envFlap" viewBox="0 0 100 54" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Triángulo: borde superior completo → apex en el centro de pantalla -->
+        <polygon class="env__flap-poly" points="0,0 100,0 50,54"></polygon>
+      </svg>
+    </div>
+
+    <!-- Sello de lacre dorado — único elemento visual visible -->
+    <div class="env__seal" id="envSeal" aria-hidden="true">
+      <!-- Iniciales generadas por JS desde siteContent.name1[0] & name2[0] -->
+      <span class="env__seal-txt" id="envSealTxt"></span>
+    </div>
+
+    <!-- Texto flotante en la parte inferior -->
+    <p class="env-hint" aria-hidden="true">
+      ✦  Toca para abrir  ✦
+    </p>
+
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       BOTÓN DE MODO OSCURO
+       ════════════════════════════════════════════════════════════ -->
+  <button class="theme-btn" id="themeBtn" aria-label="Cambiar entre modo claro y oscuro" hidden="">
+    <!-- Luna (visible en modo claro) -->
+    <svg class="i-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    <!-- Sol (visible en modo oscuro) -->
+    <svg class="i-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </button>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN 1 — HERO / PORTADA
+       ────────────────────────────────────────────────────────────
+       CÓMO EDITAR:
+       • heroImage: ruta o URL de la foto de portada
+       • heroIntro: texto emocional en cursiva
+       • name1 / name2: nombres de la pareja
+       Edita todo en el objeto siteContent del bloque <script>.
+       ════════════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero" aria-label="Portada de la invitación">
+
+    <!-- FONDO — se inyecta por JS desde siteContent.heroImage
+         Reemplaza con una foto portrait editorial 1080×1920px < 400 KB -->
+    <div class="hero__bg" id="heroBg" role="img" aria-label="Fotografía de portada de la boda"></div>
+    <div class="hero__veil" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <p class="eyebrow anim-up" id="heroEyebrow"></p>
+      <p class="hero__intro anim-up d2" id="heroIntro"></p>
+
+      <!-- Nombres de la pareja — elemento principal del hero -->
+      <h1 class="hero__names anim-up d3" id="heroNames">
+        <!-- Generado por JS -->
+      </h1>
+
+      <span class="hero__date-line anim-up d4" id="heroDate"></span>
+    </div>
+
+    <!-- Indicador de deslizar -->
+    <div class="scroll-cue anim-fade d5" id="scrollCue" role="button" tabindex="0" aria-label="Desliza hacia abajo para ver la invitación">
+      <span class="scroll-cue__label">Desliza</span>
+      <span class="scroll-cue__arrow" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M5 12l7 7 7-7"></path>
+        </svg>
+      </span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN 2 — ANUNCIO
+       Edita: announcementHeadline, announcementBody en siteContent
+       ════════════════════════════════════════════════════════════ -->
+  <section id="announce" aria-label="Anuncio de la boda">
+    <div class="announce">
+      <p class="eyebrow anim-up" id="announceEyebrow"></p>
+
+      <div class="divider anim-up d1">
+        <span class="divider__glyph">✦</span>
+      </div>
+
+      <!-- La última palabra se pone en cursiva automáticamente -->
+      <h2 class="announce__headline anim-up d2" id="announceHeadline"></h2>
+      <p class="announce__body anim-up d3" id="announceBody"></p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN 3 — HISTORIA / MENSAJE
+       ────────────────────────────────────────────────────────────
+       IMÁGENES A REEMPLAZAR:
+       • storyImage: foto de pareja, orientación vertical 3:4
+         Coloca la imagen en /assets/story.jpg
+         Dimensiones ideales: 800×1067 px
+       ════════════════════════════════════════════════════════════ -->
+  <section class="story" id="story" aria-label="Nuestra historia">
+    <div class="story__grid">
+
+      <!-- Imagen con marco ornamental -->
+      <div class="story__img-wrap anim-fade">
+        <img class="story__img" id="storyImg" src="" alt="" loading="lazy">
+        <div class="story__img-frame" aria-hidden="true"></div>
+      </div>
+
+      <!-- Texto -->
+      <div class="story__text">
+        <p class="eyebrow anim-up" id="storyEyebrow"></p>
+        <h2 class="story__title anim-up d1" id="storyTitle"></h2>
+        <span class="rule anim-up d2" style="margin: 1.2rem 0;"></span>
+        <p class="story__body anim-up d3" id="storyBody"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       GALERÍA HORIZONTAL
+       Agrega o elimina fotos en siteContent.galleryImages
+       Deja el array vacío [] para ocultar esta sección.
+       ────────────────────────────────────────────────────────────
+       IMÁGENES: orientación vertical 3:4, mín 480×640 px
+       ════════════════════════════════════════════════════════════ -->
+  <section class="gallery" id="gallery" aria-label="Galería de fotos">
+    <div class="gallery__track" id="galleryTrack" role="list">
+      <!-- Generado por JS -->
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN 4 — DETALLES DEL EVENTO
+       Edita: eventDateRaw, eventTime, eventVenue, eventAddress,
+              eventDressCode y mapsUrl en siteContent
+       ════════════════════════════════════════════════════════════ -->
+  <!-- Fecha -->
+  <section class="event" id="event" aria-label="Detalles de la celebración">
+    <div class="event__inner">
+
+      <p class="eyebrow anim-up" id="eventEyebrow"></p>
+
+      <!-- Fecha tipográfica grande -->
+      <div class="event__date anim-up d1">
+        <p class="event__month" id="evMonth"></p>
+        <p class="event__day" id="evDay"></p>
+        <p class="event__year" id="evYear"></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Celebración Eucarística — fondo alternado --c-bg-alt -->
+  <section class="event-block event-block--alt" id="ceremony" aria-label="Celebración Eucarística">
+    <div class="event-block__inner">
+
+      <h3 class="event__block-title anim-up" id="ceremonyTitle"></h3>
+
+      <div class="event__cards event__cards--2 anim-up d1">
+        <div class="detail-card">
+          <div class="detail-card__glyph" aria-hidden="true">◌</div>
+          <p class="detail-card__lbl">Hora</p>
+          <p class="detail-card__val" id="ceremonyTime"></p>
+          <p class="detail-card__sub" id="ceremonyTimeSub"></p>
+        </div>
+        <div class="detail-card">
+          <div class="detail-card__glyph" aria-hidden="true">◇</div>
+          <p class="detail-card__lbl">Lugar</p>
+          <p class="detail-card__val" id="ceremonyVenue"></p>
+          <p class="detail-card__sub" id="ceremonyVenueSub"></p>
+        </div>
+      </div>
+
+      <p class="event__address anim-up d2" id="ceremonyAddress"></p>
+      <div class="anim-up d2">
+        <a class="btn btn--outline" id="ceremonyMapsBtn" href="#" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          Ver en el mapa
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Recepción — fondo --c-bg -->
+  <section class="event-block" id="reception" aria-label="Recepción">
+    <div class="event-block__inner">
+
+      <h3 class="event__block-title anim-up" id="receptionTitle"></h3>
+
+      <div class="event__cards event__cards--2 anim-up d1">
+        <div class="detail-card">
+          <div class="detail-card__glyph" aria-hidden="true">◌</div>
+          <p class="detail-card__lbl">Hora</p>
+          <p class="detail-card__val" id="receptionTime"></p>
+          <p class="detail-card__sub" id="receptionTimeSub"></p>
+        </div>
+        <div class="detail-card">
+          <div class="detail-card__glyph" aria-hidden="true">◇</div>
+          <p class="detail-card__lbl">Lugar</p>
+          <p class="detail-card__val" id="receptionVenue"></p>
+          <p class="detail-card__sub" id="receptionVenueSub"></p>
+        </div>
+      </div>
+
+      <p class="event__address anim-up d2" id="receptionAddress"></p>
+      <div class="anim-up d2">
+        <a class="btn btn--outline" id="receptionMapsBtn" href="#" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          Ver en el mapa
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN — VESTIMENTA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="dress" id="dressCode" aria-label="Vestimenta">
+    <div class="dress__inner">
+
+      <p class="eyebrow anim-up" id="dressCodeEyebrow"></p>
+
+      <div class="divider anim-up d1">
+        <span class="divider__glyph">✦</span>
+      </div>
+
+      <!-- Ícono de percha -->
+      <div class="dress__badge anim-up d1" aria-hidden="true">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 5 C23 5 26 7 26 10 C26 13 23 14 20 14"></path>
+          <path d="M20 14 L4 28 Q2 30 4 32 L36 32 Q38 30 36 28 Z"></path>
+        </svg>
+      </div>
+
+      <p class="dress__title anim-up d2" id="dressCodeVal"></p>
+
+      <span class="rule anim-fade d2" style="margin:1.2rem auto;display:block;max-width:80px;"></span>
+
+      <p class="dress__sub  anim-up d3" id="dressCodeSub"></p>
+      <p class="dress__note anim-up d4" id="dressCodeNote"></p>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN — REGALOS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="gifts" id="gifts" aria-label="Regalos">
+    <div class="event__inner text-center">
+      <p class="eyebrow anim-up" id="giftsEyebrow"></p>
+      <h2 class="gifts__title anim-up d1" id="giftsTitle"></h2>
+      <p class="gifts__text anim-up d2" id="giftsText"></p>
+      <p class="gifts__note anim-up d3" id="giftsNote"></p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN 5 — RSVP
+       ────────────────────────────────────────────────────────────
+       Para hacerlo funcional con Formspree:
+       1. Regístrate en formspree.io y crea un formulario.
+       2. Copia tu ID (ej. xpzgwqde).
+       3. En el <form> cambia action="#" por:
+          action="https://formspree.io/f/TU_ID" method="POST"
+       4. Elimina la línea e.preventDefault() en initRSVP().
+       ════════════════════════════════════════════════════════════ -->
+  <section class="rsvp" id="rsvp" aria-label="Confirmar asistencia">
+    <div class="rsvp__inner">
+
+      <p class="eyebrow anim-up">R.S.V.P.</p>
+
+      <div class="divider anim-up d1">
+        <span class="divider__glyph">✦</span>
+      </div>
+
+      <h2 class="rsvp__title anim-up d1" id="rsvpTitle"></h2>
+      <p class="rsvp__sub   anim-up d2" id="rsvpSub"></p>
+
+      <div class="anim-up d3" style="margin-top:2rem">
+        <button class="btn btn--gold" id="rsvpOpenBtn" style="min-width:220px;justify-content:center">
+          Confirmar asistencia
+        </button>
+      </div>
+
+      <p class="rsvp__note anim-up d4" id="rsvpNote" style="margin-top:1rem"></p>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       RSVP MODAL — abierto por #rsvpOpenBtn y #closingBtn
+       ════════════════════════════════════════════════════════════ -->
+  <div id="rsvpModal" class="rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="rsvpModalHeading" hidden="">
+    <div class="rsvp-modal__backdrop" id="rsvpModalBackdrop"></div>
+    <div class="rsvp-modal__box">
+      <button class="rsvp-modal__close" id="rsvpModalClose" aria-label="Cerrar">✕</button>
+
+      <!-- Formulario -->
+      <form class="rsvp__form" id="rsvpForm" action="#" novalidate="">
+
+        <h2 id="rsvpModalHeading" style="font-family:var(--f-serif);font-weight:300;font-size:1.5rem;text-align:center;margin-bottom:1.4rem;color:var(--c-text)">Confirma tu asistencia</h2>
+
+        <div class="field">
+          <label class="field__label" for="fname">Nombre completo</label>
+          <input class="field__input" type="text" id="fname" name="name" placeholder="María García" required="" autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="femail">Correo electrónico</label>
+          <input class="field__input" type="email" id="femail" name="email" placeholder="maria@correo.com" autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="fattend">¿Asistirás?</label>
+          <select class="field__select" id="fattend" name="attendance" required="">
+            <option value="" disabled="" selected="">Selecciona una opción</option>
+            <option value="yes">Sí, allí estaré ✦</option>
+            <option value="maybe">Todavía no lo sé</option>
+            <option value="no">No podré asistir</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="fguests">Número de acompañantes</label>
+          <select class="field__select" id="fguests" name="guests">
+            <option value="0">Solo yo</option>
+            <option value="1">+ 1 persona</option>
+            <option value="2">+ 2 personas</option>
+            <option value="3">+ 3 personas</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="fsong" id="rsvpSongLbl"></label>
+          <input class="field__input" type="text" id="fsong" name="song" placeholder="Ej: Can't Help Falling in Love">
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="fmsg">Mensaje para los novios (opcional)</label>
+          <textarea class="field__textarea" id="fmsg" name="message" placeholder="Escribe tus buenos deseos…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--gold" style="width:100%;justify-content:center;margin-top:0.4rem">
+          Confirmar asistencia
+        </button>
+
+      </form>
+
+      <!-- Mensaje de éxito -->
+      <div class="rsvp__success" id="rsvpSuccess" role="alert" aria-live="polite">
+        <div class="rsvp__success__icon" aria-hidden="true">✦</div>
+        <h3 class="rsvp__success__title">¡Gracias!</h3>
+        <p style="color:var(--c-text-mid);margin-top:0.4rem;">
+          Hemos recibido tu confirmación. Nos vemos pronto.
+        </p>
+        <button class="btn btn--ghost" id="rsvpModalCloseSuccess" style="margin-top:1.5rem;min-width:160px;justify-content:center">
+          Cerrar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       CUENTA REGRESIVA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="countdown" id="countdown" aria-label="Cuenta regresiva">
+    <div style="max-width:600px;margin:0 auto">
+
+      <p class="eyebrow anim-up">Faltan…</p>
+
+      <div class="divider anim-up d1">
+        <span class="divider__glyph">✦</span>
+      </div>
+
+      <div class="countdown__grid anim-up d2">
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cdMonths">00</span>
+          <span class="countdown__label">Meses</span>
+        </div>
+        <span class="countdown__sep" aria-hidden="true">:</span>
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cdDays">00</span>
+          <span class="countdown__label">Días</span>
+        </div>
+        <span class="countdown__sep" aria-hidden="true">:</span>
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cdHours">00</span>
+          <span class="countdown__label">Horas</span>
+        </div>
+        <span class="countdown__sep" aria-hidden="true">:</span>
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cdMins">00</span>
+          <span class="countdown__label">Minutos</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FOTOS DEL EVENTO
+       ════════════════════════════════════════════════════════════ -->
+  <section class="photos" id="photos" aria-label="Comparte tus fotos">
+    <div class="photos__inner">
+
+      <p class="eyebrow anim-up" id="photosEyebrow"></p>
+
+      <div class="divider anim-up d1">
+        <span class="divider__glyph">✦</span>
+      </div>
+
+      <h2 class="photos__title anim-up d1" id="photosTitle"></h2>
+      <p class="photos__text  anim-up d2" id="photosText"></p>
+
+      <div class="photos__qr anim-up d2" id="photosQrWrap" hidden="">
+        <img id="photosQr" src="" alt="Código QR para subir fotos" width="180" height="180">
+      </div>
+
+      <div class="photos__actions anim-up d3" id="photosActions" hidden="">
+        <a class="btn btn--gold" id="photosBtn" href="#" target="_blank" rel="noopener" style="min-width:220px;justify-content:center">
+          📷 Subir mis fotos
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       CIERRE — al final de todo
+       ════════════════════════════════════════════════════════════ -->
+  <section class="closing" id="closing" aria-label="Mensaje de cierre">
+    <div class="closing__inner">
+
+      <div class="divider anim-up">
+        <span class="divider__glyph">✦</span>
+      </div>
+
+      <blockquote class="closing__quote anim-up d1" id="closingQuote"></blockquote>
+      <p class="closing__attribution anim-up d2" id="closingAttrib"></p>
+
+      <span class="rule anim-up d3"></span>
+
+      <p class="closing__cta-text anim-up d3" id="closingCtaTxt"></p>
+      <a class="btn btn--gold anim-up d4" href="#rsvp" id="closingBtn"></a>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <p class="site-footer__text" id="footerTxt"></p>
+  </footer>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+                    ▼  OBJETO DE CONFIGURACIÓN  ▼
+       ════════════════════════════════════════════════════════════
+       Edita este bloque para personalizar toda la invitación.
+       NO necesitas tocar el HTML ni el CSS.
+       ════════════════════════════════════════════════════════════ -->
+  <script>
+
+    /* Capturado en DOMContentLoaded antes de render() — incluye todos los
+       elementos del body (audio, musicPlayer, envOverlay, etc.)          */
+    let _initialHTML;
+
+    /* ── Persistencia en localStorage ────────────────────────── */
+    const _STORAGE_KEY   = 'inv_content';
+    const _COLORS_KEY    = 'inv_colors';
+
+    function saveToStorage() {
+      try {
+        localStorage.setItem(_STORAGE_KEY, JSON.stringify(siteContent));
+      } catch(e) {}
+    }
+
+    function saveColorsToStorage(colorMap) {
+      try {
+        const prev = JSON.parse(localStorage.getItem(_COLORS_KEY) || '{}');
+        localStorage.setItem(_COLORS_KEY, JSON.stringify({ ...prev, ...colorMap }));
+      } catch(e) {}
+    }
+
+    function restoreFromStorage() {
+      try {
+        const saved = localStorage.getItem(_STORAGE_KEY);
+        if (saved) Object.assign(siteContent, JSON.parse(saved));
+
+        const colors = JSON.parse(localStorage.getItem(_COLORS_KEY) || '{}');
+        const root   = document.documentElement;
+        Object.entries(colors).forEach(([k, v]) => root.style.setProperty(k, v));
+      } catch(e) {}
+    }
+
+    function clearStorage() {
+      try {
+        localStorage.removeItem(_STORAGE_KEY);
+        localStorage.removeItem(_COLORS_KEY);
+      } catch(e) {}
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       EDITA AQUÍ — toda la información de la boda
+       ────────────────────────────────────────────────────────── */
+    const siteContent = {
+
+      /* ── Meta ─────────────────────────────────────────────── */
+      pageTitle: "Sofía & Mateo — Te invitamos a nuestra boda",
+
+      /* ── Pareja ───────────────────────────────────────────── */
+      name1: "Steph",
+      name2: "Camilo",
+      sealText: "",
+
+      /* ── Hero ─────────────────────────────────────────────── */
+      heroEyebrow:  "Una invitación muy especial",
+      heroIntro:    "Tenemos algo importante que contarte…",
+
+      heroImage:    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&q=80",
+
+      /* ── Fecha del evento — formato YYYY-MM-DD ────────────── */
+      eventDateRaw: "2026-09-19",
+
+      /* ── Anuncio ──────────────────────────────────────────── */
+      announceEyebrow:  "Con alegría",
+      announceHeadline: "Nos casamos y queremos celebrarlo contigo",
+      announceBody:     "Después de tanto camino compartido llegó el momento más bonito de nuestras vidas. Con el corazón lleno de amor, te invitamos a acompañarnos en el día que lo cambia todo.",
+
+      /* ── Historia ─────────────────────────────────────────── */
+      storyEyebrow: "Nuestra historia",
+      storyTitle:   "Desde el primer día\nsupimos que era para siempre",
+      storyBody:    "Todo empezó con una mirada y una sonrisa que ninguno de los dos olvidó. Cada aventura, cada momento sencillo y cada instante compartido nos fue acercando más. Hoy, con gratitud y emoción, queremos celebrar este nuevo capítulo rodeados de las personas que más amamos.",
+
+      storyImage:    "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
+      storyImageAlt: "Fotografía de la pareja en sesión editorial",
+
+      /* ── Galería ──────────────────────────────────────────── */
+      galleryImages: [
+        {
+                "src": "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=480&q=80",
+                "alt": "Ramo de novia con flores silvestres"
+        },
+        {
+                "src": "https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=480&q=80",
+                "alt": "Anillos de compromiso"
+        },
+        {
+                "src": "https://images.unsplash.com/photo-1529636444744-adffc9135a5e?w=480&q=80",
+                "alt": "Decoración floral de la celebración"
+        },
+        {
+                "src": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=480&q=80",
+                "alt": "Mesa de celebración decorada"
+        },
+        {
+                "src": "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?w=480&q=80",
+                "alt": "Pareja celebrando su boda"
+        }
+],
+
+      /* ── La fecha ────────────────────────────────────────────── */
+      eventEyebrow: "La fecha",
+
+      /* ── Celebración Eucarística ──────────────────────────── */
+      ceremonyTitle:    "Celebración Eucarística",
+      ceremonyTime:     "11:00 h",
+      ceremonyTimeSub:  "",
+      ceremonyVenue:    "",
+      ceremonyVenueSub: "",
+      ceremonyAddress:  "",
+      ceremonyMapsUrl:  "https://maps.google.com?q=",
+
+      /* ── Recepción ────────────────────────────────────────── */
+      receptionTitle:    "Recepción",
+      receptionTime:     "14:00 h",
+      receptionTimeSub:  "Cocktail desde las 13:30",
+      receptionVenue:    "Hacienda Villa del Alba",
+      receptionVenueSub: "Salón principal — Acceso norte",
+      receptionAddress:  "Camino de la Hacienda 42, 28001 Madrid, España",
+      receptionMapsUrl:  "https://maps.google.com?q=Hacienda+Villa+del+Alba+Madrid",
+
+      /* ── Vestimenta ───────────────────────────────────────── */
+      dressCodeEyebrow: "Vestimenta",
+      dressCode:        "Formal elegante",
+      dressCodeSub:     "Colores claros o tierra — sin blanco",
+      dressCodeNote:    "",
+
+      /* ── Regalos ──────────────────────────────────────────── */
+      giftsEyebrow: "Un detalle",
+      giftsTitle:   "Si deseas hacernos un regalo",
+      giftsText:    "Preferimos lluvia de sobres, pero lo más importante es tu presencia y alegría ese día.",
+      giftsNote:    "",
+
+      /* ── RSVP ─────────────────────────────────────────────── */
+      rsvpTitle:     "¿Vendrás con nosotros?",
+      rsvpSub:       "Por favor confirma tu asistencia antes del 1 de agosto de 2026.",
+      rsvpNote:      "Tu respuesta nos ayuda a prepararlo todo con cariño.",
+      rsvpSongLabel: "¿Qué canción no puede faltar ese día?",
+
+      /* ── Fotos del evento ─────────────────────────────────── */
+      photosEyebrow: "Tu mirada, nuestra historia",
+      photosTitle:   "¡Comparte tus fotos del día!",
+      photosText:    "Sube las fotos que tomaste durante la celebración. Juntos armaremos el álbum de recuerdos.",
+      photosUrl:     "https://drive.google.com/drive/folders/1hYqfIu0lhmbbDWHKEvWlqfrl1p2CZF5x?usp=sharing",
+
+      /* ── Cierre ───────────────────────────────────────────── */
+      closingQuote:   "«El amor no se mide en años, sino en los momentos que dejan huella.»",
+      closingAttrib:  "— Sofía & Mateo",
+      closingCtaTxt:  "¿Todavía no has confirmado tu asistencia?",
+      closingBtnText: "Confirmar ahora",
+
+      /* ── Footer ───────────────────────────────────────────── */
+      footerText: "Con amor · Sofía & Mateo · 2026",
+
+      /* ── Música de fondo ──────────────────────────────────── */
+      musicSrc: ""
+
+    };;
+    
+        /* ──────────────────────────────────────────────────────────
+       FIN DEL BLOQUE EDITABLE
+       ────────────────────────────────────────────────────────── */
+
+
+    /* ══════════════════════════════════════════════════════════
+       RENDERIZADO — No edites debajo de esta línea
+       ══════════════════════════════════════════════════════════ */
+
+    /* Parsear fecha sin problemas de zona horaria */
+    function parseDate(str) {
+      const [y, m, d] = str.split('-').map(Number);
+      return new Date(y, m - 1, d);
+    }
+
+    function monthName(date) {
+      return date.toLocaleDateString('es-ES', { month: 'long' });
+    }
+
+    /* Inyecta el contenido del objeto siteContent en el DOM */
+    function render() {
+      const c = siteContent;
+      const date = parseDate(c.eventDateRaw);
+
+      /* Meta */
+      document.title = c.pageTitle;
+      document.querySelector('meta[property="og:title"]').content = c.pageTitle;
+
+      /* Hero */
+      document.getElementById('heroBg').style.backgroundImage = `url('${c.heroImage}')`;
+      setText('heroEyebrow', c.heroEyebrow);
+      setText('heroIntro',   c.heroIntro);
+      document.getElementById('heroNames').innerHTML =
+        `${c.name1}<span class="amp">&amp;</span>${c.name2}`;
+      setText('heroDate', date.toLocaleDateString('es-ES', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      }).toUpperCase());
+
+      /* Anuncio — última palabra en cursiva */
+      setText('announceEyebrow', c.announceEyebrow);
+      const words = c.announceHeadline.split(' ');
+      const last  = words.pop();
+      document.getElementById('announceHeadline').innerHTML =
+        words.join(' ') + ` <em>${last}</em>`;
+      setText('announceBody', c.announceBody);
+
+      /* Historia */
+      setText('storyEyebrow', c.storyEyebrow);
+      setText('storyTitle',   c.storyTitle);
+      setText('storyBody',    c.storyBody);
+      const sImg = document.getElementById('storyImg');
+      sImg.src = c.storyImage;
+      sImg.alt = c.storyImageAlt;
+
+      /* Galería — duplicar ítems para scroll infinito */
+      const track   = document.getElementById('galleryTrack');
+      const gallSec = document.getElementById('gallery');
+      if (c.galleryImages && c.galleryImages.length) {
+        const items = c.galleryImages.map(img =>
+          `<div class="gallery__item" role="listitem">
+             <img src="${img.src}" alt="${img.alt}" loading="lazy" />
+           </div>`
+        ).join('');
+        track.innerHTML = items + items; /* duplicar para loop seamless */
+        /* Ajustar velocidad al número de fotos (≈3s por foto) */
+        const dur = Math.max(15, c.galleryImages.length * 5);
+        track.style.animationDuration = dur + 's';
+      } else {
+        gallSec.style.display = 'none';
+      }
+
+      /* Fecha */
+      setText('eventEyebrow', c.eventEyebrow);
+      setText('evMonth', monthName(date).toUpperCase());
+      setText('evDay',   String(date.getDate()).padStart(2, '0'));
+      setText('evYear',  String(date.getFullYear()));
+
+      /* Celebración Eucarística */
+      setText('ceremonyTitle',    c.ceremonyTitle);
+      setText('ceremonyTime',     c.ceremonyTime);
+      setText('ceremonyTimeSub',  c.ceremonyTimeSub);
+      setText('ceremonyVenue',    c.ceremonyVenue);
+      setText('ceremonyVenueSub', c.ceremonyVenueSub);
+      setText('ceremonyAddress',  c.ceremonyAddress);
+      const cmBtn = document.getElementById('ceremonyMapsBtn');
+      if (cmBtn) cmBtn.href = c.ceremonyMapsUrl || '#';
+
+      /* Recepción */
+      setText('receptionTitle',    c.receptionTitle);
+      setText('receptionTime',     c.receptionTime);
+      setText('receptionTimeSub',  c.receptionTimeSub);
+      setText('receptionVenue',    c.receptionVenue);
+      setText('receptionVenueSub', c.receptionVenueSub);
+      setText('receptionAddress',  c.receptionAddress);
+      const rcBtn = document.getElementById('receptionMapsBtn');
+      if (rcBtn) rcBtn.href = c.receptionMapsUrl || '#';
+
+      /* Vestimenta */
+      setText('dressCodeEyebrow', c.dressCodeEyebrow);
+      setText('dressCodeVal',     c.dressCode);
+      setText('dressCodeSub',     c.dressCodeSub);
+      setText('dressCodeNote',    c.dressCodeNote);
+
+      /* Regalos */
+      setText('giftsEyebrow', c.giftsEyebrow);
+      setText('giftsTitle',   c.giftsTitle);
+      setText('giftsText',    c.giftsText);
+      setText('giftsNote',    c.giftsNote);
+
+      /* RSVP */
+      setText('rsvpTitle',   c.rsvpTitle);
+      setText('rsvpSub',     c.rsvpSub);
+      setText('rsvpNote',    c.rsvpNote);
+      setText('rsvpSongLbl', c.rsvpSongLabel);
+
+      /* Cierre */
+      setText('closingQuote',  c.closingQuote);
+      setText('closingAttrib', c.closingAttrib);
+      setText('closingCtaTxt', c.closingCtaTxt);
+      setText('closingBtn',    c.closingBtnText);
+
+      /* Fotos */
+      setText('photosEyebrow', c.photosEyebrow);
+      setText('photosTitle',   c.photosTitle);
+      setText('photosText',    c.photosText);
+      const qrWrap      = document.getElementById('photosQrWrap');
+      const photosActs  = document.getElementById('photosActions');
+      const photosQrImg = document.getElementById('photosQr');
+      const photosBtn   = document.getElementById('photosBtn');
+      if (c.photosUrl) {
+        if (qrWrap)      qrWrap.removeAttribute('hidden');
+        if (photosActs)  photosActs.removeAttribute('hidden');
+        if (photosQrImg) photosQrImg.src =
+          `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(c.photosUrl)}`;
+        if (photosBtn)   photosBtn.href = c.photosUrl;
+      } else {
+        if (qrWrap)     qrWrap.setAttribute('hidden', '');
+        if (photosActs) photosActs.setAttribute('hidden', '');
+      }
+
+      /* Footer */
+      setText('footerTxt', c.footerText);
+
+      /* Sello del sobre */
+      const sealEl = document.getElementById('envSealTxt');
+      if (sealEl) sealEl.textContent = c.sealText ||
+        (c.name1?.[0] ?? '') + '\u2009&\u2009' + (c.name2?.[0] ?? '');
+    }
+
+    function setText(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    }
+
+    /* ── Modo oscuro ──────────────────────────────────────── */
+    function initTheme() {
+      /* Tema oscuro fijo — el toggle fue removido por diseño */
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    /* ── Animaciones de scroll ────────────────────────────── */
+    function initAnimations() {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) {
+        document.querySelectorAll('.anim-up, .anim-fade').forEach(el => el.classList.add('in'));
+        return;
+      }
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+
+      document.querySelectorAll('.anim-up, .anim-fade').forEach(el => obs.observe(el));
+    }
+
+    /* ── Ken-Burns en hero al cargar imagen ──────────────── */
+    function initHeroBg() {
+      const bg  = document.getElementById('heroBg');
+      const img = new Image();
+      img.onload = () => bg.classList.add('loaded');
+      img.src = siteContent.heroImage;
+    }
+
+    /* ── Scroll cue ───────────────────────────────────────── */
+    function initScrollCue() {
+      const cue  = document.getElementById('scrollCue');
+      const hero = document.getElementById('hero');
+
+      const goDown = () => document.getElementById('announce')
+        .scrollIntoView({ behavior: 'smooth' });
+
+      cue.addEventListener('click', goDown);
+      cue.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goDown(); }
+      });
+
+      /* Ocultar al salir del hero */
+      new IntersectionObserver(([e]) => {
+        cue.style.opacity       = e.isIntersecting ? '' : '0';
+        cue.style.pointerEvents = e.isIntersecting ? '' : 'none';
+      }, { threshold: 0.4 }).observe(hero);
+    }
+
+    /* ── RSVP — popup modal ──────────────────────────────── */
+    function initRSVP() {
+      const modal      = document.getElementById('rsvpModal');
+      const backdrop   = document.getElementById('rsvpModalBackdrop');
+      const closeBtn   = document.getElementById('rsvpModalClose');
+      const closeSucc  = document.getElementById('rsvpModalCloseSuccess');
+      const form       = document.getElementById('rsvpForm');
+      const success    = document.getElementById('rsvpSuccess');
+      const openBtn    = document.getElementById('rsvpOpenBtn');
+      const closingBtn = document.getElementById('closingBtn');
+
+      let submitted = false;
+
+      function openModal() {
+        modal.removeAttribute('hidden');
+        document.body.style.overflow = 'hidden';
+        /* Scroll al inicio del modal */
+        const box = modal.querySelector('.rsvp-modal__box');
+        if (box) box.scrollTop = 0;
+        /* Foco accesible */
+        setTimeout(() => {
+          const first = form.querySelector('input, select, textarea, button:not(.rsvp-modal__close)');
+          if (first && !submitted) first.focus();
+        }, 80);
+      }
+
+      function closeModal() {
+        modal.setAttribute('hidden', '');
+        document.body.style.overflow = '';
+      }
+
+      if (openBtn)    openBtn.addEventListener('click', openModal);
+      if (closeBtn)   closeBtn.addEventListener('click', closeModal);
+      if (closeSucc)  closeSucc.addEventListener('click', closeModal);
+      if (backdrop)   backdrop.addEventListener('click', closeModal);
+
+      /* Interceptar el botón de cierre (href="#rsvp") */
+      if (closingBtn) {
+        closingBtn.addEventListener('click', e => {
+          e.preventDefault();
+          openModal();
+        });
+      }
+
+      /* Cerrar con Escape */
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal();
+      });
+
+      /* Envío del formulario */
+      if (form) {
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const name   = document.getElementById('fname').value.trim();
+          const attend = document.getElementById('fattend').value;
+          if (!name)   { document.getElementById('fname').focus();   return; }
+          if (!attend) { document.getElementById('fattend').focus(); return; }
+
+          submitted = true;
+          form.style.display = 'none';
+          success.classList.add('show');
+        });
+      }
+    }
+
+    /* ── Galería con scroll automático infinito ────────────── */
+    function initGalleryDrag() {
+      /* La animación CSS se encarga del auto-scroll.
+         Pausar al pasar el ratón ya está en CSS (.gallery:hover .gallery__track).
+         No se necesita JS adicional para el loop. */
+    }
+
+    /* ── Cuenta regresiva ─────────────────────────────────── */
+    function initCountdown() {
+      const elMonths = document.getElementById('cdMonths');
+      const elDays   = document.getElementById('cdDays');
+      const elHours  = document.getElementById('cdHours');
+      const elMins   = document.getElementById('cdMins');
+      if (!elMonths) return;
+
+      function update() {
+        const now    = new Date();
+        const target = parseDate(siteContent.eventDateRaw);
+        const diff   = target - now;
+
+        if (diff <= 0) {
+          [elMonths, elDays, elHours, elMins].forEach(el => el.textContent = '00');
+          return;
+        }
+
+        /* Meses completos restantes */
+        let months = (target.getFullYear() - now.getFullYear()) * 12
+                    + (target.getMonth() - now.getMonth());
+        const afterMonths = new Date(now.getFullYear(), now.getMonth() + months,
+                                     now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
+        if (afterMonths > target) months--;
+
+        const base  = new Date(now.getFullYear(), now.getMonth() + months,
+                               now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
+        const remMs = target - base;
+
+        const days  = Math.floor(remMs / 86400000);
+        const hours = Math.floor((remMs % 86400000) / 3600000);
+        const mins  = Math.floor((remMs % 3600000)  / 60000);
+
+        const pad = n => String(n).padStart(2, '0');
+        elMonths.textContent = pad(months);
+        elDays.textContent   = pad(days);
+        elHours.textContent  = pad(hours);
+        elMins.textContent   = pad(mins);
+      }
+
+      update();
+      setInterval(update, 30000); /* actualizar cada 30s */
+    }
+
+    /* ── Pétalos decorativos en el hero ───────────────────── */
+    function initPetals() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const hero = document.getElementById('hero');
+      for (let i = 0; i < 7; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.style.cssText = `
+          left: ${Math.random() * 100}%;
+          width: ${4 + Math.random() * 6}px;
+          height: ${6 + Math.random() * 9}px;
+          animation-duration: ${9 + Math.random() * 11}s;
+          animation-delay: ${Math.random() * 10}s;
+        `;
+        hero.appendChild(p);
+      }
+    }
+
+    /* ── Sobre full-screen ────────────────────────────────── */
+    function initEnvelope() {
+      const overlay = document.getElementById('envOverlay');
+
+      if (!overlay) return;
+
+      const c = siteContent;
+
+      /* Bloquear scroll mientras el sobre cubre la pantalla */
+      document.body.classList.add('env-locked');
+
+      let opened = false;
+
+      function openEnvelope(e) {
+        if (e && e.type === 'touchend') e.preventDefault(); /* evita click posterior */
+        if (opened) return;
+        opened = true;
+
+        /* Arrancar música — envuelto en try-catch para que un error no bloquee la animación */
+        try { if (typeof _musicAutoStart === 'function') _musicAutoStart(); } catch (_) {}
+
+        /* Paso 1: iniciar apertura (sello se rompe + solapa rota en 3D) */
+        overlay.classList.add('opening');
+        overlay.style.cursor = 'default';
+
+        /* Paso 2: fade-out del sobre + fade-in simultáneo de la invitación.
+           El hero ya tiene elementos con opacity:0 (anim-up/anim-fade) —
+           al animarlos justo cuando el overlay se desvanece, el efecto
+           es que la invitación "aparece" gradualmente desde la nada.     */
+        setTimeout(() => {
+          overlay.classList.add('dismissed');           /* fade-out: 2s  */
+          requestAnimationFrame(() => {                 /* fade-in hero   */
+            document.querySelectorAll('.hero .anim-up, .hero .anim-fade')
+              .forEach(el => el.classList.add('in'));
+          });
+        }, 1050);
+
+        /* Paso 3: desbloquear scroll una vez que el overlay es imperceptible */
+        setTimeout(() => {
+          document.body.classList.remove('env-locked');
+        }, 1600);
+
+        /* Paso 4: eliminar overlay del DOM para que no interfiera */
+        setTimeout(() => overlay.remove(), 3500);
+      }
+
+      /* Clic / tap / rueda — cualquier interacción abre el sobre */
+      overlay.addEventListener('click',    openEnvelope);
+      /* touchend es más fiable que touchstart en iOS Safari para disparar play() */
+      overlay.addEventListener('touchend', openEnvelope);
+      overlay.addEventListener('wheel',    openEnvelope, { passive: true, once: true });
+
+      /* Teclado: Enter, Espacio o cualquier otra tecla */
+      overlay.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnvelope(); }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (!opened && !['Tab','Shift','Control','Alt','Meta'].includes(e.key)) {
+          openEnvelope();
+        }
+      }, { once: true });
+    }
+
+    /* ── Música de fondo ──────────────────────────────────────── */
+    let _musicAutoStart = null;
+
+    function initMusic() {
+      const src    = siteContent.musicSrc;
+      const audio  = document.getElementById('bgAudio');
+      const player = document.getElementById('musicPlayer');
+      const btn    = document.getElementById('musicBtn');
+
+      if (!src || !audio) return;
+
+      audio.src = src;
+      audio.volume = 0.45;
+      audio.load();
+      player.hidden = false;
+
+      let playing = false;
+
+      /* Desbloquea AudioContext en iOS — debe llamarse dentro de un gesto */
+      function unlockAudio() {
+        try {
+          const Ctx = window.AudioContext || window.webkitAudioContext;
+          if (Ctx) { const ctx = new Ctx(); ctx.resume(); ctx.close(); }
+        } catch (_) {}
+      }
+
+      function toggleMusic() {
+        if (playing) {
+          audio.pause();
+          btn.textContent = '♪';
+          btn.classList.remove('playing');
+          btn.setAttribute('aria-label', 'Reproducir música');
+        } else {
+          audio.play().catch(() => {});
+          btn.textContent = '❚❚';
+          btn.classList.add('playing');
+          btn.setAttribute('aria-label', 'Pausar música');
+        }
+        playing = !playing;
+      }
+
+      btn.addEventListener('click', toggleMusic);
+
+      /* Llamado por initEnvelope — dentro del handler de gesto del usuario */
+      _musicAutoStart = () => {
+        if (!playing) {
+          unlockAudio();   /* desbloquea iOS antes de play */
+          toggleMusic();
+        }
+      };
+    }
+
+    
+
+    /* ── Arranque ─────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+      _initialHTML = document.documentElement.outerHTML; /* DOM completo, antes de render */
+      restoreFromStorage(); /* restaurar cambios guardados antes de pintar */
+      render();
+      initTheme();
+      initHeroBg();
+      initAnimations();
+      initScrollCue();
+      initRSVP();
+      initGalleryDrag();
+      initCountdown();
+      initPetals();
+      initMusic();
+      initEnvelope(); /* ← el sobre gestiona el trigger del hero internamente */
+      
+    });
+
+  </script>
+
+  <!-- ── Reproductor de música de fondo ──────────────────── -->
+  <audio id="bgAudio" loop="" preload="none"></audio>
+  <div id="musicPlayer" class="music-player" hidden="">
+    <button id="musicBtn" class="music-btn" aria-label="Música">♪</button>
+  </div>
+
+  
+
+
+
+</body></html>
