@@ -3291,22 +3291,9 @@
         return '<!DOCTYPE html>\n' + html;
       }
 
-      /* ── Publicar en GitHub → Vercel auto-despliega ─────── */
-      const _GH_TOKEN_KEY  = 'inv_gh_token';
-      const _GH_REPO_KEY   = 'inv_gh_repo';
-
-      const tokenInp  = document.getElementById('editorGhToken');
-      const repoInp   = document.getElementById('editorGhRepo');
+      /* ── Publicar → llama al endpoint /api/publish (token en Vercel) ── */
       const publishBtn = document.getElementById('editorPublishBtn');
       const pubStatus  = document.getElementById('editorPublishStatus');
-
-      /* Restaurar valores guardados */
-      if (tokenInp) tokenInp.value = localStorage.getItem(_GH_TOKEN_KEY) || '';
-      if (repoInp)  repoInp.value  = localStorage.getItem(_GH_REPO_KEY)  || 'SantiagoJimenezOrtega/Invitacion';
-      if (tokenInp) tokenInp.addEventListener('input', () =>
-        localStorage.setItem(_GH_TOKEN_KEY, tokenInp.value.trim()));
-      if (repoInp)  repoInp.addEventListener('input', () =>
-        localStorage.setItem(_GH_REPO_KEY, repoInp.value.trim()));
 
       function setStatus(msg, color) {
         if (!pubStatus) return;
@@ -3316,58 +3303,18 @@
 
       if (publishBtn) {
         publishBtn.addEventListener('click', async () => {
-          const token = tokenInp?.value.trim();
-          const repo  = repoInp?.value.trim() || 'SantiagoJimenezOrtega/Invitacion';
-          const [owner, repoName] = repo.split('/');
-
-          if (!token) {
-            setStatus('⚠ Ingresa tu GitHub Token primero', '#e0b080');
-            tokenInp?.focus(); return;
-          }
-          if (!owner || !repoName) {
-            setStatus('⚠ Formato de repo: usuario/repositorio', '#e0b080');
-            repoInp?.focus(); return;
-          }
-
           publishBtn.disabled = true;
-          setStatus('Conectando con GitHub…', '#ede8e0');
-
+          setStatus('Publicando…', '#ede8e0');
           try {
-            const apiBase = `https://api.github.com/repos/${owner}/${repoName}/contents/index.html`;
-            const headers = {
-              Authorization: `token ${token}`,
-              Accept: 'application/vnd.github.v3+json',
-              'Content-Type': 'application/json'
-            };
-
-            /* 1. Obtener SHA actual del archivo */
-            const fileRes = await fetch(apiBase, { headers });
-            if (!fileRes.ok) throw new Error(`GitHub: ${fileRes.status} — ¿token o repo correcto?`);
-            const { sha } = await fileRes.json();
-
-            /* 2. Subir versión actualizada */
-            setStatus('Publicando cambios…', '#ede8e0');
-            const content = buildPublishHtml();
-            /* btoa con soporte UTF-8 */
-            const b64 = btoa(unescape(encodeURIComponent(content)));
-
-            const putRes = await fetch(apiBase, {
-              method: 'PUT', headers,
-              body: JSON.stringify({
-                message: 'Actualizar invitación desde el editor',
-                content: b64,
-                sha,
-                branch: 'main'
-              })
+            const res = await fetch('/api/publish', {
+              method: 'POST',
+              headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+              body: buildPublishHtml()
             });
-            if (!putRes.ok) {
-              const err = await putRes.json().catch(() => ({}));
-              throw new Error(err.message || `Error ${putRes.status}`);
-            }
-
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) throw new Error(data.error || `Error ${res.status}`);
             setStatus('✓ Publicado — Vercel despliega en ~30 s', '#8fba8f');
-            setTimeout(() => setStatus(''), 10000);
-
+            setTimeout(() => setStatus(''), 12000);
           } catch (e) {
             setStatus('✕ ' + e.message, '#e09090');
           } finally {
@@ -3451,25 +3398,17 @@
     <div class="editor-publish">
       <div class="editor-publish-title">🚀 Publicar en Vercel</div>
 
-      <div class="editor-field" style="margin-bottom:0">
-        <label style="font-size:0.67rem;color:#706a60">Repositorio (usuario/repo)</label>
-        <input class="editor-publish-input" id="editorGhRepo"
-               type="text" placeholder="SantiagoJimenezOrtega/Invitacion" spellcheck="false" />
-      </div>
-
       <div class="editor-publish-row">
-        <input class="editor-publish-input" id="editorGhToken"
-               type="password" placeholder="GitHub Personal Access Token" spellcheck="false"
-               autocomplete="off" />
-        <button class="editor-publish-btn" id="editorPublishBtn">Publicar</button>
+        <button class="editor-publish-btn" id="editorPublishBtn" style="flex:1">
+          Publicar ahora
+        </button>
       </div>
 
       <div class="editor-publish-status" id="editorPublishStatus"></div>
 
       <p class="editor-publish-help">
-        Token: github.com → Settings → Developer settings → Personal access tokens → Fine-grained →
-        permisos <strong>Contents: Read &amp; Write</strong> en este repo.
-        Se guarda solo en tu navegador.
+        El token vive en Vercel → Settings → Environment Variables (<code>GITHUB_TOKEN</code>).
+        Funciona desde cualquier dispositivo sin configuración extra.
       </p>
     </div>
   </aside>
