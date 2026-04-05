@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     });
   }
 
-  const { slug, html } = req.body || {};
+  const { slug, html, audio } = req.body || {};
 
   /* Validar slug: solo letras minúsculas, números y guiones */
   if (!slug || !/^[a-z0-9][a-z0-9-]{0,60}[a-z0-9]$/.test(slug)) {
@@ -38,6 +38,43 @@ export default async function handler(req, res) {
       error: 'URL inválida — usa solo letras, números y guiones (ej: sofia-y-mateo)',
     });
   }
+
+  /* ── Modo audio: subir archivo de música por separado ──── */
+  if (audio && !html) {
+    if (!audio.base64 || !audio.ext) {
+      return res.status(400).json({ error: 'Falta base64 o ext en audio' });
+    }
+    const audioPath = `${slug}/music.${audio.ext}`;
+    const audioApi  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${audioPath}`;
+    const ghHeaders = {
+      Authorization: `token ${GITHUB_TOKEN}`,
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json',
+    };
+    try {
+      let sha;
+      const check = await fetch(audioApi, { headers: ghHeaders });
+      if (check.ok) sha = (await check.json()).sha;
+      const putRes = await fetch(audioApi, {
+        method: 'PUT',
+        headers: ghHeaders,
+        body: JSON.stringify({
+          message: `Audio: ${slug}`,
+          content: audio.base64,
+          branch: 'main',
+          ...(sha ? { sha } : {}),
+        }),
+      });
+      if (!putRes.ok) {
+        const e = await putRes.json().catch(() => ({}));
+        throw new Error(e.message || `GitHub error ${putRes.status}`);
+      }
+      return res.status(200).json({ ok: true, path: `/${slug}/music.${audio.ext}` });
+    } catch (e) {
+      return res.status(500).json({ error: e.message });
+    }
+  }
+
   if (!html || html.length < 200) {
     return res.status(400).json({ error: 'Contenido HTML vacío o inválido' });
   }

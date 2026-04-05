@@ -3399,13 +3399,48 @@
           }
 
           publishBtn.disabled = true;
-          setStatus('Publicando…', '#ede8e0');
 
           try {
+            /* ── Si hay audio en base64, subirlo separado para evitar 413 ── */
+            const rawAudio = siteContent.musicSrc ?? '';
+            let audioPayload = null;
+            let htmlToPublish = buildCleanHtml();
+
+            if (rawAudio.startsWith('data:audio/')) {
+              const mimeMatch = rawAudio.match(/^data:audio\/([^;]+);base64,(.+)$/s);
+              if (mimeMatch) {
+                const ext = mimeMatch[1] === 'mpeg' ? 'mp3' : mimeMatch[1];
+                audioPayload = { base64: mimeMatch[2], ext };
+                /* URL que tendrá el audio en GitHub raw una vez subido */
+                const GH_OWNER = 'SantiagoJimenezOrtega';
+                const GH_REPO  = 'Invitacion';
+                const audioUrl = `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/main/${slug}/music.${ext}`;
+                /* Reemplazar data URL en el HTML generado con la URL del archivo */
+                htmlToPublish = htmlToPublish.replace(
+                  /musicSrc:\s*"data:audio\/[^"]*"/,
+                  `musicSrc: ${JSON.stringify(audioUrl)}`
+                );
+              }
+            }
+
+            /* ── 1. Subir audio (si aplica) ─────────────────────────── */
+            if (audioPayload) {
+              setStatus('Subiendo audio…', '#ede8e0');
+              const aRes = await fetch('/api/publish', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ slug, audio: audioPayload })
+              });
+              const aData = await aRes.json().catch(() => ({}));
+              if (!aRes.ok) throw new Error(aData.error || `Error audio ${aRes.status}`);
+            }
+
+            /* ── 2. Subir HTML ───────────────────────────────────────── */
+            setStatus('Publicando…', '#ede8e0');
             const res = await fetch('/api/publish', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ slug, html: buildCleanHtml() })
+              body: JSON.stringify({ slug, html: htmlToPublish })
             });
             const data = await res.json().catch(() => ({}));
             if (!res.ok) throw new Error(data.error || `Error ${res.status}`);
