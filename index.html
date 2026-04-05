@@ -2252,7 +2252,7 @@
 
       /* ── Celebración Eucarística ──────────────────────────── */
       ceremonyTitle:    "Celebración Eucarística",
-      ceremonyTime:     "11:00 h",
+      ceremonyTime:     "11:00",
       ceremonyTimeSub:  "",
       ceremonyVenue:    "",
       ceremonyVenueSub: "",
@@ -2261,7 +2261,7 @@
 
       /* ── Recepción ────────────────────────────────────────── */
       receptionTitle:    "Recepción",
-      receptionTime:     "14:00 h",
+      receptionTime:     "14:00",
       receptionTimeSub:  "Cocktail desde las 13:30",
       receptionVenue:    "Hacienda Villa del Alba",
       receptionVenueSub: "Salón principal — Acceso norte",
@@ -2383,9 +2383,15 @@
       setText('evDay',   String(date.getDate()).padStart(2, '0'));
       setText('evYear',  String(date.getFullYear()));
 
+      /* Formatea "HH:MM" → "HH:MM h" para mostrar en pantalla */
+      function fmtTime(t) {
+        if (!t) return '';
+        return /^\d{1,2}:\d{2}$/.test(t.trim()) ? t.trim() + ' h' : t;
+      }
+
       /* Celebración Eucarística */
       setText('ceremonyTitle',    c.ceremonyTitle);
-      setText('ceremonyTime',     c.ceremonyTime);
+      setText('ceremonyTime',     fmtTime(c.ceremonyTime));
       setText('ceremonyTimeSub',  c.ceremonyTimeSub);
       setText('ceremonyVenue',    c.ceremonyVenue);
       setText('ceremonyVenueSub', c.ceremonyVenueSub);
@@ -2395,7 +2401,7 @@
 
       /* Recepción */
       setText('receptionTitle',    c.receptionTitle);
-      setText('receptionTime',     c.receptionTime);
+      setText('receptionTime',     fmtTime(c.receptionTime));
       setText('receptionTimeSub',  c.receptionTimeSub);
       setText('receptionVenue',    c.receptionVenue);
       setText('receptionVenueSub', c.receptionVenueSub);
@@ -2594,6 +2600,9 @@
       function update() {
         const now    = new Date();
         const target = parseDate(siteContent.eventDateRaw);
+        /* Añadir hora exacta de la ceremonia si está disponible */
+        const tParts = (siteContent.ceremonyTime || '').match(/^(\d{1,2}):(\d{2})$/);
+        if (tParts) target.setHours(+tParts[1], +tParts[2], 0, 0);
         const diff   = target - now;
 
         if (diff <= 0) {
@@ -2951,7 +2960,7 @@
         ]},
         { title: 'Celebración Eucarística', fields: [
           { key: 'ceremonyTitle',    label: 'Título' },
-          { key: 'ceremonyTime',     label: 'Hora' },
+          { key: 'ceremonyTime',     label: 'Hora (también controla la cuenta regresiva)', type: 'time' },
           { key: 'ceremonyTimeSub',  label: 'Nota de hora' },
           { key: 'ceremonyVenue',    label: 'Lugar' },
           { key: 'ceremonyVenueSub', label: 'Detalle del lugar' },
@@ -2960,7 +2969,7 @@
         ]},
         { title: 'Recepción', fields: [
           { key: 'receptionTitle',    label: 'Título' },
-          { key: 'receptionTime',     label: 'Hora' },
+          { key: 'receptionTime',     label: 'Hora', type: 'time' },
           { key: 'receptionTimeSub',  label: 'Nota de hora' },
           { key: 'receptionVenue',    label: 'Lugar' },
           { key: 'receptionVenueSub', label: 'Detalle del lugar' },
@@ -3057,9 +3066,13 @@
                   }
                 </div>`;
               }
+              /* Para type:time limpiar cualquier sufijo legacy (" h") */
+              const inputVal = f.type === 'time'
+                ? (val.match(/(\d{1,2}:\d{2})/)?.[1] ?? '')
+                : val;
               return `<div class="editor-field">
                 <label>${escHtml(f.label)}</label>
-                <input type="${f.type || 'text'}" data-key="${f.key}" value="${escAttr(val)}" />
+                <input type="${f.type || 'text'}" data-key="${f.key}" value="${escAttr(inputVal)}" />
               </div>`;
             }).join('')}
           </div>`).join('');
