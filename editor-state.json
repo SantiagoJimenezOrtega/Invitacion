@@ -18,27 +18,27 @@
     "storyImageAlt": "Fotografía de la pareja en sesión editorial",
     "galleryImages": [
       {
-        "src": "",
+        "src": "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/gallery-0.jpg",
         "alt": "Ramo de novia con flores silvestres"
       },
       {
-        "src": "",
+        "src": "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/gallery-1.jpg",
         "alt": "Anillos de compromiso"
       },
       {
-        "src": "",
+        "src": "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/gallery-2.jpg",
         "alt": "Decoración floral de la celebración"
       },
       {
-        "src": "",
+        "src": "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/gallery-3.jpg",
         "alt": "Mesa de celebración decorada"
       },
       {
-        "src": "",
+        "src": "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/gallery-4.jpg",
         "alt": "Pareja celebrando su boda"
       },
       {
-        "src": "",
+        "src": "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/gallery-5.jpg",
         "alt": ""
       }
     ],
@@ -78,7 +78,7 @@
     "closingCtaTxt": "¿Todavía no has confirmado tu asistencia?",
     "closingBtnText": "Confirmar ahora",
     "footerText": "Con amor · Stephany & Camilo · 2026",
-    "musicSrc": ""
+    "musicSrc": "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/music.mp3"
   },
   "colors": {
     "--c-envelope": "#343575"
