@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ═══════════════════════════════════════════════════════
+       SEO & METADATOS — EDITA AQUÍ
+       ═══════════════════════════════════════════════════════ -->
+  <title id="pageTitle">Sofía & Mateo — Te invitamos a nuestra boda</title>
+  <meta name="description" content="Con amor y alegría, Sofía y Mateo te invitan a celebrar su boda. Una velada íntima y especial que no querrás perderte." />
+  <meta name="robots" content="noindex" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sofía & Mateo — Te invitamos a nuestra boda" />
+  <meta property="og:description" content="Con amor y emoción, queremos que seas parte de este día tan especial." />
+  <meta property="og:image" content="assets/og-cover.jpg" />
+  <!-- Reemplaza og:url con la URL donde publicarás la invitación -->
+  <meta property="og:url" content="https://tu-dominio.com" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon (SVG inline en assets/favicon.svg) -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Google Fonts — Cormorant Garamond (serif) + Jost (sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       VARIABLES GLOBALES — Edita aquí para cambiar colores,
+       fuentes y espaciado en toda la página de una sola vez.
+       ═══════════════════════════════════════════════════════════ */
+    :root {
+      /* Paleta modo claro */
+      --c-bg:           #FAF8F5;
+      --c-bg-alt:       #F2EDE5;
+      --c-surface:      rgba(255,255,255,0.65);
+      --c-gold:         #C5A46A;
+      --c-gold-dim:     #E4D4B6;
+      --c-rose:         #CFA8A8;
+      --c-sage:         #8FA494;
+      --c-text:         #2A2720;
+      --c-text-mid:     #6A6460;
+      --c-text-muted:   #A09890;
+
+      /* Tipografía */
+      --f-serif:  'Cormorant Garamond', Georgia, serif;
+      --f-sans:   'Jost', system-ui, sans-serif;
+
+      /* Espaciado */
+      --sp-xs:  0.5rem;
+      --sp-sm:  1rem;
+      --sp-md:  2rem;
+      --sp-lg:  4rem;
+      --sp-xl:  7rem;
+      --sp-xxl: 11rem;
+
+      /* Bordes */
+      --r-sm:   4px;
+      --r-md:   10px;
+      --r-lg:   22px;
+      --r-full: 9999px;
+
+      /* Sombras */
+      --sh-soft:   0 4px 30px rgba(0,0,0,0.05);
+      --sh-medium: 0 10px 48px rgba(0,0,0,0.09);
+
+      /* Transiciones */
+      --t-fast: 0.2s ease;
+      --t-base: 0.4s ease;
+      --t-slow: 0.9s ease;
+    }
+
+    /* ── Modo oscuro ──────────────────────────────────────── */
+    [data-theme="dark"] {
+      --c-bg:         #18160F;
+      --c-bg-alt:     #201E16;
+      --c-surface:    rgba(24,22,15,0.80);
+      --c-gold:       #D4B07A;
+      --c-gold-dim:   #5C4A2E;
+      --c-rose:       #B89292;
+      --c-sage:       #7A9488;
+      --c-text:       #EDE8E0;
+      --c-text-mid:   #B0A898;
+      --c-text-muted: #706A60;
+      --sh-soft:      0 4px 30px rgba(0,0,0,0.35);
+      --sh-medium:    0 10px 48px rgba(0,0,0,0.45);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESET & BASE
+       ═══════════════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      font-family: var(--f-sans);
+      font-weight: 300;
+      background-color: var(--c-bg);
+      color: var(--c-text);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background-color var(--t-slow), color var(--t-slow);
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+    a   { color: inherit; text-decoration: none; }
+    button { font-family: var(--f-sans); }
+
+    /* ═══════════════════════════════════════════════════════════
+       HELPERS TIPOGRÁFICOS
+       ═══════════════════════════════════════════════════════════ */
+    .eyebrow {
+      font-family: var(--f-sans);
+      font-size: 0.67rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--c-gold);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-sm);
+      margin: var(--sp-md) 0;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      max-width: 72px;
+      height: 1px;
+      background: var(--c-gold);
+      opacity: 0.4;
+    }
+    .divider__glyph {
+      color: var(--c-gold);
+      font-size: 0.85rem;
+      opacity: 0.7;
+      line-height: 1;
+    }
+
+    .rule {
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: var(--c-gold);
+      opacity: 0.5;
+      margin: var(--sp-sm) auto;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       ANIMACIONES DE SCROLL
+       ═══════════════════════════════════════════════════════════ */
+    .anim-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
+    }
+    .anim-fade {
+      opacity: 0;
+      transition: opacity 1.1s ease;
+    }
+    .anim-up.in, .anim-fade.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.20s; }
+    .d3 { transition-delay: 0.34s; }
+    .d4 { transition-delay: 0.50s; }
+    .d5 { transition-delay: 0.68s; }
+
+    /* ═══════════════════════════════════════════════════════════
+       BOTÓN TEMA (esquina superior derecha)
+       ═══════════════════════════════════════════════════════════ */
+    .theme-btn {
+      position: fixed;
+      top: 1.1rem;
+      right: 1.1rem;
+      z-index: 200;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--r-full);
+      border: 1px solid var(--c-gold-dim);
+      background: var(--c-surface);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--c-gold);
+      transition: background var(--t-base), color var(--t-base), border-color var(--t-base), box-shadow var(--t-base);
+      box-shadow: var(--sh-soft);
+    }
+    .theme-btn:hover  { background: var(--c-gold); color: #fff; border-color: var(--c-gold); }
+    .theme-btn:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 3px; }
+    .theme-btn .i-sun  { display: none; }
+    .theme-btn .i-moon { display: block; }
+    [data-theme="dark"] .theme-btn .i-sun  { display: block; }
+    [data-theme="dark"] .theme-btn .i-moon { display: none; }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIÓN 1 — HERO / PORTADA
+       ═══════════════════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: var(--sp-lg) var(--sp-sm) 5rem;
+    }
+
+    /* Imagen de fondo — Ken-Burns sutil al cargar */
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center 30%;
+      background-repeat: no-repeat;
+      transform: scale(1.06);
+      transition: transform 9s cubic-bezier(0.25,0.46,0.45,0.94);
+      z-index: 0;
+    }
+    .hero__bg.loaded { transform: scale(1); }
+
+    /* Degradado — suaviza la foto y hace el texto legible */
+    .hero__veil {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        180deg,
+        rgba(250,248,245,0.22)  0%,
+        rgba(250,248,245,0.52) 35%,
+        rgba(250,248,245,0.78) 65%,
+        rgba(250,248,245,0.97) 100%
+      );
+      transition: background var(--t-slow);
+    }
+    [data-theme="dark"] .hero__veil {
+      background: linear-gradient(
+        180deg,
+        rgba(24,22,15,0.22)  0%,
+        rgba(24,22,15,0.52) 35%,
+        rgba(24,22,15,0.78) 65%,
+        rgba(24,22,15,0.97) 100%
+      );
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 560px;
+      width: 100%;
+      padding: 0 var(--sp-sm);
+    }
+
+    .hero__intro {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 3.5vw, 1.3rem);
+      color: var(--c-text-mid);
+      margin: var(--sp-sm) 0 var(--sp-md);
+    }
+
+    .hero__names {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(3.4rem, 14vw, 6.8rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--c-text);
+      margin: 0;
+    }
+
+    .hero__names .amp {
+      display: block;
+      font-size: 0.62em;
+      font-style: italic;
+      color: var(--c-gold);
+      margin: 0.12em 0;
+      line-height: 1;
+    }
+
+    .hero__date-line {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--c-text-muted);
+      margin-top: var(--sp-md);
+    }
+
+    /* Scroll cue ─────────────── */
+    .scroll-cue {
+      position: absolute;
+      bottom: 1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+      cursor: pointer;
+      color: var(--c-text-muted);
+      transition: opacity var(--t-base);
+    }
+    .scroll-cue:hover { opacity: 0.5; }
+    .scroll-cue__label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .scroll-cue__arrow {
+      animation: bob 2.2s ease-in-out infinite;
+    }
+    @keyframes bob {
+      0%,100% { transform: translateY(0); }
+      55%      { transform: translateY(7px); }
+    }
+
+    /* Pétalo decorativo ─────── */
+    .petal {
+      position: absolute;
+      border-radius: 50% 0 50% 0;
+      background: var(--c-rose);
+      opacity: 0;
+      pointer-events: none;
+      animation: petalDrift linear infinite;
+    }
+    @keyframes petalDrift {
+      0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+      8%   { opacity: 0.13; }
+      92%  { opacity: 0.06; }
+      100% { transform: translateY(102vh) rotate(400deg); opacity: 0; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIÓN 2 — ANUNCIO
+       ═══════════════════════════════════════════════════════════ */
+    .announce {
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .announce__headline {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(1.9rem, 7vw, 3.4rem);
+      line-height: 1.15;
+      color: var(--c-text);
+      margin: var(--sp-sm) 0 var(--sp-md);
+    }
+    .announce__headline em {
+      font-style: italic;
+      color: var(--c-gold);
+    }
+
+    .announce__body {
+      font-size: 0.93rem;
+      color: var(--c-text-mid);
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.9;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIÓN 3 — HISTORIA
+       ═══════════════════════════════════════════════════════════ */
+    .story {
+      background: var(--c-bg-alt);
+      padding: var(--sp-xl) var(--sp-sm);
+      transition: background var(--t-slow);
+    }
+
+    .story__grid {
+      max-width: 920px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-lg);
+      align-items: center;
+    }
+    @media (min-width: 760px) {
+      .story__grid {
+        grid-template-columns: 5fr 6fr;
+        gap: var(--sp-xl);
+      }
+    }
+
+    /* Imagen con marco dorado offset */
+    .story__img-wrap {
+      position: relative;
+    }
+    .story__img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: var(--r-lg);
+      box-shadow: var(--sh-medium);
+      display: block;
+    }
+    .story__img-frame {
+      position: absolute;
+      top: -1rem;
+      left: -1rem;
+      right: 1rem;
+      bottom: 1rem;
+      border: 1px solid var(--c-gold);
+      border-radius: var(--r-lg);
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    .story__text { text-align: left; }
+    @media (max-width: 759px) { .story__text { text-align: center; } }
+
+    .story__title {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(1.7rem, 5vw, 2.5rem);
+      line-height: 1.2;
+      margin: var(--sp-sm) 0;
+      color: var(--c-text);
+      white-space: pre-line;
+    }
+
+    .story__body {
+      font-size: 0.93rem;
+      color: var(--c-text-mid);
+      line-height: 1.95;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       GALERÍA HORIZONTAL
+       ═══════════════════════════════════════════════════════════ */
+    .gallery {
+      background: var(--c-bg);
+      overflow: hidden;
+      transition: background var(--t-slow);
+    }
+    .gallery__track {
+      display: flex;
+      gap: 0.6rem;
+      padding: 0.6rem var(--sp-sm);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      cursor: grab;
+    }
+    .gallery__track::-webkit-scrollbar { display: none; }
+    .gallery__track:active { cursor: grabbing; }
+
+    .gallery__item {
+      flex: 0 0 auto;
+      width: 200px;
+      height: 280px;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+    @media (min-width: 600px) {
+      .gallery__item { width: 240px; height: 320px; }
+    }
+    .gallery__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--t-slow);
+    }
+    .gallery__item:hover img { transform: scale(1.05); }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIÓN 4 — DETALLES DEL EVENTO
+       ═══════════════════════════════════════════════════════════ */
+    .event {
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      background: var(--c-bg);
+      transition: background var(--t-slow);
+    }
+    .event__inner { max-width: 720px; margin: 0 auto; }
+
+    /* Fecha grande tipográfica */
+    .event__date {
+      margin: var(--sp-md) 0 var(--sp-lg);
+    }
+    .event__month {
+      font-size: 0.66rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--c-gold);
+      margin-bottom: 0.3rem;
+    }
+    .event__day {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(5rem, 18vw, 10rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--c-text);
+      margin-bottom: 0.35rem;
+    }
+    .event__year {
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--c-text-muted);
+      margin-top: 0.4rem;
+    }
+
+    /* Tarjetas de detalle */
+    .event__cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-sm);
+      margin: var(--sp-lg) 0 var(--sp-md);
+    }
+    @media (min-width: 560px) {
+      .event__cards { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+    }
+
+    .detail-card {
+      padding: 1.5rem 1rem;
+      border-radius: var(--r-md);
+      background: var(--c-bg-alt);
+      border: 1px solid transparent;
+      transition: border-color var(--t-base), box-shadow var(--t-base), background var(--t-slow);
+    }
+    .detail-card:hover {
+      border-color: var(--c-gold-dim);
+      box-shadow: var(--sh-soft);
+    }
+    .detail-card__glyph {
+      font-size: 1rem;
+      color: var(--c-gold);
+      margin-bottom: 0.6rem;
+      opacity: 0.8;
+    }
+    .detail-card__lbl {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--c-text-muted);
+      margin-bottom: 0.35rem;
+    }
+    .detail-card__val {
+      font-family: var(--f-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--c-text);
+      line-height: 1.3;
+    }
+    .detail-card__sub {
+      font-size: 0.78rem;
+      color: var(--c-text-mid);
+      margin-top: 0.25rem;
+      line-height: 1.4;
+    }
+
+    .event__address {
+      font-size: 0.88rem;
+      color: var(--c-text-mid);
+      margin-bottom: var(--sp-sm);
+    }
+
+    /* Botones */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.85rem 2rem;
+      border-radius: var(--r-full);
+      font-family: var(--f-sans);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: background var(--t-base), color var(--t-base), border-color var(--t-base), transform var(--t-fast), box-shadow var(--t-base);
+      -webkit-appearance: none;
+    }
+    .btn:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 4px; }
+    .btn:active        { transform: translateY(1px) !important; }
+
+    .btn--gold {
+      background: var(--c-gold);
+      color: #fff;
+    }
+    .btn--gold:hover {
+      background: var(--c-text);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+    }
+    [data-theme="dark"] .btn--gold:hover { background: var(--c-gold); filter: brightness(1.15); }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--c-text);
+      border: 1px solid var(--c-gold-dim);
+    }
+    .btn--outline:hover {
+      background: var(--c-gold);
+      color: #fff;
+      border-color: var(--c-gold);
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIÓN 5 — RSVP
+       ═══════════════════════════════════════════════════════════ */
+    .rsvp {
+      background: var(--c-bg-alt);
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      transition: background var(--t-slow);
+    }
+    .rsvp__inner { max-width: 540px; margin: 0 auto; }
+
+    .rsvp__title {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      color: var(--c-text);
+      margin-bottom: 0.4rem;
+    }
+    .rsvp__sub {
+      font-size: 0.9rem;
+      color: var(--c-text-mid);
+    }
+
+    /* Formulario */
+    .rsvp__form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-sm);
+      margin-top: var(--sp-lg);
+      text-align: left;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 0.35rem; }
+
+    .field__label {
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--c-text-muted);
+    }
+
+    .field__input,
+    .field__select,
+    .field__textarea {
+      width: 100%;
+      padding: 0.85rem 1.2rem;
+      border: 1px solid var(--c-gold-dim);
+      border-radius: var(--r-md);
+      background: var(--c-bg);
+      color: var(--c-text);
+      font-family: var(--f-sans);
+      font-size: 0.9rem;
+      font-weight: 300;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-slow), color var(--t-slow);
+    }
+    .field__input:focus,
+    .field__select:focus,
+    .field__textarea:focus {
+      border-color: var(--c-gold);
+      box-shadow: 0 0 0 3px rgba(197,164,106,0.15);
+    }
+    .field__input::placeholder,
+    .field__textarea::placeholder { color: var(--c-text-muted); }
+
+    .field__select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C5A46A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1.2rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    .field__textarea {
+      min-height: 96px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .rsvp__note {
+      font-size: 0.77rem;
+      color: var(--c-text-muted);
+      text-align: center;
+      margin-top: 0.4rem;
+    }
+
+    /* Estado de éxito */
+    .rsvp__success {
+      display: none;
+      padding: var(--sp-lg) 0;
+    }
+    .rsvp__success.show { display: block; }
+    .rsvp__success__icon {
+      font-size: 2rem;
+      color: var(--c-gold);
+      margin-bottom: var(--sp-sm);
+    }
+    .rsvp__success__title {
+      font-family: var(--f-serif);
+      font-size: 2rem;
+      font-weight: 300;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SECCIÓN 6 — CIERRE
+       ═══════════════════════════════════════════════════════════ */
+    .closing {
+      background: var(--c-bg);
+      padding: var(--sp-xxl) var(--sp-sm);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: background var(--t-slow);
+    }
+
+    /* Línea vertical que baja desde arriba */
+    .closing::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 72px;
+      background: linear-gradient(to bottom, transparent, var(--c-gold));
+      opacity: 0.35;
+    }
+
+    .closing__inner { max-width: 520px; margin: 0 auto; }
+
+    .closing__quote {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.55rem, 5vw, 2.4rem);
+      line-height: 1.45;
+      color: var(--c-text);
+      margin: var(--sp-md) 0 var(--sp-sm);
+    }
+
+    .closing__attribution {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--c-gold);
+      margin-bottom: var(--sp-md);
+    }
+
+    .closing__cta-text {
+      font-size: 0.83rem;
+      color: var(--c-text-mid);
+      margin-bottom: var(--sp-sm);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════ */
+    .site-footer {
+      background: var(--c-bg-alt);
+      border-top: 1px solid var(--c-gold-dim);
+      padding: var(--sp-md) var(--sp-sm);
+      text-align: center;
+      transition: background var(--t-slow);
+    }
+    .site-footer__text {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      color: var(--c-text-muted);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE TWEAKS
+       ═══════════════════════════════════════════════════════════ */
+    @media (max-width: 380px) {
+      :root {
+        --sp-lg:  3rem;
+        --sp-xl:  4.5rem;
+        --sp-xxl: 7rem;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SOBRE FULL-SCREEN — INTRO
+       El sobre ocupa toda la pantalla. Solo el sello es visible.
+       Al hacer click: el sello se rompe, la solapa se abre en 3D,
+       y la invitación aparece con un fade-in suave.
+       ═══════════════════════════════════════════════════════════ */
+
+    /* Overlay = pantalla completa = el sobre */
+    .env-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--c-bg);
+      cursor: pointer;
+      overflow: hidden;
+      /* Transición de desaparición — la invitación se revela con fade */
+      transition: opacity 2s cubic-bezier(0.45, 0, 0.55, 1),
+                  visibility 2s;
+    }
+    .env-overlay.dismissed {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    body.env-locked { overflow: hidden; }
+
+    /* Pliegues del sobre — 3 triángulos que cubren la pantalla completa.
+       Tonos casi imperceptibles para no distraer del sello central.   */
+    .env__fold {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    /* Triángulo inferior (apunta hacia el centro) */
+    .env__fold--btm {
+      clip-path: polygon(0% 100%, 100% 100%, 50% 50%);
+      background: rgba(0,0,0,0.028);
+    }
+    /* Triángulo izquierdo */
+    .env__fold--left {
+      clip-path: polygon(0% 0%, 0% 100%, 50% 50%);
+      background: rgba(0,0,0,0.016);
+    }
+    /* Triángulo derecho */
+    .env__fold--right {
+      clip-path: polygon(100% 0%, 100% 100%, 50% 50%);
+      background: rgba(0,0,0,0.016);
+    }
+    [data-theme="dark"] .env__fold--btm   { background: rgba(0,0,0,0.16); }
+    [data-theme="dark"] .env__fold--left  { background: rgba(0,0,0,0.10); }
+    [data-theme="dark"] .env__fold--right { background: rgba(0,0,0,0.10); }
+
+    /* Solapa superior — SVG triángulo que rota en 3D al abrir.
+       Cubre el 54% superior de la pantalla, apex en el centro.    */
+    .env__flap-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 54%;
+      z-index: 5;
+      overflow: visible;
+      pointer-events: none;
+    }
+    .env__flap {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transform-origin: top center;
+      will-change: transform;
+      transition: none;
+    }
+    /* Rotación 3D de la solapa al abrir — efecto sobre real */
+    .env-overlay.opening .env__flap {
+      transform: perspective(2600px) rotateX(-162deg);
+      transition: transform 1.2s cubic-bezier(0.38, 0.0, 0.20, 1) 0.06s;
+    }
+    /* Tono de la solapa — apenas visible, un toque más oscuro */
+    .env__flap-poly { fill: rgba(0,0,0,0.032); }
+    [data-theme="dark"] .env__flap-poly { fill: rgba(0,0,0,0.22); }
+
+    /* Sello de lacre — centrado en la pantalla, elemento principal */
+    .env__seal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 20;
+      width: clamp(84px, 15vw, 112px);
+      height: clamp(84px, 15vw, 112px);
+      border-radius: 50%;
+      /* Degradado dorado que simula la textura del lacre */
+      background: radial-gradient(circle at 38% 30%,
+        #E8C580 0%,
+        #C89836 48%,
+        #9C7620 82%,
+        #7A5C18 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      /* Sombras para dar profundidad al sello */
+      box-shadow:
+        0 8px 48px rgba(0,0,0,0.20),
+        0 2px 10px rgba(0,0,0,0.10),
+        inset 0 2px 5px rgba(255,255,255,0.30),
+        inset 0 -2px 5px rgba(0,0,0,0.22);
+      transition: transform 0.4s cubic-bezier(0.34, 1.3, 0.64, 1),
+                  box-shadow 0.4s ease;
+      /* Animación de entrada */
+      animation: sealAppear 1.3s cubic-bezier(0.34, 1.26, 0.64, 1) 0.7s both;
+    }
+    @keyframes sealAppear {
+      from { opacity: 0; transform: translate(-50%,-50%) scale(0.55); }
+      to   { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+    }
+    /* Rim decorativo interior del sello */
+    .env__seal::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.22);
+      pointer-events: none;
+    }
+    /* Hover: sello respira ligeramente */
+    .env-overlay:not(.opening) .env__seal:hover {
+      transform: translate(-50%, -50%) scale(1.06);
+      box-shadow:
+        0 12px 56px rgba(0,0,0,0.24),
+        0 3px 12px rgba(0,0,0,0.12),
+        inset 0 2px 5px rgba(255,255,255,0.30),
+        inset 0 -2px 5px rgba(0,0,0,0.22);
+    }
+    /* Animación de rotura del sello al abrir */
+    .env-overlay.opening .env__seal {
+      animation: sealCrack 0.62s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+      pointer-events: none;
+    }
+    @keyframes sealCrack {
+      0%  { transform: translate(-50%,-50%) scale(1);          opacity: 1;   }
+      16% { transform: translate(-50%,-50%) scale(1.16) rotate(-7deg);       }
+      36% { transform: translate(-50%,-50%) scale(0.88) rotate(6deg);        }
+      60% { transform: translate(-50%,-50%) scale(1.08) rotate(-3deg);       opacity: 0.75; }
+      100%{ transform: translate(-50%,-50%) scale(0.18) rotate(-5deg);       opacity: 0;   }
+    }
+    /* Iniciales del sello */
+    .env__seal-txt {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: clamp(1.3rem, 3.2vw, 1.9rem);
+      color: rgba(255,255,255,0.94);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.28);
+      user-select: none;
+      letter-spacing: 0.04em;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Texto de invitación — fijado al bottom center */
+    .env-hint {
+      position: absolute;
+      bottom: clamp(1.8rem, 5vh, 3.2rem);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      white-space: nowrap;
+      pointer-events: none;
+      font-family: var(--f-sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--c-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      /* Entrada retrasada + pulso continuo */
+      animation: hintAppear 0.9s ease 1.5s both,
+                 hintFloat  3.2s ease-in-out 2.4s infinite;
+    }
+    @keyframes hintAppear {
+      from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    @keyframes hintFloat {
+      0%,100% { opacity: 0.45; transform: translateX(-50%) translateY(0); }
+      50%      { opacity: 0.90; transform: translateX(-50%) translateY(-4px); }
+    }
+    /* Ocultar el hint al iniciar la apertura */
+    .env-overlay.opening .env-hint {
+      opacity: 0 !important;
+      transition: opacity 0.2s ease;
+      animation: none;
+    }
+
+    /* EDITOR:S */
+    /* ════════════════════════════════════════════════════════════
+       PANEL EDITOR — visible sólo al activarlo
+       ════════════════════════════════════════════════════════════ */
+    .editor-toggle {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--c-gold);
+      color: #1a1814;
+      border: none;
+      cursor: pointer;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--sh-medium);
+      z-index: 9998;
+      transition: transform var(--t-fast), opacity var(--t-fast);
+    }
+    .editor-toggle:hover { transform: scale(1.1); }
+
+    .editor-panel {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(400px, 100vw);
+      height: 100dvh;
+      background: #1a1814;
+      color: #ede8e0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: -8px 0 48px rgba(0,0,0,0.45);
+    }
+    .editor-panel.open { transform: translateX(0); }
+
+    .editor-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      flex-shrink: 0;
+    }
+    .editor-header h2 {
+      font-family: var(--f-serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--c-gold);
+      margin: 0;
+    }
+    .editor-header-sub {
+      font-family: var(--f-sans);
+      font-size: 0.68rem;
+      color: #706a60;
+      letter-spacing: 0.08em;
+    }
+    .editor-close-btn {
+      background: none;
+      border: none;
+      color: #706a60;
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      transition: color var(--t-fast);
+    }
+    .editor-close-btn:hover { color: #ede8e0; }
+
+    .editor-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.25rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+      scrollbar-width: thin;
+      scrollbar-color: #3a3630 transparent;
+    }
+    .editor-body::-webkit-scrollbar { width: 4px; }
+    .editor-body::-webkit-scrollbar-thumb { background: #3a3630; border-radius: 4px; }
+
+    .editor-section { display: flex; flex-direction: column; gap: 0.8rem; }
+    .editor-section-title {
+      font-family: var(--f-sans);
+      font-size: 0.63rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--c-gold);
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(197,164,106,0.2);
+    }
+
+    .editor-field { display: flex; flex-direction: column; gap: 0.3rem; }
+    .editor-field label {
+      font-size: 0.7rem;
+      color: #706a60;
+      font-family: var(--f-sans);
+      letter-spacing: 0.03em;
+    }
+    .editor-field input,
+    .editor-field textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      color: #ede8e0;
+      font-family: var(--f-sans);
+      font-size: 0.84rem;
+      padding: 0.48rem 0.72rem;
+      width: 100%;
+      transition: border-color var(--t-fast), background var(--t-fast);
+      resize: vertical;
+    }
+    .editor-field input:focus,
+    .editor-field textarea:focus {
+      outline: none;
+      border-color: var(--c-gold);
+      background: rgba(255,255,255,0.08);
+    }
+    .editor-field textarea { min-height: 68px; }
+
+    .editor-color-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+    }
+    .editor-color-field {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .editor-color-field label {
+      font-size: 0.63rem;
+      color: #706a60;
+      font-family: var(--f-sans);
+    }
+    .editor-color-field input[type="color"] {
+      width: 100%;
+      height: 34px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      background: none;
+      cursor: pointer;
+      padding: 2px 3px;
+    }
+
+    .editor-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      gap: 0.6rem;
+      flex-shrink: 0;
+    }
+    .editor-btn {
+      flex: 1;
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      border: none;
+      font-family: var(--f-sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: opacity var(--t-fast), transform var(--t-fast);
+    }
+    .editor-btn:hover { opacity: 0.82; }
+    .editor-btn:active { transform: scale(0.97); }
+    .editor-btn--primary  { background: var(--c-gold); color: #1a1814; }
+    .editor-btn--secondary {
+      background: rgba(255,255,255,0.09);
+      color: #ede8e0;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .editor-btn--success { background: var(--c-sage); color: #1a1814; }
+
+    /* Tarjetas de galería */
+    .gallery-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .gallery-card-preview {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.05);
+    }
+    .gallery-card-preview[src=""] { display: none; }
+    .gallery-card-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .gallery-delete-btn {
+      background: none;
+      border: 1px solid rgba(255,100,100,0.3);
+      color: #c08080;
+      border-radius: 5px;
+      font-size: 0.72rem;
+      padding: 0.28rem 0.6rem;
+      cursor: pointer;
+      font-family: var(--f-sans);
+      transition: background var(--t-fast), color var(--t-fast);
+    }
+    .gallery-delete-btn:hover { background: rgba(255,80,80,0.15); color: #e09090; }
+    .gallery-add-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      width: 100%;
+      padding: 0.55rem;
+      border: 1px dashed rgba(197,164,106,0.35);
+      border-radius: 8px;
+      background: none;
+      color: var(--c-gold);
+      font-family: var(--f-sans);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background var(--t-fast), border-color var(--t-fast);
+    }
+    .gallery-add-btn:hover { background: rgba(197,164,106,0.08); border-color: var(--c-gold); }
+    /* EDITOR:E */
+
+    /* Reproductor de música */
+    .music-player {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 9997;
+    }
+    .music-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--c-text);
+      cursor: pointer;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--sh-soft);
+      transition: background var(--t-fast), transform var(--t-fast);
+    }
+    .music-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.08); }
+    .music-btn.playing { animation: musicPulse 2.4s ease-in-out infinite; }
+    @keyframes musicPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(197,164,106,0.35); }
+      50%       { box-shadow: 0 0 0 10px rgba(197,164,106,0); }
+    }
+
+    /* EDITOR:S */
+    /* Campo URL + botón de subida en el editor */
+    .input-with-upload {
+      display: flex;
+      gap: 0.4rem;
+    }
+    .input-with-upload input {
+      flex: 1;
+      min-width: 0;
+    }
+    .upload-img-btn {
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      color: #a09890;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0 0.55rem;
+      transition: background var(--t-fast), color var(--t-fast);
+      white-space: nowrap;
+    }
+    .upload-img-btn:hover { background: rgba(255,255,255,0.14); color: #ede8e0; }
+    /* EDITOR:E */
+
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SOBRE FULL-SCREEN — INTRO
+       El overlay ES el sobre. Ocupa toda la pantalla.
+       Solo el sello de lacre es visible al centro.
+       Click en cualquier punto → el sello se rompe, la solapa
+       se abre en 3D y la invitación aparece con fade-in.
+       ════════════════════════════════════════════════════════════ -->
+  <div class="env-overlay" id="envOverlay"
+       role="dialog" aria-modal="true" tabindex="0"
+       aria-label="Invitación de boda — toca para abrir">
+
+    <!-- Los 3 pliegues crean las líneas diagonales del sobre.
+         Tonos casi iguales al fondo para no distraer del sello. -->
+    <div class="env__fold env__fold--btm"   aria-hidden="true"></div>
+    <div class="env__fold env__fold--left"  aria-hidden="true"></div>
+    <div class="env__fold env__fold--right" aria-hidden="true"></div>
+
+    <!-- Solapa superior full-screen — SVG polygon rotado en 3D al abrir.
+         Usar SVG (no div+clip-path) evita el bug de Chrome con 3D+clip. -->
+    <div class="env__flap-wrap" aria-hidden="true">
+      <svg class="env__flap" id="envFlap"
+           viewBox="0 0 100 54" preserveAspectRatio="none"
+           xmlns="http://www.w3.org/2000/svg">
+        <!-- Triángulo: borde superior completo → apex en el centro de pantalla -->
+        <polygon class="env__flap-poly" points="0,0 100,0 50,54"/>
+      </svg>
+    </div>
+
+    <!-- Sello de lacre dorado — único elemento visual visible -->
+    <div class="env__seal" id="envSeal" aria-hidden="true">
+      <!-- Iniciales generadas por JS desde siteContent.name1[0] & name2[0] -->
+      <span class="env__seal-txt" id="envSealTxt"></span>
+    </div>
+
+    <!-- Texto flotante en la parte inferior -->
+    <p class="env-hint" aria-hidden="true">
+      ✦&thinsp; Toca para abrir&thinsp; ✦
+    </p>
+
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       BOTÓN DE MODO OSCURO
+       ════════════════════════════════════════════════════════════ -->
+  <button class="theme-btn" id="themeBtn" aria-label="Cambiar entre modo claro y oscuro">
+    <!-- Luna (visible en modo claro) -->
+    <svg class="i-moon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+    <!-- Sol (visible en modo oscuro) -->
+    <svg class="i-sun" width="16" height="16" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN 1 — HERO / PORTADA
+       ────────────────────────────────────────────────────────────
+       CÓMO EDITAR:
+       • heroImage: ruta o URL de la foto de portada
+       • heroIntro: texto emocional en cursiva
+       • name1 / name2: nombres de la pareja
+       Edita todo en el objeto siteContent del bloque <script>.
+       ════════════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero" aria-label="Portada de la invitación">
+
+    <!-- FONDO — se inyecta por JS desde siteContent.heroImage
+         Reemplaza con una foto portrait editorial 1080×1920px < 400 KB -->
+    <div class="hero__bg" id="heroBg" role="img" aria-label="Fotografía de portada de la boda"></div>
+    <div class="hero__veil" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <p class="eyebrow anim-up" id="heroEyebrow"></p>
+      <p class="hero__intro anim-up d2" id="heroIntro"></p>
+
+      <!-- Nombres de la pareja — elemento principal del hero -->
+      <h1 class="hero__names anim-up d3" id="heroNames">
+        <!-- Generado por JS -->
+      </h1>
+
+      <span class="hero__date-line anim-up d4" id="heroDate"></span>
+    </div>
+
+    <!-- Indicador de deslizar -->
+    <div class="scroll-cue anim-fade d5" id="scrollCue"
+         role="button" tabindex="0" aria-label="Desliza hacia abajo para ver la invitación">
+      <span class="scroll-cue__label">Desliza</span>
+      <span class="scroll-cue__arrow" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN 2 — ANUNCIO
+       Edita: announcementHeadline, announcementBody en siteContent
+       ════════════════════════════════════════════════════════════ -->
+  <section id="announce" aria-label="Anuncio de la boda">
+    <div class="announce">
+      <p class="eyebrow anim-up" id="announceEyebrow"></p>
+
+      <div class="divider anim-up d1">
+        <span class="divider__glyph">✦</span>
+      </div>
+
+      <!-- La última palabra se pone en cursiva automáticamente -->
+      <h2 class="announce__headline anim-up d2" id="announceHeadline"></h2>
+      <p class="announce__body anim-up d3" id="announceBody"></p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN 3 — HISTORIA / MENSAJE
+       ────────────────────────────────────────────────────────────
+       IMÁGENES A REEMPLAZAR:
+       • storyImage: foto de pareja, orientación vertical 3:4
+         Coloca la imagen en /assets/story.jpg
+         Dimensiones ideales: 800×1067 px
+       ════════════════════════════════════════════════════════════ -->
+  <section class="story" id="story" aria-label="Nuestra historia">
+    <div class="story__grid">
+
+      <!-- Imagen con marco ornamental -->
+      <div class="story__img-wrap anim-fade">
+        <img class="story__img" id="storyImg" src="" alt="" loading="lazy" />
+        <div class="story__img-frame" aria-hidden="true"></div>
+      </div>
+
+      <!-- Texto -->
+      <div class="story__text">
+        <p class="eyebrow anim-up" id="storyEyebrow"></p>
+        <h2 class="story__title anim-up d1" id="storyTitle"></h2>
+        <span class="rule anim-up d2" style="margin: 1.2rem 0;"></span>
+        <p class="story__body anim-up d3" id="storyBody"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       GALERÍA HORIZONTAL
+       Agrega o elimina fotos en siteContent.galleryImages
+       Deja el array vacío [] para ocultar esta sección.
+       ────────────────────────────────────────────────────────────
+       IMÁGENES: orientación vertical 3:4, mín 480×640 px
+       ════════════════════════════════════════════════════════════ -->
+  <section class="gallery" id="gallery" aria-label="Galería de fotos">
+    <div class="gallery__track" id="galleryTrack" role="list">
+      <!-- Generado por JS -->
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN 4 — DETALLES DEL EVENTO
+       Edita: eventDateRaw, eventTime, eventVenue, eventAddress,
+              eventDressCode y mapsUrl en siteContent
+       ════════════════════════════════════════════════════════════ -->
+  <section class="event" id="event" aria-label="Detalles de la celebración">
+    <div class="event__inner">
+
+      <p class="eyebrow anim-up" id="eventEyebrow"></p>
+
+      <!-- Fecha tipográfica grande -->
+      <div class="event__date anim-up d1">
+        <p class="event__month" id="evMonth"></p>
+        <p class="event__day"   id="evDay"></p>
+        <p class="event__year"  id="evYear"></p>
+      </div>
+
+      <!-- Tres tarjetas: hora / lugar / vestimenta -->
+      <div class="event__cards">
+        <div class="detail-card anim-up d1">
+          <div class="detail-card__glyph" aria-hidden="true">◌</div>
+          <p class="detail-card__lbl">Hora</p>
+          <p class="detail-card__val" id="evTime"></p>
+          <p class="detail-card__sub" id="evTimeSub"></p>
+        </div>
+        <div class="detail-card anim-up d2">
+          <div class="detail-card__glyph" aria-hidden="true">◇</div>
+          <p class="detail-card__lbl">Lugar</p>
+          <p class="detail-card__val" id="evVenue"></p>
+          <p class="detail-card__sub" id="evVenueSub"></p>
+        </div>
+        <div class="detail-card anim-up d3">
+          <div class="detail-card__glyph" aria-hidden="true">△</div>
+          <p class="detail-card__lbl">Vestimenta</p>
+          <p class="detail-card__val" id="evDressCode"></p>
+          <p class="detail-card__sub" id="evDressCodeSub"></p>
+        </div>
+      </div>
+
+      <p class="event__address anim-up" id="evAddress"></p>
+
+      <!-- Botón de mapa — actualiza mapsUrl en siteContent -->
+      <a class="btn btn--outline anim-up d1" id="mapsBtn"
+         href="#" target="_blank" rel="noopener noreferrer">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        Ver en el mapa
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN 5 — RSVP
+       ────────────────────────────────────────────────────────────
+       Para hacerlo funcional con Formspree:
+       1. Regístrate en formspree.io y crea un formulario.
+       2. Copia tu ID (ej. xpzgwqde).
+       3. En el <form> cambia action="#" por:
+          action="https://formspree.io/f/TU_ID" method="POST"
+       4. Elimina la línea e.preventDefault() en initRSVP().
+       ════════════════════════════════════════════════════════════ -->
+  <section class="rsvp" id="rsvp" aria-label="Confirmar asistencia">
+    <div class="rsvp__inner">
+
+      <p class="eyebrow anim-up">R.S.V.P.</p>
+
+      <div class="divider anim-up d1">
+        <span class="divider__glyph">✦</span>
+      </div>
+
+      <h2 class="rsvp__title anim-up d1" id="rsvpTitle"></h2>
+      <p  class="rsvp__sub   anim-up d2" id="rsvpSub"></p>
+
+      <!-- Formulario -->
+      <form class="rsvp__form anim-up d2" id="rsvpForm" action="#" novalidate>
+
+        <div class="field">
+          <label class="field__label" for="fname">Nombre completo</label>
+          <input  class="field__input" type="text"  id="fname"  name="name"
+                  placeholder="María García" required autocomplete="name" />
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="femail">Correo electrónico</label>
+          <input  class="field__input" type="email" id="femail" name="email"
+                  placeholder="maria@correo.com" autocomplete="email" />
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="fattend">¿Asistirás?</label>
+          <select class="field__select" id="fattend" name="attendance" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="yes">Sí, allí estaré ✦</option>
+            <option value="maybe">Todavía no lo sé</option>
+            <option value="no">No podré asistir</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="fguests">Número de acompañantes</label>
+          <select class="field__select" id="fguests" name="guests">
+            <option value="0">Solo yo</option>
+            <option value="1">+ 1 persona</option>
+            <option value="2">+ 2 personas</option>
+            <option value="3">+ 3 personas</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="fmsg">Mensaje para los novios (opcional)</label>
+          <textarea class="field__textarea" id="fmsg" name="message"
+                    placeholder="Escribe tus buenos deseos…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--gold" style="width:100%;justify-content:center;">
+          Confirmar asistencia
+        </button>
+
+        <p class="rsvp__note" id="rsvpNote"></p>
+      </form>
+
+      <!-- Mensaje de éxito — aparece tras confirmar -->
+      <div class="rsvp__success" id="rsvpSuccess" role="alert" aria-live="polite">
+        <div class="rsvp__success__icon" aria-hidden="true">✦</div>
+        <h3 class="rsvp__success__title">¡Gracias!</h3>
+        <p style="color:var(--c-text-mid);margin-top:0.4rem;">
+          Hemos recibido tu confirmación. Nos vemos pronto.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN 6 — CIERRE
+       Edita: closingQuote, closingNames, closingCta en siteContent
+       ════════════════════════════════════════════════════════════ -->
+  <section class="closing" id="closing" aria-label="Mensaje de cierre">
+    <div class="closing__inner">
+
+      <div class="divider anim-up">
+        <span class="divider__glyph">✦</span>
+      </div>
+
+      <blockquote class="closing__quote anim-up d1" id="closingQuote"></blockquote>
+      <p class="closing__attribution anim-up d2" id="closingAttrib"></p>
+
+      <span class="rule anim-up d3"></span>
+
+      <p class="closing__cta-text anim-up d3" id="closingCtaTxt"></p>
+      <a class="btn btn--gold anim-up d4" href="#rsvp" id="closingBtn"></a>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <p class="site-footer__text" id="footerTxt"></p>
+  </footer>
+
+
+  <!-- ════════════════════════════════════════════════════════════
+                    ▼  OBJETO DE CONFIGURACIÓN  ▼
+       ════════════════════════════════════════════════════════════
+       Edita este bloque para personalizar toda la invitación.
+       NO necesitas tocar el HTML ni el CSS.
+       ════════════════════════════════════════════════════════════ -->
+  <script>
+
+    /* Capturado en DOMContentLoaded antes de render() — incluye todos los
+       elementos del body (audio, musicPlayer, envOverlay, etc.)          */
+    let _initialHTML;
+
+    /* ──────────────────────────────────────────────────────────
+       EDITA AQUÍ — toda la información de la boda
+       ────────────────────────────────────────────────────────── */
+    const siteContent = {
+
+      /* ── Meta ─────────────────────────────────────────────── */
+      pageTitle: "Sofía & Mateo — Te invitamos a nuestra boda",
+
+      /* ── Pareja ───────────────────────────────────────────── */
+      name1: "Sofía",
+      name2: "Mateo",
+
+      /* Texto del sello del sobre — por defecto usa las iniciales de los nombres.
+         Puedes escribir cualquier texto corto, ej: "A & B" o "2026"            */
+      sealText: "",
+
+      /* ── Hero ─────────────────────────────────────────────── */
+      heroEyebrow:  "Una invitación muy especial",
+      heroIntro:    "Tenemos algo importante que contarte…",
+
+      /* Foto de portada — REEMPLAZA esta URL con tu imagen.
+         Coloca tu archivo en assets/hero.jpg
+         Tamaño recomendado: 1080×1920 px, < 400 KB               */
+      heroImage:    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&q=80",
+
+      /* ── Fecha del evento — formato YYYY-MM-DD ────────────── */
+      eventDateRaw: "2026-09-19",
+
+      /* ── Anuncio ──────────────────────────────────────────── */
+      announceEyebrow:  "Con alegría",
+      announceHeadline: "Nos casamos y queremos celebrarlo contigo",
+      announceBody:     "Después de tanto camino compartido llegó el momento más bonito de nuestras vidas. Con el corazón lleno de amor, te invitamos a acompañarnos en el día que lo cambia todo.",
+
+      /* ── Historia ─────────────────────────────────────────── */
+      storyEyebrow: "Nuestra historia",
+      storyTitle:   "Desde el primer día\nsupimos que era para siempre",
+      storyBody:    "Todo empezó con una mirada y una sonrisa que ninguno de los dos olvidó. Cada aventura, cada momento sencillo y cada instante compartido nos fue acercando más. Hoy, con gratitud y emoción, queremos celebrar este nuevo capítulo rodeados de las personas que más amamos.",
+
+      /* Foto de historia — REEMPLAZA con tu sesión de pareja.
+         Coloca en assets/story.jpg · Tamaño: 800×1067 px (3:4)   */
+      storyImage:    "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
+      storyImageAlt: "Fotografía de la pareja en sesión editorial",
+
+      /* ── Galería — agrega, elimina o cambia fotos ─────────── */
+      /* Deja galleryImages: [] para ocultar la galería           */
+      /* Tamaño recomendado por foto: 480×640 px (3:4)            */
+      galleryImages: [
+        {
+          src: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=480&q=80",
+          alt: "Ramo de novia con flores silvestres"
+        },
+        {
+          src: "https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=480&q=80",
+          alt: "Anillos de compromiso"
+        },
+        {
+          src: "https://images.unsplash.com/photo-1529636444744-adffc9135a5e?w=480&q=80",
+          alt: "Decoración floral de la celebración"
+        },
+        {
+          src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=480&q=80",
+          alt: "Mesa de celebración decorada"
+        },
+        {
+          src: "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?w=480&q=80",
+          alt: "Pareja celebrando su boda"
+        }
+      ],
+
+      /* ── Detalles del evento ──────────────────────────────── */
+      eventEyebrow:    "La fecha",
+      eventTime:       "18:30 h",
+      eventTimeSub:    "Puertas abiertas desde las 18:00",
+      eventVenue:      "Hacienda Villa del Alba",
+      eventVenueSub:   "Salón principal — Acceso norte",
+      eventAddress:    "Camino de la Hacienda 42, 28001 Madrid, España",
+      eventDressCode:  "Formal elegante",
+      eventDressCodeSub: "Colores claros o tierra — sin blanco",
+
+      /* ← REEMPLAZA con tu URL real de Google Maps              */
+      mapsUrl: "https://maps.google.com?q=Hacienda+Villa+del+Alba+Madrid",
+
+      /* ── RSVP ─────────────────────────────────────────────── */
+      rsvpTitle:  "¿Vendrás con nosotros?",
+      rsvpSub:    "Por favor confirma tu asistencia antes del 1 de agosto de 2026.",
+      rsvpNote:   "Tu respuesta nos ayuda a prepararlo todo con cariño.",
+
+      /* ── Cierre ───────────────────────────────────────────── */
+      closingQuote:   "«El amor no se mide en años, sino en los momentos que dejan huella.»",
+      closingAttrib:  "— Sofía & Mateo",
+      closingCtaTxt:  "¿Todavía no has confirmado tu asistencia?",
+      closingBtnText: "Confirmar ahora",
+
+      /* ── Footer ───────────────────────────────────────────── */
+      footerText: "Con amor · Sofía & Mateo · 2026",
+
+      /* ── Música de fondo ──────────────────────────────────── */
+      /* URL o ruta local de un archivo MP3/OGG/WAV.
+         Deja vacío ("") para desactivar la música.             */
+      musicSrc: ""
+
+    };
+    /* ──────────────────────────────────────────────────────────
+       FIN DEL BLOQUE EDITABLE
+       ────────────────────────────────────────────────────────── */
+
+
+    /* ══════════════════════════════════════════════════════════
+       RENDERIZADO — No edites debajo de esta línea
+       ══════════════════════════════════════════════════════════ */
+
+    /* Parsear fecha sin problemas de zona horaria */
+    function parseDate(str) {
+      const [y, m, d] = str.split('-').map(Number);
+      return new Date(y, m - 1, d);
+    }
+
+    function monthName(date) {
+      return date.toLocaleDateString('es-ES', { month: 'long' });
+    }
+
+    /* Inyecta el contenido del objeto siteContent en el DOM */
+    function render() {
+      const c = siteContent;
+      const date = parseDate(c.eventDateRaw);
+
+      /* Meta */
+      document.title = c.pageTitle;
+      document.querySelector('meta[property="og:title"]').content = c.pageTitle;
+
+      /* Hero */
+      document.getElementById('heroBg').style.backgroundImage = `url('${c.heroImage}')`;
+      setText('heroEyebrow', c.heroEyebrow);
+      setText('heroIntro',   c.heroIntro);
+      document.getElementById('heroNames').innerHTML =
+        `${c.name1}<span class="amp">&amp;</span>${c.name2}`;
+      setText('heroDate', date.toLocaleDateString('es-ES', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      }).toUpperCase());
+
+      /* Anuncio — última palabra en cursiva */
+      setText('announceEyebrow', c.announceEyebrow);
+      const words = c.announceHeadline.split(' ');
+      const last  = words.pop();
+      document.getElementById('announceHeadline').innerHTML =
+        words.join(' ') + ` <em>${last}</em>`;
+      setText('announceBody', c.announceBody);
+
+      /* Historia */
+      setText('storyEyebrow', c.storyEyebrow);
+      setText('storyTitle',   c.storyTitle);
+      setText('storyBody',    c.storyBody);
+      const sImg = document.getElementById('storyImg');
+      sImg.src = c.storyImage;
+      sImg.alt = c.storyImageAlt;
+
+      /* Galería */
+      const track   = document.getElementById('galleryTrack');
+      const gallSec = document.getElementById('gallery');
+      if (c.galleryImages && c.galleryImages.length) {
+        track.innerHTML = c.galleryImages.map(img =>
+          `<div class="gallery__item" role="listitem">
+             <img src="${img.src}" alt="${img.alt}" loading="lazy" />
+           </div>`
+        ).join('');
+      } else {
+        gallSec.style.display = 'none';
+      }
+
+      /* Detalles del evento */
+      setText('eventEyebrow',  c.eventEyebrow);
+      setText('evMonth',  monthName(date).toUpperCase());
+      setText('evDay',    String(date.getDate()).padStart(2, '0'));
+      setText('evYear',   String(date.getFullYear()));
+      setText('evTime',   c.eventTime);
+      setText('evTimeSub',c.eventTimeSub);
+      setText('evVenue',  c.eventVenue);
+      setText('evVenueSub',c.eventVenueSub);
+      setText('evAddress', c.eventAddress);
+      setText('evDressCode',    c.eventDressCode);
+      setText('evDressCodeSub', c.eventDressCodeSub);
+      document.getElementById('mapsBtn').href = c.mapsUrl;
+
+      /* RSVP */
+      setText('rsvpTitle', c.rsvpTitle);
+      setText('rsvpSub',   c.rsvpSub);
+      setText('rsvpNote',  c.rsvpNote);
+
+      /* Cierre */
+      setText('closingQuote',  c.closingQuote);
+      setText('closingAttrib', c.closingAttrib);
+      setText('closingCtaTxt', c.closingCtaTxt);
+      setText('closingBtn',    c.closingBtnText);
+
+      /* Footer */
+      setText('footerTxt', c.footerText);
+
+      /* Sello del sobre */
+      const sealEl = document.getElementById('envSealTxt');
+      if (sealEl) sealEl.textContent = c.sealText ||
+        (c.name1?.[0] ?? '') + '\u2009&\u2009' + (c.name2?.[0] ?? '');
+    }
+
+    function setText(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    }
+
+    /* ── Modo oscuro ──────────────────────────────────────── */
+    function initTheme() {
+      const btn  = document.getElementById('themeBtn');
+      const html = document.documentElement;
+      const saved = localStorage.getItem('weddingTheme');
+      const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      if (saved === 'dark' || (!saved && sysDark)) {
+        html.setAttribute('data-theme', 'dark');
+      }
+
+      btn.addEventListener('click', () => {
+        const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('weddingTheme', next);
+      });
+    }
+
+    /* ── Animaciones de scroll ────────────────────────────── */
+    function initAnimations() {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) {
+        document.querySelectorAll('.anim-up, .anim-fade').forEach(el => el.classList.add('in'));
+        return;
+      }
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+
+      document.querySelectorAll('.anim-up, .anim-fade').forEach(el => obs.observe(el));
+    }
+
+    /* ── Ken-Burns en hero al cargar imagen ──────────────── */
+    function initHeroBg() {
+      const bg  = document.getElementById('heroBg');
+      const img = new Image();
+      img.onload = () => bg.classList.add('loaded');
+      img.src = siteContent.heroImage;
+    }
+
+    /* ── Scroll cue ───────────────────────────────────────── */
+    function initScrollCue() {
+      const cue  = document.getElementById('scrollCue');
+      const hero = document.getElementById('hero');
+
+      const goDown = () => document.getElementById('announce')
+        .scrollIntoView({ behavior: 'smooth' });
+
+      cue.addEventListener('click', goDown);
+      cue.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goDown(); }
+      });
+
+      /* Ocultar al salir del hero */
+      new IntersectionObserver(([e]) => {
+        cue.style.opacity       = e.isIntersecting ? '' : '0';
+        cue.style.pointerEvents = e.isIntersecting ? '' : 'none';
+      }, { threshold: 0.4 }).observe(hero);
+    }
+
+    /* ── RSVP — envío del formulario ─────────────────────── */
+    function initRSVP() {
+      const form    = document.getElementById('rsvpForm');
+      const success = document.getElementById('rsvpSuccess');
+
+      form.addEventListener('submit', (e) => {
+        /* ↓ Elimina esta línea si usas Formspree con action real */
+        e.preventDefault();
+
+        /* Validación mínima */
+        const name     = document.getElementById('fname').value.trim();
+        const attend   = document.getElementById('fattend').value;
+        if (!name)   { document.getElementById('fname').focus();   return; }
+        if (!attend) { document.getElementById('fattend').focus(); return; }
+
+        /* Mostrar confirmación visual */
+        form.style.display = 'none';
+        success.classList.add('show');
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+
+    /* ── Galería arrastrable (drag-to-scroll) ─────────────── */
+    function initGalleryDrag() {
+      const track = document.getElementById('galleryTrack');
+      if (!track) return;
+      let isDown = false, startX, scrollLeft;
+      track.addEventListener('mousedown', e => {
+        isDown = true;
+        startX = e.pageX - track.offsetLeft;
+        scrollLeft = track.scrollLeft;
+      });
+      track.addEventListener('mouseleave', () => isDown = false);
+      track.addEventListener('mouseup',    () => isDown = false);
+      track.addEventListener('mousemove',  e => {
+        if (!isDown) return;
+        e.preventDefault();
+        track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX);
+      });
+    }
+
+    /* ── Pétalos decorativos en el hero ───────────────────── */
+    function initPetals() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const hero = document.getElementById('hero');
+      for (let i = 0; i < 7; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.style.cssText = `
+          left: ${Math.random() * 100}%;
+          width: ${4 + Math.random() * 6}px;
+          height: ${6 + Math.random() * 9}px;
+          animation-duration: ${9 + Math.random() * 11}s;
+          animation-delay: ${Math.random() * 10}s;
+        `;
+        hero.appendChild(p);
+      }
+    }
+
+    /* ── Sobre full-screen ────────────────────────────────── */
+    function initEnvelope() {
+      const overlay = document.getElementById('envOverlay');
+
+      if (!overlay) return;
+
+      const c = siteContent;
+
+      /* Bloquear scroll mientras el sobre cubre la pantalla */
+      document.body.classList.add('env-locked');
+
+      let opened = false;
+
+      function openEnvelope() {
+        if (opened) return;
+        opened = true;
+
+        /* Arrancar música inmediatamente — debe ser en respuesta directa al gesto */
+        if (typeof _musicAutoStart === 'function') _musicAutoStart();
+
+        /* Paso 1: iniciar apertura (sello se rompe + solapa rota en 3D) */
+        overlay.classList.add('opening');
+        overlay.style.cursor = 'default';
+
+        /* Paso 2: fade-out del sobre + fade-in simultáneo de la invitación.
+           El hero ya tiene elementos con opacity:0 (anim-up/anim-fade) —
+           al animarlos justo cuando el overlay se desvanece, el efecto
+           es que la invitación "aparece" gradualmente desde la nada.     */
+        setTimeout(() => {
+          overlay.classList.add('dismissed');           /* fade-out: 2s  */
+          requestAnimationFrame(() => {                 /* fade-in hero   */
+            document.querySelectorAll('.hero .anim-up, .hero .anim-fade')
+              .forEach(el => el.classList.add('in'));
+          });
+        }, 1050);
+
+        /* Paso 3: desbloquear scroll una vez que el overlay es imperceptible */
+        setTimeout(() => {
+          document.body.classList.remove('env-locked');
+        }, 1600);
+
+        /* Paso 4: eliminar overlay del DOM para que no interfiera */
+        setTimeout(() => overlay.remove(), 3500);
+      }
+
+      /* Clic / tap / scroll / rueda — cualquier interacción abre el sobre */
+      overlay.addEventListener('click',      openEnvelope);
+      overlay.addEventListener('touchstart', openEnvelope, { passive: true });
+      overlay.addEventListener('wheel',      openEnvelope, { passive: true, once: true });
+      overlay.addEventListener('pointerdown',openEnvelope);
+
+      /* Teclado: Enter, Espacio o cualquier otra tecla */
+      overlay.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnvelope(); }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (!opened && !['Tab','Shift','Control','Alt','Meta'].includes(e.key)) {
+          openEnvelope();
+        }
+      }, { once: true });
+    }
+
+    /* ── Música de fondo ──────────────────────────────────────── */
+    let _musicAutoStart = null;
+
+    function initMusic() {
+      const src    = siteContent.musicSrc;
+      const audio  = document.getElementById('bgAudio');
+      const player = document.getElementById('musicPlayer');
+      const btn    = document.getElementById('musicBtn');
+
+      if (!src) return;
+
+      audio.src = src;
+      audio.volume = 0.45;
+      player.hidden = false;
+
+      let playing = false;
+
+      function toggleMusic() {
+        if (playing) {
+          audio.pause();
+          btn.textContent = '♪';
+          btn.classList.remove('playing');
+          btn.setAttribute('aria-label', 'Reproducir música');
+        } else {
+          audio.play().catch(() => {});
+          btn.textContent = '❚❚';
+          btn.classList.add('playing');
+          btn.setAttribute('aria-label', 'Pausar música');
+        }
+        playing = !playing;
+      }
+
+      btn.addEventListener('click', toggleMusic);
+
+      /* Llamado por initEnvelope tras abrir el sobre */
+      _musicAutoStart = () => { if (!playing) toggleMusic(); };
+    }
+
+    /* EDITOR:S */
+    /* ── Editor visual ────────────────────────────────────────── */
+    function initEditor() {
+
+      /* ── Helpers ─────────────────────────────────────────── */
+      function escAttr(s) {
+        return String(s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+      }
+      function escHtml(s) {
+        return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      }
+      function rgbToHex(rgb) {
+        rgb = rgb.trim();
+        if (/^#[0-9a-fA-F]{3,8}$/.test(rgb)) {
+          return rgb.length === 4
+            ? '#' + rgb[1]+rgb[1]+rgb[2]+rgb[2]+rgb[3]+rgb[3]
+            : rgb.slice(0,7);
+        }
+        const m = rgb.match(/rgba?\((\d+)[,\s]+(\d+)[,\s]+(\d+)/);
+        if (!m) return '#c5a46a';
+        return '#' + [m[1],m[2],m[3]].map(x => parseInt(x).toString(16).padStart(2,'0')).join('');
+      }
+
+      function buildConfigStr() {
+        const c = siteContent;
+        const q  = k => JSON.stringify(c[k] ?? '');
+        return `const siteContent = {\n\n` +
+          `      /* ── Meta ─────────────────────────────────────────────── */\n` +
+          `      pageTitle: ${q('pageTitle')},\n\n` +
+          `      /* ── Pareja ───────────────────────────────────────────── */\n` +
+          `      name1: ${q('name1')},\n` +
+          `      name2: ${q('name2')},\n` +
+          `      sealText: ${q('sealText')},\n\n` +
+          `      /* ── Hero ─────────────────────────────────────────────── */\n` +
+          `      heroEyebrow:  ${q('heroEyebrow')},\n` +
+          `      heroIntro:    ${q('heroIntro')},\n\n` +
+          `      heroImage:    ${q('heroImage')},\n\n` +
+          `      /* ── Fecha del evento — formato YYYY-MM-DD ────────────── */\n` +
+          `      eventDateRaw: ${q('eventDateRaw')},\n\n` +
+          `      /* ── Anuncio ──────────────────────────────────────────── */\n` +
+          `      announceEyebrow:  ${q('announceEyebrow')},\n` +
+          `      announceHeadline: ${q('announceHeadline')},\n` +
+          `      announceBody:     ${q('announceBody')},\n\n` +
+          `      /* ── Historia ─────────────────────────────────────────── */\n` +
+          `      storyEyebrow: ${q('storyEyebrow')},\n` +
+          `      storyTitle:   ${q('storyTitle')},\n` +
+          `      storyBody:    ${q('storyBody')},\n\n` +
+          `      storyImage:    ${q('storyImage')},\n` +
+          `      storyImageAlt: ${q('storyImageAlt')},\n\n` +
+          `      /* ── Galería ──────────────────────────────────────────── */\n` +
+          `      galleryImages: ${JSON.stringify(c.galleryImages ?? [], null, 8)},\n\n` +
+          `      /* ── Detalles del evento ──────────────────────────────── */\n` +
+          `      eventEyebrow:    ${q('eventEyebrow')},\n` +
+          `      eventTime:       ${q('eventTime')},\n` +
+          `      eventTimeSub:    ${q('eventTimeSub')},\n` +
+          `      eventVenue:      ${q('eventVenue')},\n` +
+          `      eventVenueSub:   ${q('eventVenueSub')},\n` +
+          `      eventAddress:    ${q('eventAddress')},\n` +
+          `      eventDressCode:  ${q('eventDressCode')},\n` +
+          `      eventDressCodeSub: ${q('eventDressCodeSub')},\n\n` +
+          `      mapsUrl: ${q('mapsUrl')},\n\n` +
+          `      /* ── RSVP ─────────────────────────────────────────────── */\n` +
+          `      rsvpTitle:  ${q('rsvpTitle')},\n` +
+          `      rsvpSub:    ${q('rsvpSub')},\n` +
+          `      rsvpNote:   ${q('rsvpNote')},\n\n` +
+          `      /* ── Cierre ───────────────────────────────────────────── */\n` +
+          `      closingQuote:   ${q('closingQuote')},\n` +
+          `      closingAttrib:  ${q('closingAttrib')},\n` +
+          `      closingCtaTxt:  ${q('closingCtaTxt')},\n` +
+          `      closingBtnText: ${q('closingBtnText')},\n\n` +
+          `      /* ── Footer ───────────────────────────────────────────── */\n` +
+          `      footerText: ${q('footerText')},\n\n` +
+          `      /* ── Música de fondo ──────────────────────────────────── */\n` +
+          `      musicSrc: ${q('musicSrc')}\n\n` +
+          `    };`;
+      }
+
+      /* ── Referencias DOM ─────────────────────────────────── */
+      const panel    = document.getElementById('editorPanel');
+      const toggle   = document.getElementById('editorToggle');
+      const closeBtn = document.getElementById('editorClose');
+      const bodyEl   = document.getElementById('editorBody');
+      const root     = document.documentElement;
+
+      /* ── Mostrar / ocultar ───────────────────────────────── */
+      function openPanel()  { panel.classList.add('open'); }
+      function closePanel() { panel.classList.remove('open'); }
+
+      toggle.addEventListener('click', () =>
+        panel.classList.contains('open') ? closePanel() : openPanel()
+      );
+      closeBtn.addEventListener('click', closePanel);
+
+      document.addEventListener('keydown', e => {
+        if (e.ctrlKey && e.shiftKey && e.key === 'E') {
+          e.preventDefault();
+          panel.classList.toggle('open');
+        }
+      });
+
+      if (new URLSearchParams(location.search).has('edit')) openPanel();
+
+      /* ── Esquema de secciones ────────────────────────────── */
+      const sections = [
+        { title: 'Pareja & sello', fields: [
+          { key: 'name1',    label: 'Nombre 1' },
+          { key: 'name2',    label: 'Nombre 2' },
+          { key: 'sealText', label: 'Texto del sello (vacío = iniciales automáticas)' },
+        ]},
+        { title: 'Hero', fields: [
+          { key: 'heroEyebrow', label: 'Texto pequeño superior' },
+          { key: 'heroIntro',   label: 'Intro' },
+          { key: 'heroImage',   label: 'Imagen de portada', type: 'image-url' },
+        ]},
+        { title: 'Fecha', fields: [
+          { key: 'eventDateRaw', label: 'Fecha del evento (YYYY-MM-DD)', type: 'date' },
+        ]},
+        { title: 'Anuncio', fields: [
+          { key: 'announceEyebrow',  label: 'Eyebrow' },
+          { key: 'announceHeadline', label: 'Titular' },
+          { key: 'announceBody',     label: 'Texto', type: 'textarea' },
+        ]},
+        { title: 'Historia', fields: [
+          { key: 'storyEyebrow', label: 'Eyebrow' },
+          { key: 'storyTitle',   label: 'Título' },
+          { key: 'storyBody',    label: 'Texto', type: 'textarea' },
+          { key: 'storyImage',   label: 'Foto de pareja', type: 'image-url' },
+        ]},
+        { title: 'Detalles del evento', fields: [
+          { key: 'eventTime',         label: 'Hora' },
+          { key: 'eventTimeSub',      label: 'Nota de hora' },
+          { key: 'eventVenue',        label: 'Lugar' },
+          { key: 'eventVenueSub',     label: 'Detalle del lugar' },
+          { key: 'eventAddress',      label: 'Dirección' },
+          { key: 'eventDressCode',    label: 'Dress code' },
+          { key: 'eventDressCodeSub', label: 'Dress code — detalle' },
+          { key: 'mapsUrl',           label: 'URL Google Maps' },
+        ]},
+        { title: 'RSVP', fields: [
+          { key: 'rsvpTitle', label: 'Título' },
+          { key: 'rsvpSub',   label: 'Subtítulo' },
+          { key: 'rsvpNote',  label: 'Nota al pie' },
+        ]},
+        { title: 'Cierre', fields: [
+          { key: 'closingQuote',   label: 'Cita',           type: 'textarea' },
+          { key: 'closingAttrib',  label: 'Atribución' },
+          { key: 'closingCtaTxt',  label: 'Texto secundario' },
+          { key: 'closingBtnText', label: 'Texto del botón' },
+        ]},
+        { title: 'Footer & meta', fields: [
+          { key: 'footerText', label: 'Texto del footer' },
+          { key: 'pageTitle',  label: 'Título de la pestaña' },
+        ]},
+      ];
+
+      /* ── Colores editables ───────────────────────────────── */
+      const colorVars = [
+        { v: '--c-gold',   label: 'Dorado'  },
+        { v: '--c-rose',   label: 'Rosa'    },
+        { v: '--c-sage',   label: 'Salvia'  },
+        { v: '--c-bg',     label: 'Fondo'   },
+        { v: '--c-bg-alt', label: 'Fondo 2' },
+        { v: '--c-text',   label: 'Texto'   },
+      ];
+
+      /* ── Construir UI ────────────────────────────────────── */
+      const colorHtml = `
+        <div class="editor-section">
+          <div class="editor-section-title">Colores</div>
+          <div class="editor-color-grid">
+            ${colorVars.map(cv => {
+              const raw = getComputedStyle(root).getPropertyValue(cv.v).trim();
+              return `<div class="editor-color-field">
+                <label>${cv.label}</label>
+                <input type="color" data-var="${cv.v}" value="${rgbToHex(raw)}" title="${cv.v}" />
+              </div>`;
+            }).join('')}
+          </div>
+        </div>`;
+
+      const sectionsHtml = sections.map(s => `
+        <div class="editor-section">
+          <div class="editor-section-title">${escHtml(s.title)}</div>
+          ${s.fields.map(f => {
+            const val = siteContent[f.key] ?? '';
+            if (f.type === 'textarea') {
+              return `<div class="editor-field">
+                <label>${escHtml(f.label)}</label>
+                <textarea data-key="${f.key}">${escHtml(val)}</textarea>
+              </div>`;
+            }
+            if (f.type === 'image-url') {
+              return `<div class="editor-field">
+                <label>${escHtml(f.label)}</label>
+                <div class="input-with-upload">
+                  <input type="text" data-key="${f.key}" value="${escAttr(val)}" placeholder="https://..." />
+                  <button class="upload-img-btn" data-upload-key="${f.key}" title="Subir imagen desde tu dispositivo">📁</button>
+                </div>
+              </div>`;
+            }
+            return `<div class="editor-field">
+              <label>${escHtml(f.label)}</label>
+              <input type="${f.type || 'text'}" data-key="${f.key}" value="${escAttr(val)}" />
+            </div>`;
+          }).join('')}
+        </div>`).join('');
+
+      /* ── Galería ─────────────────────────────────────────── */
+      function buildGalleryCard(img, i) {
+        return `<div class="gallery-card" data-idx="${i}">
+          <img class="gallery-card-preview" src="${escAttr(img.src)}" alt="" />
+          <div class="editor-field">
+            <label>URL o imagen subida</label>
+            <div class="input-with-upload">
+              <input type="text" data-gsrc="${i}" value="${escAttr(img.src)}" placeholder="https://..." />
+              <button class="upload-img-btn" data-gupload="${i}" title="Subir imagen desde tu dispositivo">📁</button>
+            </div>
+          </div>
+          <div class="editor-field">
+            <label>Descripción (alt)</label>
+            <input type="text" data-galt="${i}" value="${escAttr(img.alt ?? '')}" placeholder="Ej: Anillos de compromiso" />
+          </div>
+          <div class="gallery-card-actions">
+            <button class="gallery-delete-btn" data-gdel="${i}">✕ Eliminar foto</button>
+          </div>
+        </div>`;
+      }
+
+      function buildGallerySection() {
+        const imgs = siteContent.galleryImages ?? [];
+        return (imgs.length
+          ? imgs.map((img, i) => buildGalleryCard(img, i)).join('')
+          : `<p style="font-size:0.75rem;color:#706a60;text-align:center;padding:0.5rem 0">Sin fotos — agrega una abajo</p>`
+        ) + `<button class="gallery-add-btn" id="galleryAddBtn">＋ Agregar foto</button>`;
+      }
+
+      function renderGallery() {
+        document.getElementById('editorGallerySection').innerHTML = buildGallerySection();
+      }
+
+      const musicHtml = `
+        <div class="editor-section">
+          <div class="editor-section-title">Música de fondo</div>
+          <div class="editor-field">
+            <label>Archivo de música</label>
+            <div class="input-with-upload">
+              <input type="text" data-key="musicSrc" value="${escAttr(siteContent.musicSrc ?? '')}" placeholder="URL de MP3 o sube un archivo" />
+              <button class="upload-img-btn" data-upload-key="musicSrc" data-upload-type="audio" title="Subir archivo de audio">🎵</button>
+            </div>
+          </div>
+          <p style="font-size:0.7rem;color:#706a60;line-height:1.5">
+            Soporta MP3, OGG o WAV. La música inicia cuando el invitado abre el sobre.
+            Puedes subir el archivo directamente o pegar una URL.
+          </p>
+        </div>`;
+
+      bodyEl.innerHTML = colorHtml + sectionsHtml + musicHtml +
+        `<div class="editor-section">
+          <div class="editor-section-title">Galería de fotos</div>
+          <div id="editorGallerySection">${buildGallerySection()}</div>
+        </div>`;
+
+      /* ── Actualización en tiempo real ────────────────────── */
+      let renderTimer;
+      bodyEl.addEventListener('input', e => {
+        const el = e.target;
+        if (el.dataset.key !== undefined) {
+          siteContent[el.dataset.key] = el.value;
+          clearTimeout(renderTimer);
+          renderTimer = setTimeout(render, 80);
+        }
+        if (el.dataset.var) {
+          root.style.setProperty(el.dataset.var, el.value);
+        }
+        /* Galería — editar URL */
+        if (el.dataset.gsrc !== undefined) {
+          const i = +el.dataset.gsrc;
+          siteContent.galleryImages[i].src = el.value;
+          const preview = el.closest('.gallery-card').querySelector('.gallery-card-preview');
+          if (preview) preview.src = el.value;
+          clearTimeout(renderTimer);
+          renderTimer = setTimeout(render, 80);
+        }
+        /* Galería — editar alt */
+        if (el.dataset.galt !== undefined) {
+          siteContent.galleryImages[+el.dataset.galt].alt = el.value;
+        }
+      });
+
+      /* ── Subida de imágenes y audio ─────────────────────── */
+      function pickFile(accept, onDataUrl) {
+        const inp = document.createElement('input');
+        inp.type   = 'file';
+        inp.accept = accept;
+        inp.addEventListener('change', () => {
+          const file = inp.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = ev => onDataUrl(ev.target.result, file.name);
+          reader.readAsDataURL(file);
+        });
+        inp.click();
+      }
+
+      /* ── Galería — agregar / eliminar ────────────────────── */
+      bodyEl.addEventListener('click', e => {
+        /* Upload imagen — sección de contenido */
+        const upKey = e.target.closest('[data-upload-key]');
+        if (upKey) {
+          const key      = upKey.dataset.uploadKey;
+          const isAudio  = upKey.dataset.uploadType === 'audio';
+          const accept   = isAudio ? 'audio/*' : 'image/*';
+          pickFile(accept, (dataUrl) => {
+            siteContent[key] = dataUrl;
+            /* actualizar input visible */
+            const inp = upKey.closest('.input-with-upload')?.querySelector('input');
+            if (inp) inp.value = dataUrl;
+            if (isAudio) {
+              /* recargar el reproductor */
+              const audio = document.getElementById('bgAudio');
+              if (audio) { audio.src = dataUrl; audio.load(); }
+              document.getElementById('musicPlayer').hidden = false;
+            } else {
+              render();
+            }
+          });
+          return;
+        }
+
+        /* Upload imagen — tarjeta de galería */
+        const gUp = e.target.closest('[data-gupload]');
+        if (gUp) {
+          const i = +gUp.dataset.gupload;
+          pickFile('image/*', (dataUrl) => {
+            siteContent.galleryImages[i].src = dataUrl;
+            renderGallery();
+            render();
+          });
+          return;
+        }
+
+        /* Eliminar foto de galería */
+        if (e.target.closest('[data-gdel]')) {
+          const i = +e.target.closest('[data-gdel]').dataset.gdel;
+          siteContent.galleryImages.splice(i, 1);
+          renderGallery();
+          render();
+        }
+        /* Agregar foto */
+        if (e.target.id === 'galleryAddBtn') {
+          siteContent.galleryImages.push({ src: '', alt: '' });
+          renderGallery();
+          const cards = bodyEl.querySelectorAll('.gallery-card');
+          cards[cards.length - 1]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+
+      /* ── Copiar configuración JS ─────────────────────────── */
+      document.getElementById('editorCopy').addEventListener('click', () => {
+        const btn = document.getElementById('editorCopy');
+        navigator.clipboard.writeText(buildConfigStr()).then(() => {
+          btn.textContent = '¡Copiado!';
+          btn.classList.add('editor-btn--success');
+          setTimeout(() => {
+            btn.textContent = 'Copiar JS';
+            btn.classList.remove('editor-btn--success');
+          }, 2200);
+        });
+      });
+
+      /* ── Generar HTML limpio (sin editor) ───────────────── */
+      function buildCleanHtml() {
+        const newConfig = buildConfigStr();
+        let html = _initialHTML;
+
+        /* 1. Reemplazar bloque siteContent con valores actuales */
+        html = html.replace(
+          /const siteContent\s*=\s*\{[\s\S]*?\};\s*\n(\s*\/\* ─+\s*FIN)/,
+          newConfig + ';\n    \n    $1'
+        );
+
+        /* 2. Eliminar bloques CSS/JS del editor */
+        html = html.replace(/\/\* EDITOR:S \*\/[\s\S]*?\/\* EDITOR:E \*\//g, '');
+
+        /* 3. Eliminar bloques HTML del editor */
+        html = html.replace(/<!-- EDITOR:S -->[\s\S]*?<!-- EDITOR:E -->/g, '');
+
+        return '<!DOCTYPE html>\n' + html;
+      }
+
+      /* ── Preview en nueva pestaña ────────────────────────── */
+      document.getElementById('editorPreview').addEventListener('click', () => {
+        const blob = new Blob([buildCleanHtml()], { type: 'text/html;charset=utf-8' });
+        const url  = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        setTimeout(() => URL.revokeObjectURL(url), 120000);
+      });
+
+      /* ── Descargar HTML limpio ───────────────────────────── */
+      document.getElementById('editorExport').addEventListener('click', () => {
+        const blob = new Blob([buildCleanHtml()], { type: 'text/html;charset=utf-8' });
+        const a    = document.createElement('a');
+        a.href     = URL.createObjectURL(blob);
+        a.download = 'invitacion.html';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      });
+    }
+    /* EDITOR:E */
+
+    /* ── Arranque ─────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+      _initialHTML = document.documentElement.outerHTML; /* DOM completo, antes de render */
+      render();
+      initTheme();
+      initHeroBg();
+      initAnimations();
+      initScrollCue();
+      initRSVP();
+      initGalleryDrag();
+      initPetals();
+      initMusic();
+      initEnvelope(); /* ← el sobre gestiona el trigger del hero internamente */
+      /* EDITOR:S */ initEditor(); /* EDITOR:E */
+    });
+
+  </script>
+
+  <!-- ── Reproductor de música de fondo ──────────────────── -->
+  <audio id="bgAudio" loop preload="none"></audio>
+  <div id="musicPlayer" class="music-player" hidden>
+    <button id="musicBtn" class="music-btn" aria-label="Música">♪</button>
+  </div>
+
+  <!-- EDITOR:S -->
+  <!-- ── Panel editor visual ──────────────────────────────── -->
+  <button id="editorToggle" class="editor-toggle" aria-label="Abrir editor de invitación (Ctrl+Shift+E)" title="Editor (Ctrl+Shift+E)">✏</button>
+
+  <aside id="editorPanel" class="editor-panel" aria-label="Editor de invitación">
+    <div class="editor-header">
+      <div>
+        <h2>Editor</h2>
+        <div class="editor-header-sub">Ctrl+Shift+E · ?edit en URL</div>
+      </div>
+      <button class="editor-close-btn" id="editorClose" aria-label="Cerrar editor">✕</button>
+    </div>
+    <div class="editor-body" id="editorBody">
+      <!-- campos generados por JS -->
+    </div>
+    <div class="editor-footer">
+      <button class="editor-btn editor-btn--secondary" id="editorCopy">Copiar JS</button>
+      <button class="editor-btn editor-btn--secondary" id="editorPreview">👁 Preview</button>
+      <button class="editor-btn editor-btn--primary"   id="editorExport">⬇ Descargar HTML</button>
+    </div>
+  </aside>
+  <!-- EDITOR:E -->
+
+</body>
+</html>
