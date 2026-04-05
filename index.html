@@ -3284,53 +3284,100 @@
 
       /* ── Sube todos los assets base64 a GitHub y actualiza siteContent ── */
       const _GH = 'https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main';
+      const _CHUNK = 3_000_000; /* 3 MB de base64 por fragmento (múltiplo de 4) */
+
+      /* Sube un asset pequeño (imagen/texto) directamente */
+      async function _uploadAsset(slug, base64, name) {
+        const r = await fetch('/api/publish', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug, asset: { base64, name } })
+        });
+        if (!r.ok) {
+          const d = await r.json().catch(() => ({}));
+          throw new Error(d.error || `Error ${name}: ${r.status}`);
+        }
+      }
+
+      /* Sube archivos grandes en fragmentos y los ensambla en el servidor */
+      async function _uploadChunked(slug, base64, name, onStatus) {
+        const chunks = [];
+        for (let i = 0; i < base64.length; i += _CHUNK) chunks.push(base64.slice(i, i + _CHUNK));
+        for (let i = 0; i < chunks.length; i++) {
+          onStatus?.(`Subiendo audio (${i + 1}/${chunks.length})…`, '#ede8e0');
+          const r = await fetch('/api/publish', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ slug, asset: { base64: chunks[i], name: `_chunk_${name}_${i}` } })
+          });
+          if (!r.ok) {
+            const d = await r.json().catch(() => ({}));
+            throw new Error(d.error || `Error fragmento ${i + 1}: ${r.status}`);
+          }
+        }
+        onStatus?.('Ensamblando audio…', '#ede8e0');
+        const r = await fetch('/api/publish', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug, asset: { finalize: true, name, chunkCount: chunks.length } })
+        });
+        if (!r.ok) {
+          const d = await r.json().catch(() => ({}));
+          throw new Error(d.error || `Error ensamblando audio: ${r.status}`);
+        }
+      }
+
       async function uploadAllAssets(slug, onStatus) {
-        const uploads = [];
-        const imgKeys = ['heroImage', 'storyImage'];
-        for (const key of imgKeys) {
+        let changed = false;
+
+        /* Imágenes individuales */
+        for (const key of ['heroImage', 'storyImage']) {
           const val = siteContent[key] ?? '';
           if (!val.startsWith('data:')) continue;
           const m = val.match(/^data:[^/]+\/([^;]+);base64,(.+)$/s);
           if (!m) continue;
           const ext = m[1] === 'jpeg' ? 'jpg' : m[1];
-          uploads.push({ key, base64: m[2], name: `${key}.${ext}` });
+          const name = `${key}.${ext}`;
+          onStatus?.(`Subiendo imagen…`, '#ede8e0');
+          await _uploadAsset(slug, m[2], name);
+          siteContent[key] = `${_GH}/${slug}/${name}`;
+          changed = true;
         }
+
+        /* Audio (con fragmentación si es necesario) */
         const aud = siteContent.musicSrc ?? '';
         if (aud.startsWith('data:audio/')) {
           const m = aud.match(/^data:audio\/([^;]+);base64,(.+)$/s);
           if (m) {
             const ext = m[1] === 'mpeg' ? 'mp3' : m[1];
-            uploads.push({ key: 'musicSrc', base64: m[2], name: `music.${ext}` });
+            const name = `music.${ext}`;
+            if (m[2].length > _CHUNK) {
+              await _uploadChunked(slug, m[2], name, onStatus);
+            } else {
+              onStatus?.('Subiendo audio…', '#ede8e0');
+              await _uploadAsset(slug, m[2], name);
+            }
+            siteContent.musicSrc = `${_GH}/${slug}/${name}`;
+            changed = true;
           }
         }
-        (siteContent.galleryImages ?? []).forEach((img, i) => {
-          if (!img.src?.startsWith('data:')) return;
-          const m = img.src.match(/^data:[^/]+\/([^;]+);base64,(.+)$/s);
-          if (!m) return;
-          const ext = m[1] === 'jpeg' ? 'jpg' : m[1];
-          uploads.push({ key: `gallery-${i}`, base64: m[2], name: `gallery-${i}.${ext}`, gi: i });
-        });
 
-        for (let i = 0; i < uploads.length; i++) {
-          const u = uploads[i];
-          onStatus?.(`Subiendo archivo ${i + 1}/${uploads.length}…`, '#ede8e0');
-          const r = await fetch('/api/publish', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ slug, asset: { base64: u.base64, name: u.name } })
-          });
-          if (!r.ok) {
-            const d = await r.json().catch(() => ({}));
-            throw new Error(d.error || `Error ${u.name}: ${r.status}`);
-          }
-          const url = `${_GH}/${slug}/${u.name}`;
-          if (u.gi !== undefined) {
-            siteContent.galleryImages[u.gi].src = url;
-          } else {
-            siteContent[u.key] = url;
-          }
+        /* Galería */
+        const imgs = siteContent.galleryImages ?? [];
+        for (let i = 0; i < imgs.length; i++) {
+          const img = imgs[i];
+          if (!img.src?.startsWith('data:')) continue;
+          const m = img.src.match(/^data:[^/]+\/([^;]+);base64,(.+)$/s);
+          if (!m) continue;
+          const ext = m[1] === 'jpeg' ? 'jpg' : m[1];
+          const name = `gallery-${i}.${ext}`;
+          onStatus?.(`Subiendo foto ${i + 1}…`, '#ede8e0');
+          await _uploadAsset(slug, m[2], name);
+          siteContent.galleryImages[i].src = `${_GH}/${slug}/${name}`;
+          changed = true;
         }
-        if (uploads.length) { saveToStorage(); render(); rebuildBody(); }
+
+        if (changed) { saveToStorage(); render(); rebuildBody(); }
       }
 
       /* ── Guardar estado en servidor (cross-device sync) ──── */

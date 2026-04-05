@@ -39,39 +39,63 @@ export default async function handler(req, res) {
     });
   }
 
+  /* ── Helpers GitHub ─────────────────────────────────────── */
+  const ghHeaders = {
+    Authorization: `token ${GITHUB_TOKEN}`,
+    Accept: 'application/vnd.github.v3+json',
+    'Content-Type': 'application/json',
+  };
+
+  async function ghPut(path, base64content, message) {
+    const api = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`;
+    let sha;
+    const check = await fetch(api, { headers: ghHeaders });
+    if (check.ok) sha = (await check.json()).sha;
+    const r = await fetch(api, {
+      method: 'PUT', headers: ghHeaders,
+      body: JSON.stringify({ message, content: base64content, branch: 'main', ...(sha ? { sha } : {}) }),
+    });
+    if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.message || `GitHub ${r.status}`); }
+    return r;
+  }
+
+  async function ghGetBinary(path) {
+    const api = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`;
+    const r = await fetch(api, { headers: ghHeaders });
+    if (!r.ok) throw new Error(`Chunk no encontrado: ${path} (${r.status})`);
+    const meta = await r.json();
+    if (meta.content) return Buffer.from(meta.content.replace(/\n/g, ''), 'base64');
+    if (meta.download_url) return Buffer.from(await (await fetch(meta.download_url)).arrayBuffer());
+    throw new Error(`Sin contenido en ${path}`);
+  }
+
   /* ── Modo asset: subir imagen / audio por separado (evita 413) ── */
   if (asset && !html) {
-    if (!asset.base64 || !asset.name) {
-      return res.status(400).json({ error: 'Falta base64 o name en asset' });
-    }
-    /* Sanitizar nombre: solo alfanumérico, guiones, puntos */
-    const safeName = asset.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-    const assetPath = `${slug}/${safeName}`;
-    const assetApi  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${assetPath}`;
-    const ghHeaders = {
-      Authorization: `token ${GITHUB_TOKEN}`,
-      Accept: 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json',
-    };
-    try {
-      let sha;
-      const check = await fetch(assetApi, { headers: ghHeaders });
-      if (check.ok) sha = (await check.json()).sha;
-      const putRes = await fetch(assetApi, {
-        method: 'PUT',
-        headers: ghHeaders,
-        body: JSON.stringify({
-          message: `Asset: ${slug}/${safeName}`,
-          content: asset.base64,
-          branch: 'main',
-          ...(sha ? { sha } : {}),
-        }),
-      });
-      if (!putRes.ok) {
-        const e = await putRes.json().catch(() => ({}));
-        throw new Error(e.message || `GitHub error ${putRes.status}`);
+    if (!asset.name) return res.status(400).json({ error: 'Falta name en asset' });
+
+    /* Modo ensamblar: combina fragmentos en el archivo final */
+    if (asset.finalize) {
+      try {
+        const { name, chunkCount } = asset;
+        const safeFinal = name.replace(/[^a-zA-Z0-9._-]/g, '_');
+        const buffers = [];
+        for (let i = 0; i < chunkCount; i++) {
+          buffers.push(await ghGetBinary(`${slug}/_chunk_${safeFinal}_${i}`));
+        }
+        const combined = Buffer.concat(buffers).toString('base64');
+        await ghPut(`${slug}/${safeFinal}`, combined, `Audio: ${slug}/${safeFinal}`);
+        return res.status(200).json({ ok: true });
+      } catch (e) {
+        return res.status(500).json({ error: e.message });
       }
-      return res.status(200).json({ ok: true, path: `/${assetPath}` });
+    }
+
+    /* Modo normal: subir fragmento o archivo pequeño */
+    if (!asset.base64) return res.status(400).json({ error: 'Falta base64 en asset' });
+    const safeName = asset.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    try {
+      await ghPut(`${slug}/${safeName}`, asset.base64, `Asset: ${slug}/${safeName}`);
+      return res.status(200).json({ ok: true, path: `/${slug}/${safeName}` });
     } catch (e) {
       return res.status(500).json({ error: e.message });
     }
@@ -83,11 +107,6 @@ export default async function handler(req, res) {
 
   const filePath = `${slug}/index.html`;
   const apiBase  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${filePath}`;
-  const ghHeaders = {
-    Authorization: `token ${GITHUB_TOKEN}`,
-    Accept: 'application/vnd.github.v3+json',
-    'Content-Type': 'application/json',
-  };
 
   try {
     /* Obtener SHA si el archivo ya existe (necesario para actualizarlo) */
