@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Read(//c/Users/ANDRES/Desktop/**)",
+      "Bash(npx create-next-app@latest wedding-saas --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --use-npm --yes)",
+      "Bash(npm install:*)",
+      "Bash(cd:*)",
+      "Bash(powershell -Command \":*)",
+      "Bash(npm run:*)",
+      "Bash(\"C:\\\\Users\\\\ANDRES\\\\Desktop\\\\wedding-saas\\\\app\\\\page.tsx\")"
+    ]
+  }
+}

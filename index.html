@@ -2304,7 +2304,7 @@
       /* ── Música de fondo ──────────────────────────────────── */
       musicSrc: ""
 
-    };;
+    };
     
         /* ──────────────────────────────────────────────────────────
        FIN DEL BLOQUE EDITABLE
@@ -3326,8 +3326,8 @@
 
         /* 1. Reemplazar bloque siteContent con valores actuales */
         html = html.replace(
-          /const siteContent\s*=\s*\{[\s\S]*?\};\s*\n(\s*\/\* ─+\s*FIN)/,
-          (_, fin) => newConfig + ';\n    \n    ' + fin
+          /const siteContent\s*=\s*\{[\s\S]*?\};+/,
+          newConfig + ';'
         );
 
         /* 2. Inyectar colores CSS editados como bloque :root */
@@ -3356,8 +3356,8 @@
         const newConfig = buildConfigStr();
         let html = _initialHTML;
         html = html.replace(
-          /const siteContent\s*=\s*\{[\s\S]*?\};\s*\n(\s*\/\* ─+\s*FIN)/,
-          (_, fin) => newConfig + ';\n    \n    ' + fin
+          /const siteContent\s*=\s*\{[\s\S]*?\};+/,
+          newConfig + ';'
         );
         return '<!DOCTYPE html>\n' + html;
       }

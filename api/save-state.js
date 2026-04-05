@@ -44,7 +44,10 @@ export default async function handler(req, res) {
   /* ── POST: guardar estado ───────────────────────────────── */
   if (req.method === 'POST') {
     const { siteContent, colors } = req.body || {};
-    if (!siteContent) return res.status(400).json({ error: 'Falta siteContent' });
+    if (!siteContent) {
+      console.error('save-state POST: falta siteContent en body. body keys:', Object.keys(req.body || {}));
+      return res.status(400).json({ error: 'Falta siteContent' });
+    }
 
     try {
       /* Obtener SHA si el archivo ya existe */
@@ -69,6 +72,7 @@ export default async function handler(req, res) {
 
       return res.status(200).json({ ok: true });
     } catch (e) {
+      console.error('save-state POST error:', e.message);
       return res.status(500).json({ error: e.message });
     }
   }
