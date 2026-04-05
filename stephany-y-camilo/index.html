@@ -1263,6 +1263,9 @@
     
 
   </style>
+  <style>:root {
+    --c-envelope: #343575;
+  }</style>
 </head>
 <body>
 
@@ -2380,7 +2383,6 @@
     /* ── Arranque ─────────────────────────────────────────── */
     document.addEventListener('DOMContentLoaded', () => {
       _initialHTML = document.documentElement.outerHTML; /* DOM completo, antes de render */
-      restoreFromStorage(); /* restaurar cambios guardados antes de pintar */
       render();
       initTheme();
       initHeroBg();
