@@ -576,6 +576,93 @@
       margin-bottom: var(--sp-sm);
     }
 
+    /* Bloques de evento (ceremonia / recepción) */
+    .event__block {
+      margin-top: var(--sp-lg);
+      text-align: center;
+    }
+    .event__block-title {
+      font-family: var(--f-serif);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--c-gold);
+      letter-spacing: 0.02em;
+      margin-bottom: var(--sp-md);
+    }
+    .event__cards--2 {
+      grid-template-columns: repeat(2, 1fr) !important;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    /* Separador entre ceremonia y recepción */
+    .event__sep {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--c-gold-dim), transparent);
+      margin: var(--sp-lg) auto 0;
+    }
+
+    /* Sección vestimenta */
+    .dressCode {
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+    }
+    .dressCode__card {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--c-bg-alt);
+      border: 1px solid var(--c-gold-dim);
+      border-radius: var(--r-lg);
+      padding: 2rem 3rem;
+      margin-top: var(--sp-md);
+      max-width: 420px;
+    }
+    .dressCode__val {
+      font-family: var(--f-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--c-text);
+    }
+    .dressCode__sub {
+      font-size: 0.82rem;
+      color: var(--c-text-mid);
+    }
+    .dressCode__note {
+      font-size: 0.78rem;
+      color: var(--c-text-muted);
+      font-style: italic;
+      margin-top: 0.25rem;
+    }
+
+    /* Sección regalos */
+    .gifts {
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      background: var(--c-bg-alt);
+    }
+    .gifts__title {
+      font-family: var(--f-serif);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 300;
+      color: var(--c-text);
+      margin: var(--sp-sm) 0;
+    }
+    .gifts__text {
+      font-size: 1rem;
+      color: var(--c-text-mid);
+      max-width: 520px;
+      margin: 0 auto var(--sp-sm);
+      line-height: 1.8;
+    }
+    .gifts__note {
+      font-size: 0.85rem;
+      color: var(--c-gold);
+      font-style: italic;
+    }
+
     /* Botones */
     .btn {
       display: inline-flex;
@@ -1513,41 +1600,92 @@
         <p class="event__year"  id="evYear"></p>
       </div>
 
-      <!-- Tres tarjetas: hora / lugar / vestimenta -->
-      <div class="event__cards">
-        <div class="detail-card anim-up d1">
-          <div class="detail-card__glyph" aria-hidden="true">◌</div>
-          <p class="detail-card__lbl">Hora</p>
-          <p class="detail-card__val" id="evTime"></p>
-          <p class="detail-card__sub" id="evTimeSub"></p>
+      <!-- Bloque 1: Celebración Eucarística -->
+      <div class="event__block anim-up d2">
+        <h3 class="event__block-title" id="ceremonyTitle"></h3>
+        <div class="event__cards event__cards--2">
+          <div class="detail-card">
+            <div class="detail-card__glyph" aria-hidden="true">◌</div>
+            <p class="detail-card__lbl">Hora</p>
+            <p class="detail-card__val" id="ceremonyTime"></p>
+            <p class="detail-card__sub" id="ceremonyTimeSub"></p>
+          </div>
+          <div class="detail-card">
+            <div class="detail-card__glyph" aria-hidden="true">◇</div>
+            <p class="detail-card__lbl">Lugar</p>
+            <p class="detail-card__val" id="ceremonyVenue"></p>
+            <p class="detail-card__sub" id="ceremonyVenueSub"></p>
+          </div>
         </div>
-        <div class="detail-card anim-up d2">
-          <div class="detail-card__glyph" aria-hidden="true">◇</div>
-          <p class="detail-card__lbl">Lugar</p>
-          <p class="detail-card__val" id="evVenue"></p>
-          <p class="detail-card__sub" id="evVenueSub"></p>
-        </div>
-        <div class="detail-card anim-up d3">
-          <div class="detail-card__glyph" aria-hidden="true">△</div>
-          <p class="detail-card__lbl">Vestimenta</p>
-          <p class="detail-card__val" id="evDressCode"></p>
-          <p class="detail-card__sub" id="evDressCodeSub"></p>
-        </div>
+        <p class="event__address" id="ceremonyAddress"></p>
+        <a class="btn btn--outline" id="ceremonyMapsBtn" href="#" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          Ver en el mapa
+        </a>
       </div>
 
-      <p class="event__address anim-up" id="evAddress"></p>
+      <!-- Separador -->
+      <div class="event__sep anim-fade" aria-hidden="true"></div>
 
-      <!-- Botón de mapa — actualiza mapsUrl en siteContent -->
-      <a class="btn btn--outline anim-up d1" id="mapsBtn"
-         href="#" target="_blank" rel="noopener noreferrer">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-          <circle cx="12" cy="10" r="3"/>
-        </svg>
-        Ver en el mapa
-      </a>
+      <!-- Bloque 2: Recepción -->
+      <div class="event__block anim-up d3">
+        <h3 class="event__block-title" id="receptionTitle"></h3>
+        <div class="event__cards event__cards--2">
+          <div class="detail-card">
+            <div class="detail-card__glyph" aria-hidden="true">◌</div>
+            <p class="detail-card__lbl">Hora</p>
+            <p class="detail-card__val" id="receptionTime"></p>
+            <p class="detail-card__sub" id="receptionTimeSub"></p>
+          </div>
+          <div class="detail-card">
+            <div class="detail-card__glyph" aria-hidden="true">◇</div>
+            <p class="detail-card__lbl">Lugar</p>
+            <p class="detail-card__val" id="receptionVenue"></p>
+            <p class="detail-card__sub" id="receptionVenueSub"></p>
+          </div>
+        </div>
+        <p class="event__address" id="receptionAddress"></p>
+        <a class="btn btn--outline" id="receptionMapsBtn" href="#" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          Ver en el mapa
+        </a>
+      </div>
 
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN — VESTIMENTA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="dressCode" id="dressCode" aria-label="Vestimenta">
+    <div class="event__inner text-center">
+      <p class="eyebrow anim-up" id="dressCodeEyebrow"></p>
+      <div class="dressCode__card anim-up d1">
+        <div class="detail-card__glyph" aria-hidden="true">△</div>
+        <p class="dressCode__val" id="dressCodeVal"></p>
+        <p class="dressCode__sub" id="dressCodeSub"></p>
+        <p class="dressCode__note" id="dressCodeNote"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SECCIÓN — REGALOS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="gifts" id="gifts" aria-label="Regalos">
+    <div class="event__inner text-center">
+      <p class="eyebrow anim-up" id="giftsEyebrow"></p>
+      <h2 class="gifts__title anim-up d1" id="giftsTitle"></h2>
+      <p class="gifts__text anim-up d2" id="giftsText"></p>
+      <p class="gifts__note anim-up d3" id="giftsNote"></p>
     </div>
   </section>
 
@@ -1779,18 +1917,38 @@
         }
       ],
 
-      /* ── Detalles del evento ──────────────────────────────── */
-      eventEyebrow:    "La fecha",
-      eventTime:       "18:30 h",
-      eventTimeSub:    "Puertas abiertas desde las 18:00",
-      eventVenue:      "Hacienda Villa del Alba",
-      eventVenueSub:   "Salón principal — Acceso norte",
-      eventAddress:    "Camino de la Hacienda 42, 28001 Madrid, España",
-      eventDressCode:  "Formal elegante",
-      eventDressCodeSub: "Colores claros o tierra — sin blanco",
+      /* ── La fecha ────────────────────────────────────────────── */
+      eventEyebrow: "La fecha",
 
-      /* ← REEMPLAZA con tu URL real de Google Maps              */
-      mapsUrl: "https://maps.google.com?q=Hacienda+Villa+del+Alba+Madrid",
+      /* ── Celebración Eucarística ──────────────────────────── */
+      ceremonyTitle:    "Celebración Eucarística",
+      ceremonyTime:     "11:00 h",
+      ceremonyTimeSub:  "",
+      ceremonyVenue:    "",
+      ceremonyVenueSub: "",
+      ceremonyAddress:  "",
+      ceremonyMapsUrl:  "https://maps.google.com?q=",
+
+      /* ── Recepción ────────────────────────────────────────── */
+      receptionTitle:    "Recepción",
+      receptionTime:     "14:00 h",
+      receptionTimeSub:  "Cocktail desde las 13:30",
+      receptionVenue:    "Hacienda Villa del Alba",
+      receptionVenueSub: "Salón principal — Acceso norte",
+      receptionAddress:  "Camino de la Hacienda 42, 28001 Madrid, España",
+      receptionMapsUrl:  "https://maps.google.com?q=Hacienda+Villa+del+Alba+Madrid",
+
+      /* ── Vestimenta ───────────────────────────────────────── */
+      dressCodeEyebrow: "Vestimenta",
+      dressCode:        "Formal elegante",
+      dressCodeSub:     "Colores claros o tierra — sin blanco",
+      dressCodeNote:    "",
+
+      /* ── Regalos ──────────────────────────────────────────── */
+      giftsEyebrow: "Un detalle",
+      giftsTitle:   "Si deseas hacernos un regalo",
+      giftsText:    "Preferimos lluvia de sobres, pero lo más importante es tu presencia y alegría ese día.",
+      giftsNote:    "",
 
       /* ── RSVP ─────────────────────────────────────────────── */
       rsvpTitle:  "¿Vendrás con nosotros?",
@@ -1879,19 +2037,43 @@
         gallSec.style.display = 'none';
       }
 
-      /* Detalles del evento */
-      setText('eventEyebrow',  c.eventEyebrow);
-      setText('evMonth',  monthName(date).toUpperCase());
-      setText('evDay',    String(date.getDate()).padStart(2, '0'));
-      setText('evYear',   String(date.getFullYear()));
-      setText('evTime',   c.eventTime);
-      setText('evTimeSub',c.eventTimeSub);
-      setText('evVenue',  c.eventVenue);
-      setText('evVenueSub',c.eventVenueSub);
-      setText('evAddress', c.eventAddress);
-      setText('evDressCode',    c.eventDressCode);
-      setText('evDressCodeSub', c.eventDressCodeSub);
-      document.getElementById('mapsBtn').href = c.mapsUrl;
+      /* Fecha */
+      setText('eventEyebrow', c.eventEyebrow);
+      setText('evMonth', monthName(date).toUpperCase());
+      setText('evDay',   String(date.getDate()).padStart(2, '0'));
+      setText('evYear',  String(date.getFullYear()));
+
+      /* Celebración Eucarística */
+      setText('ceremonyTitle',    c.ceremonyTitle);
+      setText('ceremonyTime',     c.ceremonyTime);
+      setText('ceremonyTimeSub',  c.ceremonyTimeSub);
+      setText('ceremonyVenue',    c.ceremonyVenue);
+      setText('ceremonyVenueSub', c.ceremonyVenueSub);
+      setText('ceremonyAddress',  c.ceremonyAddress);
+      const cmBtn = document.getElementById('ceremonyMapsBtn');
+      if (cmBtn) cmBtn.href = c.ceremonyMapsUrl || '#';
+
+      /* Recepción */
+      setText('receptionTitle',    c.receptionTitle);
+      setText('receptionTime',     c.receptionTime);
+      setText('receptionTimeSub',  c.receptionTimeSub);
+      setText('receptionVenue',    c.receptionVenue);
+      setText('receptionVenueSub', c.receptionVenueSub);
+      setText('receptionAddress',  c.receptionAddress);
+      const rcBtn = document.getElementById('receptionMapsBtn');
+      if (rcBtn) rcBtn.href = c.receptionMapsUrl || '#';
+
+      /* Vestimenta */
+      setText('dressCodeEyebrow', c.dressCodeEyebrow);
+      setText('dressCodeVal',     c.dressCode);
+      setText('dressCodeSub',     c.dressCodeSub);
+      setText('dressCodeNote',    c.dressCodeNote);
+
+      /* Regalos */
+      setText('giftsEyebrow', c.giftsEyebrow);
+      setText('giftsTitle',   c.giftsTitle);
+      setText('giftsText',    c.giftsText);
+      setText('giftsNote',    c.giftsNote);
 
       /* RSVP */
       setText('rsvpTitle', c.rsvpTitle);
@@ -2194,16 +2376,34 @@
           `      storyImageAlt: ${q('storyImageAlt')},\n\n` +
           `      /* ── Galería ──────────────────────────────────────────── */\n` +
           `      galleryImages: ${JSON.stringify(c.galleryImages ?? [], null, 8)},\n\n` +
-          `      /* ── Detalles del evento ──────────────────────────────── */\n` +
-          `      eventEyebrow:    ${q('eventEyebrow')},\n` +
-          `      eventTime:       ${q('eventTime')},\n` +
-          `      eventTimeSub:    ${q('eventTimeSub')},\n` +
-          `      eventVenue:      ${q('eventVenue')},\n` +
-          `      eventVenueSub:   ${q('eventVenueSub')},\n` +
-          `      eventAddress:    ${q('eventAddress')},\n` +
-          `      eventDressCode:  ${q('eventDressCode')},\n` +
-          `      eventDressCodeSub: ${q('eventDressCodeSub')},\n\n` +
-          `      mapsUrl: ${q('mapsUrl')},\n\n` +
+          `      /* ── La fecha ────────────────────────────────────────────── */\n` +
+          `      eventEyebrow: ${q('eventEyebrow')},\n\n` +
+          `      /* ── Celebración Eucarística ──────────────────────────── */\n` +
+          `      ceremonyTitle:    ${q('ceremonyTitle')},\n` +
+          `      ceremonyTime:     ${q('ceremonyTime')},\n` +
+          `      ceremonyTimeSub:  ${q('ceremonyTimeSub')},\n` +
+          `      ceremonyVenue:    ${q('ceremonyVenue')},\n` +
+          `      ceremonyVenueSub: ${q('ceremonyVenueSub')},\n` +
+          `      ceremonyAddress:  ${q('ceremonyAddress')},\n` +
+          `      ceremonyMapsUrl:  ${q('ceremonyMapsUrl')},\n\n` +
+          `      /* ── Recepción ────────────────────────────────────────── */\n` +
+          `      receptionTitle:    ${q('receptionTitle')},\n` +
+          `      receptionTime:     ${q('receptionTime')},\n` +
+          `      receptionTimeSub:  ${q('receptionTimeSub')},\n` +
+          `      receptionVenue:    ${q('receptionVenue')},\n` +
+          `      receptionVenueSub: ${q('receptionVenueSub')},\n` +
+          `      receptionAddress:  ${q('receptionAddress')},\n` +
+          `      receptionMapsUrl:  ${q('receptionMapsUrl')},\n\n` +
+          `      /* ── Vestimenta ───────────────────────────────────────── */\n` +
+          `      dressCodeEyebrow: ${q('dressCodeEyebrow')},\n` +
+          `      dressCode:        ${q('dressCode')},\n` +
+          `      dressCodeSub:     ${q('dressCodeSub')},\n` +
+          `      dressCodeNote:    ${q('dressCodeNote')},\n\n` +
+          `      /* ── Regalos ──────────────────────────────────────────── */\n` +
+          `      giftsEyebrow: ${q('giftsEyebrow')},\n` +
+          `      giftsTitle:   ${q('giftsTitle')},\n` +
+          `      giftsText:    ${q('giftsText')},\n` +
+          `      giftsNote:    ${q('giftsNote')},\n\n` +
           `      /* ── RSVP ─────────────────────────────────────────────── */\n` +
           `      rsvpTitle:  ${q('rsvpTitle')},\n` +
           `      rsvpSub:    ${q('rsvpSub')},\n` +
@@ -2271,15 +2471,35 @@
           { key: 'storyBody',    label: 'Texto', type: 'textarea' },
           { key: 'storyImage',   label: 'Foto de pareja', type: 'image-url' },
         ]},
-        { title: 'Detalles del evento', fields: [
-          { key: 'eventTime',         label: 'Hora' },
-          { key: 'eventTimeSub',      label: 'Nota de hora' },
-          { key: 'eventVenue',        label: 'Lugar' },
-          { key: 'eventVenueSub',     label: 'Detalle del lugar' },
-          { key: 'eventAddress',      label: 'Dirección' },
-          { key: 'eventDressCode',    label: 'Dress code' },
-          { key: 'eventDressCodeSub', label: 'Dress code — detalle' },
-          { key: 'mapsUrl',           label: 'URL Google Maps' },
+        { title: 'Celebración Eucarística', fields: [
+          { key: 'ceremonyTitle',    label: 'Título' },
+          { key: 'ceremonyTime',     label: 'Hora' },
+          { key: 'ceremonyTimeSub',  label: 'Nota de hora' },
+          { key: 'ceremonyVenue',    label: 'Lugar' },
+          { key: 'ceremonyVenueSub', label: 'Detalle del lugar' },
+          { key: 'ceremonyAddress',  label: 'Dirección' },
+          { key: 'ceremonyMapsUrl',  label: 'URL Google Maps' },
+        ]},
+        { title: 'Recepción', fields: [
+          { key: 'receptionTitle',    label: 'Título' },
+          { key: 'receptionTime',     label: 'Hora' },
+          { key: 'receptionTimeSub',  label: 'Nota de hora' },
+          { key: 'receptionVenue',    label: 'Lugar' },
+          { key: 'receptionVenueSub', label: 'Detalle del lugar' },
+          { key: 'receptionAddress',  label: 'Dirección' },
+          { key: 'receptionMapsUrl',  label: 'URL Google Maps' },
+        ]},
+        { title: 'Vestimenta', fields: [
+          { key: 'dressCodeEyebrow', label: 'Eyebrow' },
+          { key: 'dressCode',        label: 'Código de vestimenta' },
+          { key: 'dressCodeSub',     label: 'Detalle' },
+          { key: 'dressCodeNote',    label: 'Nota adicional', type: 'textarea' },
+        ]},
+        { title: 'Regalos', fields: [
+          { key: 'giftsEyebrow', label: 'Eyebrow' },
+          { key: 'giftsTitle',   label: 'Título' },
+          { key: 'giftsText',    label: 'Texto principal', type: 'textarea' },
+          { key: 'giftsNote',    label: 'Nota (cuenta, link, etc.)', type: 'textarea' },
         ]},
         { title: 'RSVP', fields: [
           { key: 'rsvpTitle', label: 'Título' },
