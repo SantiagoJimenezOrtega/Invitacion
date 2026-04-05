@@ -3268,6 +3268,71 @@
         location.reload();
       });
 
+      /* ── Elimina base64 del siteContent antes de enviarlo al servidor ── */
+      function stripBase64(sc) {
+        const s = JSON.parse(JSON.stringify(sc));
+        ['heroImage', 'storyImage', 'musicSrc'].forEach(k => {
+          if (s[k]?.startsWith('data:')) s[k] = '';
+        });
+        if (s.galleryImages) {
+          s.galleryImages = s.galleryImages.map(img =>
+            img.src?.startsWith('data:') ? { ...img, src: '' } : img
+          );
+        }
+        return s;
+      }
+
+      /* ── Sube todos los assets base64 a GitHub y actualiza siteContent ── */
+      const _GH = 'https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main';
+      async function uploadAllAssets(slug, onStatus) {
+        const uploads = [];
+        const imgKeys = ['heroImage', 'storyImage'];
+        for (const key of imgKeys) {
+          const val = siteContent[key] ?? '';
+          if (!val.startsWith('data:')) continue;
+          const m = val.match(/^data:[^/]+\/([^;]+);base64,(.+)$/s);
+          if (!m) continue;
+          const ext = m[1] === 'jpeg' ? 'jpg' : m[1];
+          uploads.push({ key, base64: m[2], name: `${key}.${ext}` });
+        }
+        const aud = siteContent.musicSrc ?? '';
+        if (aud.startsWith('data:audio/')) {
+          const m = aud.match(/^data:audio\/([^;]+);base64,(.+)$/s);
+          if (m) {
+            const ext = m[1] === 'mpeg' ? 'mp3' : m[1];
+            uploads.push({ key: 'musicSrc', base64: m[2], name: `music.${ext}` });
+          }
+        }
+        (siteContent.galleryImages ?? []).forEach((img, i) => {
+          if (!img.src?.startsWith('data:')) return;
+          const m = img.src.match(/^data:[^/]+\/([^;]+);base64,(.+)$/s);
+          if (!m) return;
+          const ext = m[1] === 'jpeg' ? 'jpg' : m[1];
+          uploads.push({ key: `gallery-${i}`, base64: m[2], name: `gallery-${i}.${ext}`, gi: i });
+        });
+
+        for (let i = 0; i < uploads.length; i++) {
+          const u = uploads[i];
+          onStatus?.(`Subiendo archivo ${i + 1}/${uploads.length}…`, '#ede8e0');
+          const r = await fetch('/api/publish', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ slug, asset: { base64: u.base64, name: u.name } })
+          });
+          if (!r.ok) {
+            const d = await r.json().catch(() => ({}));
+            throw new Error(d.error || `Error ${u.name}: ${r.status}`);
+          }
+          const url = `${_GH}/${slug}/${u.name}`;
+          if (u.gi !== undefined) {
+            siteContent.galleryImages[u.gi].src = url;
+          } else {
+            siteContent[u.key] = url;
+          }
+        }
+        if (uploads.length) { saveToStorage(); render(); rebuildBody(); }
+      }
+
       /* ── Guardar estado en servidor (cross-device sync) ──── */
       document.getElementById('editorSave').addEventListener('click', async () => {
         const btn = document.getElementById('editorSave');
@@ -3282,7 +3347,7 @@
           const res = await fetch('/api/save-state', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ siteContent, colors })
+            body: JSON.stringify({ siteContent: stripBase64(siteContent), colors })
           });
           if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || `Error ${res.status}`);
           btn.textContent = '✓ Guardado';
@@ -3401,46 +3466,15 @@
           publishBtn.disabled = true;
 
           try {
-            /* ── Si hay audio en base64, subirlo separado para evitar 413 ── */
-            const rawAudio = siteContent.musicSrc ?? '';
-            let audioPayload = null;
-            let htmlToPublish = buildCleanHtml();
+            /* ── 1. Subir assets base64 individualmente (evita 413) ── */
+            await uploadAllAssets(slug, setStatus);
 
-            if (rawAudio.startsWith('data:audio/')) {
-              const mimeMatch = rawAudio.match(/^data:audio\/([^;]+);base64,(.+)$/s);
-              if (mimeMatch) {
-                const ext = mimeMatch[1] === 'mpeg' ? 'mp3' : mimeMatch[1];
-                audioPayload = { base64: mimeMatch[2], ext };
-                /* URL que tendrá el audio en GitHub raw una vez subido */
-                const GH_OWNER = 'SantiagoJimenezOrtega';
-                const GH_REPO  = 'Invitacion';
-                const audioUrl = `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/main/${slug}/music.${ext}`;
-                /* Reemplazar data URL en el HTML generado con la URL del archivo */
-                htmlToPublish = htmlToPublish.replace(
-                  /musicSrc:\s*"data:audio\/[^"]*"/,
-                  `musicSrc: ${JSON.stringify(audioUrl)}`
-                );
-              }
-            }
-
-            /* ── 1. Subir audio (si aplica) ─────────────────────────── */
-            if (audioPayload) {
-              setStatus('Subiendo audio…', '#ede8e0');
-              const aRes = await fetch('/api/publish', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ slug, audio: audioPayload })
-              });
-              const aData = await aRes.json().catch(() => ({}));
-              if (!aRes.ok) throw new Error(aData.error || `Error audio ${aRes.status}`);
-            }
-
-            /* ── 2. Subir HTML ───────────────────────────────────────── */
+            /* ── 2. Subir HTML (ya sin base64) ──────────────────────── */
             setStatus('Publicando…', '#ede8e0');
             const res = await fetch('/api/publish', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ slug, html: htmlToPublish })
+              body: JSON.stringify({ slug, html: buildCleanHtml() })
             });
             const data = await res.json().catch(() => ({}));
             if (!res.ok) throw new Error(data.error || `Error ${res.status}`);

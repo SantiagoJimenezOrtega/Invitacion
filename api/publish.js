@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     });
   }
 
-  const { slug, html, audio } = req.body || {};
+  const { slug, html, asset } = req.body || {};
 
   /* Validar slug: solo letras minúsculas, números y guiones */
   if (!slug || !/^[a-z0-9][a-z0-9-]{0,60}[a-z0-9]$/.test(slug)) {
@@ -39,13 +39,15 @@ export default async function handler(req, res) {
     });
   }
 
-  /* ── Modo audio: subir archivo de música por separado ──── */
-  if (audio && !html) {
-    if (!audio.base64 || !audio.ext) {
-      return res.status(400).json({ error: 'Falta base64 o ext en audio' });
+  /* ── Modo asset: subir imagen / audio por separado (evita 413) ── */
+  if (asset && !html) {
+    if (!asset.base64 || !asset.name) {
+      return res.status(400).json({ error: 'Falta base64 o name en asset' });
     }
-    const audioPath = `${slug}/music.${audio.ext}`;
-    const audioApi  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${audioPath}`;
+    /* Sanitizar nombre: solo alfanumérico, guiones, puntos */
+    const safeName = asset.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    const assetPath = `${slug}/${safeName}`;
+    const assetApi  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${assetPath}`;
     const ghHeaders = {
       Authorization: `token ${GITHUB_TOKEN}`,
       Accept: 'application/vnd.github.v3+json',
@@ -53,14 +55,14 @@ export default async function handler(req, res) {
     };
     try {
       let sha;
-      const check = await fetch(audioApi, { headers: ghHeaders });
+      const check = await fetch(assetApi, { headers: ghHeaders });
       if (check.ok) sha = (await check.json()).sha;
-      const putRes = await fetch(audioApi, {
+      const putRes = await fetch(assetApi, {
         method: 'PUT',
         headers: ghHeaders,
         body: JSON.stringify({
-          message: `Audio: ${slug}`,
-          content: audio.base64,
+          message: `Asset: ${slug}/${safeName}`,
+          content: asset.base64,
           branch: 'main',
           ...(sha ? { sha } : {}),
         }),
@@ -69,7 +71,7 @@ export default async function handler(req, res) {
         const e = await putRes.json().catch(() => ({}));
         throw new Error(e.message || `GitHub error ${putRes.status}`);
       }
-      return res.status(200).json({ ok: true, path: `/${slug}/music.${audio.ext}` });
+      return res.status(200).json({ ok: true, path: `/${assetPath}` });
     } catch (e) {
       return res.status(500).json({ error: e.message });
     }
