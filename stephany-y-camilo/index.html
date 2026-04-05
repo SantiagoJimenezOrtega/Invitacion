@@ -1635,16 +1635,6 @@
         </div>
 
         <div class="field">
-          <label class="field__label" for="fguests">Número de acompañantes</label>
-          <select class="field__select" id="fguests" name="guests">
-            <option value="0">Solo yo</option>
-            <option value="1">+ 1 persona</option>
-            <option value="2">+ 2 personas</option>
-            <option value="3">+ 3 personas</option>
-          </select>
-        </div>
-
-        <div class="field">
           <label class="field__label" for="fsong" id="rsvpSongLbl"></label>
           <input class="field__input" type="text" id="fsong" name="song" placeholder="Ej: Can't Help Falling in Love">
         </div>
@@ -1918,6 +1908,9 @@
       rsvpNote:      "Tu respuesta nos ayuda a prepararlo todo con cariño.",
       rsvpSongLabel: "¿Qué canción no puede faltar ese día?",
 
+      /* ── WhatsApp ────────────────────────────────────────── */
+      whatsappNumber: "573017869900",
+
       /* ── Fotos del evento ─────────────────────────────────── */
       photosEyebrow: "Tu mirada, nuestra historia",
       photosTitle:   "¡Comparte tus fotos del día!",
@@ -1934,10 +1927,7 @@
       footerText: "Con amor · Stephany & Camilo · 2026",
 
       /* ── Música de fondo ──────────────────────────────────── */
-      musicSrc: "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/music.mp3",
-
-      /* ── WhatsApp configuration ──────────────────────────── */
-      whatsappNumber: "573000000000" // Reemplaza con tu número (código de país + número) sin espacios ni símbolos
+      musicSrc: "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/music.mp3"
 
     };;
     
@@ -2245,8 +2235,12 @@
             const phoneNumber = siteContent.whatsappNumber.replace(/\D/g, ''); // limpia el número
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
             
-            // Abrir WhatsApp en una nueva pestaña
-            window.open(whatsappUrl, '_blank');
+            // Abrir WhatsApp en una nueva pestaña (si no estamos en modo edición)
+            if (!new URLSearchParams(location.search).has('edit')) {
+              window.open(whatsappUrl, '_blank');
+            } else {
+              console.log("WhatsApp URL (simulado en editor):", whatsappUrl);
+            }
           }
 
           submitted = true;
