@@ -6,12 +6,12 @@
   <!-- ═══════════════════════════════════════════════════════
        SEO & METADATOS — EDITA AQUÍ
        ═══════════════════════════════════════════════════════ -->
-  <title id="pageTitle">Sofía &amp; Mateo — Te invitamos a nuestra boda</title>
-  <meta name="description" content="Con amor y alegría, Sofía y Mateo te invitan a celebrar su boda. Una velada íntima y especial que no querrás perderte.">
+  <title id="pageTitle">Steph &amp; Camilo — Te invitamos a nuestra boda</title>
+  <meta name="description" content="Con amor y alegría, Steph y Camilo te invitan a celebrar su boda. Una velada íntima y especial que no querrás perderte.">
   <meta name="robots" content="noindex">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Sofía &amp; Mateo — Te invitamos a nuestra boda">
+  <meta property="og:title" content="Steph &amp; Camilo — Te invitamos a nuestra boda">
   <meta property="og:description" content="Con amor y emoción, queremos que seas parte de este día tan especial.">
   <meta property="og:image" content="assets/og-cover.jpg">
   <!-- Reemplaza og:url con la URL donde publicarás la invitación -->
@@ -1635,6 +1635,16 @@
         </div>
 
         <div class="field">
+          <label class="field__label" for="fguests">Número de acompañantes</label>
+          <select class="field__select" id="fguests" name="guests">
+            <option value="0">Solo yo</option>
+            <option value="1">+ 1 persona</option>
+            <option value="2">+ 2 personas</option>
+            <option value="3">+ 3 personas</option>
+          </select>
+        </div>
+
+        <div class="field">
           <label class="field__label" for="fsong" id="rsvpSongLbl"></label>
           <input class="field__input" type="text" id="fsong" name="song" placeholder="Ej: Can't Help Falling in Love">
         </div>
@@ -1924,7 +1934,10 @@
       footerText: "Con amor · Stephany & Camilo · 2026",
 
       /* ── Música de fondo ──────────────────────────────────── */
-      musicSrc: "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/music.mp3"
+      musicSrc: "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/music.mp3",
+
+      /* ── WhatsApp configuration ──────────────────────────── */
+      whatsappNumber: "573000000000" // Reemplaza con tu número (código de país + número) sin espacios ni símbolos
 
     };;
     
@@ -2193,9 +2206,48 @@
         form.addEventListener('submit', e => {
           e.preventDefault();
           const name   = document.getElementById('fname').value.trim();
+          const email  = document.getElementById('femail').value.trim();
           const attend = document.getElementById('fattend').value;
+          const guests = document.getElementById('fguests').value;
+          const song   = document.getElementById('fsong').value.trim();
+          const msg    = document.getElementById('fmsg').value.trim();
+
+          const attendLabels = {
+            'yes': 'Sí, allí estaré ✦',
+            'maybe': 'Todavía no lo sé',
+            'no': 'No podré asistir'
+          };
+          const guestsLabels = {
+            '0': 'Solo yo',
+            '1': '+ 1 persona',
+            '2': '+ 2 personas',
+            '3': '+ 3 personas'
+          };
+
           if (!name)   { document.getElementById('fname').focus();   return; }
           if (!attend) { document.getElementById('fattend').focus(); return; }
+
+          // Redirección a WhatsApp
+          if (siteContent.whatsappNumber) {
+            let messageText = `¡Hola! Soy *${name}*. Te envío mi confirmación para la boda:\n\n`;
+            messageText += `*Asistencia:* ${attendLabels[attend]}\n`;
+            if (attend !== 'no') {
+              messageText += `*Acompañantes:* ${guestsLabels[guests]}\n`;
+            }
+            if (song) {
+              messageText += `*Canción:* ${song}\n`;
+            }
+            if (msg) {
+              messageText += `*Mensaje:* ${msg}\n`;
+            }
+            
+            const encodedText = encodeURIComponent(messageText);
+            const phoneNumber = siteContent.whatsappNumber.replace(/\D/g, ''); // limpia el número
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+            
+            // Abrir WhatsApp en una nueva pestaña
+            window.open(whatsappUrl, '_blank');
+          }
 
           submitted = true;
           form.style.display = 'none';
