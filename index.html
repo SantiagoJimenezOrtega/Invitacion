@@ -453,15 +453,16 @@
     .gallery__track {
       display: flex;
       gap: 0.6rem;
-      padding: 0.6rem var(--sp-sm);
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      cursor: grab;
+      padding: 0.6rem 0;
+      width: max-content;
+      animation: gallery-scroll 30s linear infinite;
+      will-change: transform;
     }
-    .gallery__track::-webkit-scrollbar { display: none; }
-    .gallery__track:active { cursor: grabbing; }
+    .gallery:hover .gallery__track { animation-play-state: paused; }
+    @keyframes gallery-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
 
     .gallery__item {
       flex: 0 0 auto;
@@ -469,7 +470,6 @@
       height: 280px;
       border-radius: var(--r-md);
       overflow: hidden;
-      scroll-snap-align: start;
     }
     @media (min-width: 600px) {
       .gallery__item { width: 240px; height: 320px; }
@@ -707,6 +707,17 @@
       transform: translateY(-2px);
     }
 
+    .btn--ghost {
+      background: transparent;
+      color: var(--c-text-mid);
+      border: 1px solid rgba(197,164,106,0.3);
+    }
+    .btn--ghost:hover {
+      border-color: var(--c-gold);
+      color: var(--c-gold);
+      transform: translateY(-1px);
+    }
+
     /* ═══════════════════════════════════════════════════════════
        SECCIÓN 5 — RSVP
        ═══════════════════════════════════════════════════════════ */
@@ -863,6 +874,116 @@
       color: var(--c-text-mid);
       margin-bottom: var(--sp-sm);
     }
+
+    /* ═══════════════════════════════════════════════════════════
+       RSVP MODAL
+       ═══════════════════════════════════════════════════════════ */
+    .rsvp-modal {
+      position: fixed; inset: 0; z-index: 1100;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .rsvp-modal[hidden] { display: none; }
+    .rsvp-modal__backdrop {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .rsvp-modal__box {
+      position: relative; z-index: 1;
+      background: var(--c-bg-alt);
+      border: 1px solid rgba(197,164,106,0.22);
+      border-radius: var(--r-lg);
+      max-width: 460px; width: 100%;
+      max-height: 92dvh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 2rem 1.8rem;
+      animation: modal-in 0.35s cubic-bezier(.25,.46,.45,.94);
+    }
+    @keyframes modal-in {
+      from { opacity: 0; transform: translateY(28px) scale(0.97); }
+      to   { opacity: 1; transform: none; }
+    }
+    .rsvp-modal__close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: none; border: none;
+      color: var(--c-text-mid); font-size: 1.1rem;
+      cursor: pointer; padding: 0.3rem 0.6rem; line-height: 1;
+      border-radius: var(--r-sm);
+      transition: color var(--t-fast);
+    }
+    .rsvp-modal__close:hover { color: var(--c-text); }
+
+    /* ═══════════════════════════════════════════════════════════
+       CUENTA REGRESIVA
+       ═══════════════════════════════════════════════════════════ */
+    .countdown {
+      background: var(--c-bg-alt);
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      transition: background var(--t-slow);
+    }
+    .countdown__grid {
+      display: flex; justify-content: center; gap: 2rem;
+      flex-wrap: wrap; margin-top: 2.5rem;
+    }
+    .countdown__unit {
+      display: flex; flex-direction: column; align-items: center;
+      min-width: 64px;
+    }
+    .countdown__num {
+      font-family: var(--f-display);
+      font-size: clamp(2.6rem, 7vw, 4rem);
+      color: var(--c-gold);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .countdown__sep {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: rgba(197,164,106,0.35);
+      align-self: flex-start;
+      padding-top: 0.1em;
+    }
+    .countdown__label {
+      font-family: var(--f-sans);
+      font-size: 0.6rem; letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--c-text-muted); margin-top: 0.4rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOTOS DEL EVENTO
+       ═══════════════════════════════════════════════════════════ */
+    .photos {
+      background: var(--c-bg);
+      padding: var(--sp-xl) var(--sp-sm);
+      text-align: center;
+      transition: background var(--t-slow);
+    }
+    .photos__inner { max-width: 480px; margin: 0 auto; }
+    .photos__title {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      color: var(--c-text);
+      margin-bottom: 0.8rem;
+    }
+    .photos__text {
+      font-size: 0.9rem; color: var(--c-text-mid); line-height: 1.7;
+    }
+    .photos__qr {
+      margin: 2rem auto 0; display: flex; justify-content: center;
+    }
+    .photos__qr img {
+      width: 180px; height: 180px;
+      border-radius: var(--r-md);
+      border: 2px solid rgba(197,164,106,0.3);
+      padding: 0.5rem; background: #fff;
+    }
+    .photos__actions { margin-top: 1.8rem; }
 
     /* ═══════════════════════════════════════════════════════════
        FOOTER
@@ -1711,8 +1832,30 @@
       <h2 class="rsvp__title anim-up d1" id="rsvpTitle"></h2>
       <p  class="rsvp__sub   anim-up d2" id="rsvpSub"></p>
 
+      <div class="anim-up d3" style="margin-top:2rem">
+        <button class="btn btn--gold" id="rsvpOpenBtn" style="min-width:220px;justify-content:center">
+          Confirmar asistencia
+        </button>
+      </div>
+
+      <p class="rsvp__note anim-up d4" id="rsvpNote" style="margin-top:1rem"></p>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       RSVP MODAL — abierto por #rsvpOpenBtn y #closingBtn
+       ════════════════════════════════════════════════════════════ -->
+  <div id="rsvpModal" class="rsvp-modal" role="dialog" aria-modal="true"
+       aria-labelledby="rsvpModalHeading" hidden>
+    <div class="rsvp-modal__backdrop" id="rsvpModalBackdrop"></div>
+    <div class="rsvp-modal__box">
+      <button class="rsvp-modal__close" id="rsvpModalClose" aria-label="Cerrar">✕</button>
+
       <!-- Formulario -->
-      <form class="rsvp__form anim-up d2" id="rsvpForm" action="#" novalidate>
+      <form class="rsvp__form" id="rsvpForm" action="#" novalidate>
+
+        <h2 id="rsvpModalHeading" style="font-family:var(--f-serif);font-weight:300;font-size:1.5rem;text-align:center;margin-bottom:1.4rem;color:var(--c-text)">Confirma tu asistencia</h2>
 
         <div class="field">
           <label class="field__label" for="fname">Nombre completo</label>
@@ -1747,29 +1890,38 @@
         </div>
 
         <div class="field">
+          <label class="field__label" for="fsong" id="rsvpSongLbl"></label>
+          <input class="field__input" type="text" id="fsong" name="song"
+                 placeholder="Ej: Can't Help Falling in Love" />
+        </div>
+
+        <div class="field">
           <label class="field__label" for="fmsg">Mensaje para los novios (opcional)</label>
           <textarea class="field__textarea" id="fmsg" name="message"
                     placeholder="Escribe tus buenos deseos…"></textarea>
         </div>
 
-        <button type="submit" class="btn btn--gold" style="width:100%;justify-content:center;">
+        <button type="submit" class="btn btn--gold" style="width:100%;justify-content:center;margin-top:0.4rem">
           Confirmar asistencia
         </button>
 
-        <p class="rsvp__note" id="rsvpNote"></p>
       </form>
 
-      <!-- Mensaje de éxito — aparece tras confirmar -->
+      <!-- Mensaje de éxito -->
       <div class="rsvp__success" id="rsvpSuccess" role="alert" aria-live="polite">
         <div class="rsvp__success__icon" aria-hidden="true">✦</div>
         <h3 class="rsvp__success__title">¡Gracias!</h3>
         <p style="color:var(--c-text-mid);margin-top:0.4rem;">
           Hemos recibido tu confirmación. Nos vemos pronto.
         </p>
+        <button class="btn btn--ghost" id="rsvpModalCloseSuccess"
+                style="margin-top:1.5rem;min-width:160px;justify-content:center">
+          Cerrar
+        </button>
       </div>
 
     </div>
-  </section>
+  </div>
 
   <!-- ════════════════════════════════════════════════════════════
        SECCIÓN 6 — CIERRE
@@ -1789,6 +1941,72 @@
 
       <p class="closing__cta-text anim-up d3" id="closingCtaTxt"></p>
       <a class="btn btn--gold anim-up d4" href="#rsvp" id="closingBtn"></a>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       CUENTA REGRESIVA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="countdown" id="countdown" aria-label="Cuenta regresiva">
+    <div style="max-width:600px;margin:0 auto">
+
+      <p class="eyebrow anim-up">Faltan…</p>
+
+      <div class="divider anim-up d1">
+        <span class="divider__glyph">✦</span>
+      </div>
+
+      <div class="countdown__grid anim-up d2">
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cdMonths">00</span>
+          <span class="countdown__label">Meses</span>
+        </div>
+        <span class="countdown__sep" aria-hidden="true">:</span>
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cdDays">00</span>
+          <span class="countdown__label">Días</span>
+        </div>
+        <span class="countdown__sep" aria-hidden="true">:</span>
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cdHours">00</span>
+          <span class="countdown__label">Horas</span>
+        </div>
+        <span class="countdown__sep" aria-hidden="true">:</span>
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cdMins">00</span>
+          <span class="countdown__label">Minutos</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FOTOS DEL EVENTO
+       ════════════════════════════════════════════════════════════ -->
+  <section class="photos" id="photos" aria-label="Comparte tus fotos">
+    <div class="photos__inner">
+
+      <p class="eyebrow anim-up" id="photosEyebrow"></p>
+
+      <div class="divider anim-up d1">
+        <span class="divider__glyph">✦</span>
+      </div>
+
+      <h2 class="photos__title anim-up d1" id="photosTitle"></h2>
+      <p  class="photos__text  anim-up d2" id="photosText"></p>
+
+      <div class="photos__qr anim-up d2" id="photosQrWrap" hidden>
+        <img id="photosQr" src="" alt="Código QR para subir fotos" width="180" height="180" />
+      </div>
+
+      <div class="photos__actions anim-up d3" id="photosActions" hidden>
+        <a class="btn btn--gold" id="photosBtn" href="#" target="_blank" rel="noopener"
+           style="min-width:220px;justify-content:center">
+          📷 Subir mis fotos
+        </a>
+      </div>
 
     </div>
   </section>
@@ -1951,9 +2169,17 @@
       giftsNote:    "",
 
       /* ── RSVP ─────────────────────────────────────────────── */
-      rsvpTitle:  "¿Vendrás con nosotros?",
-      rsvpSub:    "Por favor confirma tu asistencia antes del 1 de agosto de 2026.",
-      rsvpNote:   "Tu respuesta nos ayuda a prepararlo todo con cariño.",
+      rsvpTitle:     "¿Vendrás con nosotros?",
+      rsvpSub:       "Por favor confirma tu asistencia antes del 1 de agosto de 2026.",
+      rsvpNote:      "Tu respuesta nos ayuda a prepararlo todo con cariño.",
+      rsvpSongLabel: "¿Qué canción no puede faltar ese día?",
+
+      /* ── Fotos del evento ─────────────────────────────────── */
+      photosEyebrow: "Tu mirada, nuestra historia",
+      photosTitle:   "¡Comparte tus fotos del día!",
+      photosText:    "Sube las fotos que tomaste durante la celebración. Juntos armaremos el álbum de recuerdos.",
+      /* Pon aquí el link de Google Drive, Dropbox u otro servicio de carga */
+      photosUrl:     "",
 
       /* ── Cierre ───────────────────────────────────────────── */
       closingQuote:   "«El amor no se mide en años, sino en los momentos que dejan huella.»",
@@ -2024,15 +2250,19 @@
       sImg.src = c.storyImage;
       sImg.alt = c.storyImageAlt;
 
-      /* Galería */
+      /* Galería — duplicar ítems para scroll infinito */
       const track   = document.getElementById('galleryTrack');
       const gallSec = document.getElementById('gallery');
       if (c.galleryImages && c.galleryImages.length) {
-        track.innerHTML = c.galleryImages.map(img =>
+        const items = c.galleryImages.map(img =>
           `<div class="gallery__item" role="listitem">
              <img src="${img.src}" alt="${img.alt}" loading="lazy" />
            </div>`
         ).join('');
+        track.innerHTML = items + items; /* duplicar para loop seamless */
+        /* Ajustar velocidad al número de fotos (≈3s por foto) */
+        const dur = Math.max(15, c.galleryImages.length * 5);
+        track.style.animationDuration = dur + 's';
       } else {
         gallSec.style.display = 'none';
       }
@@ -2076,15 +2306,35 @@
       setText('giftsNote',    c.giftsNote);
 
       /* RSVP */
-      setText('rsvpTitle', c.rsvpTitle);
-      setText('rsvpSub',   c.rsvpSub);
-      setText('rsvpNote',  c.rsvpNote);
+      setText('rsvpTitle',   c.rsvpTitle);
+      setText('rsvpSub',     c.rsvpSub);
+      setText('rsvpNote',    c.rsvpNote);
+      setText('rsvpSongLbl', c.rsvpSongLabel);
 
       /* Cierre */
       setText('closingQuote',  c.closingQuote);
       setText('closingAttrib', c.closingAttrib);
       setText('closingCtaTxt', c.closingCtaTxt);
       setText('closingBtn',    c.closingBtnText);
+
+      /* Fotos */
+      setText('photosEyebrow', c.photosEyebrow);
+      setText('photosTitle',   c.photosTitle);
+      setText('photosText',    c.photosText);
+      const qrWrap      = document.getElementById('photosQrWrap');
+      const photosActs  = document.getElementById('photosActions');
+      const photosQrImg = document.getElementById('photosQr');
+      const photosBtn   = document.getElementById('photosBtn');
+      if (c.photosUrl) {
+        if (qrWrap)      qrWrap.removeAttribute('hidden');
+        if (photosActs)  photosActs.removeAttribute('hidden');
+        if (photosQrImg) photosQrImg.src =
+          `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(c.photosUrl)}`;
+        if (photosBtn)   photosBtn.href = c.photosUrl;
+      } else {
+        if (qrWrap)     qrWrap.setAttribute('hidden', '');
+        if (photosActs) photosActs.setAttribute('hidden', '');
+      }
 
       /* Footer */
       setText('footerTxt', c.footerText);
@@ -2151,45 +2401,120 @@
       }, { threshold: 0.4 }).observe(hero);
     }
 
-    /* ── RSVP — envío del formulario ─────────────────────── */
+    /* ── RSVP — popup modal ──────────────────────────────── */
     function initRSVP() {
-      const form    = document.getElementById('rsvpForm');
-      const success = document.getElementById('rsvpSuccess');
+      const modal      = document.getElementById('rsvpModal');
+      const backdrop   = document.getElementById('rsvpModalBackdrop');
+      const closeBtn   = document.getElementById('rsvpModalClose');
+      const closeSucc  = document.getElementById('rsvpModalCloseSuccess');
+      const form       = document.getElementById('rsvpForm');
+      const success    = document.getElementById('rsvpSuccess');
+      const openBtn    = document.getElementById('rsvpOpenBtn');
+      const closingBtn = document.getElementById('closingBtn');
 
-      form.addEventListener('submit', (e) => {
-        /* ↓ Elimina esta línea si usas Formspree con action real */
-        e.preventDefault();
+      let submitted = false;
 
-        /* Validación mínima */
-        const name     = document.getElementById('fname').value.trim();
-        const attend   = document.getElementById('fattend').value;
-        if (!name)   { document.getElementById('fname').focus();   return; }
-        if (!attend) { document.getElementById('fattend').focus(); return; }
+      function openModal() {
+        modal.removeAttribute('hidden');
+        document.body.style.overflow = 'hidden';
+        /* Scroll al inicio del modal */
+        const box = modal.querySelector('.rsvp-modal__box');
+        if (box) box.scrollTop = 0;
+        /* Foco accesible */
+        setTimeout(() => {
+          const first = form.querySelector('input, select, textarea, button:not(.rsvp-modal__close)');
+          if (first && !submitted) first.focus();
+        }, 80);
+      }
 
-        /* Mostrar confirmación visual */
-        form.style.display = 'none';
-        success.classList.add('show');
-        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      function closeModal() {
+        modal.setAttribute('hidden', '');
+        document.body.style.overflow = '';
+      }
+
+      if (openBtn)    openBtn.addEventListener('click', openModal);
+      if (closeBtn)   closeBtn.addEventListener('click', closeModal);
+      if (closeSucc)  closeSucc.addEventListener('click', closeModal);
+      if (backdrop)   backdrop.addEventListener('click', closeModal);
+
+      /* Interceptar el botón de cierre (href="#rsvp") */
+      if (closingBtn) {
+        closingBtn.addEventListener('click', e => {
+          e.preventDefault();
+          openModal();
+        });
+      }
+
+      /* Cerrar con Escape */
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal();
       });
+
+      /* Envío del formulario */
+      if (form) {
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const name   = document.getElementById('fname').value.trim();
+          const attend = document.getElementById('fattend').value;
+          if (!name)   { document.getElementById('fname').focus();   return; }
+          if (!attend) { document.getElementById('fattend').focus(); return; }
+
+          submitted = true;
+          form.style.display = 'none';
+          success.classList.add('show');
+        });
+      }
     }
 
-    /* ── Galería arrastrable (drag-to-scroll) ─────────────── */
+    /* ── Galería con scroll automático infinito ────────────── */
     function initGalleryDrag() {
-      const track = document.getElementById('galleryTrack');
-      if (!track) return;
-      let isDown = false, startX, scrollLeft;
-      track.addEventListener('mousedown', e => {
-        isDown = true;
-        startX = e.pageX - track.offsetLeft;
-        scrollLeft = track.scrollLeft;
-      });
-      track.addEventListener('mouseleave', () => isDown = false);
-      track.addEventListener('mouseup',    () => isDown = false);
-      track.addEventListener('mousemove',  e => {
-        if (!isDown) return;
-        e.preventDefault();
-        track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX);
-      });
+      /* La animación CSS se encarga del auto-scroll.
+         Pausar al pasar el ratón ya está en CSS (.gallery:hover .gallery__track).
+         No se necesita JS adicional para el loop. */
+    }
+
+    /* ── Cuenta regresiva ─────────────────────────────────── */
+    function initCountdown() {
+      const elMonths = document.getElementById('cdMonths');
+      const elDays   = document.getElementById('cdDays');
+      const elHours  = document.getElementById('cdHours');
+      const elMins   = document.getElementById('cdMins');
+      if (!elMonths) return;
+
+      function update() {
+        const now    = new Date();
+        const target = parseDate(siteContent.eventDateRaw);
+        const diff   = target - now;
+
+        if (diff <= 0) {
+          [elMonths, elDays, elHours, elMins].forEach(el => el.textContent = '00');
+          return;
+        }
+
+        /* Meses completos restantes */
+        let months = (target.getFullYear() - now.getFullYear()) * 12
+                    + (target.getMonth() - now.getMonth());
+        const afterMonths = new Date(now.getFullYear(), now.getMonth() + months,
+                                     now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
+        if (afterMonths > target) months--;
+
+        const base  = new Date(now.getFullYear(), now.getMonth() + months,
+                               now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
+        const remMs = target - base;
+
+        const days  = Math.floor(remMs / 86400000);
+        const hours = Math.floor((remMs % 86400000) / 3600000);
+        const mins  = Math.floor((remMs % 3600000)  / 60000);
+
+        const pad = n => String(n).padStart(2, '0');
+        elMonths.textContent = pad(months);
+        elDays.textContent   = pad(days);
+        elHours.textContent  = pad(hours);
+        elMins.textContent   = pad(mins);
+      }
+
+      update();
+      setInterval(update, 30000); /* actualizar cada 30s */
     }
 
     /* ── Pétalos decorativos en el hero ───────────────────── */
@@ -2405,9 +2730,15 @@
           `      giftsText:    ${q('giftsText')},\n` +
           `      giftsNote:    ${q('giftsNote')},\n\n` +
           `      /* ── RSVP ─────────────────────────────────────────────── */\n` +
-          `      rsvpTitle:  ${q('rsvpTitle')},\n` +
-          `      rsvpSub:    ${q('rsvpSub')},\n` +
-          `      rsvpNote:   ${q('rsvpNote')},\n\n` +
+          `      rsvpTitle:     ${q('rsvpTitle')},\n` +
+          `      rsvpSub:       ${q('rsvpSub')},\n` +
+          `      rsvpNote:      ${q('rsvpNote')},\n` +
+          `      rsvpSongLabel: ${q('rsvpSongLabel')},\n\n` +
+          `      /* ── Fotos del evento ─────────────────────────────────── */\n` +
+          `      photosEyebrow: ${q('photosEyebrow')},\n` +
+          `      photosTitle:   ${q('photosTitle')},\n` +
+          `      photosText:    ${q('photosText')},\n` +
+          `      photosUrl:     ${q('photosUrl')},\n\n` +
           `      /* ── Cierre ───────────────────────────────────────────── */\n` +
           `      closingQuote:   ${q('closingQuote')},\n` +
           `      closingAttrib:  ${q('closingAttrib')},\n` +
@@ -2502,9 +2833,16 @@
           { key: 'giftsNote',    label: 'Nota (cuenta, link, etc.)', type: 'textarea' },
         ]},
         { title: 'RSVP', fields: [
-          { key: 'rsvpTitle', label: 'Título' },
-          { key: 'rsvpSub',   label: 'Subtítulo' },
-          { key: 'rsvpNote',  label: 'Nota al pie' },
+          { key: 'rsvpTitle',     label: 'Título' },
+          { key: 'rsvpSub',       label: 'Subtítulo' },
+          { key: 'rsvpNote',      label: 'Nota al pie' },
+          { key: 'rsvpSongLabel', label: 'Etiqueta campo canción' },
+        ]},
+        { title: 'Fotos del evento', fields: [
+          { key: 'photosEyebrow', label: 'Eyebrow' },
+          { key: 'photosTitle',   label: 'Título' },
+          { key: 'photosText',    label: 'Texto', type: 'textarea' },
+          { key: 'photosUrl',     label: 'Link para subir fotos (Google Drive, Dropbox, etc.)' },
         ]},
         { title: 'Cierre', fields: [
           { key: 'closingQuote',   label: 'Cita',           type: 'textarea' },
@@ -2813,6 +3151,7 @@
       initScrollCue();
       initRSVP();
       initGalleryDrag();
+      initCountdown();
       initPetals();
       initMusic();
       initEnvelope(); /* ← el sobre gestiona el trigger del hero internamente */
