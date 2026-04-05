@@ -1,47 +1,49 @@
 /**
  * POST /api/publish
- * Recibe el HTML completo de la invitación y lo sube a GitHub.
- * El token nunca sale del servidor — se lee desde variables de entorno de Vercel.
+ * Crea o actualiza [slug]/index.html en GitHub con el HTML limpio de la invitación.
+ * El token vive en Vercel (nunca en el cliente).
  *
- * Variables de entorno requeridas en Vercel:
- *   GITHUB_TOKEN  — Personal Access Token con permisos Contents: Read & Write
- *   GH_OWNER      — usuario de GitHub (ej: SantiagoJimenezOrtega)  [opcional si está hardcodeado]
- *   GH_REPO       — nombre del repo (ej: Invitacion)               [opcional si está hardcodeado]
+ * Body esperado: JSON { slug: "sofia-y-mateo", html: "<!DOCTYPE html>..." }
+ *
+ * Variables de entorno en Vercel:
+ *   GITHUB_TOKEN  — Personal Access Token (Contents: Read & Write)
+ *   GH_OWNER      — usuario de GitHub  (default: SantiagoJimenezOrtega)
+ *   GH_REPO       — nombre del repo    (default: Invitacion)
  */
 
 export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '8mb',      // suficiente para HTML con imágenes base64
-    },
-  },
+  api: { bodyParser: { sizeLimit: '8mb' } },
 };
 
 export default async function handler(req, res) {
-  /* Solo POST */
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  /* Variables de entorno */
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
   const GH_OWNER     = process.env.GH_OWNER || 'SantiagoJimenezOrtega';
   const GH_REPO      = process.env.GH_REPO  || 'Invitacion';
 
   if (!GITHUB_TOKEN) {
     return res.status(500).json({
-      error: 'GITHUB_TOKEN no configurado — agrégalo en Vercel → Settings → Environment Variables'
+      error: 'GITHUB_TOKEN no configurado — agrégalo en Vercel → Settings → Environment Variables',
     });
   }
 
-  /* Leer el body (Vercel lo parsea como string para Content-Type: text/plain) */
-  const html = typeof req.body === 'string' ? req.body : '';
+  const { slug, html } = req.body || {};
 
-  if (html.length < 200) {
-    return res.status(400).json({ error: 'Contenido vacío o demasiado corto' });
+  /* Validar slug: solo letras minúsculas, números y guiones */
+  if (!slug || !/^[a-z0-9][a-z0-9-]{0,60}[a-z0-9]$/.test(slug)) {
+    return res.status(400).json({
+      error: 'URL inválida — usa solo letras, números y guiones (ej: sofia-y-mateo)',
+    });
+  }
+  if (!html || html.length < 200) {
+    return res.status(400).json({ error: 'Contenido HTML vacío o inválido' });
   }
 
-  const apiBase = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/index.html`;
+  const filePath = `${slug}/index.html`;
+  const apiBase  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${filePath}`;
   const ghHeaders = {
     Authorization: `token ${GITHUB_TOKEN}`,
     Accept: 'application/vnd.github.v3+json',
@@ -49,33 +51,39 @@ export default async function handler(req, res) {
   };
 
   try {
-    /* 1 — Obtener SHA actual del archivo */
-    const fileRes = await fetch(apiBase, { headers: ghHeaders });
-    if (!fileRes.ok) {
-      const body = await fileRes.json().catch(() => ({}));
-      throw new Error(`GitHub ${fileRes.status}: ${body.message || 'Error de autenticación'}`);
+    /* Obtener SHA si el archivo ya existe (necesario para actualizarlo) */
+    let sha;
+    const checkRes = await fetch(apiBase, { headers: ghHeaders });
+    if (checkRes.ok) {
+      const existing = await checkRes.json();
+      sha = existing.sha;
+    } else if (checkRes.status !== 404) {
+      throw new Error(`GitHub ${checkRes.status}: error verificando archivo existente`);
     }
-    const { sha } = await fileRes.json();
 
-    /* 2 — Subir nueva versión */
-    const b64 = Buffer.from(html, 'utf-8').toString('base64');
+    /* Crear o actualizar el archivo */
+    const b64  = Buffer.from(html, 'utf-8').toString('base64');
+    const body = {
+      message: sha
+        ? `Actualizar invitación: ${slug}`
+        : `Crear invitación: ${slug}`,
+      content: b64,
+      branch: 'main',
+      ...(sha ? { sha } : {}),
+    };
+
     const putRes = await fetch(apiBase, {
       method: 'PUT',
       headers: ghHeaders,
-      body: JSON.stringify({
-        message: 'Actualizar invitación desde el editor',
-        content: b64,
-        sha,
-        branch: 'main',
-      }),
+      body: JSON.stringify(body),
     });
 
     if (!putRes.ok) {
-      const body = await putRes.json().catch(() => ({}));
-      throw new Error(body.message || `GitHub error ${putRes.status}`);
+      const errData = await putRes.json().catch(() => ({}));
+      throw new Error(errData.message || `GitHub error ${putRes.status}`);
     }
 
-    return res.status(200).json({ ok: true });
+    return res.status(200).json({ ok: true, path: `/${slug}` });
 
   } catch (e) {
     return res.status(500).json({ error: e.message });
