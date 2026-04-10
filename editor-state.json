@@ -78,9 +78,15 @@
     "closingCtaTxt": "¿Todavía no has confirmado tu asistencia?",
     "closingBtnText": "Confirmar ahora",
     "footerText": "Con amor · Stephany & Camilo · 2026",
-    "musicSrc": "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/music.mp3"
+    "musicSrc": "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/music.mp3",
+    "whatsappNumber": "573000000000"
   },
   "colors": {
-    "--c-envelope": "#343575"
+    "--c-bg": "#111118",
+    "--c-bg-alt": "#1d1d28",
+    "--c-gold": "#ffb13d",
+    "--c-rose": "#bb0707",
+    "--c-sage": "#14db7e",
+    "--c-envelope": "#12121c"
   }
 }
