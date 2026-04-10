@@ -87,6 +87,7 @@
     "--c-gold": "#ffb13d",
     "--c-rose": "#bb0707",
     "--c-sage": "#14db7e",
+    "--c-text": "#fffbf5",
     "--c-envelope": "#12121c"
   }
 }
