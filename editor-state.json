@@ -85,8 +85,8 @@
     "--c-bg": "#111118",
     "--c-bg-alt": "#1d1d28",
     "--c-gold": "#ffb13d",
-    "--c-rose": "#bb0707",
-    "--c-sage": "#14db7e",
+    "--c-rose": "#b80000",
+    "--c-sage": "#00ff88",
     "--c-text": "#fffbf5",
     "--c-envelope": "#12121c"
   }
