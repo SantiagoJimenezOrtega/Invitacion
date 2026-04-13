@@ -13,13 +13,17 @@
     content="Con amor y alegría, Steph y Camilo te invitan a celebrar su boda. Una velada íntima y especial que no querrás perderte.">
   <meta name="robots" content="noindex">
 
-  <!-- Open Graph -->
+  <!-- Open Graph — estos valores se reemplazan automáticamente al publicar -->
   <meta property="og:title" content="Steph &amp; Camilo — Te invitamos a nuestra boda">
-  <meta property="og:description" content="Con amor y emoción, queremos que seas parte de este día tan especial.">
+  <meta property="og:description" content="Con amor y alegría, Steph y Camilo te invitan a celebrar su boda.">
   <meta property="og:image" content="assets/og-cover.jpg">
-  <!-- Reemplaza og:url con la URL donde publicarás la invitación -->
   <meta property="og:url" content="https://tu-dominio.com">
   <meta property="og:type" content="website">
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Steph &amp; Camilo — Te invitamos a nuestra boda">
+  <meta name="twitter:description" content="Con amor y alegría, Steph y Camilo te invitan a celebrar su boda.">
+  <meta name="twitter:image" content="assets/og-cover.jpg">
 
   <!-- Favicon (SVG inline en assets/favicon.svg) -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -4803,8 +4807,102 @@
         } catch (_) { /* sin estado en servidor — continuar con localStorage */ }
       })();
 
+      /* ── Genera PNG del sobre con iniciales (para og:image WhatsApp) ── */
+      function generateOgImageB64() {
+        const c = siteContent;
+        const initials = c.sealText || ((c.name1?.[0] ?? '') + ' & ' + (c.name2?.[0] ?? ''));
+        const names    = (c.name1 || '') + ' & ' + (c.name2 || '');
+        const bgColor  = document.documentElement.style.getPropertyValue('--c-envelope').trim() || '#18160F';
+
+        const W = 1200, H = 630;
+        const canvas = document.createElement('canvas');
+        canvas.width = W; canvas.height = H;
+        const ctx = canvas.getContext('2d');
+
+        /* Fondo del sobre */
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, W, H);
+
+        /* Pliegues del sobre */
+        const cx = W / 2, cy = H / 2;
+        const folds = [
+          { pts: [[0, H], [W, H], [cx, cy]], color: 'rgba(0,0,0,0.18)' },   /* inferior */
+          { pts: [[0, 0], [0, H], [cx, cy]], color: 'rgba(0,0,0,0.12)' },   /* izquierdo */
+          { pts: [[W, 0], [W, H], [cx, cy]], color: 'rgba(0,0,0,0.12)' },   /* derecho */
+          { pts: [[0, 0], [W, 0], [cx, cy]], color: 'rgba(0,0,0,0.25)' },   /* solapa */
+        ];
+        folds.forEach(({ pts, color }) => {
+          ctx.beginPath();
+          ctx.moveTo(...pts[0]);
+          pts.slice(1).forEach(p => ctx.lineTo(...p));
+          ctx.closePath();
+          ctx.fillStyle = color;
+          ctx.fill();
+        });
+
+        /* Sello dorado */
+        const sr = 110;
+        const grd = ctx.createRadialGradient(cx - sr * 0.24, cy - sr * 0.35, 0, cx, cy, sr);
+        grd.addColorStop(0,    '#E8C580');
+        grd.addColorStop(0.48, '#C89836');
+        grd.addColorStop(0.82, '#9C7620');
+        grd.addColorStop(1,    '#7A5C18');
+        ctx.beginPath();
+        ctx.arc(cx, cy, sr, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+
+        /* Sello — sombra */
+        ctx.save();
+        ctx.shadowColor = 'rgba(0,0,0,0.35)';
+        ctx.shadowBlur = 32;
+        ctx.beginPath();
+        ctx.arc(cx, cy, sr, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        /* Sello — rim decorativo */
+        ctx.beginPath();
+        ctx.arc(cx, cy, sr - 8, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(255,255,255,0.24)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        /* Iniciales */
+        ctx.font = 'italic 600 62px "Cormorant Garamond", Georgia, serif';
+        ctx.fillStyle = 'rgba(255,255,255,0.95)';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.shadowColor = 'rgba(0,0,0,0.30)';
+        ctx.shadowBlur = 8;
+        ctx.fillText(initials, cx, cy);
+        ctx.shadowBlur = 0;
+
+        /* Nombres de los novios (parte inferior) */
+        ctx.font = '300 38px "Cormorant Garamond", Georgia, serif';
+        ctx.fillStyle = 'rgba(212,176,122,0.92)';
+        ctx.shadowColor = 'rgba(0,0,0,0.5)';
+        ctx.shadowBlur = 6;
+        ctx.fillText(names, cx, H - 78);
+
+        /* Subtítulo */
+        ctx.font = '300 22px "Jost", system-ui, sans-serif';
+        ctx.fillStyle = 'rgba(176,168,152,0.75)';
+        ctx.shadowBlur = 4;
+        ctx.fillText('Te invitamos a nuestra boda', cx, H - 38);
+        ctx.shadowBlur = 0;
+
+        return canvas.toDataURL('image/png').replace(/^data:image\/png;base64,/, '');
+      }
+
       /* ── Generar HTML limpio (sin editor) ───────────────── */
-      function buildCleanHtml() {
+      function buildCleanHtml(opts = {}) {
+        const { ogImageUrl = '', pageUrl = '' } = opts;
+        const c = siteContent;
+
+        /* Helper: escapar caracteres especiales para atributos HTML */
+        const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+
         const newConfig = buildConfigStr();
         let html = _initialHTML;
 
@@ -4813,6 +4911,23 @@
           /const siteContent\s*=\s*\{[\s\S]*?\};+/,
           newConfig + ';'
         );
+
+        /* 1b. Inyectar metadatos SEO / Open Graph con valores reales de los novios */
+        const title   = esc(c.pageTitle || (c.name1 + ' & ' + c.name2 + ' — Te invitamos a nuestra boda'));
+        const desc    = esc((c.announceBody || '').slice(0, 200) || 'Con amor te invitamos a celebrar nuestra boda.');
+        html = html.replace(/<title[^>]*>[\s\S]*?<\/title>/, `<title>${title}</title>`);
+        html = html.replace(/(<meta\s+name="description"\s+content=")[^"]*"/, `$1${desc}"`);
+        html = html.replace(/(<meta\s+property="og:title"\s+content=")[^"]*"/, `$1${title}"`);
+        html = html.replace(/(<meta\s+property="og:description"\s+content=")[^"]*"/, `$1${desc}"`);
+        if (ogImageUrl) {
+          html = html.replace(/(<meta\s+property="og:image"\s+content=")[^"]*"/, `$1${esc(ogImageUrl)}"`);
+          html = html.replace(/(<meta\s+name="twitter:image"\s+content=")[^"]*"/, `$1${esc(ogImageUrl)}"`);
+        }
+        if (pageUrl) html = html.replace(/(<meta\s+property="og:url"\s+content=")[^"]*"/, `$1${esc(pageUrl)}"`);
+        html = html.replace(/(<meta\s+name="twitter:title"\s+content=")[^"]*"/, `$1${title}"`);
+        html = html.replace(/(<meta\s+name="twitter:description"\s+content=")[^"]*"/, `$1${desc}"`);
+        /* robots: quitar noindex para que los bots lean el OG */
+        html = html.replace(/(<meta\s+name="robots"\s+content=")[^"]*"/, `$1index, nofollow"`);
 
         /* 2. Inyectar colores CSS editados + estilos de elementos */
         const _cssVars = ['--c-bg', '--c-bg-alt', '--c-gold', '--c-gold-dim', '--c-text', '--c-text-mid', '--c-text-muted', '--c-envelope'];
@@ -4897,21 +5012,31 @@
             /* ── 1. Subir assets base64 individualmente (evita 413) ── */
             await uploadAllAssets(slug, setStatus);
 
-            /* ── 2. Subir HTML (ya sin base64) ──────────────────────── */
+            /* ── 2. Generar y subir og:image (miniatura del sobre) ───── */
+            let ogImageUrl = '';
+            try {
+              setStatus('Generando miniatura del sobre…', '#ede8e0');
+              await document.fonts.ready; /* asegurar que las fuentes estén cargadas */
+              const pngB64 = generateOgImageB64();
+              await _uploadAsset(slug, pngB64, 'og-image.png');
+              ogImageUrl = `${_GH}/${slug}/og-image.png`;
+            } catch (_) { /* No bloquea la publicación si falla */ }
+
+            /* ── 3. Subir HTML con metadatos reales ─────────────────── */
             setStatus('Publicando…', '#ede8e0');
+            const pageUrl = window.location.origin + '/' + slug;
             const res = await fetch('/api/publish', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ slug, html: buildCleanHtml() })
+              body: JSON.stringify({ slug, html: buildCleanHtml({ ogImageUrl, pageUrl }) })
             });
             const data = await res.json().catch(() => ({}));
             if (!res.ok) throw new Error(data.error || `Error ${res.status}`);
 
-            const url = window.location.origin + '/' + slug;
             setStatus(`✓ Listo — desplegando en ~30 s`, '#8fba8f');
             /* Mostrar link copiable */
             const linkEl = document.getElementById('editorPublishLink');
-            if (linkEl) { linkEl.href = url; linkEl.textContent = url; linkEl.hidden = false; }
+            if (linkEl) { linkEl.href = pageUrl; linkEl.textContent = pageUrl; linkEl.hidden = false; }
             setTimeout(() => {
               setStatus(''); if (linkEl) linkEl.hidden = true;
             }, 20000);
