@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark"><head>
+<html lang="es" data-theme="dark">
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -7,7 +9,8 @@
        SEO & METADATOS — EDITA AQUÍ
        ═══════════════════════════════════════════════════════ -->
   <title id="pageTitle">Steph &amp; Camilo — Te invitamos a nuestra boda</title>
-  <meta name="description" content="Con amor y alegría, Steph y Camilo te invitan a celebrar su boda. Una velada íntima y especial que no querrás perderte.">
+  <meta name="description"
+    content="Con amor y alegría, Steph y Camilo te invitan a celebrar su boda. Una velada íntima y especial que no querrás perderte.">
   <meta name="robots" content="noindex">
 
   <!-- Open Graph -->
@@ -24,7 +27,9 @@
   <!-- Google Fonts — Cormorant Garamond (serif) + Jost (sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&amp;family=Jost:wght@200;300;400;500&amp;display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&amp;family=Jost:wght@200;300;400;500&amp;display=swap"
+    rel="stylesheet">
 
   <style>
     /* ═══════════════════════════════════════════════════════════
@@ -33,37 +38,37 @@
        ═══════════════════════════════════════════════════════════ */
     :root {
       /* Paleta — tema oscuro fijo */
-      --c-bg:         #18160F;
-      --c-bg-alt:     #201E16;
-      --c-surface:    rgba(24,22,15,0.80);
-      --c-gold:       #D4B07A;
-      --c-gold-dim:   #5C4A2E;
-      --c-rose:       #B89292;
-      --c-sage:       #7A9488;
-      --c-text:       #EDE8E0;
-      --c-text-mid:   #B0A898;
+      --c-bg: #18160F;
+      --c-bg-alt: #201E16;
+      --c-surface: rgba(24, 22, 15, 0.80);
+      --c-gold: #D4B07A;
+      --c-gold-dim: #5C4A2E;
+      --c-rose: #B89292;
+      --c-sage: #7A9488;
+      --c-text: #EDE8E0;
+      --c-text-mid: #B0A898;
       --c-text-muted: #706A60;
-      --sh-soft:      0 4px 30px rgba(0,0,0,0.35);
-      --sh-medium:    0 10px 48px rgba(0,0,0,0.45);
+      --sh-soft: 0 4px 30px rgba(0, 0, 0, 0.35);
+      --sh-medium: 0 10px 48px rgba(0, 0, 0, 0.45);
       /* Color del sobre (editable desde el editor) */
-      --c-envelope:   #18160F;
+      --c-envelope: #18160F;
 
       /* Tipografía */
-      --f-serif:  'Cormorant Garamond', Georgia, serif;
-      --f-sans:   'Jost', system-ui, sans-serif;
+      --f-serif: 'Cormorant Garamond', Georgia, serif;
+      --f-sans: 'Jost', system-ui, sans-serif;
 
       /* Espaciado */
-      --sp-xs:  0.5rem;
-      --sp-sm:  1rem;
-      --sp-md:  2rem;
-      --sp-lg:  4rem;
-      --sp-xl:  7rem;
+      --sp-xs: 0.5rem;
+      --sp-sm: 1rem;
+      --sp-md: 2rem;
+      --sp-lg: 4rem;
+      --sp-xl: 7rem;
       --sp-xxl: 11rem;
 
       /* Bordes */
-      --r-sm:   4px;
-      --r-md:   10px;
-      --r-lg:   22px;
+      --r-sm: 4px;
+      --r-md: 10px;
+      --r-lg: 22px;
       --r-full: 9999px;
 
       /* Sombras — (overridden above for dark) */
@@ -79,13 +84,27 @@
     /* ═══════════════════════════════════════════════════════════
        RESET & BASE
        ═══════════════════════════════════════════════════════════ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
       }
@@ -102,9 +121,20 @@
       transition: background-color var(--t-slow), color var(--t-slow);
     }
 
-    img { display: block; max-width: 100%; height: auto; }
-    a   { color: inherit; text-decoration: none; }
-    button { font-family: var(--f-sans); }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: var(--f-sans);
+    }
 
     /* ═══════════════════════════════════════════════════════════
        HELPERS TIPOGRÁFICOS
@@ -125,7 +155,9 @@
       gap: var(--sp-sm);
       margin: var(--sp-md) 0;
     }
-    .divider::before, .divider::after {
+
+    .divider::before,
+    .divider::after {
       content: '';
       flex: 1;
       max-width: 72px;
@@ -133,6 +165,7 @@
       background: var(--c-gold);
       opacity: 0.4;
     }
+
     .divider__glyph {
       color: var(--c-gold);
       font-size: 0.85rem;
@@ -157,20 +190,37 @@
       transform: translateY(28px);
       transition: opacity 0.85s ease, transform 0.85s ease;
     }
+
     .anim-fade {
       opacity: 0;
       transition: opacity 1.1s ease;
     }
-    .anim-up.in, .anim-fade.in {
+
+    .anim-up.in,
+    .anim-fade.in {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .d1 { transition-delay: 0.08s; }
-    .d2 { transition-delay: 0.20s; }
-    .d3 { transition-delay: 0.34s; }
-    .d4 { transition-delay: 0.50s; }
-    .d5 { transition-delay: 0.68s; }
+    .d1 {
+      transition-delay: 0.08s;
+    }
+
+    .d2 {
+      transition-delay: 0.20s;
+    }
+
+    .d3 {
+      transition-delay: 0.34s;
+    }
+
+    .d4 {
+      transition-delay: 0.50s;
+    }
+
+    .d5 {
+      transition-delay: 0.68s;
+    }
 
     /* ═══════════════════════════════════════════════════════════
        BOTÓN TEMA (esquina superior derecha)
@@ -195,12 +245,33 @@
       transition: background var(--t-base), color var(--t-base), border-color var(--t-base), box-shadow var(--t-base);
       box-shadow: var(--sh-soft);
     }
-    .theme-btn:hover  { background: var(--c-gold); color: #fff; border-color: var(--c-gold); }
-    .theme-btn:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 3px; }
-    .theme-btn .i-sun  { display: none; }
-    .theme-btn .i-moon { display: block; }
-    [data-theme="dark"] .theme-btn .i-sun  { display: block; }
-    [data-theme="dark"] .theme-btn .i-moon { display: none; }
+
+    .theme-btn:hover {
+      background: var(--c-gold);
+      color: #fff;
+      border-color: var(--c-gold);
+    }
+
+    .theme-btn:focus-visible {
+      outline: 2px solid var(--c-gold);
+      outline-offset: 3px;
+    }
+
+    .theme-btn .i-sun {
+      display: none;
+    }
+
+    .theme-btn .i-moon {
+      display: block;
+    }
+
+    [data-theme="dark"] .theme-btn .i-sun {
+      display: block;
+    }
+
+    [data-theme="dark"] .theme-btn .i-moon {
+      display: none;
+    }
 
     /* ═══════════════════════════════════════════════════════════
        SECCIÓN 1 — HERO / PORTADA
@@ -225,33 +296,33 @@
       background-position: center 30%;
       background-repeat: no-repeat;
       transform: scale(1.06);
-      transition: transform 9s cubic-bezier(0.25,0.46,0.45,0.94);
+      transition: transform 9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       z-index: 0;
     }
-    .hero__bg.loaded { transform: scale(1); }
+
+    .hero__bg.loaded {
+      transform: scale(1);
+    }
 
     /* Degradado — suaviza la foto y hace el texto legible */
     .hero__veil {
       position: absolute;
       inset: 0;
       z-index: 1;
-      background: linear-gradient(
-        180deg,
-        rgba(250,248,245,0.22)  0%,
-        rgba(250,248,245,0.52) 35%,
-        rgba(250,248,245,0.78) 65%,
-        rgba(250,248,245,0.97) 100%
-      );
+      background: linear-gradient(180deg,
+          rgba(250, 248, 245, 0.22) 0%,
+          rgba(250, 248, 245, 0.52) 35%,
+          rgba(250, 248, 245, 0.78) 65%,
+          rgba(250, 248, 245, 0.97) 100%);
       transition: background var(--t-slow);
     }
+
     [data-theme="dark"] .hero__veil {
-      background: linear-gradient(
-        180deg,
-        rgba(24,22,15,0.22)  0%,
-        rgba(24,22,15,0.52) 35%,
-        rgba(24,22,15,0.78) 65%,
-        rgba(24,22,15,0.97) 100%
-      );
+      background: linear-gradient(180deg,
+          rgba(24, 22, 15, 0.22) 0%,
+          rgba(24, 22, 15, 0.52) 35%,
+          rgba(24, 22, 15, 0.78) 65%,
+          rgba(24, 22, 15, 0.97) 100%);
     }
 
     .hero__content {
@@ -313,7 +384,11 @@
       color: var(--c-text-muted);
       transition: opacity var(--t-base);
     }
-    .scroll-cue:hover { opacity: 0.5; }
+
+    .scroll-cue:hover {
+      opacity: 0.5;
+    }
+
     .scroll-cue__label {
       font-size: 0.6rem;
       letter-spacing: 0.2em;
@@ -321,12 +396,21 @@
       text-align: center;
       display: block;
     }
+
     .scroll-cue__arrow {
       animation: bob 2.2s ease-in-out infinite;
     }
+
     @keyframes bob {
-      0%,100% { transform: translateY(0); }
-      55%      { transform: translateY(7px); }
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      55% {
+        transform: translateY(7px);
+      }
     }
 
     /* Pétalo decorativo ─────── */
@@ -338,11 +422,25 @@
       pointer-events: none;
       animation: petalDrift linear infinite;
     }
+
     @keyframes petalDrift {
-      0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
-      8%   { opacity: 0.13; }
-      92%  { opacity: 0.06; }
-      100% { transform: translateY(102vh) rotate(400deg); opacity: 0; }
+      0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 0;
+      }
+
+      8% {
+        opacity: 0.13;
+      }
+
+      92% {
+        opacity: 0.06;
+      }
+
+      100% {
+        transform: translateY(102vh) rotate(400deg);
+        opacity: 0;
+      }
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -363,6 +461,7 @@
       color: var(--c-text);
       margin: var(--sp-sm) 0 var(--sp-md);
     }
+
     .announce__headline em {
       font-style: italic;
       color: var(--c-gold);
@@ -393,6 +492,7 @@
       gap: var(--sp-lg);
       align-items: center;
     }
+
     @media (min-width: 760px) {
       .story__grid {
         grid-template-columns: 5fr 6fr;
@@ -404,6 +504,7 @@
     .story__img-wrap {
       position: relative;
     }
+
     .story__img {
       width: 100%;
       aspect-ratio: 3/4;
@@ -412,6 +513,7 @@
       box-shadow: var(--sh-medium);
       display: block;
     }
+
     .story__img-frame {
       position: absolute;
       top: -1rem;
@@ -424,8 +526,15 @@
       pointer-events: none;
     }
 
-    .story__text { text-align: left; }
-    @media (max-width: 759px) { .story__text { text-align: center; } }
+    .story__text {
+      text-align: left;
+    }
+
+    @media (max-width: 759px) {
+      .story__text {
+        text-align: center;
+      }
+    }
 
     .story__title {
       font-family: var(--f-serif);
@@ -450,7 +559,11 @@
       background: var(--c-bg);
       overflow: hidden;
       transition: background var(--t-slow);
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
     }
+
     .gallery__track {
       display: flex;
       gap: 0.6rem;
@@ -458,11 +571,20 @@
       width: max-content;
       animation: gallery-scroll 30s linear infinite;
       will-change: transform;
+      touch-action: none;
     }
-    .gallery:hover .gallery__track { animation-play-state: paused; }
+
+    /* Carousel interaction disabled */
+    /* .gallery:hover .gallery__track { animation-play-state: paused; } */
+
     @keyframes gallery-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
     }
 
     .gallery__item {
@@ -472,16 +594,23 @@
       border-radius: var(--r-md);
       overflow: hidden;
     }
+
     @media (min-width: 600px) {
-      .gallery__item { width: 240px; height: 320px; }
+      .gallery__item {
+        width: 240px;
+        height: 320px;
+      }
     }
+
     .gallery__item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform var(--t-slow);
     }
-    .gallery__item:hover img { transform: scale(1.05); }
+
+    /* Carousel item hover disabled */
+    /* .gallery__item:hover img { transform: scale(1.05); } */
 
     /* ═══════════════════════════════════════════════════════════
        SECCIÓN 4 — DETALLES DEL EVENTO
@@ -492,12 +621,17 @@
       background: var(--c-bg);
       transition: background var(--t-slow);
     }
-    .event__inner { max-width: 720px; margin: 0 auto; }
+
+    .event__inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
 
     /* Fecha grande tipográfica */
     .event__date {
       margin: var(--sp-md) 0 var(--sp-lg);
     }
+
     .event__month {
       font-size: 0.66rem;
       letter-spacing: 0.28em;
@@ -505,6 +639,7 @@
       color: var(--c-gold);
       margin-bottom: 0.3rem;
     }
+
     .event__day {
       font-family: var(--f-serif);
       font-weight: 300;
@@ -514,6 +649,7 @@
       color: var(--c-text);
       margin-bottom: 0.35rem;
     }
+
     .event__year {
       font-size: 0.75rem;
       letter-spacing: 0.22em;
@@ -529,8 +665,12 @@
       gap: var(--sp-sm);
       margin: var(--sp-lg) 0 var(--sp-md);
     }
+
     @media (min-width: 560px) {
-      .event__cards { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+      .event__cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+      }
     }
 
     .detail-card {
@@ -540,16 +680,19 @@
       border: 1px solid transparent;
       transition: border-color var(--t-base), box-shadow var(--t-base), background var(--t-slow);
     }
+
     .detail-card:hover {
       border-color: var(--c-gold-dim);
       box-shadow: var(--sh-soft);
     }
+
     .detail-card__glyph {
       font-size: 1rem;
       color: var(--c-gold);
       margin-bottom: 0.6rem;
       opacity: 0.8;
     }
+
     .detail-card__lbl {
       font-size: 0.62rem;
       letter-spacing: 0.2em;
@@ -557,6 +700,7 @@
       color: var(--c-text-muted);
       margin-bottom: 0.35rem;
     }
+
     .detail-card__val {
       font-family: var(--f-serif);
       font-size: 1.1rem;
@@ -564,6 +708,7 @@
       color: var(--c-text);
       line-height: 1.3;
     }
+
     .detail-card__sub {
       font-size: 0.78rem;
       color: var(--c-text-mid);
@@ -584,10 +729,20 @@
       background: var(--c-bg);
       transition: background var(--t-slow);
     }
-    .event-block--alt { background: var(--c-bg-alt); }
+
+    .event-block--alt {
+      background: var(--c-bg-alt);
+    }
+
     /* Dentro del fondo alternado, las tarjetas usan el color contrario */
-    .event-block--alt .detail-card { background: var(--c-bg); }
-    .event-block__inner { max-width: 480px; margin: 0 auto; }
+    .event-block--alt .detail-card {
+      background: var(--c-bg);
+    }
+
+    .event-block__inner {
+      max-width: 480px;
+      margin: 0 auto;
+    }
 
     /* Título del bloque de evento */
     .event__block-title {
@@ -599,6 +754,7 @@
       letter-spacing: 0.02em;
       margin-bottom: var(--sp-md);
     }
+
     .event__cards--2 {
       grid-template-columns: repeat(2, 1fr) !important;
       max-width: 480px;
@@ -614,17 +770,24 @@
       text-align: center;
       transition: background var(--t-slow);
     }
-    .dress__inner { max-width: 540px; margin: 0 auto; }
+
+    .dress__inner {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
     .dress__badge {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 76px; height: 76px;
+      width: 76px;
+      height: 76px;
       border-radius: 50%;
       border: 1px solid var(--c-gold-dim);
       color: var(--c-gold);
       margin: 1.6rem auto 0;
     }
+
     .dress__title {
       font-family: var(--f-serif);
       font-size: clamp(2.2rem, 6vw, 3.4rem);
@@ -634,6 +797,7 @@
       margin: 1.2rem 0 0;
       line-height: 1.1;
     }
+
     .dress__sub {
       font-size: 0.9rem;
       color: var(--c-text-mid);
@@ -641,6 +805,7 @@
       max-width: 360px;
       margin: 0.8rem auto 0;
     }
+
     .dress__note {
       font-size: 0.8rem;
       color: var(--c-text-muted);
@@ -655,6 +820,7 @@
       background: var(--c-bg);
       transition: background var(--t-slow);
     }
+
     .gifts__title {
       font-family: var(--f-serif);
       font-size: clamp(1.6rem, 4vw, 2.4rem);
@@ -662,6 +828,7 @@
       color: var(--c-text);
       margin: var(--sp-sm) 0;
     }
+
     .gifts__text {
       font-size: 1rem;
       color: var(--c-text-mid);
@@ -669,6 +836,7 @@
       margin: 0 auto var(--sp-sm);
       line-height: 1.8;
     }
+
     .gifts__note {
       font-size: 0.85rem;
       color: var(--c-gold);
@@ -693,25 +861,38 @@
       transition: background var(--t-base), color var(--t-base), border-color var(--t-base), transform var(--t-fast), box-shadow var(--t-base);
       -webkit-appearance: none;
     }
-    .btn:focus-visible { outline: 2px solid var(--c-gold); outline-offset: 4px; }
-    .btn:active        { transform: translateY(1px) !important; }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--c-gold);
+      outline-offset: 4px;
+    }
+
+    .btn:active {
+      transform: translateY(1px) !important;
+    }
 
     .btn--gold {
       background: var(--c-gold);
       color: #fff;
     }
+
     .btn--gold:hover {
       background: var(--c-text);
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.14);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
     }
-    [data-theme="dark"] .btn--gold:hover { background: var(--c-gold); filter: brightness(1.15); }
+
+    [data-theme="dark"] .btn--gold:hover {
+      background: var(--c-gold);
+      filter: brightness(1.15);
+    }
 
     .btn--outline {
       background: transparent;
       color: var(--c-text);
       border: 1px solid var(--c-gold-dim);
     }
+
     .btn--outline:hover {
       background: var(--c-gold);
       color: #fff;
@@ -722,8 +903,9 @@
     .btn--ghost {
       background: transparent;
       color: var(--c-text-mid);
-      border: 1px solid rgba(197,164,106,0.3);
+      border: 1px solid rgba(197, 164, 106, 0.3);
     }
+
     .btn--ghost:hover {
       border-color: var(--c-gold);
       color: var(--c-gold);
@@ -739,7 +921,11 @@
       text-align: center;
       transition: background var(--t-slow);
     }
-    .rsvp__inner { max-width: 540px; margin: 0 auto; }
+
+    .rsvp__inner {
+      max-width: 540px;
+      margin: 0 auto;
+    }
 
     .rsvp__title {
       font-family: var(--f-serif);
@@ -748,6 +934,7 @@
       color: var(--c-text);
       margin-bottom: 0.4rem;
     }
+
     .rsvp__sub {
       font-size: 0.9rem;
       color: var(--c-text-mid);
@@ -762,7 +949,11 @@
       text-align: left;
     }
 
-    .field { display: flex; flex-direction: column; gap: 0.35rem; }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
 
     .field__label {
       font-size: 0.62rem;
@@ -788,14 +979,18 @@
       -webkit-appearance: none;
       transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-slow), color var(--t-slow);
     }
+
     .field__input:focus,
     .field__select:focus,
     .field__textarea:focus {
       border-color: var(--c-gold);
-      box-shadow: 0 0 0 3px rgba(197,164,106,0.15);
+      box-shadow: 0 0 0 3px rgba(197, 164, 106, 0.15);
     }
+
     .field__input::placeholder,
-    .field__textarea::placeholder { color: var(--c-text-muted); }
+    .field__textarea::placeholder {
+      color: var(--c-text-muted);
+    }
 
     .field__select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C5A46A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
@@ -823,12 +1018,17 @@
       display: none;
       padding: var(--sp-lg) 0;
     }
-    .rsvp__success.show { display: block; }
+
+    .rsvp__success.show {
+      display: block;
+    }
+
     .rsvp__success__icon {
       font-size: 2rem;
       color: var(--c-gold);
       margin-bottom: var(--sp-sm);
     }
+
     .rsvp__success__title {
       font-family: var(--f-serif);
       font-size: 2rem;
@@ -861,7 +1061,10 @@
       opacity: 0.35;
     }
 
-    .closing__inner { max-width: 520px; margin: 0 auto; }
+    .closing__inner {
+      max-width: 520px;
+      margin: 0 auto;
+    }
 
     .closing__quote {
       font-family: var(--f-serif);
@@ -891,42 +1094,72 @@
        RSVP MODAL
        ═══════════════════════════════════════════════════════════ */
     .rsvp-modal {
-      position: fixed; inset: 0; z-index: 1100;
-      display: flex; align-items: center; justify-content: center;
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 1rem;
     }
-    .rsvp-modal[hidden] { display: none; }
+
+    .rsvp-modal[hidden] {
+      display: none;
+    }
+
     .rsvp-modal__backdrop {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,0.72);
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
     }
+
     .rsvp-modal__box {
-      position: relative; z-index: 1;
+      position: relative;
+      z-index: 1;
       background: var(--c-bg-alt);
-      border: 1px solid rgba(197,164,106,0.22);
+      border: 1px solid rgba(197, 164, 106, 0.22);
       border-radius: var(--r-lg);
-      max-width: 460px; width: 100%;
+      max-width: 460px;
+      width: 100%;
       max-height: 92dvh;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       padding: 2rem 1.8rem;
-      animation: modal-in 0.35s cubic-bezier(.25,.46,.45,.94);
+      animation: modal-in 0.35s cubic-bezier(.25, .46, .45, .94);
     }
+
     @keyframes modal-in {
-      from { opacity: 0; transform: translateY(28px) scale(0.97); }
-      to   { opacity: 1; transform: none; }
+      from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
     }
+
     .rsvp-modal__close {
-      position: absolute; top: 1rem; right: 1rem;
-      background: none; border: none;
-      color: var(--c-text-mid); font-size: 1.1rem;
-      cursor: pointer; padding: 0.3rem 0.6rem; line-height: 1;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--c-text-mid);
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0.3rem 0.6rem;
+      line-height: 1;
       border-radius: var(--r-sm);
       transition: color var(--t-fast);
     }
-    .rsvp-modal__close:hover { color: var(--c-text); }
+
+    .rsvp-modal__close:hover {
+      color: var(--c-text);
+    }
 
     /* ═══════════════════════════════════════════════════════════
        CUENTA REGRESIVA
@@ -937,14 +1170,22 @@
       text-align: center;
       transition: background var(--t-slow);
     }
+
     .countdown__grid {
-      display: flex; justify-content: center; gap: 2rem;
-      flex-wrap: wrap; margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
     }
+
     .countdown__unit {
-      display: flex; flex-direction: column; align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       min-width: 64px;
     }
+
     .countdown__num {
       font-family: var(--f-display);
       font-size: clamp(2.6rem, 7vw, 4rem);
@@ -952,18 +1193,22 @@
       line-height: 1;
       letter-spacing: -0.02em;
     }
+
     .countdown__sep {
       font-family: var(--f-display);
       font-size: clamp(2rem, 5vw, 3rem);
-      color: rgba(197,164,106,0.35);
+      color: rgba(197, 164, 106, 0.35);
       align-self: flex-start;
       padding-top: 0.1em;
     }
+
     .countdown__label {
       font-family: var(--f-sans);
-      font-size: 0.6rem; letter-spacing: 0.14em;
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--c-text-muted); margin-top: 0.4rem;
+      color: var(--c-text-muted);
+      margin-top: 0.4rem;
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -975,7 +1220,12 @@
       text-align: center;
       transition: background var(--t-slow);
     }
-    .photos__inner { max-width: 480px; margin: 0 auto; }
+
+    .photos__inner {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
     .photos__title {
       font-family: var(--f-serif);
       font-weight: 300;
@@ -983,19 +1233,31 @@
       color: var(--c-text);
       margin-bottom: 0.8rem;
     }
+
     .photos__text {
-      font-size: 0.9rem; color: var(--c-text-mid); line-height: 1.7;
+      font-size: 0.9rem;
+      color: var(--c-text-mid);
+      line-height: 1.7;
     }
+
     .photos__qr {
-      margin: 2rem auto 0; display: flex; justify-content: center;
+      margin: 2rem auto 0;
+      display: flex;
+      justify-content: center;
     }
+
     .photos__qr img {
-      width: 180px; height: 180px;
+      width: 180px;
+      height: 180px;
       border-radius: var(--r-md);
-      border: 2px solid rgba(197,164,106,0.3);
-      padding: 0.5rem; background: #fff;
+      border: 2px solid rgba(197, 164, 106, 0.3);
+      padding: 0.5rem;
+      background: #fff;
     }
-    .photos__actions { margin-top: 1.8rem; }
+
+    .photos__actions {
+      margin-top: 1.8rem;
+    }
 
     /* ═══════════════════════════════════════════════════════════
        FOOTER
@@ -1007,6 +1269,7 @@
       text-align: center;
       transition: background var(--t-slow);
     }
+
     .site-footer__text {
       font-size: 0.7rem;
       letter-spacing: 0.14em;
@@ -1018,8 +1281,8 @@
        ═══════════════════════════════════════════════════════════ */
     @media (max-width: 380px) {
       :root {
-        --sp-lg:  3rem;
-        --sp-xl:  4.5rem;
+        --sp-lg: 3rem;
+        --sp-xl: 4.5rem;
         --sp-xxl: 7rem;
       }
     }
@@ -1039,19 +1302,21 @@
       background: var(--c-envelope);
       cursor: pointer;
       overflow: hidden;
-      /* iOS Safari: necesario para que los divs reciban tap */
+      /* iOS Safari: manipulation evita el delay de 300ms y reconoce el tap inmediatamente */
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
       user-select: none;
       -webkit-user-select: none;
       transition: opacity 2s cubic-bezier(0.45, 0, 0.55, 1),
-                  visibility 2s;
+        visibility 2s;
     }
+
     .env-overlay.dismissed {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
     }
+
     body.env-locked {
       overflow: hidden;
       /* iOS Safari: overflow:hidden solo no bloquea el scroll táctil */
@@ -1067,24 +1332,36 @@
       inset: 0;
       pointer-events: none;
     }
+
     /* Triángulo inferior (apunta hacia el centro) */
     .env__fold--btm {
       clip-path: polygon(0% 100%, 100% 100%, 50% 50%);
-      background: rgba(0,0,0,0.028);
+      background: rgba(0, 0, 0, 0.028);
     }
+
     /* Triángulo izquierdo */
     .env__fold--left {
       clip-path: polygon(0% 0%, 0% 100%, 50% 50%);
-      background: rgba(0,0,0,0.016);
+      background: rgba(0, 0, 0, 0.016);
     }
+
     /* Triángulo derecho */
     .env__fold--right {
       clip-path: polygon(100% 0%, 100% 100%, 50% 50%);
-      background: rgba(0,0,0,0.016);
+      background: rgba(0, 0, 0, 0.016);
     }
-    [data-theme="dark"] .env__fold--btm   { background: rgba(0,0,0,0.16); }
-    [data-theme="dark"] .env__fold--left  { background: rgba(0,0,0,0.10); }
-    [data-theme="dark"] .env__fold--right { background: rgba(0,0,0,0.10); }
+
+    [data-theme="dark"] .env__fold--btm {
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    [data-theme="dark"] .env__fold--left {
+      background: rgba(0, 0, 0, 0.10);
+    }
+
+    [data-theme="dark"] .env__fold--right {
+      background: rgba(0, 0, 0, 0.10);
+    }
 
     /* Solapa superior — SVG triángulo que rota en 3D al abrir.
        Cubre el 54% superior de la pantalla, apex en el centro.    */
@@ -1098,6 +1375,7 @@
       overflow: visible;
       pointer-events: none;
     }
+
     .env__flap {
       width: 100%;
       height: 100%;
@@ -1106,14 +1384,21 @@
       will-change: transform;
       transition: none;
     }
+
     /* Rotación 3D de la solapa al abrir — efecto sobre real */
     .env-overlay.opening .env__flap {
       transform: perspective(2600px) rotateX(-162deg);
       transition: transform 1.2s cubic-bezier(0.38, 0.0, 0.20, 1) 0.06s;
     }
+
     /* Tono de la solapa — apenas visible, un toque más oscuro */
-    .env__flap-poly { fill: rgba(0,0,0,0.032); }
-    [data-theme="dark"] .env__flap-poly { fill: rgba(0,0,0,0.22); }
+    .env__flap-poly {
+      fill: rgba(0, 0, 0, 0.032);
+    }
+
+    [data-theme="dark"] .env__flap-poly {
+      fill: rgba(0, 0, 0, 0.22);
+    }
 
     /* Sello de lacre — centrado en la pantalla, elemento principal */
     .env__seal {
@@ -1127,66 +1412,96 @@
       border-radius: 50%;
       /* Degradado dorado que simula la textura del lacre */
       background: radial-gradient(circle at 38% 30%,
-        #E8C580 0%,
-        #C89836 48%,
-        #9C7620 82%,
-        #7A5C18 100%);
+          #E8C580 0%,
+          #C89836 48%,
+          #9C7620 82%,
+          #7A5C18 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       /* Sombras para dar profundidad al sello */
       box-shadow:
-        0 8px 48px rgba(0,0,0,0.20),
-        0 2px 10px rgba(0,0,0,0.10),
-        inset 0 2px 5px rgba(255,255,255,0.30),
-        inset 0 -2px 5px rgba(0,0,0,0.22);
+        0 8px 48px rgba(0, 0, 0, 0.20),
+        0 2px 10px rgba(0, 0, 0, 0.10),
+        inset 0 2px 5px rgba(255, 255, 255, 0.30),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.22);
       transition: transform 0.4s cubic-bezier(0.34, 1.3, 0.64, 1),
-                  box-shadow 0.4s ease;
+        box-shadow 0.4s ease;
       /* Animación de entrada */
       animation: sealAppear 1.3s cubic-bezier(0.34, 1.26, 0.64, 1) 0.7s both;
     }
+
     @keyframes sealAppear {
-      from { opacity: 0; transform: translate(-50%,-50%) scale(0.55); }
-      to   { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+      from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.55);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
     }
+
     /* Rim decorativo interior del sello */
     .env__seal::before {
       content: '';
       position: absolute;
       inset: 6px;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.22);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       pointer-events: none;
     }
+
     /* Hover: sello respira ligeramente */
     .env-overlay:not(.opening) .env__seal:hover {
       transform: translate(-50%, -50%) scale(1.06);
       box-shadow:
-        0 12px 56px rgba(0,0,0,0.24),
-        0 3px 12px rgba(0,0,0,0.12),
-        inset 0 2px 5px rgba(255,255,255,0.30),
-        inset 0 -2px 5px rgba(0,0,0,0.22);
+        0 12px 56px rgba(0, 0, 0, 0.24),
+        0 3px 12px rgba(0, 0, 0, 0.12),
+        inset 0 2px 5px rgba(255, 255, 255, 0.30),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.22);
     }
+
     /* Animación de rotura del sello al abrir */
     .env-overlay.opening .env__seal {
       animation: sealCrack 0.62s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
       pointer-events: none;
     }
+
     @keyframes sealCrack {
-      0%  { transform: translate(-50%,-50%) scale(1);          opacity: 1;   }
-      16% { transform: translate(-50%,-50%) scale(1.16) rotate(-7deg);       }
-      36% { transform: translate(-50%,-50%) scale(0.88) rotate(6deg);        }
-      60% { transform: translate(-50%,-50%) scale(1.08) rotate(-3deg);       opacity: 0.75; }
-      100%{ transform: translate(-50%,-50%) scale(0.18) rotate(-5deg);       opacity: 0;   }
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      16% {
+        transform: translate(-50%, -50%) scale(1.16) rotate(-7deg);
+      }
+
+      36% {
+        transform: translate(-50%, -50%) scale(0.88) rotate(6deg);
+      }
+
+      60% {
+        transform: translate(-50%, -50%) scale(1.08) rotate(-3deg);
+        opacity: 0.75;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(0.18) rotate(-5deg);
+        opacity: 0;
+      }
     }
+
     /* Iniciales del sello */
     .env__seal-txt {
       font-family: var(--f-serif);
       font-style: italic;
       font-size: clamp(1.3rem, 3.2vw, 1.9rem);
-      color: rgba(255,255,255,0.94);
-      text-shadow: 0 1px 6px rgba(0,0,0,0.28);
+      color: rgba(255, 255, 255, 0.94);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.28);
       user-select: none;
       letter-spacing: 0.04em;
       position: relative;
@@ -1214,16 +1529,35 @@
       gap: 0.6rem;
       /* Entrada retrasada + pulso continuo */
       animation: hintAppear 0.9s ease 1.5s both,
-                 hintFloat  3.2s ease-in-out 2.4s infinite;
+        hintFloat 3.2s ease-in-out 2.4s infinite;
     }
+
     @keyframes hintAppear {
-      from { opacity: 0; transform: translateX(-50%) translateY(10px); }
-      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
     }
+
     @keyframes hintFloat {
-      0%,100% { opacity: 0.45; transform: translateX(-50%) translateY(0); }
-      50%      { opacity: 0.90; transform: translateX(-50%) translateY(-4px); }
+
+      0%,
+      100% {
+        opacity: 0.45;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        opacity: 0.90;
+        transform: translateX(-50%) translateY(-4px);
+      }
     }
+
     /* Ocultar el hint al iniciar la apertura */
     .env-overlay.opening .env-hint {
       opacity: 0 !important;
@@ -1254,11 +1588,15 @@
       z-index: 9998;
       transition: transform var(--t-fast), opacity var(--t-fast);
     }
-    .editor-toggle:hover { transform: scale(1.1); }
+
+    .editor-toggle:hover {
+      transform: scale(1.1);
+    }
 
     .editor-panel {
       position: fixed;
-      top: 0; right: 0;
+      top: 0;
+      right: 0;
       width: min(400px, 100vw);
       /* iOS Safari: 100dvh puede ser incorrecto; 100% en fixed = viewport correcto */
       height: 100%;
@@ -1270,19 +1608,23 @@
       display: flex;
       flex-direction: column;
       transform: translateX(100%);
-      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-      box-shadow: -8px 0 48px rgba(0,0,0,0.45);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -8px 0 48px rgba(0, 0, 0, 0.45);
     }
-    .editor-panel.open { transform: translateX(0); }
+
+    .editor-panel.open {
+      transform: translateX(0);
+    }
 
     .editor-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1.2rem 1.5rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       flex-shrink: 0;
     }
+
     .editor-header h2 {
       font-family: var(--f-serif);
       font-size: 1.25rem;
@@ -1291,12 +1633,14 @@
       color: var(--c-gold);
       margin: 0;
     }
+
     .editor-header-sub {
       font-family: var(--f-sans);
       font-size: 0.68rem;
       color: #706a60;
       letter-spacing: 0.08em;
     }
+
     .editor-close-btn {
       background: none;
       border: none;
@@ -1308,7 +1652,10 @@
       border-radius: 4px;
       transition: color var(--t-fast);
     }
-    .editor-close-btn:hover { color: #ede8e0; }
+
+    .editor-close-btn:hover {
+      color: #ede8e0;
+    }
 
     .editor-body {
       flex: 1;
@@ -1324,10 +1671,22 @@
       scrollbar-width: thin;
       scrollbar-color: #3a3630 transparent;
     }
-    .editor-body::-webkit-scrollbar { width: 4px; }
-    .editor-body::-webkit-scrollbar-thumb { background: #3a3630; border-radius: 4px; }
 
-    .editor-section { display: flex; flex-direction: column; gap: 0.8rem; }
+    .editor-body::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .editor-body::-webkit-scrollbar-thumb {
+      background: #3a3630;
+      border-radius: 4px;
+    }
+
+    .editor-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
     .editor-section-title {
       font-family: var(--f-sans);
       font-size: 0.63rem;
@@ -1336,20 +1695,26 @@
       text-transform: uppercase;
       color: var(--c-gold);
       padding-bottom: 0.4rem;
-      border-bottom: 1px solid rgba(197,164,106,0.2);
+      border-bottom: 1px solid rgba(197, 164, 106, 0.2);
     }
 
-    .editor-field { display: flex; flex-direction: column; gap: 0.3rem; }
+    .editor-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
     .editor-field label {
       font-size: 0.7rem;
       color: #706a60;
       font-family: var(--f-sans);
       letter-spacing: 0.03em;
     }
+
     .editor-field input,
     .editor-field textarea {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 6px;
       color: #ede8e0;
       font-family: var(--f-sans);
@@ -1359,34 +1724,41 @@
       transition: border-color var(--t-fast), background var(--t-fast);
       resize: vertical;
     }
+
     .editor-field input:focus,
     .editor-field textarea:focus {
       outline: none;
       border-color: var(--c-gold);
-      background: rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
     }
-    .editor-field textarea { min-height: 68px; }
+
+    .editor-field textarea {
+      min-height: 68px;
+    }
 
     .editor-color-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 0.7rem;
     }
+
     .editor-color-field {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.35rem;
     }
+
     .editor-color-field label {
       font-size: 0.63rem;
       color: #706a60;
       font-family: var(--f-sans);
     }
+
     .editor-color-field input[type="color"] {
       width: 100%;
       height: 34px;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 6px;
       background: none;
       cursor: pointer;
@@ -1395,11 +1767,12 @@
 
     .editor-footer {
       padding: 1rem 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       gap: 0.6rem;
       flex-shrink: 0;
     }
+
     .editor-btn {
       flex: 1;
       padding: 0.6rem 0.8rem;
@@ -1412,22 +1785,39 @@
       letter-spacing: 0.04em;
       transition: opacity var(--t-fast), transform var(--t-fast);
     }
-    .editor-btn:hover { opacity: 0.82; }
-    .editor-btn:active { transform: scale(0.97); }
-    .editor-btn--primary  { background: var(--c-gold); color: #1a1814; }
-    .editor-btn--secondary {
-      background: rgba(255,255,255,0.09);
-      color: #ede8e0;
-      border: 1px solid rgba(255,255,255,0.1);
+
+    .editor-btn:hover {
+      opacity: 0.82;
     }
-    .editor-btn--success { background: var(--c-sage); color: #1a1814; }
+
+    .editor-btn:active {
+      transform: scale(0.97);
+    }
+
+    .editor-btn--primary {
+      background: var(--c-gold);
+      color: #1a1814;
+    }
+
+    .editor-btn--secondary {
+      background: rgba(255, 255, 255, 0.09);
+      color: #ede8e0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .editor-btn--success {
+      background: var(--c-sage);
+      color: #1a1814;
+    }
+
     .editor-save-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0.45rem 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
+
     .editor-btn-clear {
       background: none;
       border: none;
@@ -1439,33 +1829,42 @@
       border-radius: 4px;
       transition: color var(--t-fast);
     }
-    .editor-btn-clear:hover { color: #c08080; }
+
+    .editor-btn-clear:hover {
+      color: #c08080;
+    }
 
     /* Tarjetas de galería */
     .gallery-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 8px;
       padding: 0.75rem;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
     }
+
     .gallery-card-preview {
       width: 100%;
       height: 110px;
       object-fit: cover;
       border-radius: 5px;
-      background: rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
     }
-    .gallery-card-preview[src=""] { display: none; }
+
+    .gallery-card-preview[src=""] {
+      display: none;
+    }
+
     .gallery-card-actions {
       display: flex;
       justify-content: flex-end;
     }
+
     .gallery-delete-btn {
       background: none;
-      border: 1px solid rgba(255,100,100,0.3);
+      border: 1px solid rgba(255, 100, 100, 0.3);
       color: #c08080;
       border-radius: 5px;
       font-size: 0.72rem;
@@ -1474,7 +1873,12 @@
       font-family: var(--f-sans);
       transition: background var(--t-fast), color var(--t-fast);
     }
-    .gallery-delete-btn:hover { background: rgba(255,80,80,0.15); color: #e09090; }
+
+    .gallery-delete-btn:hover {
+      background: rgba(255, 80, 80, 0.15);
+      color: #e09090;
+    }
+
     .gallery-add-btn {
       display: flex;
       align-items: center;
@@ -1482,7 +1886,7 @@
       gap: 0.4rem;
       width: 100%;
       padding: 0.55rem;
-      border: 1px dashed rgba(197,164,106,0.35);
+      border: 1px dashed rgba(197, 164, 106, 0.35);
       border-radius: 8px;
       background: none;
       color: var(--c-gold);
@@ -1491,32 +1895,42 @@
       cursor: pointer;
       transition: background var(--t-fast), border-color var(--t-fast);
     }
-    .gallery-add-btn:hover { background: rgba(197,164,106,0.08); border-color: var(--c-gold); }
+
+    .gallery-add-btn:hover {
+      background: rgba(197, 164, 106, 0.08);
+      border-color: var(--c-gold);
+    }
 
     /* Vista previa de imagen / audio subidos */
     .editor-media-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 6px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       gap: 0;
     }
+
     .editor-media-thumb {
-      width: 100%; height: 110px;
-      object-fit: cover; display: block;
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      display: block;
     }
+
     .editor-media-audio-badge {
       text-align: center;
       font-size: 0.88rem;
       color: var(--c-gold);
       padding: 0.9rem 0;
     }
+
     .editor-media-change {
       width: 100%;
-      background: rgba(255,255,255,0.06);
-      border: none; border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.06);
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       color: #ede8e0;
       font-family: var(--f-sans);
       font-size: 0.75rem;
@@ -1524,18 +1938,22 @@
       padding: 0.45rem;
       transition: background var(--t-fast);
     }
-    .editor-media-change:hover { background: rgba(255,255,255,0.11); }
+
+    .editor-media-change:hover {
+      background: rgba(255, 255, 255, 0.11);
+    }
 
     /* Sección publicar en Vercel */
     .editor-publish {
-      border-top: 1px solid rgba(197,164,106,0.18);
+      border-top: 1px solid rgba(197, 164, 106, 0.18);
       padding: 1rem 1.5rem 1.2rem;
       display: flex;
       flex-direction: column;
       gap: 0.7rem;
       flex-shrink: 0;
-      background: rgba(197,164,106,0.04);
+      background: rgba(197, 164, 106, 0.04);
     }
+
     .editor-publish-title {
       font-family: var(--f-sans);
       font-size: 0.63rem;
@@ -1544,15 +1962,17 @@
       text-transform: uppercase;
       color: var(--c-gold);
     }
+
     .editor-publish-row {
       display: flex;
       gap: 0.5rem;
       align-items: center;
     }
+
     .editor-publish-input {
       flex: 1;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 6px;
       color: #ede8e0;
       font-family: var(--f-sans);
@@ -1560,11 +1980,16 @@
       padding: 0.45rem 0.7rem;
       transition: border-color var(--t-fast);
     }
+
     .editor-publish-input:focus {
       outline: none;
       border-color: var(--c-gold);
     }
-    .editor-publish-input::placeholder { color: #4a4640; }
+
+    .editor-publish-input::placeholder {
+      color: #4a4640;
+    }
+
     .editor-publish-btn {
       background: var(--c-gold);
       color: #1a1814;
@@ -1578,28 +2003,44 @@
       white-space: nowrap;
       transition: opacity var(--t-fast), transform var(--t-fast);
     }
-    .editor-publish-btn:hover  { opacity: 0.85; }
-    .editor-publish-btn:active { transform: scale(0.97); }
-    .editor-publish-btn:disabled { opacity: 0.45; cursor: default; }
+
+    .editor-publish-btn:hover {
+      opacity: 0.85;
+    }
+
+    .editor-publish-btn:active {
+      transform: scale(0.97);
+    }
+
+    .editor-publish-btn:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
     .editor-publish-status {
       font-family: var(--f-sans);
       font-size: 0.72rem;
       min-height: 1.1em;
       transition: opacity 0.3s;
     }
+
     .editor-publish-help {
       font-size: 0.68rem;
       color: #555048;
       line-height: 1.5;
     }
-    .editor-publish-help a { color: #8a7a5a; }
+
+    .editor-publish-help a {
+      color: #8a7a5a;
+    }
 
     /* Publicar colapsable */
     details.editor-publish {
-      border-top: 1px solid rgba(197,164,106,0.18);
+      border-top: 1px solid rgba(197, 164, 106, 0.18);
       flex-shrink: 0;
-      background: rgba(197,164,106,0.04);
+      background: rgba(197, 164, 106, 0.04);
     }
+
     .editor-publish-toggle {
       display: flex;
       align-items: center;
@@ -1616,14 +2057,23 @@
       user-select: none;
       -webkit-user-select: none;
     }
-    .editor-publish-toggle::-webkit-details-marker { display: none; }
-    details.editor-publish[open] .editor-publish-toggle span:last-child { content: '▾'; transform: rotate(90deg); }
+
+    .editor-publish-toggle::-webkit-details-marker {
+      display: none;
+    }
+
+    details.editor-publish[open] .editor-publish-toggle span:last-child {
+      content: '▾';
+      transform: rotate(90deg);
+    }
+
     .editor-publish-inner {
       padding: 0 1.5rem 1.2rem;
       display: flex;
       flex-direction: column;
       gap: 0.7rem;
     }
+
     /* EDITOR:E */
 
     /* Reproductor de música */
@@ -1633,14 +2083,15 @@
       left: 1.5rem;
       z-index: 9997;
     }
+
     .music-btn {
       width: 46px;
       height: 46px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.25);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       color: var(--c-text);
       cursor: pointer;
       font-size: 1.15rem;
@@ -1650,11 +2101,26 @@
       box-shadow: var(--sh-soft);
       transition: background var(--t-fast), transform var(--t-fast);
     }
-    .music-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.08); }
-    .music-btn.playing { animation: musicPulse 2.4s ease-in-out infinite; }
+
+    .music-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.08);
+    }
+
+    .music-btn.playing {
+      animation: musicPulse 2.4s ease-in-out infinite;
+    }
+
     @keyframes musicPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(197,164,106,0.35); }
-      50%       { box-shadow: 0 0 0 10px rgba(197,164,106,0); }
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(197, 164, 106, 0.35);
+      }
+
+      50% {
+        box-shadow: 0 0 0 10px rgba(197, 164, 106, 0);
+      }
     }
 
     /* EDITOR:S */
@@ -1663,14 +2129,16 @@
       display: flex;
       gap: 0.4rem;
     }
+
     .input-with-upload input {
       flex: 1;
       min-width: 0;
     }
+
     .upload-img-btn {
       flex-shrink: 0;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 6px;
       color: #a09890;
       cursor: pointer;
@@ -1679,16 +2147,21 @@
       transition: background var(--t-fast), color var(--t-fast);
       white-space: nowrap;
     }
-    .upload-img-btn:hover { background: rgba(255,255,255,0.14); color: #ede8e0; }
+
+    .upload-img-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ede8e0;
+    }
 
     /* ── Estilos de texto por elemento ──────────────────────── */
     .style-group {
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 7px;
       overflow: hidden;
       margin-bottom: 0.35rem;
     }
-    .style-group > summary {
+
+    .style-group>summary {
       padding: 0.55rem 0.8rem;
       cursor: pointer;
       font-size: 0.65rem;
@@ -1696,7 +2169,7 @@
       letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--c-gold);
-      background: rgba(255,255,255,0.03);
+      background: rgba(255, 255, 255, 0.03);
       list-style: none;
       display: flex;
       justify-content: space-between;
@@ -1704,14 +2177,21 @@
       user-select: none;
       -webkit-user-select: none;
     }
-    .style-group > summary::-webkit-details-marker { display: none; }
-    .style-group > summary::after {
+
+    .style-group>summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .style-group>summary::after {
       content: '›';
       font-size: 1rem;
-      color: rgba(197,164,106,0.5);
+      color: rgba(197, 164, 106, 0.5);
       transition: transform 0.2s;
     }
-    .style-group[open] > summary::after { content: '⌄'; }
+
+    .style-group[open]>summary::after {
+      content: '⌄';
+    }
 
     .style-group-body {
       padding: 0.45rem 0.6rem;
@@ -1721,16 +2201,17 @@
     }
 
     .style-el {
-      border: 1px solid rgba(255,255,255,0.05);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 5px;
       overflow: hidden;
     }
-    .style-el > summary {
+
+    .style-el>summary {
       padding: 0.38rem 0.65rem;
       cursor: pointer;
       font-size: 0.7rem;
       color: #b0a898;
-      background: rgba(255,255,255,0.025);
+      background: rgba(255, 255, 255, 0.025);
       list-style: none;
       display: flex;
       justify-content: space-between;
@@ -1739,17 +2220,26 @@
       -webkit-user-select: none;
       gap: 0.4rem;
     }
-    .style-el > summary::-webkit-details-marker { display: none; }
-    .style-el > summary::after {
+
+    .style-el>summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .style-el>summary::after {
       content: '+';
       opacity: 0.4;
       font-size: 0.8rem;
       flex-shrink: 0;
     }
-    .style-el[open] > summary::after { content: '−'; }
+
+    .style-el[open]>summary::after {
+      content: '−';
+    }
+
     .style-has-dot {
       display: inline-block;
-      width: 5px; height: 5px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: var(--c-gold);
       flex-shrink: 0;
@@ -1767,6 +2257,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 0.5rem;
     }
+
     .sc-row-3 {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -1778,6 +2269,7 @@
       flex-direction: column;
       gap: 0.22rem;
     }
+
     .sc-field label {
       font-size: 0.6rem;
       color: #706a60;
@@ -1786,15 +2278,17 @@
       justify-content: space-between;
       align-items: center;
     }
+
     .sc-field input[type="range"] {
       width: 100%;
       height: 3px;
       accent-color: var(--c-gold);
       cursor: pointer;
     }
+
     .sc-field select {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 5px;
       color: #ede8e0;
       font-family: var(--f-sans);
@@ -1804,18 +2298,20 @@
       outline: none;
       -webkit-appearance: none;
     }
+
     .sc-field input[type="color"] {
       width: 100%;
       height: 28px;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 5px;
       background: none;
       cursor: pointer;
       padding: 1px 2px;
     }
+
     .sc-field input[type="text"] {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 5px;
       color: #ede8e0;
       font-family: var(--f-sans);
@@ -1824,6 +2320,7 @@
       width: 100%;
       outline: none;
     }
+
     .sc-field input[type="text"]:focus,
     .sc-field select:focus {
       border-color: var(--c-gold);
@@ -1844,8 +2341,10 @@
       user-select: none;
       -webkit-user-select: none;
     }
+
     .sc-check-label input[type="checkbox"] {
-      width: 14px; height: 14px;
+      width: 14px;
+      height: 14px;
       cursor: pointer;
       accent-color: var(--c-gold);
       flex-shrink: 0;
@@ -1854,7 +2353,10 @@
     .glow-sub {
       padding-top: 0.4rem;
     }
-    .glow-sub.sc-hidden { display: none; }
+
+    .glow-sub.sc-hidden {
+      display: none;
+    }
 
     .sc-reset {
       background: none;
@@ -1866,12 +2368,15 @@
       font-family: var(--f-sans);
       transition: color var(--t-fast);
     }
-    .sc-reset:hover { color: #e09090; }
+
+    .sc-reset:hover {
+      color: #e09090;
+    }
 
     .sc-reset-all {
       align-self: flex-start;
       background: none;
-      border: 1px solid rgba(200,80,80,0.22);
+      border: 1px solid rgba(200, 80, 80, 0.22);
       color: #a07070;
       font-size: 0.62rem;
       cursor: pointer;
@@ -1881,11 +2386,16 @@
       margin-top: 0.15rem;
       transition: background var(--t-fast), color var(--t-fast);
     }
-    .sc-reset-all:hover { background: rgba(200,80,80,0.1); color: #e09090; }
-    /* EDITOR:E */
 
+    .sc-reset-all:hover {
+      background: rgba(200, 80, 80, 0.1);
+      color: #e09090;
+    }
+
+    /* EDITOR:E */
   </style>
 </head>
+
 <body>
 
   <!-- ════════════════════════════════════════════════════════════
@@ -1895,7 +2405,8 @@
        Click en cualquier punto → el sello se rompe, la solapa
        se abre en 3D y la invitación aparece con fade-in.
        ════════════════════════════════════════════════════════════ -->
-  <div class="env-overlay" id="envOverlay" role="dialog" aria-modal="true" tabindex="0" aria-label="Invitación de boda — toca para abrir">
+  <div class="env-overlay" id="envOverlay" role="dialog" aria-modal="true" tabindex="0"
+    aria-label="Invitación de boda — toca para abrir">
 
     <!-- Los 3 pliegues crean las líneas diagonales del sobre.
          Tonos casi iguales al fondo para no distraer del sello. -->
@@ -1906,7 +2417,8 @@
     <!-- Solapa superior full-screen — SVG polygon rotado en 3D al abrir.
          Usar SVG (no div+clip-path) evita el bug de Chrome con 3D+clip. -->
     <div class="env__flap-wrap" aria-hidden="true">
-      <svg class="env__flap" id="envFlap" viewBox="0 0 100 54" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="env__flap" id="envFlap" viewBox="0 0 100 54" preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg">
         <!-- Triángulo: borde superior completo → apex en el centro de pantalla -->
         <polygon class="env__flap-poly" points="0,0 100,0 50,54"></polygon>
       </svg>
@@ -1930,11 +2442,13 @@
        ════════════════════════════════════════════════════════════ -->
   <button class="theme-btn" id="themeBtn" aria-label="Cambiar entre modo claro y oscuro" hidden="">
     <!-- Luna (visible en modo claro) -->
-    <svg class="i-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <svg class="i-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
     </svg>
     <!-- Sol (visible en modo oscuro) -->
-    <svg class="i-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <svg class="i-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -1976,10 +2490,12 @@
     </div>
 
     <!-- Indicador de deslizar -->
-    <div class="scroll-cue anim-fade d5" id="scrollCue" role="button" tabindex="0" aria-label="Desliza hacia abajo para ver la invitación">
+    <div class="scroll-cue anim-fade d5" id="scrollCue" role="button" tabindex="0"
+      aria-label="Desliza hacia abajo para ver la invitación">
       <span class="scroll-cue__label" id="scrollCueLabel">Desliza</span>
       <span class="scroll-cue__arrow" aria-hidden="true">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 5v14M5 12l7 7 7-7"></path>
         </svg>
       </span>
@@ -2089,7 +2605,8 @@
       <p class="event__address anim-up d2" id="ceremonyAddress"></p>
       <div class="anim-up d2">
         <a class="btn btn--outline" id="ceremonyMapsBtn" href="#" target="_blank" rel="noopener noreferrer">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" aria-hidden="true">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
             <circle cx="12" cy="10" r="3"></circle>
           </svg>
@@ -2124,7 +2641,8 @@
       <p class="event__address anim-up d2" id="receptionAddress"></p>
       <div class="anim-up d2">
         <a class="btn btn--outline" id="receptionMapsBtn" href="#" target="_blank" rel="noopener noreferrer">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" aria-hidden="true">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
             <circle cx="12" cy="10" r="3"></circle>
           </svg>
@@ -2149,7 +2667,8 @@
 
       <!-- Ícono de percha -->
       <div class="dress__badge anim-up d1" aria-hidden="true">
-        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3"
+          stroke-linecap="round" stroke-linejoin="round">
           <path d="M20 5 C23 5 26 7 26 10 C26 13 23 14 20 14"></path>
           <path d="M20 14 L4 28 Q2 30 4 32 L36 32 Q38 30 36 28 Z"></path>
         </svg>
@@ -2221,16 +2740,20 @@
       <!-- Formulario -->
       <form class="rsvp__form" id="rsvpForm" action="#" novalidate="">
 
-        <h2 id="rsvpModalHeading" style="font-family:var(--f-serif);font-weight:300;font-size:1.5rem;text-align:center;margin-bottom:1.4rem;color:var(--c-text)">Confirma tu asistencia</h2>
+        <h2 id="rsvpModalHeading"
+          style="font-family:var(--f-serif);font-weight:300;font-size:1.5rem;text-align:center;margin-bottom:1.4rem;color:var(--c-text)">
+          Confirma tu asistencia</h2>
 
         <div class="field">
           <label class="field__label" for="fname">Nombre completo</label>
-          <input class="field__input" type="text" id="fname" name="name" placeholder="María García" required="" autocomplete="name">
+          <input class="field__input" type="text" id="fname" name="name" placeholder="María García" required=""
+            autocomplete="name">
         </div>
 
         <div class="field">
           <label class="field__label" for="femail">Correo electrónico</label>
-          <input class="field__input" type="email" id="femail" name="email" placeholder="maria@correo.com" autocomplete="email">
+          <input class="field__input" type="email" id="femail" name="email" placeholder="maria@correo.com"
+            autocomplete="email">
         </div>
 
         <div class="field">
@@ -2260,7 +2783,8 @@
 
         <div class="field">
           <label class="field__label" for="fmsg">Mensaje para los novios (opcional)</label>
-          <textarea class="field__textarea" id="fmsg" name="message" placeholder="Escribe tus buenos deseos…"></textarea>
+          <textarea class="field__textarea" id="fmsg" name="message"
+            placeholder="Escribe tus buenos deseos…"></textarea>
         </div>
 
         <button type="submit" class="btn btn--gold" style="width:100%;justify-content:center;margin-top:0.4rem">
@@ -2276,7 +2800,8 @@
         <p style="color:var(--c-text-mid);margin-top:0.4rem;">
           Hemos recibido tu confirmación. Nos vemos pronto.
         </p>
-        <button class="btn btn--ghost" id="rsvpModalCloseSuccess" style="margin-top:1.5rem;min-width:160px;justify-content:center">
+        <button class="btn btn--ghost" id="rsvpModalCloseSuccess"
+          style="margin-top:1.5rem;min-width:160px;justify-content:center">
           Cerrar
         </button>
       </div>
@@ -2341,7 +2866,8 @@
       </div>
 
       <div class="photos__actions anim-up d3" id="photosActions" hidden="">
-        <a class="btn btn--gold" id="photosBtn" href="#" target="_blank" rel="noopener" style="min-width:220px;justify-content:center">
+        <a class="btn btn--gold" id="photosBtn" href="#" target="_blank" rel="noopener"
+          style="min-width:220px;justify-content:center">
           📷 Subir mis fotos
         </a>
       </div>
@@ -2391,26 +2917,26 @@
     let _initialHTML;
 
     /* ── Persistencia en localStorage ────────────────────────── */
-    const _STORAGE_KEY   = 'inv_content';
-    const _COLORS_KEY    = 'inv_colors';
-    const _STYLES_KEY    = 'inv_styles';
-    let   _elementStyles = {};
+    const _STORAGE_KEY = 'inv_content';
+    const _COLORS_KEY = 'inv_colors';
+    const _STYLES_KEY = 'inv_styles';
+    let _elementStyles = {};
 
     function saveToStorage() {
       try {
         localStorage.setItem(_STORAGE_KEY, JSON.stringify(siteContent));
-      } catch(e) {}
+      } catch (e) { }
     }
 
     function saveColorsToStorage(colorMap) {
       try {
         const prev = JSON.parse(localStorage.getItem(_COLORS_KEY) || '{}');
         localStorage.setItem(_COLORS_KEY, JSON.stringify({ ...prev, ...colorMap }));
-      } catch(e) {}
+      } catch (e) { }
     }
 
     function saveStylesToStorage() {
-      try { localStorage.setItem(_STYLES_KEY, JSON.stringify(_elementStyles)); } catch(e) {}
+      try { localStorage.setItem(_STYLES_KEY, JSON.stringify(_elementStyles)); } catch (e) { }
     }
 
     function restoreFromStorage() {
@@ -2419,7 +2945,7 @@
         if (saved) Object.assign(siteContent, JSON.parse(saved));
 
         const colors = JSON.parse(localStorage.getItem(_COLORS_KEY) || '{}');
-        const root   = document.documentElement;
+        const root = document.documentElement;
         Object.entries(colors).forEach(([k, v]) => root.style.setProperty(k, v));
 
         const styles = localStorage.getItem(_STYLES_KEY);
@@ -2427,44 +2953,44 @@
           _elementStyles = JSON.parse(styles);
           /* Se aplican inline después de render() en DOMContentLoaded */
         }
-      } catch(e) {}
+      } catch (e) { }
     }
 
     /* Mapa de fuentes: clave → CSS font-family */
     const _FONT_MAP = {
-      ''            : '',
-      'cormorant'   : "'Cormorant Garamond', Georgia, serif",
-      'jost'        : "'Jost', system-ui, sans-serif",
-      'playfair'    : "'Playfair Display', Georgia, serif",
-      'montserrat'  : "'Montserrat', system-ui, sans-serif",
-      'lora'        : "'Lora', Georgia, serif",
-      'dancing'     : "'Dancing Script', cursive",
-      'great-vibes' : "'Great Vibes', cursive",
-      'libre-bask'  : "'Libre Baskerville', Georgia, serif",
-      'raleway'     : "'Raleway', system-ui, sans-serif",
-      'cinzel'      : "'Cinzel', serif",
-      'eb-garamond' : "'EB Garamond', Georgia, serif",
-      'josefin'     : "'Josefin Sans', system-ui, sans-serif",
-      'sacramento'  : "'Sacramento', cursive",
-      'bodoni'      : "'Bodoni Moda', Georgia, serif",
-      'crimson'     : "'Crimson Pro', Georgia, serif",
-      'nunito'      : "'Nunito', system-ui, sans-serif",
+      '': '',
+      'cormorant': "'Cormorant Garamond', Georgia, serif",
+      'jost': "'Jost', system-ui, sans-serif",
+      'playfair': "'Playfair Display', Georgia, serif",
+      'montserrat': "'Montserrat', system-ui, sans-serif",
+      'lora': "'Lora', Georgia, serif",
+      'dancing': "'Dancing Script', cursive",
+      'great-vibes': "'Great Vibes', cursive",
+      'libre-bask': "'Libre Baskerville', Georgia, serif",
+      'raleway': "'Raleway', system-ui, sans-serif",
+      'cinzel': "'Cinzel', serif",
+      'eb-garamond': "'EB Garamond', Georgia, serif",
+      'josefin': "'Josefin Sans', system-ui, sans-serif",
+      'sacramento': "'Sacramento', cursive",
+      'bodoni': "'Bodoni Moda', Georgia, serif",
+      'crimson': "'Crimson Pro', Georgia, serif",
+      'nunito': "'Nunito', system-ui, sans-serif",
     };
 
     function applyElementStyle(id, s) {
       const el = document.getElementById(id);
       if (!el || !s) return;
-      el.style.color         = s.color        || '';
-      el.style.fontSize      = s.fontSize      || '';
-      el.style.fontFamily    = _FONT_MAP[s.fontFamily || ''] || '';
-      el.style.fontWeight    = s.fontWeight    || '';
+      el.style.color = s.color || '';
+      el.style.fontSize = s.fontSize || '';
+      el.style.fontFamily = _FONT_MAP[s.fontFamily || ''] || '';
+      el.style.fontWeight = s.fontWeight || '';
       el.style.letterSpacing = s.letterSpacing || '';
       if (s.glow) {
         const gc = s.glowColor || '#c5a46a';
         const gs = +(s.glowSize || 8);
-        el.style.textShadow  = `0 0 ${gs}px ${gc}, 0 0 ${gs * 2}px ${gc}55`;
+        el.style.textShadow = `0 0 ${gs}px ${gc}, 0 0 ${gs * 2}px ${gc}55`;
       } else {
-        el.style.textShadow  = '';
+        el.style.textShadow = '';
       }
     }
 
@@ -2477,7 +3003,7 @@
         localStorage.removeItem(_STORAGE_KEY);
         localStorage.removeItem(_COLORS_KEY);
         localStorage.removeItem(_STYLES_KEY);
-      } catch(e) {}
+      } catch (e) { }
     }
 
     /* ──────────────────────────────────────────────────────────
@@ -2494,100 +3020,100 @@
       sealText: "",
 
       /* ── Hero ─────────────────────────────────────────────── */
-      heroEyebrow:  "Una invitación muy especial",
-      heroIntro:    "Tenemos algo importante que contarte…",
+      heroEyebrow: "Una invitación muy especial",
+      heroIntro: "Tenemos algo importante que contarte…",
 
-      heroImage:    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&q=80",
+      heroImage: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&q=80",
 
       /* ── Fecha del evento — formato YYYY-MM-DD ────────────── */
       eventDateRaw: "2026-09-19",
 
       /* ── Anuncio ──────────────────────────────────────────── */
-      announceEyebrow:  "Con alegría",
+      announceEyebrow: "Con alegría",
       announceHeadline: "Nos casamos y queremos celebrarlo contigo",
-      announceBody:     "Después de tanto camino compartido llegó el momento más bonito de nuestras vidas. Con el corazón lleno de amor, te invitamos a acompañarnos en el día que lo cambia todo.",
+      announceBody: "Después de tanto camino compartido llegó el momento más bonito de nuestras vidas. Con el corazón lleno de amor, te invitamos a acompañarnos en el día que lo cambia todo.",
 
       /* ── Historia ─────────────────────────────────────────── */
       storyEyebrow: "Nuestra historia",
-      storyTitle:   "Desde el primer día\nsupimos que era para siempre",
-      storyBody:    "Todo empezó con una mirada y una sonrisa que ninguno de los dos olvidó. Cada aventura, cada momento sencillo y cada instante compartido nos fue acercando más. Hoy, con gratitud y emoción, queremos celebrar este nuevo capítulo rodeados de las personas que más amamos.",
+      storyTitle: "Desde el primer día\nsupimos que era para siempre",
+      storyBody: "Todo empezó con una mirada y una sonrisa que ninguno de los dos olvidó. Cada aventura, cada momento sencillo y cada instante compartido nos fue acercando más. Hoy, con gratitud y emoción, queremos celebrar este nuevo capítulo rodeados de las personas que más amamos.",
 
-      storyImage:    "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
+      storyImage: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
       storyImageAlt: "Fotografía de la pareja en sesión editorial",
 
       /* ── Galería ──────────────────────────────────────────── */
       galleryImages: [
         {
-                "src": "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=480&q=80",
-                "alt": "Ramo de novia con flores silvestres"
+          "src": "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=480&q=80",
+          "alt": "Ramo de novia con flores silvestres"
         },
         {
-                "src": "https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=480&q=80",
-                "alt": "Anillos de compromiso"
+          "src": "https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=480&q=80",
+          "alt": "Anillos de compromiso"
         },
         {
-                "src": "https://images.unsplash.com/photo-1529636444744-adffc9135a5e?w=480&q=80",
-                "alt": "Decoración floral de la celebración"
+          "src": "https://images.unsplash.com/photo-1529636444744-adffc9135a5e?w=480&q=80",
+          "alt": "Decoración floral de la celebración"
         },
         {
-                "src": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=480&q=80",
-                "alt": "Mesa de celebración decorada"
+          "src": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=480&q=80",
+          "alt": "Mesa de celebración decorada"
         },
         {
-                "src": "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?w=480&q=80",
-                "alt": "Pareja celebrando su boda"
+          "src": "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?w=480&q=80",
+          "alt": "Pareja celebrando su boda"
         }
-],
+      ],
 
       /* ── La fecha ────────────────────────────────────────────── */
       eventEyebrow: "La fecha",
 
       /* ── Celebración Eucarística ──────────────────────────── */
-      ceremonyTitle:    "Celebración Eucarística",
-      ceremonyTime:     "11:00",
-      ceremonyTimeSub:  "",
-      ceremonyVenue:    "",
+      ceremonyTitle: "Celebración Eucarística",
+      ceremonyTime: "11:00",
+      ceremonyTimeSub: "",
+      ceremonyVenue: "",
       ceremonyVenueSub: "",
-      ceremonyAddress:  "",
-      ceremonyMapsUrl:  "https://maps.google.com?q=",
+      ceremonyAddress: "",
+      ceremonyMapsUrl: "https://maps.google.com?q=",
 
       /* ── Recepción ────────────────────────────────────────── */
-      receptionTitle:    "Recepción",
-      receptionTime:     "14:00",
-      receptionTimeSub:  "Cocktail desde las 13:30",
-      receptionVenue:    "Hacienda Villa del Alba",
+      receptionTitle: "Recepción",
+      receptionTime: "14:00",
+      receptionTimeSub: "Cocktail desde las 13:30",
+      receptionVenue: "Hacienda Villa del Alba",
       receptionVenueSub: "Salón principal — Acceso norte",
-      receptionAddress:  "Camino de la Hacienda 42, 28001 Madrid, España",
-      receptionMapsUrl:  "https://maps.google.com?q=Hacienda+Villa+del+Alba+Madrid",
+      receptionAddress: "Camino de la Hacienda 42, 28001 Madrid, España",
+      receptionMapsUrl: "https://maps.google.com?q=Hacienda+Villa+del+Alba+Madrid",
 
       /* ── Vestimenta ───────────────────────────────────────── */
       dressCodeEyebrow: "Vestimenta",
-      dressCode:        "Formal elegante",
-      dressCodeSub:     "Colores claros o tierra — sin blanco",
-      dressCodeNote:    "",
+      dressCode: "Formal elegante",
+      dressCodeSub: "Colores claros o tierra — sin blanco",
+      dressCodeNote: "",
 
       /* ── Regalos ──────────────────────────────────────────── */
       giftsEyebrow: "Un detalle",
-      giftsTitle:   "Si deseas hacernos un regalo",
-      giftsText:    "Preferimos lluvia de sobres, pero lo más importante es tu presencia y alegría ese día.",
-      giftsNote:    "",
+      giftsTitle: "Si deseas hacernos un regalo",
+      giftsText: "Preferimos lluvia de sobres, pero lo más importante es tu presencia y alegría ese día.",
+      giftsNote: "",
 
       /* ── RSVP ─────────────────────────────────────────────── */
-      rsvpTitle:     "¿Vendrás con nosotros?",
-      rsvpSub:       "Por favor confirma tu asistencia antes del 1 de agosto de 2026.",
-      rsvpNote:      "Tu respuesta nos ayuda a prepararlo todo con cariño.",
+      rsvpTitle: "¿Vendrás con nosotros?",
+      rsvpSub: "Por favor confirma tu asistencia antes del 1 de agosto de 2026.",
+      rsvpNote: "Tu respuesta nos ayuda a prepararlo todo con cariño.",
       rsvpSongLabel: "¿Qué canción no puede faltar ese día?",
 
       /* ── Fotos del evento ─────────────────────────────────── */
       photosEyebrow: "Tu mirada, nuestra historia",
-      photosTitle:   "¡Comparte tus fotos del día!",
-      photosText:    "Sube las fotos que tomaste durante la celebración. Juntos armaremos el álbum de recuerdos.",
-      photosUrl:     "https://drive.google.com/drive/folders/1hYqfIu0lhmbbDWHKEvWlqfrl1p2CZF5x?usp=sharing",
+      photosTitle: "¡Comparte tus fotos del día!",
+      photosText: "Sube las fotos que tomaste durante la celebración. Juntos armaremos el álbum de recuerdos.",
+      photosUrl: "https://drive.google.com/drive/folders/1hYqfIu0lhmbbDWHKEvWlqfrl1p2CZF5x?usp=sharing",
 
       /* ── Cierre ───────────────────────────────────────────── */
-      closingQuote:   "«El amor no se mide en años, sino en los momentos que dejan huella.»",
-      closingAttrib:  "— Sofía & Mateo",
-      closingCtaTxt:  "¿Todavía no has confirmado tu asistencia?",
+      closingQuote: "«El amor no se mide en años, sino en los momentos que dejan huella.»",
+      closingAttrib: "— Sofía & Mateo",
+      closingCtaTxt: "¿Todavía no has confirmado tu asistencia?",
       closingBtnText: "Confirmar ahora",
 
       /* ── Footer ───────────────────────────────────────────── */
@@ -2600,14 +3126,14 @@
       whatsappNumber: "573000000000", // Reemplaza con tu número (código de país + número) sin espacios ni símbolos
 
       /* ── Textos de instrucción ────────────────────────────── */
-      envHintText:   "✦  Toca para abrir  ✦",
+      envHintText: "✦  Toca para abrir  ✦",
       scrollCueText: "Desliza"
 
     };
-    
-        /* ──────────────────────────────────────────────────────────
-       FIN DEL BLOQUE EDITABLE
-       ────────────────────────────────────────────────────────── */
+
+    /* ──────────────────────────────────────────────────────────
+   FIN DEL BLOQUE EDITABLE
+   ────────────────────────────────────────────────────────── */
 
 
     /* ══════════════════════════════════════════════════════════
@@ -2636,7 +3162,7 @@
       /* Hero */
       document.getElementById('heroBg').style.backgroundImage = `url('${c.heroImage}')`;
       setText('heroEyebrow', c.heroEyebrow);
-      setText('heroIntro',   c.heroIntro);
+      setText('heroIntro', c.heroIntro);
       document.getElementById('heroNames').innerHTML =
         `${c.name1}<span class="amp">&amp;</span>${c.name2}`;
       setText('heroDate', date.toLocaleDateString('es-ES', {
@@ -2646,26 +3172,26 @@
       /* Anuncio — última palabra en cursiva */
       setText('announceEyebrow', c.announceEyebrow);
       const words = c.announceHeadline.split(' ');
-      const last  = words.pop();
+      const last = words.pop();
       document.getElementById('announceHeadline').innerHTML =
         words.join(' ') + ` <em>${last}</em>`;
       setText('announceBody', c.announceBody);
 
       /* Historia */
       setText('storyEyebrow', c.storyEyebrow);
-      setText('storyTitle',   c.storyTitle);
-      setText('storyBody',    c.storyBody);
+      setText('storyTitle', c.storyTitle);
+      setText('storyBody', c.storyBody);
       const sImg = document.getElementById('storyImg');
       sImg.src = c.storyImage;
       sImg.alt = c.storyImageAlt;
 
       /* Galería — duplicar ítems para scroll infinito */
-      const track   = document.getElementById('galleryTrack');
+      const track = document.getElementById('galleryTrack');
       const gallSec = document.getElementById('gallery');
       if (c.galleryImages && c.galleryImages.length) {
         const items = c.galleryImages.map(img =>
           `<div class="gallery__item" role="listitem">
-             <img src="${img.src}" alt="${img.alt}" loading="lazy" />
+             <img src="${img.src}" alt="${img.alt}" loading="lazy" draggable="false" />
            </div>`
         ).join('');
         track.innerHTML = items + items; /* duplicar para loop seamless */
@@ -2679,8 +3205,8 @@
       /* Fecha */
       setText('eventEyebrow', c.eventEyebrow);
       setText('evMonth', monthName(date).toUpperCase());
-      setText('evDay',   String(date.getDate()).padStart(2, '0'));
-      setText('evYear',  String(date.getFullYear()));
+      setText('evDay', String(date.getDate()).padStart(2, '0'));
+      setText('evYear', String(date.getFullYear()));
 
       /* Formatea "HH:MM" → "HH:MM h" para mostrar en pantalla */
       function fmtTime(t) {
@@ -2689,65 +3215,65 @@
       }
 
       /* Celebración Eucarística */
-      setText('ceremonyTitle',    c.ceremonyTitle);
-      setText('ceremonyTime',     fmtTime(c.ceremonyTime));
-      setText('ceremonyTimeSub',  c.ceremonyTimeSub);
-      setText('ceremonyVenue',    c.ceremonyVenue);
+      setText('ceremonyTitle', c.ceremonyTitle);
+      setText('ceremonyTime', fmtTime(c.ceremonyTime));
+      setText('ceremonyTimeSub', c.ceremonyTimeSub);
+      setText('ceremonyVenue', c.ceremonyVenue);
       setText('ceremonyVenueSub', c.ceremonyVenueSub);
-      setText('ceremonyAddress',  c.ceremonyAddress);
+      setText('ceremonyAddress', c.ceremonyAddress);
       const cmBtn = document.getElementById('ceremonyMapsBtn');
       if (cmBtn) cmBtn.href = c.ceremonyMapsUrl || '#';
 
       /* Recepción */
-      setText('receptionTitle',    c.receptionTitle);
-      setText('receptionTime',     fmtTime(c.receptionTime));
-      setText('receptionTimeSub',  c.receptionTimeSub);
-      setText('receptionVenue',    c.receptionVenue);
+      setText('receptionTitle', c.receptionTitle);
+      setText('receptionTime', fmtTime(c.receptionTime));
+      setText('receptionTimeSub', c.receptionTimeSub);
+      setText('receptionVenue', c.receptionVenue);
       setText('receptionVenueSub', c.receptionVenueSub);
-      setText('receptionAddress',  c.receptionAddress);
+      setText('receptionAddress', c.receptionAddress);
       const rcBtn = document.getElementById('receptionMapsBtn');
       if (rcBtn) rcBtn.href = c.receptionMapsUrl || '#';
 
       /* Vestimenta */
       setText('dressCodeEyebrow', c.dressCodeEyebrow);
-      setText('dressCodeVal',     c.dressCode);
-      setText('dressCodeSub',     c.dressCodeSub);
-      setText('dressCodeNote',    c.dressCodeNote);
+      setText('dressCodeVal', c.dressCode);
+      setText('dressCodeSub', c.dressCodeSub);
+      setText('dressCodeNote', c.dressCodeNote);
 
       /* Regalos */
       setText('giftsEyebrow', c.giftsEyebrow);
-      setText('giftsTitle',   c.giftsTitle);
-      setText('giftsText',    c.giftsText);
-      setText('giftsNote',    c.giftsNote);
+      setText('giftsTitle', c.giftsTitle);
+      setText('giftsText', c.giftsText);
+      setText('giftsNote', c.giftsNote);
 
       /* RSVP */
-      setText('rsvpTitle',   c.rsvpTitle);
-      setText('rsvpSub',     c.rsvpSub);
-      setText('rsvpNote',    c.rsvpNote);
+      setText('rsvpTitle', c.rsvpTitle);
+      setText('rsvpSub', c.rsvpSub);
+      setText('rsvpNote', c.rsvpNote);
       setText('rsvpSongLbl', c.rsvpSongLabel);
 
       /* Cierre */
-      setText('closingQuote',  c.closingQuote);
+      setText('closingQuote', c.closingQuote);
       setText('closingAttrib', c.closingAttrib);
       setText('closingCtaTxt', c.closingCtaTxt);
-      setText('closingBtn',    c.closingBtnText);
+      setText('closingBtn', c.closingBtnText);
 
       /* Fotos */
       setText('photosEyebrow', c.photosEyebrow);
-      setText('photosTitle',   c.photosTitle);
-      setText('photosText',    c.photosText);
-      const qrWrap      = document.getElementById('photosQrWrap');
-      const photosActs  = document.getElementById('photosActions');
+      setText('photosTitle', c.photosTitle);
+      setText('photosText', c.photosText);
+      const qrWrap = document.getElementById('photosQrWrap');
+      const photosActs = document.getElementById('photosActions');
       const photosQrImg = document.getElementById('photosQr');
-      const photosBtn   = document.getElementById('photosBtn');
+      const photosBtn = document.getElementById('photosBtn');
       if (c.photosUrl) {
-        if (qrWrap)      qrWrap.removeAttribute('hidden');
-        if (photosActs)  photosActs.removeAttribute('hidden');
+        if (qrWrap) qrWrap.removeAttribute('hidden');
+        if (photosActs) photosActs.removeAttribute('hidden');
         if (photosQrImg) photosQrImg.src =
           `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(c.photosUrl)}`;
-        if (photosBtn)   photosBtn.href = c.photosUrl;
+        if (photosBtn) photosBtn.href = c.photosUrl;
       } else {
-        if (qrWrap)     qrWrap.setAttribute('hidden', '');
+        if (qrWrap) qrWrap.setAttribute('hidden', '');
         if (photosActs) photosActs.setAttribute('hidden', '');
       }
 
@@ -2755,13 +3281,15 @@
       setText('footerTxt', c.footerText);
 
       /* Instrucciones */
-      setText('envHintText',   c.envHintText   || '✦  Toca para abrir  ✦');
+      setText('envHintText', c.envHintText || '✦  Toca para abrir  ✦');
       setText('scrollCueLabel', c.scrollCueText || 'Desliza');
 
       /* Sello del sobre */
       const sealEl = document.getElementById('envSealTxt');
-      if (sealEl) sealEl.textContent = c.sealText ||
-        (c.name1?.[0] ?? '') + '\u2009&\u2009' + (c.name2?.[0] ?? '');
+      if (sealEl) {
+        const initials = (c.name1?.[0] ?? '') + '\u2009&\u2009' + (c.name2?.[0] ?? '');
+        sealEl.textContent = c.sealText || initials;
+      }
     }
 
     function setText(id, value) {
@@ -2794,7 +3322,7 @@
 
     /* ── Ken-Burns en hero al cargar imagen ──────────────── */
     function initHeroBg() {
-      const bg  = document.getElementById('heroBg');
+      const bg = document.getElementById('heroBg');
       const img = new Image();
       img.onload = () => bg.classList.add('loaded');
       img.src = siteContent.heroImage;
@@ -2802,7 +3330,7 @@
 
     /* ── Scroll cue ───────────────────────────────────────── */
     function initScrollCue() {
-      const cue  = document.getElementById('scrollCue');
+      const cue = document.getElementById('scrollCue');
       const hero = document.getElementById('hero');
 
       const goDown = () => document.getElementById('announce')
@@ -2815,20 +3343,20 @@
 
       /* Ocultar al salir del hero */
       new IntersectionObserver(([e]) => {
-        cue.style.opacity       = e.isIntersecting ? '' : '0';
+        cue.style.opacity = e.isIntersecting ? '' : '0';
         cue.style.pointerEvents = e.isIntersecting ? '' : 'none';
       }, { threshold: 0.4 }).observe(hero);
     }
 
     /* ── RSVP — popup modal ──────────────────────────────── */
     function initRSVP() {
-      const modal      = document.getElementById('rsvpModal');
-      const backdrop   = document.getElementById('rsvpModalBackdrop');
-      const closeBtn   = document.getElementById('rsvpModalClose');
-      const closeSucc  = document.getElementById('rsvpModalCloseSuccess');
-      const form       = document.getElementById('rsvpForm');
-      const success    = document.getElementById('rsvpSuccess');
-      const openBtn    = document.getElementById('rsvpOpenBtn');
+      const modal = document.getElementById('rsvpModal');
+      const backdrop = document.getElementById('rsvpModalBackdrop');
+      const closeBtn = document.getElementById('rsvpModalClose');
+      const closeSucc = document.getElementById('rsvpModalCloseSuccess');
+      const form = document.getElementById('rsvpForm');
+      const success = document.getElementById('rsvpSuccess');
+      const openBtn = document.getElementById('rsvpOpenBtn');
       const closingBtn = document.getElementById('closingBtn');
 
       let submitted = false;
@@ -2851,10 +3379,10 @@
         document.body.style.overflow = '';
       }
 
-      if (openBtn)    openBtn.addEventListener('click', openModal);
-      if (closeBtn)   closeBtn.addEventListener('click', closeModal);
-      if (closeSucc)  closeSucc.addEventListener('click', closeModal);
-      if (backdrop)   backdrop.addEventListener('click', closeModal);
+      if (openBtn) openBtn.addEventListener('click', openModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (closeSucc) closeSucc.addEventListener('click', closeModal);
+      if (backdrop) backdrop.addEventListener('click', closeModal);
 
       /* Interceptar el botón de cierre (href="#rsvp") */
       if (closingBtn) {
@@ -2873,12 +3401,12 @@
       if (form) {
         form.addEventListener('submit', e => {
           e.preventDefault();
-          const name   = document.getElementById('fname').value.trim();
-          const email  = document.getElementById('femail').value.trim();
+          const name = document.getElementById('fname').value.trim();
+          const email = document.getElementById('femail').value.trim();
           const attend = document.getElementById('fattend').value;
           const guests = document.getElementById('fguests').value;
-          const song   = document.getElementById('fsong').value.trim();
-          const msg    = document.getElementById('fmsg').value.trim();
+          const song = document.getElementById('fsong').value.trim();
+          const msg = document.getElementById('fmsg').value.trim();
 
           const attendLabels = {
             'yes': 'Sí, allí estaré ✦',
@@ -2892,7 +3420,7 @@
             '3': '+ 3 personas'
           };
 
-          if (!name)   { document.getElementById('fname').focus();   return; }
+          if (!name) { document.getElementById('fname').focus(); return; }
           if (!attend) { document.getElementById('fattend').focus(); return; }
 
           // Redirección a WhatsApp
@@ -2908,11 +3436,11 @@
             if (msg) {
               messageText += `*Mensaje:* ${msg}\n`;
             }
-            
+
             const encodedText = encodeURIComponent(messageText);
             const phoneNumber = siteContent.whatsappNumber.replace(/\D/g, ''); // limpia el número
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
-            
+
             // Abrir WhatsApp en una nueva pestaña (si no estamos en modo edición)
             if (!new URLSearchParams(location.search).has('edit')) {
               window.open(whatsappUrl, '_blank');
@@ -2938,18 +3466,18 @@
     /* ── Cuenta regresiva ─────────────────────────────────── */
     function initCountdown() {
       const elMonths = document.getElementById('cdMonths');
-      const elDays   = document.getElementById('cdDays');
-      const elHours  = document.getElementById('cdHours');
-      const elMins   = document.getElementById('cdMins');
+      const elDays = document.getElementById('cdDays');
+      const elHours = document.getElementById('cdHours');
+      const elMins = document.getElementById('cdMins');
       if (!elMonths) return;
 
       function update() {
-        const now    = new Date();
+        const now = new Date();
         const target = parseDate(siteContent.eventDateRaw);
         /* Añadir hora exacta de la ceremonia si está disponible */
         const tParts = (siteContent.ceremonyTime || '').match(/^(\d{1,2}):(\d{2})$/);
         if (tParts) target.setHours(+tParts[1], +tParts[2], 0, 0);
-        const diff   = target - now;
+        const diff = target - now;
 
         if (diff <= 0) {
           [elMonths, elDays, elHours, elMins].forEach(el => el.textContent = '00');
@@ -2958,24 +3486,24 @@
 
         /* Meses completos restantes */
         let months = (target.getFullYear() - now.getFullYear()) * 12
-                    + (target.getMonth() - now.getMonth());
+          + (target.getMonth() - now.getMonth());
         const afterMonths = new Date(now.getFullYear(), now.getMonth() + months,
-                                     now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
+          now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
         if (afterMonths > target) months--;
 
-        const base  = new Date(now.getFullYear(), now.getMonth() + months,
-                               now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
+        const base = new Date(now.getFullYear(), now.getMonth() + months,
+          now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds());
         const remMs = target - base;
 
-        const days  = Math.floor(remMs / 86400000);
+        const days = Math.floor(remMs / 86400000);
         const hours = Math.floor((remMs % 86400000) / 3600000);
-        const mins  = Math.floor((remMs % 3600000)  / 60000);
+        const mins = Math.floor((remMs % 3600000) / 60000);
 
         const pad = n => String(n).padStart(2, '0');
         elMonths.textContent = pad(months);
-        elDays.textContent   = pad(days);
-        elHours.textContent  = pad(hours);
-        elMins.textContent   = pad(mins);
+        elDays.textContent = pad(days);
+        elHours.textContent = pad(hours);
+        elMins.textContent = pad(mins);
       }
 
       update();
@@ -3014,12 +3542,15 @@
       let opened = false;
 
       function openEnvelope(e) {
-        if (e && e.type === 'touchend') e.preventDefault(); /* evita click posterior */
+        if (e) {
+          if (e.type === 'touchstart') e.preventDefault(); /* evita pan/scroll del browser */
+          if (e.type === 'touchend') e.preventDefault();   /* evita click posterior en iOS */
+        }
         if (opened) return;
         opened = true;
 
         /* Arrancar música — envuelto en try-catch para que un error no bloquee la animación */
-        try { if (typeof _musicAutoStart === 'function') _musicAutoStart(); } catch (_) {}
+        try { if (typeof _musicAutoStart === 'function') _musicAutoStart(); } catch (_) { }
 
         /* Paso 1: iniciar apertura (sello se rompe + solapa rota en 3D) */
         overlay.classList.add('opening');
@@ -3046,18 +3577,18 @@
         setTimeout(() => overlay.remove(), 3500);
       }
 
-      /* Clic / tap / rueda — cualquier interacción abre el sobre */
-      overlay.addEventListener('click',    openEnvelope);
-      /* touchend es más fiable que touchstart en iOS Safari para disparar play() */
+      /* Clic / tap — cualquier interacción abre el sobre */
+      overlay.addEventListener('click', openEnvelope);
+      overlay.addEventListener('touchstart', openEnvelope, { passive: false });
       overlay.addEventListener('touchend', openEnvelope);
-      overlay.addEventListener('wheel',    openEnvelope, { passive: true, once: true });
+      overlay.addEventListener('wheel', openEnvelope, { passive: true, once: true });
 
       /* Teclado: Enter, Espacio o cualquier otra tecla */
       overlay.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnvelope(); }
       });
       document.addEventListener('keydown', (e) => {
-        if (!opened && !['Tab','Shift','Control','Alt','Meta'].includes(e.key)) {
+        if (!opened && !['Tab', 'Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) {
           openEnvelope();
         }
       }, { once: true });
@@ -3067,10 +3598,10 @@
     let _musicAutoStart = null;
 
     function initMusic() {
-      const src    = siteContent.musicSrc;
-      const audio  = document.getElementById('bgAudio');
+      const src = siteContent.musicSrc;
+      const audio = document.getElementById('bgAudio');
       const player = document.getElementById('musicPlayer');
-      const btn    = document.getElementById('musicBtn');
+      const btn = document.getElementById('musicBtn');
 
       if (!src || !audio) return;
 
@@ -3086,7 +3617,7 @@
         try {
           const Ctx = window.AudioContext || window.webkitAudioContext;
           if (Ctx) { const ctx = new Ctx(); ctx.resume(); ctx.close(); }
-        } catch (_) {}
+        } catch (_) { }
       }
 
       function toggleMusic() {
@@ -3096,7 +3627,7 @@
           btn.classList.remove('playing');
           btn.setAttribute('aria-label', 'Reproducir música');
         } else {
-          audio.play().catch(() => {});
+          audio.play().catch(() => { });
           btn.textContent = '❚❚';
           btn.classList.add('playing');
           btn.setAttribute('aria-label', 'Pausar música');
@@ -3121,63 +3652,63 @@
 
       /* ── Helpers ─────────────────────────────────────────── */
       function escAttr(s) {
-        return String(s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+        return String(s ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
       }
       function escHtml(s) {
-        return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       }
       function rgbToHex(rgb) {
         rgb = rgb.trim();
         if (/^#[0-9a-fA-F]{3,8}$/.test(rgb)) {
           return rgb.length === 4
-            ? '#' + rgb[1]+rgb[1]+rgb[2]+rgb[2]+rgb[3]+rgb[3]
-            : rgb.slice(0,7);
+            ? '#' + rgb[1] + rgb[1] + rgb[2] + rgb[2] + rgb[3] + rgb[3]
+            : rgb.slice(0, 7);
         }
         const m = rgb.match(/rgba?\((\d+)[,\s]+(\d+)[,\s]+(\d+)/);
         if (!m) return '#c5a46a';
-        return '#' + [m[1],m[2],m[3]].map(x => parseInt(x).toString(16).padStart(2,'0')).join('');
+        return '#' + [m[1], m[2], m[3]].map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
       }
 
       /* Calcula --c-bg-alt como la misma gama que --c-bg pero ~5% más clara */
       function calcBgAlt(hex) {
         if (!/^#[0-9a-fA-F]{6}$/.test(hex)) return null;
-        const r = parseInt(hex.slice(1,3),16)/255;
-        const g = parseInt(hex.slice(3,5),16)/255;
-        const b = parseInt(hex.slice(5,7),16)/255;
-        const max = Math.max(r,g,b), min = Math.min(r,g,b);
+        const r = parseInt(hex.slice(1, 3), 16) / 255;
+        const g = parseInt(hex.slice(3, 5), 16) / 255;
+        const b = parseInt(hex.slice(5, 7), 16) / 255;
+        const max = Math.max(r, g, b), min = Math.min(r, g, b);
         let h = 0, s = 0;
-        const l = (max+min)/2;
+        const l = (max + min) / 2;
         if (max !== min) {
-          const d = max-min;
-          s = l > 0.5 ? d/(2-max-min) : d/(max+min);
-          if      (max===r) h = ((g-b)/d + (g<b?6:0))/6;
-          else if (max===g) h = ((b-r)/d + 2)/6;
-          else              h = ((r-g)/d + 4)/6;
+          const d = max - min;
+          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+          if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+          else if (max === g) h = ((b - r) / d + 2) / 6;
+          else h = ((r - g) / d + 4) / 6;
         }
         const lNew = Math.min(0.97, l + 0.055); /* +5.5% de claridad */
-        function hue2rgb(p,q,t){
-          if(t<0)t++; if(t>1)t--;
-          if(t<1/6) return p+(q-p)*6*t;
-          if(t<1/2) return q;
-          if(t<2/3) return p+(q-p)*(2/3-t)*6;
+        function hue2rgb(p, q, t) {
+          if (t < 0) t++; if (t > 1) t--;
+          if (t < 1 / 6) return p + (q - p) * 6 * t;
+          if (t < 1 / 2) return q;
+          if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
           return p;
         }
-        let r2,g2,b2;
-        if(s===0){ r2=g2=b2=lNew; }
+        let r2, g2, b2;
+        if (s === 0) { r2 = g2 = b2 = lNew; }
         else {
-          const q = lNew<0.5 ? lNew*(1+s) : lNew+s-lNew*s;
-          const p = 2*lNew-q;
-          r2 = hue2rgb(p,q,h+1/3);
-          g2 = hue2rgb(p,q,h);
-          b2 = hue2rgb(p,q,h-1/3);
+          const q = lNew < 0.5 ? lNew * (1 + s) : lNew + s - lNew * s;
+          const p = 2 * lNew - q;
+          r2 = hue2rgb(p, q, h + 1 / 3);
+          g2 = hue2rgb(p, q, h);
+          b2 = hue2rgb(p, q, h - 1 / 3);
         }
-        const toHex = x => Math.round(x*255).toString(16).padStart(2,'0');
-        return '#'+toHex(r2)+toHex(g2)+toHex(b2);
+        const toHex = x => Math.round(x * 255).toString(16).padStart(2, '0');
+        return '#' + toHex(r2) + toHex(g2) + toHex(b2);
       }
 
       function buildConfigStr() {
         const c = siteContent;
-        const q  = k => JSON.stringify(c[k] ?? '');
+        const q = k => JSON.stringify(c[k] ?? '');
         return `const siteContent = {\n\n` +
           `      /* ── Meta ─────────────────────────────────────────────── */\n` +
           `      pageTitle: ${q('pageTitle')},\n\n` +
@@ -3259,19 +3790,19 @@
       }
 
       /* ── Referencias DOM ─────────────────────────────────── */
-      const panel    = document.getElementById('editorPanel');
-      const toggle   = document.getElementById('editorToggle');
+      const panel = document.getElementById('editorPanel');
+      const toggle = document.getElementById('editorToggle');
       const closeBtn = document.getElementById('editorClose');
-      const bodyEl   = document.getElementById('editorBody');
-      const root     = document.documentElement;
+      const bodyEl = document.getElementById('editorBody');
+      const root = document.documentElement;
 
       /* ── Carga dinámica de fuentes del editor ──────────────── */
-      const _loadedFonts = new Set(['cormorant','jost']);
+      const _loadedFonts = new Set(['cormorant', 'jost']);
       function loadEditorFont(key) {
         if (!key || _loadedFonts.has(key) || !_FONT_GURL[key]) return;
         _loadedFonts.add(key);
         const link = document.createElement('link');
-        link.rel  = 'stylesheet';
+        link.rel = 'stylesheet';
         link.href = `https://fonts.googleapis.com/css2?family=${_FONT_GURL[key]}&display=swap`;
         document.head.appendChild(link);
       }
@@ -3281,7 +3812,7 @@
 
       /* ── Mostrar / ocultar ───────────────────────────────── */
       let _fontsLoaded = false;
-      function openPanel()  {
+      function openPanel() {
         panel.classList.add('open');
         if (!_fontsLoaded) { _fontsLoaded = true; loadAllEditorFonts(); }
       }
@@ -3303,99 +3834,127 @@
 
       /* ── Esquema de secciones ────────────────────────────── */
       const sections = [
-        { title: 'Pareja & sello', fields: [
-          { key: 'name1',    label: 'Nombre 1' },
-          { key: 'name2',    label: 'Nombre 2' },
-          { key: 'sealText', label: 'Texto del sello (vacío = iniciales automáticas)' },
-        ]},
-        { title: 'Hero', fields: [
-          { key: 'heroEyebrow', label: 'Texto pequeño superior' },
-          { key: 'heroIntro',   label: 'Intro' },
-          { key: 'heroImage',   label: 'Imagen de portada', type: 'image-url' },
-        ]},
-        { title: 'Fecha', fields: [
-          { key: 'eventDateRaw', label: 'Fecha del evento (YYYY-MM-DD)', type: 'date' },
-        ]},
-        { title: 'Anuncio', fields: [
-          { key: 'announceEyebrow',  label: 'Eyebrow' },
-          { key: 'announceHeadline', label: 'Titular' },
-          { key: 'announceBody',     label: 'Texto', type: 'textarea' },
-        ]},
-        { title: 'Historia', fields: [
-          { key: 'storyEyebrow', label: 'Eyebrow' },
-          { key: 'storyTitle',   label: 'Título' },
-          { key: 'storyBody',    label: 'Texto', type: 'textarea' },
-          { key: 'storyImage',   label: 'Foto de pareja', type: 'image-url' },
-        ]},
-        { title: 'Celebración Eucarística', fields: [
-          { key: 'ceremonyTitle',    label: 'Título' },
-          { key: 'ceremonyTime',     label: 'Hora (también controla la cuenta regresiva)', type: 'time' },
-          { key: 'ceremonyTimeSub',  label: 'Nota de hora' },
-          { key: 'ceremonyVenue',    label: 'Lugar' },
-          { key: 'ceremonyVenueSub', label: 'Detalle del lugar' },
-          { key: 'ceremonyAddress',  label: 'Dirección' },
-          { key: 'ceremonyMapsUrl',  label: 'URL Google Maps' },
-        ]},
-        { title: 'Recepción', fields: [
-          { key: 'receptionTitle',    label: 'Título' },
-          { key: 'receptionTime',     label: 'Hora', type: 'time' },
-          { key: 'receptionTimeSub',  label: 'Nota de hora' },
-          { key: 'receptionVenue',    label: 'Lugar' },
-          { key: 'receptionVenueSub', label: 'Detalle del lugar' },
-          { key: 'receptionAddress',  label: 'Dirección' },
-          { key: 'receptionMapsUrl',  label: 'URL Google Maps' },
-        ]},
-        { title: 'Vestimenta', fields: [
-          { key: 'dressCodeEyebrow', label: 'Eyebrow' },
-          { key: 'dressCode',        label: 'Código de vestimenta' },
-          { key: 'dressCodeSub',     label: 'Detalle' },
-          { key: 'dressCodeNote',    label: 'Nota adicional', type: 'textarea' },
-        ]},
-        { title: 'Regalos', fields: [
-          { key: 'giftsEyebrow', label: 'Eyebrow' },
-          { key: 'giftsTitle',   label: 'Título' },
-          { key: 'giftsText',    label: 'Texto principal', type: 'textarea' },
-          { key: 'giftsNote',    label: 'Nota (cuenta, link, etc.)', type: 'textarea' },
-        ]},
-        { title: 'RSVP & WhatsApp', fields: [
-          { key: 'rsvpTitle',     label: 'Título' },
-          { key: 'rsvpSub',       label: 'Subtítulo' },
-          { key: 'rsvpNote',      label: 'Nota al pie' },
-          { key: 'rsvpSongLabel', label: 'Etiqueta campo canción' },
-          { key: 'whatsappNumber', label: 'WhatsApp de confirmación (Ej: 573000000000)' },
-        ]},
-        { title: 'Fotos del evento', fields: [
-          { key: 'photosEyebrow', label: 'Eyebrow' },
-          { key: 'photosTitle',   label: 'Título' },
-          { key: 'photosText',    label: 'Texto', type: 'textarea' },
-          { key: 'photosUrl',     label: 'Link para subir fotos (Google Drive, Dropbox, etc.)' },
-        ]},
-        { title: 'Cierre', fields: [
-          { key: 'closingQuote',   label: 'Cita',           type: 'textarea' },
-          { key: 'closingAttrib',  label: 'Atribución' },
-          { key: 'closingCtaTxt',  label: 'Texto secundario' },
-          { key: 'closingBtnText', label: 'Texto del botón' },
-        ]},
-        { title: 'Instrucciones de navegación', fields: [
-          { key: 'envHintText',   label: 'Texto del sobre (ej: ✦ Toca para abrir ✦)' },
-          { key: 'scrollCueText', label: 'Texto "Desliza" del hero' },
-        ]},
-        { title: 'Footer & meta', fields: [
-          { key: 'footerText', label: 'Texto del footer' },
-          { key: 'pageTitle',  label: 'Título de la pestaña' },
-        ]},
+        {
+          title: 'Pareja & sello', fields: [
+            { key: 'name1', label: 'Nombre 1' },
+            { key: 'name2', label: 'Nombre 2' },
+            { key: 'sealText', label: 'Texto del sello (vacío = iniciales automáticas)' },
+          ]
+        },
+        {
+          title: 'Hero', fields: [
+            { key: 'heroEyebrow', label: 'Texto pequeño superior' },
+            { key: 'heroIntro', label: 'Intro' },
+            { key: 'heroImage', label: 'Imagen de portada', type: 'image-url' },
+          ]
+        },
+        {
+          title: 'Fecha', fields: [
+            { key: 'eventDateRaw', label: 'Fecha del evento (YYYY-MM-DD)', type: 'date' },
+          ]
+        },
+        {
+          title: 'Anuncio', fields: [
+            { key: 'announceEyebrow', label: 'Eyebrow' },
+            { key: 'announceHeadline', label: 'Titular' },
+            { key: 'announceBody', label: 'Texto', type: 'textarea' },
+          ]
+        },
+        {
+          title: 'Historia', fields: [
+            { key: 'storyEyebrow', label: 'Eyebrow' },
+            { key: 'storyTitle', label: 'Título' },
+            { key: 'storyBody', label: 'Texto', type: 'textarea' },
+            { key: 'storyImage', label: 'Foto de pareja', type: 'image-url' },
+          ]
+        },
+        {
+          title: 'Celebración Eucarística', fields: [
+            { key: 'ceremonyTitle', label: 'Título' },
+            { key: 'ceremonyTime', label: 'Hora (también controla la cuenta regresiva)', type: 'time' },
+            { key: 'ceremonyTimeSub', label: 'Nota de hora' },
+            { key: 'ceremonyVenue', label: 'Lugar' },
+            { key: 'ceremonyVenueSub', label: 'Detalle del lugar' },
+            { key: 'ceremonyAddress', label: 'Dirección' },
+            { key: 'ceremonyMapsUrl', label: 'URL Google Maps' },
+          ]
+        },
+        {
+          title: 'Recepción', fields: [
+            { key: 'receptionTitle', label: 'Título' },
+            { key: 'receptionTime', label: 'Hora', type: 'time' },
+            { key: 'receptionTimeSub', label: 'Nota de hora' },
+            { key: 'receptionVenue', label: 'Lugar' },
+            { key: 'receptionVenueSub', label: 'Detalle del lugar' },
+            { key: 'receptionAddress', label: 'Dirección' },
+            { key: 'receptionMapsUrl', label: 'URL Google Maps' },
+          ]
+        },
+        {
+          title: 'Vestimenta', fields: [
+            { key: 'dressCodeEyebrow', label: 'Eyebrow' },
+            { key: 'dressCode', label: 'Código de vestimenta' },
+            { key: 'dressCodeSub', label: 'Detalle' },
+            { key: 'dressCodeNote', label: 'Nota adicional', type: 'textarea' },
+          ]
+        },
+        {
+          title: 'Regalos', fields: [
+            { key: 'giftsEyebrow', label: 'Eyebrow' },
+            { key: 'giftsTitle', label: 'Título' },
+            { key: 'giftsText', label: 'Texto principal', type: 'textarea' },
+            { key: 'giftsNote', label: 'Nota (cuenta, link, etc.)', type: 'textarea' },
+          ]
+        },
+        {
+          title: 'RSVP & WhatsApp', fields: [
+            { key: 'rsvpTitle', label: 'Título' },
+            { key: 'rsvpSub', label: 'Subtítulo' },
+            { key: 'rsvpNote', label: 'Nota al pie' },
+            { key: 'rsvpSongLabel', label: 'Etiqueta campo canción' },
+            { key: 'whatsappNumber', label: 'WhatsApp de confirmación (Ej: 573000000000)' },
+          ]
+        },
+        {
+          title: 'Fotos del evento', fields: [
+            { key: 'photosEyebrow', label: 'Eyebrow' },
+            { key: 'photosTitle', label: 'Título' },
+            { key: 'photosText', label: 'Texto', type: 'textarea' },
+            { key: 'photosUrl', label: 'Link para subir fotos (Google Drive, Dropbox, etc.)' },
+          ]
+        },
+        {
+          title: 'Cierre', fields: [
+            { key: 'closingQuote', label: 'Cita', type: 'textarea' },
+            { key: 'closingAttrib', label: 'Atribución' },
+            { key: 'closingCtaTxt', label: 'Texto secundario' },
+            { key: 'closingBtnText', label: 'Texto del botón' },
+          ]
+        },
+        {
+          title: 'Instrucciones de navegación', fields: [
+            { key: 'envHintText', label: 'Texto del sobre (ej: ✦ Toca para abrir ✦)' },
+            { key: 'scrollCueText', label: 'Texto "Desliza" del hero' },
+          ]
+        },
+        {
+          title: 'Footer & meta', fields: [
+            { key: 'footerText', label: 'Texto del footer' },
+            { key: 'pageTitle', label: 'Título de la pestaña' },
+          ]
+        },
       ];
 
       /* ── Colores editables ───────────────────────────────── */
       const colorVars = [
-        { v: '--c-gold',        label: 'Dorado · acento principal'     },
-        { v: '--c-gold-dim',    label: 'Dorado tenue · bordes y líneas'},
-        { v: '--c-bg',          label: 'Fondo principal (auto-calcula Fondo 2)' },
-        { v: '--c-bg-alt',      label: 'Fondo 2 · secciones alternas'  },
-        { v: '--c-text',        label: 'Texto principal'                },
-        { v: '--c-text-mid',    label: 'Texto secundario'               },
-        { v: '--c-text-muted',  label: 'Texto sutil · etiquetas'        },
-        { v: '--c-envelope',    label: 'Color del sobre inicial'        },
+        { v: '--c-gold', label: 'Dorado · acento principal' },
+        { v: '--c-gold-dim', label: 'Dorado tenue · bordes y líneas' },
+        { v: '--c-bg', label: 'Fondo principal (auto-calcula Fondo 2)' },
+        { v: '--c-bg-alt', label: 'Fondo 2 · secciones alternas' },
+        { v: '--c-text', label: 'Texto principal' },
+        { v: '--c-text-mid', label: 'Texto secundario' },
+        { v: '--c-text-muted', label: 'Texto sutil · etiquetas' },
+        { v: '--c-envelope', label: 'Color del sobre inicial' },
       ];
 
       /* ── Construir UI ────────────────────────────────────── */
@@ -3404,12 +3963,12 @@
           <div class="editor-section-title">Colores</div>
           <div class="editor-color-grid">
             ${colorVars.map(cv => {
-              const raw = getComputedStyle(root).getPropertyValue(cv.v).trim();
-              return `<div class="editor-color-field">
+        const raw = getComputedStyle(root).getPropertyValue(cv.v).trim();
+        return `<div class="editor-color-field">
                 <label>${cv.label}</label>
                 <input type="color" data-var="${cv.v}" value="${rgbToHex(raw)}" title="${cv.v}" />
               </div>`;
-            }).join('')}
+      }).join('')}
           </div>
         </div>`;
 
@@ -3418,43 +3977,43 @@
           <div class="editor-section">
             <div class="editor-section-title">${escHtml(s.title)}</div>
             ${s.fields.map(f => {
-              const val = siteContent[f.key] ?? '';
-              if (f.type === 'textarea') {
-                return `<div class="editor-field">
+          const val = siteContent[f.key] ?? '';
+          if (f.type === 'textarea') {
+            return `<div class="editor-field">
                   <label>${escHtml(f.label)}</label>
                   <textarea data-key="${f.key}">${escHtml(val)}</textarea>
                 </div>`;
-              }
-              if (f.type === 'image-url') {
-                const isUploaded = val.startsWith('data:');
-                return `<div class="editor-field">
+          }
+          if (f.type === 'image-url') {
+            const isUploaded = val.startsWith('data:');
+            return `<div class="editor-field">
                   <label>${escHtml(f.label)}</label>
                   ${isUploaded
-                    ? `<div class="editor-media-card">
+                ? `<div class="editor-media-card">
                          <img class="editor-media-thumb" src="${escAttr(val)}" alt="" />
                          <button class="editor-media-change" data-upload-key="${f.key}">↺ Cambiar imagen</button>
                        </div>`
-                    : `<div class="input-with-upload">
+                : `<div class="input-with-upload">
                          <input type="text" data-key="${f.key}" value="${escAttr(val)}" placeholder="https://..." />
                          <button class="upload-img-btn" data-upload-key="${f.key}" title="Subir imagen">📁</button>
                        </div>`
-                  }
-                </div>`;
               }
-              /* Para type:time limpiar cualquier sufijo legacy (" h") */
-              const inputVal = f.type === 'time'
-                ? (val.match(/(\d{1,2}:\d{2})/)?.[1] ?? '')
-                : val;
-              return `<div class="editor-field">
+                </div>`;
+          }
+          /* Para type:time limpiar cualquier sufijo legacy (" h") */
+          const inputVal = f.type === 'time'
+            ? (val.match(/(\d{1,2}:\d{2})/)?.[1] ?? '')
+            : val;
+          return `<div class="editor-field">
                 <label>${escHtml(f.label)}</label>
                 <input type="${f.type || 'text'}" data-key="${f.key}" value="${escAttr(inputVal)}" />
               </div>`;
-            }).join('')}
+        }).join('')}
           </div>`).join('');
       }
 
       function buildMusicHtml() {
-        const audioSrc  = siteContent.musicSrc ?? '';
+        const audioSrc = siteContent.musicSrc ?? '';
         const isUploaded = audioSrc.startsWith('data:');
         return `
           <div class="editor-section">
@@ -3462,15 +4021,15 @@
             <div class="editor-field">
               <label>Archivo de música</label>
               ${isUploaded
-                ? `<div class="editor-media-card">
+            ? `<div class="editor-media-card">
                      <div class="editor-media-audio-badge">🎵 Audio cargado</div>
                      <button class="editor-media-change" data-upload-key="musicSrc" data-upload-type="audio">↺ Cambiar audio</button>
                    </div>`
-                : `<div class="input-with-upload">
+            : `<div class="input-with-upload">
                      <input type="text" data-key="musicSrc" value="${escAttr(audioSrc)}" placeholder="URL de MP3 o sube un archivo" />
                      <button class="upload-img-btn" data-upload-key="musicSrc" data-upload-type="audio" title="Subir audio">🎵</button>
                    </div>`
-              }
+          }
             </div>
             <p style="font-size:0.7rem;color:#706a60;line-height:1.5">
               Soporta MP3, OGG o WAV. La música inicia cuando el invitado abre el sobre.
@@ -3480,73 +4039,97 @@
 
       /* ── Estilos de texto por elemento ──────────────────── */
       const textStyleGroups = [
-        { section: 'Hero', elements: [
-          { id: 'heroEyebrow', label: 'Hero › Texto pequeño superior (eyebrow)' },
-          { id: 'heroIntro',   label: 'Hero › Intro / subtítulo en cursiva' },
-          { id: 'heroNames',   label: 'Hero › Nombres de la pareja' },
-          { id: 'heroDate',    label: 'Hero › Línea de fecha' },
-        ]},
-        { section: 'Anuncio', elements: [
-          { id: 'announceEyebrow',  label: 'Anuncio › Eyebrow superior' },
-          { id: 'announceHeadline', label: 'Anuncio › Titular principal' },
-          { id: 'announceBody',     label: 'Anuncio › Párrafo de texto' },
-        ]},
-        { section: 'Historia', elements: [
-          { id: 'storyEyebrow', label: 'Historia › Eyebrow' },
-          { id: 'storyTitle',   label: 'Historia › Título' },
-          { id: 'storyBody',    label: 'Historia › Texto del párrafo' },
-        ]},
-        { section: 'Fecha del Evento', elements: [
-          { id: 'eventEyebrow', label: 'Fecha › Eyebrow' },
-          { id: 'evMonth',      label: 'Fecha › Mes (letras)' },
-          { id: 'evDay',        label: 'Fecha › Día (número grande)' },
-          { id: 'evYear',       label: 'Fecha › Año' },
-        ]},
-        { section: 'Ceremonia', elements: [
-          { id: 'ceremonyTitle',   label: 'Ceremonia › Título de sección' },
-          { id: 'ceremonyTime',    label: 'Ceremonia › Hora' },
-          { id: 'ceremonyTimeSub', label: 'Ceremonia › Nota de hora' },
-          { id: 'ceremonyVenue',   label: 'Ceremonia › Nombre del lugar' },
-          { id: 'ceremonyVenueSub',label: 'Ceremonia › Detalle del lugar' },
-          { id: 'ceremonyAddress', label: 'Ceremonia › Dirección' },
-        ]},
-        { section: 'Recepción', elements: [
-          { id: 'receptionTitle',   label: 'Recepción › Título de sección' },
-          { id: 'receptionTime',    label: 'Recepción › Hora' },
-          { id: 'receptionTimeSub', label: 'Recepción › Nota de hora' },
-          { id: 'receptionVenue',   label: 'Recepción › Nombre del lugar' },
-          { id: 'receptionVenueSub',label: 'Recepción › Detalle del lugar' },
-          { id: 'receptionAddress', label: 'Recepción › Dirección' },
-        ]},
-        { section: 'Vestimenta', elements: [
-          { id: 'dressCodeEyebrow', label: 'Vestimenta › Eyebrow' },
-          { id: 'dressCodeVal',     label: 'Vestimenta › Código de vestimenta' },
-          { id: 'dressCodeSub',     label: 'Vestimenta › Texto de detalle' },
-          { id: 'dressCodeNote',    label: 'Vestimenta › Nota adicional' },
-        ]},
-        { section: 'Regalos', elements: [
-          { id: 'giftsEyebrow', label: 'Regalos › Eyebrow' },
-          { id: 'giftsTitle',   label: 'Regalos › Título' },
-          { id: 'giftsText',    label: 'Regalos › Texto principal' },
-          { id: 'giftsNote',    label: 'Regalos › Nota / cuenta' },
-        ]},
-        { section: 'RSVP', elements: [
-          { id: 'rsvpTitle', label: 'RSVP › Título' },
-          { id: 'rsvpSub',   label: 'RSVP › Subtítulo' },
-          { id: 'rsvpNote',  label: 'RSVP › Nota al pie' },
-        ]},
-        { section: 'Cierre', elements: [
-          { id: 'closingQuote',  label: 'Cierre › Cita' },
-          { id: 'closingAttrib', label: 'Cierre › Atribución' },
-          { id: 'closingCtaTxt', label: 'Cierre › Texto secundario' },
-        ]},
-        { section: 'Instrucciones', elements: [
-          { id: 'envHintText',    label: 'Sobre › "Toca para abrir"' },
-          { id: 'scrollCueLabel', label: 'Hero › "Desliza"' },
-        ]},
-        { section: 'Footer', elements: [
-          { id: 'footerTxt', label: 'Footer › Texto del pie de página' },
-        ]},
+        {
+          section: 'Hero', elements: [
+            { id: 'heroEyebrow', label: 'Hero › Texto pequeño superior (eyebrow)' },
+            { id: 'heroIntro', label: 'Hero › Intro / subtítulo en cursiva' },
+            { id: 'heroNames', label: 'Hero › Nombres de la pareja' },
+            { id: 'heroDate', label: 'Hero › Línea de fecha' },
+          ]
+        },
+        {
+          section: 'Anuncio', elements: [
+            { id: 'announceEyebrow', label: 'Anuncio › Eyebrow superior' },
+            { id: 'announceHeadline', label: 'Anuncio › Titular principal' },
+            { id: 'announceBody', label: 'Anuncio › Párrafo de texto' },
+          ]
+        },
+        {
+          section: 'Historia', elements: [
+            { id: 'storyEyebrow', label: 'Historia › Eyebrow' },
+            { id: 'storyTitle', label: 'Historia › Título' },
+            { id: 'storyBody', label: 'Historia › Texto del párrafo' },
+          ]
+        },
+        {
+          section: 'Fecha del Evento', elements: [
+            { id: 'eventEyebrow', label: 'Fecha › Eyebrow' },
+            { id: 'evMonth', label: 'Fecha › Mes (letras)' },
+            { id: 'evDay', label: 'Fecha › Día (número grande)' },
+            { id: 'evYear', label: 'Fecha › Año' },
+          ]
+        },
+        {
+          section: 'Ceremonia', elements: [
+            { id: 'ceremonyTitle', label: 'Ceremonia › Título de sección' },
+            { id: 'ceremonyTime', label: 'Ceremonia › Hora' },
+            { id: 'ceremonyTimeSub', label: 'Ceremonia › Nota de hora' },
+            { id: 'ceremonyVenue', label: 'Ceremonia › Nombre del lugar' },
+            { id: 'ceremonyVenueSub', label: 'Ceremonia › Detalle del lugar' },
+            { id: 'ceremonyAddress', label: 'Ceremonia › Dirección' },
+          ]
+        },
+        {
+          section: 'Recepción', elements: [
+            { id: 'receptionTitle', label: 'Recepción › Título de sección' },
+            { id: 'receptionTime', label: 'Recepción › Hora' },
+            { id: 'receptionTimeSub', label: 'Recepción › Nota de hora' },
+            { id: 'receptionVenue', label: 'Recepción › Nombre del lugar' },
+            { id: 'receptionVenueSub', label: 'Recepción › Detalle del lugar' },
+            { id: 'receptionAddress', label: 'Recepción › Dirección' },
+          ]
+        },
+        {
+          section: 'Vestimenta', elements: [
+            { id: 'dressCodeEyebrow', label: 'Vestimenta › Eyebrow' },
+            { id: 'dressCodeVal', label: 'Vestimenta › Código de vestimenta' },
+            { id: 'dressCodeSub', label: 'Vestimenta › Texto de detalle' },
+            { id: 'dressCodeNote', label: 'Vestimenta › Nota adicional' },
+          ]
+        },
+        {
+          section: 'Regalos', elements: [
+            { id: 'giftsEyebrow', label: 'Regalos › Eyebrow' },
+            { id: 'giftsTitle', label: 'Regalos › Título' },
+            { id: 'giftsText', label: 'Regalos › Texto principal' },
+            { id: 'giftsNote', label: 'Regalos › Nota / cuenta' },
+          ]
+        },
+        {
+          section: 'RSVP', elements: [
+            { id: 'rsvpTitle', label: 'RSVP › Título' },
+            { id: 'rsvpSub', label: 'RSVP › Subtítulo' },
+            { id: 'rsvpNote', label: 'RSVP › Nota al pie' },
+          ]
+        },
+        {
+          section: 'Cierre', elements: [
+            { id: 'closingQuote', label: 'Cierre › Cita' },
+            { id: 'closingAttrib', label: 'Cierre › Atribución' },
+            { id: 'closingCtaTxt', label: 'Cierre › Texto secundario' },
+          ]
+        },
+        {
+          section: 'Instrucciones', elements: [
+            { id: 'envHintText', label: 'Sobre › "Toca para abrir"' },
+            { id: 'scrollCueLabel', label: 'Hero › "Desliza"' },
+          ]
+        },
+        {
+          section: 'Footer', elements: [
+            { id: 'footerTxt', label: 'Footer › Texto del pie de página' },
+          ]
+        },
       ];
 
       function hasOverrides(id) {
@@ -3560,16 +4143,16 @@
           .filter(([, s]) => s && (s.color || s.fontFamily || s.fontWeight || s.fontSize || s.letterSpacing || s.glow))
           .map(([id, s]) => {
             const r = [];
-            if (s.color)         r.push(`color:${s.color}`);
-            if (s.fontSize)      r.push(`font-size:${s.fontSize}`);
+            if (s.color) r.push(`color:${s.color}`);
+            if (s.fontSize) r.push(`font-size:${s.fontSize}`);
             const ff = _FONT_MAP[s.fontFamily || ''];
-            if (ff)              r.push(`font-family:${ff}`);
-            if (s.fontWeight)    r.push(`font-weight:${s.fontWeight}`);
+            if (ff) r.push(`font-family:${ff}`);
+            if (s.fontWeight) r.push(`font-weight:${s.fontWeight}`);
             if (s.letterSpacing) r.push(`letter-spacing:${s.letterSpacing}`);
             if (s.glow) {
               const gc = s.glowColor || '#c5a46a';
               const gs = +(s.glowSize || 8);
-              r.push(`text-shadow:0 0 ${gs}px ${gc},0 0 ${gs*2}px ${gc}55`);
+              r.push(`text-shadow:0 0 ${gs}px ${gc},0 0 ${gs * 2}px ${gc}55`);
             }
             return r.length ? `  #${id} { ${r.join('; ')} }` : null;
           })
@@ -3578,20 +4161,20 @@
 
       /* Google Fonts URL para cada fuente adicional (exportación limpia) */
       const _FONT_GURL = {
-        'playfair'    : 'Playfair+Display:ital,wght@0,400;0,700;1,400',
-        'montserrat'  : 'Montserrat:wght@300;400;500',
-        'lora'        : 'Lora:ital,wght@0,400;0,600;1,400',
-        'dancing'     : 'Dancing+Script:wght@400;600',
-        'great-vibes' : 'Great+Vibes',
-        'libre-bask'  : 'Libre+Baskerville:ital,wght@0,400;0,700;1,400',
-        'raleway'     : 'Raleway:wght@200;300;400',
-        'cinzel'      : 'Cinzel:wght@400;500',
-        'eb-garamond' : 'EB+Garamond:ital,wght@0,400;0,500;1,400',
-        'josefin'     : 'Josefin+Sans:wght@200;300;400',
-        'sacramento'  : 'Sacramento',
-        'bodoni'      : 'Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400',
-        'crimson'     : 'Crimson+Pro:ital,wght@0,300;0,400;1,300',
-        'nunito'      : 'Nunito:wght@300;400;500',
+        'playfair': 'Playfair+Display:ital,wght@0,400;0,700;1,400',
+        'montserrat': 'Montserrat:wght@300;400;500',
+        'lora': 'Lora:ital,wght@0,400;0,600;1,400',
+        'dancing': 'Dancing+Script:wght@400;600',
+        'great-vibes': 'Great+Vibes',
+        'libre-bask': 'Libre+Baskerville:ital,wght@0,400;0,700;1,400',
+        'raleway': 'Raleway:wght@200;300;400',
+        'cinzel': 'Cinzel:wght@400;500',
+        'eb-garamond': 'EB+Garamond:ital,wght@0,400;0,500;1,400',
+        'josefin': 'Josefin+Sans:wght@200;300;400',
+        'sacramento': 'Sacramento',
+        'bodoni': 'Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400',
+        'crimson': 'Crimson+Pro:ital,wght@0,300;0,400;1,300',
+        'nunito': 'Nunito:wght@300;400;500',
       };
 
       function getExtraFontLinks() {
@@ -3606,38 +4189,38 @@
       }
 
       const _FONT_OPTS = [
-        { v:'',            n:'— Defecto —' },
-        { v:'cormorant',   n:'Cormorant Garamond — Serif clásico' },
-        { v:'playfair',    n:'Playfair Display — Serif elegante' },
-        { v:'lora',        n:'Lora — Serif con carácter' },
-        { v:'libre-bask',  n:'Libre Baskerville — Serif legible' },
-        { v:'eb-garamond', n:'EB Garamond — Serif histórico' },
-        { v:'bodoni',      n:'Bodoni Moda — Serif editorial' },
-        { v:'cinzel',      n:'Cinzel — Serif romano / majestuoso' },
-        { v:'crimson',     n:'Crimson Pro — Serif fluido' },
-        { v:'jost',        n:'Jost — Sans minimalista' },
-        { v:'montserrat',  n:'Montserrat — Sans moderno' },
-        { v:'raleway',     n:'Raleway — Sans ligero' },
-        { v:'josefin',     n:'Josefin Sans — Sans geométrico' },
-        { v:'nunito',      n:'Nunito — Sans redondeado' },
-        { v:'dancing',     n:'Dancing Script — Caligrafía' },
-        { v:'great-vibes', n:'Great Vibes — Script elegante' },
-        { v:'sacramento',  n:'Sacramento — Script fino' },
+        { v: '', n: '— Defecto —' },
+        { v: 'cormorant', n: 'Cormorant Garamond — Serif clásico' },
+        { v: 'playfair', n: 'Playfair Display — Serif elegante' },
+        { v: 'lora', n: 'Lora — Serif con carácter' },
+        { v: 'libre-bask', n: 'Libre Baskerville — Serif legible' },
+        { v: 'eb-garamond', n: 'EB Garamond — Serif histórico' },
+        { v: 'bodoni', n: 'Bodoni Moda — Serif editorial' },
+        { v: 'cinzel', n: 'Cinzel — Serif romano / majestuoso' },
+        { v: 'crimson', n: 'Crimson Pro — Serif fluido' },
+        { v: 'jost', n: 'Jost — Sans minimalista' },
+        { v: 'montserrat', n: 'Montserrat — Sans moderno' },
+        { v: 'raleway', n: 'Raleway — Sans ligero' },
+        { v: 'josefin', n: 'Josefin Sans — Sans geométrico' },
+        { v: 'nunito', n: 'Nunito — Sans redondeado' },
+        { v: 'dancing', n: 'Dancing Script — Caligrafía' },
+        { v: 'great-vibes', n: 'Great Vibes — Script elegante' },
+        { v: 'sacramento', n: 'Sacramento — Script fino' },
       ];
 
       function buildElementCard(elDef) {
-        const id  = elDef.id;
-        const s   = _elementStyles[id] || {};
+        const id = elDef.id;
+        const s = _elementStyles[id] || {};
         const dot = hasOverrides(id);
 
         /* Color inicial: stored override o computado del elemento */
-        const domEl    = document.getElementById(id);
+        const domEl = document.getElementById(id);
         const compColor = domEl ? rgbToHex(getComputedStyle(domEl).color) : '#ede8e0';
         const initColor = s.color || compColor;
 
-        const szNum  = s.fontSize ? parseFloat(s.fontSize) : 1.5;
+        const szNum = s.fontSize ? parseFloat(s.fontSize) : 1.5;
         const szUnit = s.fontSize ? (s.fontSize.includes('em') && !s.fontSize.includes('rem') ? 'em' : 'rem') : 'rem';
-        const lsNum  = s.letterSpacing ? parseFloat(s.letterSpacing) : 0;
+        const lsNum = s.letterSpacing ? parseFloat(s.letterSpacing) : 0;
 
         return `<details class="style-el">
           <summary>${elDef.label}${dot ? ' <span class="style-has-dot"></span>' : ''}</summary>
@@ -3662,8 +4245,8 @@
                 <label>Tipografía</label>
                 <select data-sid="${id}" data-sp="fontFamily">
                   ${_FONT_OPTS.map(o =>
-                    `<option value="${o.v}" ${s.fontFamily===o.v?'selected':''}>${o.n}</option>`
-                  ).join('')}
+          `<option value="${o.v}" ${s.fontFamily === o.v ? 'selected' : ''}>${o.n}</option>`
+        ).join('')}
                 </select>
               </div>
             </div>
@@ -3672,16 +4255,16 @@
             <div class="sc-row">
               <div class="sc-field">
                 <label>Tamaño
-                  <span class="sc-val" id="d-${id}-sz">${s.fontSize||'auto'}</span>
+                  <span class="sc-val" id="d-${id}-sz">${s.fontSize || 'auto'}</span>
                 </label>
                 <input type="range" min="0.4" max="8" step="0.05"
                   data-sid="${id}" data-sp="fontSize"
                   value="${szNum}"
-                  style="${s.fontSize?'':'opacity:0.35'}" />
+                  style="${s.fontSize ? '' : 'opacity:0.35'}" />
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.15rem">
                   <select data-sid="${id}" data-sp="fontSizeUnit" style="font-size:0.65rem;padding:0.12rem 0.35rem">
-                    <option value="rem" ${szUnit!=='em'?'selected':''}>rem</option>
-                    <option value="em"  ${szUnit==='em' ?'selected':''}>em</option>
+                    <option value="rem" ${szUnit !== 'em' ? 'selected' : ''}>rem</option>
+                    <option value="em"  ${szUnit === 'em' ? 'selected' : ''}>em</option>
                   </select>
                   <button class="sc-reset" data-sid="${id}" data-sp="fontSize">↺ Reset</button>
                 </div>
@@ -3690,13 +4273,13 @@
               <div class="sc-field">
                 <label>Peso</label>
                 <select data-sid="${id}" data-sp="fontWeight">
-                  <option value="" ${!s.fontWeight?'selected':''}>— Defecto —</option>
-                  <option value="200" ${s.fontWeight==='200'?'selected':''}>200 — Fino</option>
-                  <option value="300" ${s.fontWeight==='300'?'selected':''}>300 — Light</option>
-                  <option value="400" ${s.fontWeight==='400'?'selected':''}>400 — Normal</option>
-                  <option value="500" ${s.fontWeight==='500'?'selected':''}>500 — Medium</option>
-                  <option value="600" ${s.fontWeight==='600'?'selected':''}>600 — Semi-Bold</option>
-                  <option value="700" ${s.fontWeight==='700'?'selected':''}>700 — Bold</option>
+                  <option value="" ${!s.fontWeight ? 'selected' : ''}>— Defecto —</option>
+                  <option value="200" ${s.fontWeight === '200' ? 'selected' : ''}>200 — Fino</option>
+                  <option value="300" ${s.fontWeight === '300' ? 'selected' : ''}>300 — Light</option>
+                  <option value="400" ${s.fontWeight === '400' ? 'selected' : ''}>400 — Normal</option>
+                  <option value="500" ${s.fontWeight === '500' ? 'selected' : ''}>500 — Medium</option>
+                  <option value="600" ${s.fontWeight === '600' ? 'selected' : ''}>600 — Semi-Bold</option>
+                  <option value="700" ${s.fontWeight === '700' ? 'selected' : ''}>700 — Bold</option>
                 </select>
               </div>
             </div>
@@ -3704,7 +4287,7 @@
             <!-- Espaciado letras -->
             <div class="sc-field">
               <label>Espaciado de letras
-                <span class="sc-val" id="d-${id}-ls">${s.letterSpacing||'0em'}</span>
+                <span class="sc-val" id="d-${id}-ls">${s.letterSpacing || '0em'}</span>
               </label>
               <input type="range" min="-0.05" max="0.5" step="0.005"
                 data-sid="${id}" data-sp="letterSpacing"
@@ -3717,23 +4300,23 @@
             <!-- Glow -->
             <div class="sc-field">
               <label class="sc-check-label">
-                <input type="checkbox" data-sid="${id}" data-sp="glow" ${s.glow?'checked':''} />
+                <input type="checkbox" data-sid="${id}" data-sp="glow" ${s.glow ? 'checked' : ''} />
                 ✦ Efecto Glow en el texto
               </label>
-              <div class="glow-sub ${s.glow?'':'sc-hidden'}" id="glow-sub-${id}">
+              <div class="glow-sub ${s.glow ? '' : 'sc-hidden'}" id="glow-sub-${id}">
                 <div class="sc-row" style="margin-top:0.45rem">
                   <div class="sc-field">
                     <label>Color del glow</label>
                     <input type="color" data-sid="${id}" data-sp="glowColor"
-                      value="${s.glowColor||'#c5a46a'}" />
+                      value="${s.glowColor || '#c5a46a'}" />
                   </div>
                   <div class="sc-field">
                     <label>Intensidad
-                      <span class="sc-val" id="d-${id}-gl">${s.glowSize||8}px</span>
+                      <span class="sc-val" id="d-${id}-gl">${s.glowSize || 8}px</span>
                     </label>
                     <input type="range" min="2" max="50" step="1"
                       data-sid="${id}" data-sp="glowSize"
-                      value="${s.glowSize||8}" />
+                      value="${s.glowSize || 8}" />
                   </div>
                 </div>
               </div>
@@ -3873,7 +4456,7 @@
       function handleStyleCtrl(el) {
         if (!el.dataset.sid || !el.dataset.sp) return;
         const sid = el.dataset.sid;
-        const sp  = el.dataset.sp;
+        const sp = el.dataset.sp;
         if (!_elementStyles[sid]) _elementStyles[sid] = {};
         const s = _elementStyles[sid];
 
@@ -3894,14 +4477,14 @@
         } else if (sp === 'fontSize') {
           const unitSel = bodyEl.querySelector(`[data-sid="${sid}"][data-sp="fontSizeUnit"]`);
           const unit = unitSel ? unitSel.value : 'rem';
-          const num  = parseFloat(el.value).toFixed(2).replace(/\.?0+$/,'');
+          const num = parseFloat(el.value).toFixed(2).replace(/\.?0+$/, '');
           s.fontSize = num + unit;
           el.style.opacity = '1';
           const disp = bodyEl.querySelector(`#d-${sid}-sz`);
           if (disp) disp.textContent = s.fontSize;
         } else if (sp === 'fontSizeUnit') {
           const rng = bodyEl.querySelector(`[data-sid="${sid}"][data-sp="fontSize"]`);
-          const num = rng ? parseFloat(rng.value).toFixed(2).replace(/\.?0+$/,'') : parseFloat(s.fontSize||1.5);
+          const num = rng ? parseFloat(rng.value).toFixed(2).replace(/\.?0+$/, '') : parseFloat(s.fontSize || 1.5);
           s.fontSize = num + el.value;
           const disp = bodyEl.querySelector(`#d-${sid}-sz`);
           if (disp) disp.textContent = s.fontSize;
@@ -3938,7 +4521,7 @@
       /* ── Subida de imágenes y audio ─────────────────────── */
       function pickFile(accept, onDataUrl) {
         const inp = document.createElement('input');
-        inp.type   = 'file';
+        inp.type = 'file';
         inp.accept = accept;
         inp.addEventListener('change', () => {
           const file = inp.files[0];
@@ -3955,9 +4538,9 @@
         /* Upload imagen — sección de contenido */
         const upKey = e.target.closest('[data-upload-key]');
         if (upKey) {
-          const key      = upKey.dataset.uploadKey;
-          const isAudio  = upKey.dataset.uploadType === 'audio';
-          const accept   = isAudio ? 'audio/*' : 'image/*';
+          const key = upKey.dataset.uploadKey;
+          const isAudio = upKey.dataset.uploadType === 'audio';
+          const accept = isAudio ? 'audio/*' : 'image/*';
           pickFile(accept, (dataUrl) => {
             siteContent[key] = dataUrl;
             saveToStorage();
@@ -4004,7 +4587,7 @@
         const resetBtn = e.target.closest('.sc-reset[data-sid]');
         if (resetBtn) {
           const sid = resetBtn.dataset.sid;
-          const sp  = resetBtn.dataset.sp;
+          const sp = resetBtn.dataset.sp;
           if (_elementStyles[sid]) {
             if (sp === 'fontSize') {
               _elementStyles[sid].fontSize = '';
@@ -4020,10 +4603,10 @@
               if (disp) disp.textContent = '0em';
             } else if (sp === 'color') {
               _elementStyles[sid].color = '';
-              const pic  = bodyEl.querySelector(`[data-sid="${sid}"][data-sp="color"]`);
+              const pic = bodyEl.querySelector(`[data-sid="${sid}"][data-sp="color"]`);
               const hint = pic ? pic.nextElementSibling : null;
-              if (pic)  pic.style.opacity = '0.45';
-              if (hint) hint.textContent  = 'Sin cambios — clic para personalizar';
+              if (pic) pic.style.opacity = '0.45';
+              if (hint) hint.textContent = 'Sin cambios — clic para personalizar';
             }
             applyElementStyle(sid, _elementStyles[sid]);
             saveStylesToStorage();
@@ -4175,7 +4758,7 @@
         btn.textContent = 'Guardando…';
         try {
           const colors = {};
-          ['--c-bg','--c-bg-alt','--c-gold','--c-gold-dim','--c-text','--c-text-mid','--c-text-muted','--c-envelope'].forEach(v => {
+          ['--c-bg', '--c-bg-alt', '--c-gold', '--c-gold-dim', '--c-text', '--c-text-mid', '--c-text-muted', '--c-envelope'].forEach(v => {
             const val = document.documentElement.style.getPropertyValue(v).trim();
             if (val) colors[v] = val;
           });
@@ -4232,14 +4815,14 @@
         );
 
         /* 2. Inyectar colores CSS editados + estilos de elementos */
-        const _cssVars = ['--c-bg','--c-bg-alt','--c-gold','--c-gold-dim','--c-text','--c-text-mid','--c-text-muted','--c-envelope'];
+        const _cssVars = ['--c-bg', '--c-bg-alt', '--c-gold', '--c-gold-dim', '--c-text', '--c-text-mid', '--c-text-muted', '--c-envelope'];
         const _overrides = _cssVars
           .map(v => { const val = document.documentElement.style.getPropertyValue(v).trim(); return val ? `    ${v}: ${val};` : ''; })
           .filter(Boolean).join('\n');
         const _elemCSS = buildElementStylesCSS();
         let _extraStyle = '';
         if (_overrides) _extraStyle += `:root {\n${_overrides}\n  }\n  `;
-        if (_elemCSS)   _extraStyle += _elemCSS + '\n  ';
+        if (_elemCSS) _extraStyle += _elemCSS + '\n  ';
         if (_extraStyle.trim()) {
           html = html.replace('</head>', `  <style>\n  ${_extraStyle}</style>\n</head>`);
         }
@@ -4274,9 +4857,9 @@
 
       /* ── Publicar → /api/publish crea [slug]/index.html ─── */
       const publishBtn = document.getElementById('editorPublishBtn');
-      const pubStatus  = document.getElementById('editorPublishStatus');
-      const slugInp    = document.getElementById('editorSlug');
-      const _SLUG_KEY  = 'inv_slug';
+      const pubStatus = document.getElementById('editorPublishStatus');
+      const slugInp = document.getElementById('editorSlug');
+      const _SLUG_KEY = 'inv_slug';
 
       /* Restaurar slug guardado */
       if (slugInp) {
@@ -4343,7 +4926,7 @@
       /* ── Preview en nueva pestaña ────────────────────────── */
       document.getElementById('editorPreview').addEventListener('click', () => {
         const blob = new Blob([buildCleanHtml()], { type: 'text/html;charset=utf-8' });
-        const url  = URL.createObjectURL(blob);
+        const url = URL.createObjectURL(blob);
         window.open(url, '_blank');
         setTimeout(() => URL.revokeObjectURL(url), 120000);
       });
@@ -4351,8 +4934,8 @@
       /* ── Descargar HTML limpio ───────────────────────────── */
       document.getElementById('editorExport').addEventListener('click', () => {
         const blob = new Blob([buildCleanHtml()], { type: 'text/html;charset=utf-8' });
-        const a    = document.createElement('a');
-        a.href     = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
         a.download = 'invitacion.html';
         a.click();
         URL.revokeObjectURL(a.href);
@@ -4389,7 +4972,8 @@
 
   <!-- EDITOR:S -->
   <!-- ── Panel editor visual ──────────────────────────────── -->
-  <button id="editorToggle" class="editor-toggle" aria-label="Abrir editor de invitación (Ctrl+Shift+E)" title="Editor (Ctrl+Shift+E)">✏</button>
+  <button id="editorToggle" class="editor-toggle" aria-label="Abrir editor de invitación (Ctrl+Shift+E)"
+    title="Editor (Ctrl+Shift+E)">✏</button>
 
   <aside id="editorPanel" class="editor-panel" aria-label="Editor de invitación">
     <div class="editor-header">
@@ -4403,8 +4987,11 @@
       <!-- campos generados por JS -->
     </div>
     <div class="editor-save-bar">
-      <span id="editorSaveIndicator" style="opacity:0;transition:opacity 0.4s;font-family:var(--f-sans);font-size:0.7rem;color:#7a9488">✓ Cambios guardados</span>
-      <button class="editor-btn-clear" id="editorClearStorage" title="Borrar cambios guardados y restaurar valores originales">↺ Limpiar</button>
+      <span id="editorSaveIndicator"
+        style="opacity:0;transition:opacity 0.4s;font-family:var(--f-sans);font-size:0.7rem;color:#7a9488">✓ Cambios
+        guardados</span>
+      <button class="editor-btn-clear" id="editorClearStorage"
+        title="Borrar cambios guardados y restaurar valores originales">↺ Limpiar</button>
     </div>
     <div class="editor-footer">
       <button class="editor-btn editor-btn--secondary" id="editorSave">💾 Guardar</button>
@@ -4424,9 +5011,8 @@
           <label style="font-size:0.67rem;color:#706a60">URL de la invitación</label>
           <div class="editor-publish-row" style="align-items:center;gap:0.3rem">
             <span style="font-size:0.72rem;color:#555048;white-space:nowrap">tu-url.vercel.app /</span>
-            <input class="editor-publish-input" id="editorSlug"
-                   type="text" placeholder="sofia-y-mateo" spellcheck="false"
-                   autocomplete="off" style="min-width:0" />
+            <input class="editor-publish-input" id="editorSlug" type="text" placeholder="sofia-y-mateo"
+              spellcheck="false" autocomplete="off" style="min-width:0" />
           </div>
         </div>
 
@@ -4436,7 +5022,7 @@
 
         <div class="editor-publish-status" id="editorPublishStatus"></div>
         <a id="editorPublishLink" href="#" target="_blank" hidden
-           style="font-size:0.75rem;color:var(--c-gold);word-break:break-all;text-decoration:none">
+          style="font-size:0.75rem;color:var(--c-gold);word-break:break-all;text-decoration:none">
         </a>
 
         <p class="editor-publish-help">
@@ -4450,4 +5036,6 @@
 
 
 
-</body></html>
+</body>
+
+</html>

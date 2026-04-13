@@ -450,6 +450,9 @@
       background: var(--c-bg);
       overflow: hidden;
       transition: background var(--t-slow);
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
     }
     .gallery__track {
       display: flex;
@@ -458,8 +461,9 @@
       width: max-content;
       animation: gallery-scroll 30s linear infinite;
       will-change: transform;
+      touch-action: none;
     }
-    .gallery:hover .gallery__track { animation-play-state: paused; }
+    /* .gallery:hover .gallery__track { animation-play-state: paused; } */
     @keyframes gallery-scroll {
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
@@ -481,7 +485,7 @@
       object-fit: cover;
       transition: transform var(--t-slow);
     }
-    .gallery__item:hover img { transform: scale(1.05); }
+    /* .gallery__item:hover img { transform: scale(1.05); } */
 
     /* ═══════════════════════════════════════════════════════════
        SECCIÓN 4 — DETALLES DEL EVENTO
@@ -1039,7 +1043,7 @@
       background: var(--c-envelope);
       cursor: pointer;
       overflow: hidden;
-      /* iOS Safari: necesario para que los divs reciban tap */
+      /* iOS Safari: manipulation evita el delay de 300ms y reconoce el tap inmediatamente */
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
       user-select: none;
@@ -2078,7 +2082,7 @@
       if (c.galleryImages && c.galleryImages.length) {
         const items = c.galleryImages.map(img =>
           `<div class="gallery__item" role="listitem">
-             <img src="${img.src}" alt="${img.alt}" loading="lazy" />
+             <img src="${img.src}" alt="${img.alt}" loading="lazy" draggable="false" />
            </div>`
         ).join('');
         track.innerHTML = items + items; /* duplicar para loop seamless */
@@ -2173,8 +2177,10 @@
 
       /* Sello del sobre */
       const sealEl = document.getElementById('envSealTxt');
-      if (sealEl) sealEl.textContent = c.sealText ||
-        (c.name1?.[0] ?? '') + '\u2009&\u2009' + (c.name2?.[0] ?? '');
+      if (sealEl) {
+        const initials = (c.name1?.[0] ?? '') + '\u2009&\u2009' + (c.name2?.[0] ?? '');
+        sealEl.textContent = c.sealText || initials;
+      }
     }
 
     function setText(id, value) {
@@ -2427,7 +2433,10 @@
       let opened = false;
 
       function openEnvelope(e) {
-        if (e && e.type === 'touchend') e.preventDefault(); /* evita click posterior */
+        if (e) {
+          if (e.type === 'touchstart') e.preventDefault(); /* evita pan/scroll del browser */
+          if (e.type === 'touchend') e.preventDefault();   /* evita click posterior en iOS */
+        }
         if (opened) return;
         opened = true;
 
@@ -2459,9 +2468,9 @@
         setTimeout(() => overlay.remove(), 3500);
       }
 
-      /* Clic / tap / rueda — cualquier interacción abre el sobre */
+      /* Clic / tap — cualquier interacción abre el sobre */
       overlay.addEventListener('click',    openEnvelope);
-      /* touchend es más fiable que touchstart en iOS Safari para disparar play() */
+      overlay.addEventListener('touchstart', openEnvelope, { passive: false });
       overlay.addEventListener('touchend', openEnvelope);
       overlay.addEventListener('wheel',    openEnvelope, { passive: true, once: true });
 
