@@ -34,7 +34,7 @@
         "alt": "Mesa de celebración decorada"
       },
       {
-        "src": "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/gallery-4.jpg",
+        "src": "",
         "alt": "Pareja celebrando su boda"
       },
       {
@@ -78,15 +78,13 @@
     "closingCtaTxt": "¿Todavía no has confirmado tu asistencia?",
     "closingBtnText": "Confirmar ahora",
     "footerText": "Con amor · Stephany & Camilo · 2026",
-    "musicSrc": "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/music.mp3",
+    "musicSrc": "",
     "whatsappNumber": "573017869900"
   },
   "colors": {
     "--c-bg": "#111118",
     "--c-bg-alt": "#1d1d28",
-    "--c-gold": "#ffb13d",
-    "--c-rose": "#b80000",
-    "--c-sage": "#00ff88",
+    "--c-gold": "#feb74d",
     "--c-text": "#fffbf5",
     "--c-envelope": "#12121c"
   }
