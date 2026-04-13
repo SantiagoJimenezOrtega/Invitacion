@@ -79,7 +79,9 @@
     "closingBtnText": "Confirmar ahora",
     "footerText": "Con amor · Stephany & Camilo · 2026",
     "musicSrc": "",
-    "whatsappNumber": "573017869900"
+    "whatsappNumber": "573017869900",
+    "envHintText": "✦  Toca para abrir  ✦",
+    "scrollCueText": "Desliza"
   },
   "colors": {
     "--c-bg": "#111118",
