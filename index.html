@@ -1589,6 +1589,37 @@
       line-height: 1.5;
     }
     .editor-publish-help a { color: #8a7a5a; }
+
+    /* Publicar colapsable */
+    details.editor-publish {
+      border-top: 1px solid rgba(197,164,106,0.18);
+      flex-shrink: 0;
+      background: rgba(197,164,106,0.04);
+    }
+    .editor-publish-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.5rem;
+      cursor: pointer;
+      font-family: var(--f-sans);
+      font-size: 0.63rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--c-gold);
+      list-style: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .editor-publish-toggle::-webkit-details-marker { display: none; }
+    details.editor-publish[open] .editor-publish-toggle span:last-child { content: '▾'; transform: rotate(90deg); }
+    .editor-publish-inner {
+      padding: 0 1.5rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
     /* EDITOR:E */
 
     /* Reproductor de música */
@@ -1645,6 +1676,208 @@
       white-space: nowrap;
     }
     .upload-img-btn:hover { background: rgba(255,255,255,0.14); color: #ede8e0; }
+
+    /* ── Estilos de texto por elemento ──────────────────────── */
+    .style-group {
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 7px;
+      overflow: hidden;
+      margin-bottom: 0.35rem;
+    }
+    .style-group > summary {
+      padding: 0.55rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--c-gold);
+      background: rgba(255,255,255,0.03);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .style-group > summary::-webkit-details-marker { display: none; }
+    .style-group > summary::after {
+      content: '›';
+      font-size: 1rem;
+      color: rgba(197,164,106,0.5);
+      transition: transform 0.2s;
+    }
+    .style-group[open] > summary::after { content: '⌄'; }
+
+    .style-group-body {
+      padding: 0.45rem 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .style-el {
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .style-el > summary {
+      padding: 0.38rem 0.65rem;
+      cursor: pointer;
+      font-size: 0.7rem;
+      color: #b0a898;
+      background: rgba(255,255,255,0.025);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
+      gap: 0.4rem;
+    }
+    .style-el > summary::-webkit-details-marker { display: none; }
+    .style-el > summary::after {
+      content: '+';
+      opacity: 0.4;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .style-el[open] > summary::after { content: '−'; }
+    .style-has-dot {
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--c-gold);
+      flex-shrink: 0;
+    }
+
+    .style-el-body {
+      padding: 0.65rem 0.65rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .sc-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+    .sc-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.45rem;
+    }
+
+    .sc-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.22rem;
+    }
+    .sc-field label {
+      font-size: 0.6rem;
+      color: #706a60;
+      letter-spacing: 0.04em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sc-field input[type="range"] {
+      width: 100%;
+      height: 3px;
+      accent-color: var(--c-gold);
+      cursor: pointer;
+    }
+    .sc-field select {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 5px;
+      color: #ede8e0;
+      font-family: var(--f-sans);
+      font-size: 0.75rem;
+      padding: 0.28rem 0.4rem;
+      cursor: pointer;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .sc-field input[type="color"] {
+      width: 100%;
+      height: 28px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 5px;
+      background: none;
+      cursor: pointer;
+      padding: 1px 2px;
+    }
+    .sc-field input[type="text"] {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 5px;
+      color: #ede8e0;
+      font-family: var(--f-sans);
+      font-size: 0.75rem;
+      padding: 0.28rem 0.5rem;
+      width: 100%;
+      outline: none;
+    }
+    .sc-field input[type="text"]:focus,
+    .sc-field select:focus {
+      border-color: var(--c-gold);
+    }
+
+    .sc-val {
+      color: var(--c-gold);
+      font-size: 0.58rem;
+    }
+
+    .sc-check-label {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.7rem;
+      color: #b0a898;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .sc-check-label input[type="checkbox"] {
+      width: 14px; height: 14px;
+      cursor: pointer;
+      accent-color: var(--c-gold);
+      flex-shrink: 0;
+    }
+
+    .glow-sub {
+      padding-top: 0.4rem;
+    }
+    .glow-sub.sc-hidden { display: none; }
+
+    .sc-reset {
+      background: none;
+      border: none;
+      color: #5a5450;
+      font-size: 0.62rem;
+      cursor: pointer;
+      padding: 0;
+      font-family: var(--f-sans);
+      transition: color var(--t-fast);
+    }
+    .sc-reset:hover { color: #e09090; }
+
+    .sc-reset-all {
+      align-self: flex-start;
+      background: none;
+      border: 1px solid rgba(200,80,80,0.22);
+      color: #a07070;
+      font-size: 0.62rem;
+      cursor: pointer;
+      padding: 0.22rem 0.5rem;
+      font-family: var(--f-sans);
+      border-radius: 4px;
+      margin-top: 0.15rem;
+      transition: background var(--t-fast), color var(--t-fast);
+    }
+    .sc-reset-all:hover { background: rgba(200,80,80,0.1); color: #e09090; }
     /* EDITOR:E */
 
   </style>
@@ -2156,6 +2389,8 @@
     /* ── Persistencia en localStorage ────────────────────────── */
     const _STORAGE_KEY   = 'inv_content';
     const _COLORS_KEY    = 'inv_colors';
+    const _STYLES_KEY    = 'inv_styles';
+    let   _elementStyles = {};
 
     function saveToStorage() {
       try {
@@ -2170,6 +2405,10 @@
       } catch(e) {}
     }
 
+    function saveStylesToStorage() {
+      try { localStorage.setItem(_STYLES_KEY, JSON.stringify(_elementStyles)); } catch(e) {}
+    }
+
     function restoreFromStorage() {
       try {
         const saved = localStorage.getItem(_STORAGE_KEY);
@@ -2178,13 +2417,62 @@
         const colors = JSON.parse(localStorage.getItem(_COLORS_KEY) || '{}');
         const root   = document.documentElement;
         Object.entries(colors).forEach(([k, v]) => root.style.setProperty(k, v));
+
+        const styles = localStorage.getItem(_STYLES_KEY);
+        if (styles) {
+          _elementStyles = JSON.parse(styles);
+          /* Se aplican inline después de render() en DOMContentLoaded */
+        }
       } catch(e) {}
+    }
+
+    /* Mapa de fuentes: clave → CSS font-family */
+    const _FONT_MAP = {
+      ''            : '',
+      'cormorant'   : "'Cormorant Garamond', Georgia, serif",
+      'jost'        : "'Jost', system-ui, sans-serif",
+      'playfair'    : "'Playfair Display', Georgia, serif",
+      'montserrat'  : "'Montserrat', system-ui, sans-serif",
+      'lora'        : "'Lora', Georgia, serif",
+      'dancing'     : "'Dancing Script', cursive",
+      'great-vibes' : "'Great Vibes', cursive",
+      'libre-bask'  : "'Libre Baskerville', Georgia, serif",
+      'raleway'     : "'Raleway', system-ui, sans-serif",
+      'cinzel'      : "'Cinzel', serif",
+      'eb-garamond' : "'EB Garamond', Georgia, serif",
+      'josefin'     : "'Josefin Sans', system-ui, sans-serif",
+      'sacramento'  : "'Sacramento', cursive",
+      'bodoni'      : "'Bodoni Moda', Georgia, serif",
+      'crimson'     : "'Crimson Pro', Georgia, serif",
+      'nunito'      : "'Nunito', system-ui, sans-serif",
+    };
+
+    function applyElementStyle(id, s) {
+      const el = document.getElementById(id);
+      if (!el || !s) return;
+      el.style.color         = s.color        || '';
+      el.style.fontSize      = s.fontSize      || '';
+      el.style.fontFamily    = _FONT_MAP[s.fontFamily || ''] || '';
+      el.style.fontWeight    = s.fontWeight    || '';
+      el.style.letterSpacing = s.letterSpacing || '';
+      if (s.glow) {
+        const gc = s.glowColor || '#c5a46a';
+        const gs = +(s.glowSize || 8);
+        el.style.textShadow  = `0 0 ${gs}px ${gc}, 0 0 ${gs * 2}px ${gc}55`;
+      } else {
+        el.style.textShadow  = '';
+      }
+    }
+
+    function applyAllStyles() {
+      Object.entries(_elementStyles).forEach(([id, s]) => applyElementStyle(id, s));
     }
 
     function clearStorage() {
       try {
         localStorage.removeItem(_STORAGE_KEY);
         localStorage.removeItem(_COLORS_KEY);
+        localStorage.removeItem(_STYLES_KEY);
       } catch(e) {}
     }
 
@@ -2962,8 +3250,26 @@
       const bodyEl   = document.getElementById('editorBody');
       const root     = document.documentElement;
 
+      /* ── Carga dinámica de fuentes del editor ──────────────── */
+      const _loadedFonts = new Set(['cormorant','jost']);
+      function loadEditorFont(key) {
+        if (!key || _loadedFonts.has(key) || !_FONT_GURL[key]) return;
+        _loadedFonts.add(key);
+        const link = document.createElement('link');
+        link.rel  = 'stylesheet';
+        link.href = `https://fonts.googleapis.com/css2?family=${_FONT_GURL[key]}&display=swap`;
+        document.head.appendChild(link);
+      }
+      function loadAllEditorFonts() {
+        Object.keys(_FONT_GURL).forEach(k => loadEditorFont(k));
+      }
+
       /* ── Mostrar / ocultar ───────────────────────────────── */
-      function openPanel()  { panel.classList.add('open'); }
+      let _fontsLoaded = false;
+      function openPanel()  {
+        panel.classList.add('open');
+        if (!_fontsLoaded) { _fontsLoaded = true; loadAllEditorFonts(); }
+      }
       function closePanel() { panel.classList.remove('open'); }
 
       toggle.addEventListener('click', () =>
@@ -3063,13 +3369,14 @@
 
       /* ── Colores editables ───────────────────────────────── */
       const colorVars = [
-        { v: '--c-gold',       label: 'Dorado'  },
-        { v: '--c-rose',       label: 'Rosa'    },
-        { v: '--c-sage',       label: 'Salvia'  },
-        { v: '--c-bg',         label: 'Fondo (auto-calcula Fondo 2)' },
-        { v: '--c-bg-alt',     label: 'Fondo 2 (automático)' },
-        { v: '--c-text',       label: 'Texto'   },
-        { v: '--c-envelope',   label: 'Sobre'   },
+        { v: '--c-gold',        label: 'Dorado · acento principal'     },
+        { v: '--c-gold-dim',    label: 'Dorado tenue · bordes y líneas'},
+        { v: '--c-bg',          label: 'Fondo principal (auto-calcula Fondo 2)' },
+        { v: '--c-bg-alt',      label: 'Fondo 2 · secciones alternas'  },
+        { v: '--c-text',        label: 'Texto principal'                },
+        { v: '--c-text-mid',    label: 'Texto secundario'               },
+        { v: '--c-text-muted',  label: 'Texto sutil · etiquetas'        },
+        { v: '--c-envelope',    label: 'Color del sobre inicial'        },
       ];
 
       /* ── Construir UI ────────────────────────────────────── */
@@ -3152,6 +3459,285 @@
           </div>`;
       }
 
+      /* ── Estilos de texto por elemento ──────────────────── */
+      const textStyleGroups = [
+        { section: 'Hero', elements: [
+          { id: 'heroEyebrow', label: 'Hero › Texto pequeño superior (eyebrow)' },
+          { id: 'heroIntro',   label: 'Hero › Intro / subtítulo en cursiva' },
+          { id: 'heroNames',   label: 'Hero › Nombres de la pareja' },
+          { id: 'heroDate',    label: 'Hero › Línea de fecha' },
+        ]},
+        { section: 'Anuncio', elements: [
+          { id: 'announceEyebrow',  label: 'Anuncio › Eyebrow superior' },
+          { id: 'announceHeadline', label: 'Anuncio › Titular principal' },
+          { id: 'announceBody',     label: 'Anuncio › Párrafo de texto' },
+        ]},
+        { section: 'Historia', elements: [
+          { id: 'storyEyebrow', label: 'Historia › Eyebrow' },
+          { id: 'storyTitle',   label: 'Historia › Título' },
+          { id: 'storyBody',    label: 'Historia › Texto del párrafo' },
+        ]},
+        { section: 'Fecha del Evento', elements: [
+          { id: 'eventEyebrow', label: 'Fecha › Eyebrow' },
+          { id: 'evMonth',      label: 'Fecha › Mes (letras)' },
+          { id: 'evDay',        label: 'Fecha › Día (número grande)' },
+          { id: 'evYear',       label: 'Fecha › Año' },
+        ]},
+        { section: 'Ceremonia', elements: [
+          { id: 'ceremonyTitle',   label: 'Ceremonia › Título de sección' },
+          { id: 'ceremonyTime',    label: 'Ceremonia › Hora' },
+          { id: 'ceremonyTimeSub', label: 'Ceremonia › Nota de hora' },
+          { id: 'ceremonyVenue',   label: 'Ceremonia › Nombre del lugar' },
+          { id: 'ceremonyVenueSub',label: 'Ceremonia › Detalle del lugar' },
+          { id: 'ceremonyAddress', label: 'Ceremonia › Dirección' },
+        ]},
+        { section: 'Recepción', elements: [
+          { id: 'receptionTitle',   label: 'Recepción › Título de sección' },
+          { id: 'receptionTime',    label: 'Recepción › Hora' },
+          { id: 'receptionTimeSub', label: 'Recepción › Nota de hora' },
+          { id: 'receptionVenue',   label: 'Recepción › Nombre del lugar' },
+          { id: 'receptionVenueSub',label: 'Recepción › Detalle del lugar' },
+          { id: 'receptionAddress', label: 'Recepción › Dirección' },
+        ]},
+        { section: 'Vestimenta', elements: [
+          { id: 'dressCodeEyebrow', label: 'Vestimenta › Eyebrow' },
+          { id: 'dressCodeVal',     label: 'Vestimenta › Código de vestimenta' },
+          { id: 'dressCodeSub',     label: 'Vestimenta › Texto de detalle' },
+          { id: 'dressCodeNote',    label: 'Vestimenta › Nota adicional' },
+        ]},
+        { section: 'Regalos', elements: [
+          { id: 'giftsEyebrow', label: 'Regalos › Eyebrow' },
+          { id: 'giftsTitle',   label: 'Regalos › Título' },
+          { id: 'giftsText',    label: 'Regalos › Texto principal' },
+          { id: 'giftsNote',    label: 'Regalos › Nota / cuenta' },
+        ]},
+        { section: 'RSVP', elements: [
+          { id: 'rsvpTitle', label: 'RSVP › Título' },
+          { id: 'rsvpSub',   label: 'RSVP › Subtítulo' },
+          { id: 'rsvpNote',  label: 'RSVP › Nota al pie' },
+        ]},
+        { section: 'Cierre', elements: [
+          { id: 'closingQuote',  label: 'Cierre › Cita' },
+          { id: 'closingAttrib', label: 'Cierre › Atribución' },
+          { id: 'closingCtaTxt', label: 'Cierre › Texto secundario' },
+        ]},
+        { section: 'Footer', elements: [
+          { id: 'footerTxt', label: 'Footer › Texto del pie de página' },
+        ]},
+      ];
+
+      function hasOverrides(id) {
+        const s = _elementStyles[id];
+        if (!s) return false;
+        return !!(s.color || s.fontFamily || s.fontWeight || s.fontSize || s.letterSpacing || s.glow);
+      }
+
+      function buildElementStylesCSS() {
+        return Object.entries(_elementStyles)
+          .filter(([, s]) => s && (s.color || s.fontFamily || s.fontWeight || s.fontSize || s.letterSpacing || s.glow))
+          .map(([id, s]) => {
+            const r = [];
+            if (s.color)         r.push(`color:${s.color}`);
+            if (s.fontSize)      r.push(`font-size:${s.fontSize}`);
+            const ff = _FONT_MAP[s.fontFamily || ''];
+            if (ff)              r.push(`font-family:${ff}`);
+            if (s.fontWeight)    r.push(`font-weight:${s.fontWeight}`);
+            if (s.letterSpacing) r.push(`letter-spacing:${s.letterSpacing}`);
+            if (s.glow) {
+              const gc = s.glowColor || '#c5a46a';
+              const gs = +(s.glowSize || 8);
+              r.push(`text-shadow:0 0 ${gs}px ${gc},0 0 ${gs*2}px ${gc}55`);
+            }
+            return r.length ? `  #${id} { ${r.join('; ')} }` : null;
+          })
+          .filter(Boolean).join('\n');
+      }
+
+      /* Google Fonts URL para cada fuente adicional (exportación limpia) */
+      const _FONT_GURL = {
+        'playfair'    : 'Playfair+Display:ital,wght@0,400;0,700;1,400',
+        'montserrat'  : 'Montserrat:wght@300;400;500',
+        'lora'        : 'Lora:ital,wght@0,400;0,600;1,400',
+        'dancing'     : 'Dancing+Script:wght@400;600',
+        'great-vibes' : 'Great+Vibes',
+        'libre-bask'  : 'Libre+Baskerville:ital,wght@0,400;0,700;1,400',
+        'raleway'     : 'Raleway:wght@200;300;400',
+        'cinzel'      : 'Cinzel:wght@400;500',
+        'eb-garamond' : 'EB+Garamond:ital,wght@0,400;0,500;1,400',
+        'josefin'     : 'Josefin+Sans:wght@200;300;400',
+        'sacramento'  : 'Sacramento',
+        'bodoni'      : 'Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400',
+        'crimson'     : 'Crimson+Pro:ital,wght@0,300;0,400;1,300',
+        'nunito'      : 'Nunito:wght@300;400;500',
+      };
+
+      function getExtraFontLinks() {
+        const used = new Set(
+          Object.values(_elementStyles)
+            .map(s => s?.fontFamily || '')
+            .filter(f => f && f !== 'cormorant' && f !== 'jost' && _FONT_GURL[f])
+        );
+        if (!used.size) return '';
+        const params = [...used].map(f => _FONT_GURL[f]).join('&family=');
+        return `  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=${params}&display=swap">\n`;
+      }
+
+      const _FONT_OPTS = [
+        { v:'',            n:'— Defecto —' },
+        { v:'cormorant',   n:'Cormorant Garamond — Serif clásico' },
+        { v:'playfair',    n:'Playfair Display — Serif elegante' },
+        { v:'lora',        n:'Lora — Serif con carácter' },
+        { v:'libre-bask',  n:'Libre Baskerville — Serif legible' },
+        { v:'eb-garamond', n:'EB Garamond — Serif histórico' },
+        { v:'bodoni',      n:'Bodoni Moda — Serif editorial' },
+        { v:'cinzel',      n:'Cinzel — Serif romano / majestuoso' },
+        { v:'crimson',     n:'Crimson Pro — Serif fluido' },
+        { v:'jost',        n:'Jost — Sans minimalista' },
+        { v:'montserrat',  n:'Montserrat — Sans moderno' },
+        { v:'raleway',     n:'Raleway — Sans ligero' },
+        { v:'josefin',     n:'Josefin Sans — Sans geométrico' },
+        { v:'nunito',      n:'Nunito — Sans redondeado' },
+        { v:'dancing',     n:'Dancing Script — Caligrafía' },
+        { v:'great-vibes', n:'Great Vibes — Script elegante' },
+        { v:'sacramento',  n:'Sacramento — Script fino' },
+      ];
+
+      function buildElementCard(elDef) {
+        const id  = elDef.id;
+        const s   = _elementStyles[id] || {};
+        const dot = hasOverrides(id);
+
+        /* Color inicial: stored override o computado del elemento */
+        const domEl    = document.getElementById(id);
+        const compColor = domEl ? rgbToHex(getComputedStyle(domEl).color) : '#ede8e0';
+        const initColor = s.color || compColor;
+
+        const szNum  = s.fontSize ? parseFloat(s.fontSize) : 1.5;
+        const szUnit = s.fontSize ? (s.fontSize.includes('em') && !s.fontSize.includes('rem') ? 'em' : 'rem') : 'rem';
+        const lsNum  = s.letterSpacing ? parseFloat(s.letterSpacing) : 0;
+
+        return `<details class="style-el">
+          <summary>${elDef.label}${dot ? ' <span class="style-has-dot"></span>' : ''}</summary>
+          <div class="style-el-body">
+
+            <!-- Color -->
+            <div class="sc-row">
+              <div class="sc-field">
+                <label>Color del texto
+                  <button class="sc-reset" data-sid="${id}" data-sp="color">↺</button>
+                </label>
+                <input type="color" data-sid="${id}" data-sp="color"
+                  value="${initColor}"
+                  style="${s.color ? '' : 'opacity:0.45'}" />
+                <span style="font-size:0.6rem;color:#555048;margin-top:0.1rem">
+                  ${s.color ? 'Personalizado' : 'Sin cambios — clic para personalizar'}
+                </span>
+              </div>
+
+              <!-- Tipografía -->
+              <div class="sc-field">
+                <label>Tipografía</label>
+                <select data-sid="${id}" data-sp="fontFamily">
+                  ${_FONT_OPTS.map(o =>
+                    `<option value="${o.v}" ${s.fontFamily===o.v?'selected':''}>${o.n}</option>`
+                  ).join('')}
+                </select>
+              </div>
+            </div>
+
+            <!-- Tamaño + Peso -->
+            <div class="sc-row">
+              <div class="sc-field">
+                <label>Tamaño
+                  <span class="sc-val" id="d-${id}-sz">${s.fontSize||'auto'}</span>
+                </label>
+                <input type="range" min="0.4" max="8" step="0.05"
+                  data-sid="${id}" data-sp="fontSize"
+                  value="${szNum}"
+                  style="${s.fontSize?'':'opacity:0.35'}" />
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.15rem">
+                  <select data-sid="${id}" data-sp="fontSizeUnit" style="font-size:0.65rem;padding:0.12rem 0.35rem">
+                    <option value="rem" ${szUnit!=='em'?'selected':''}>rem</option>
+                    <option value="em"  ${szUnit==='em' ?'selected':''}>em</option>
+                  </select>
+                  <button class="sc-reset" data-sid="${id}" data-sp="fontSize">↺ Reset</button>
+                </div>
+              </div>
+
+              <div class="sc-field">
+                <label>Peso</label>
+                <select data-sid="${id}" data-sp="fontWeight">
+                  <option value="" ${!s.fontWeight?'selected':''}>— Defecto —</option>
+                  <option value="200" ${s.fontWeight==='200'?'selected':''}>200 — Fino</option>
+                  <option value="300" ${s.fontWeight==='300'?'selected':''}>300 — Light</option>
+                  <option value="400" ${s.fontWeight==='400'?'selected':''}>400 — Normal</option>
+                  <option value="500" ${s.fontWeight==='500'?'selected':''}>500 — Medium</option>
+                  <option value="600" ${s.fontWeight==='600'?'selected':''}>600 — Semi-Bold</option>
+                  <option value="700" ${s.fontWeight==='700'?'selected':''}>700 — Bold</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Espaciado letras -->
+            <div class="sc-field">
+              <label>Espaciado de letras
+                <span class="sc-val" id="d-${id}-ls">${s.letterSpacing||'0em'}</span>
+              </label>
+              <input type="range" min="-0.05" max="0.5" step="0.005"
+                data-sid="${id}" data-sp="letterSpacing"
+                value="${lsNum}" />
+              <div style="display:flex;justify-content:flex-end">
+                <button class="sc-reset" data-sid="${id}" data-sp="letterSpacing">↺ Reset</button>
+              </div>
+            </div>
+
+            <!-- Glow -->
+            <div class="sc-field">
+              <label class="sc-check-label">
+                <input type="checkbox" data-sid="${id}" data-sp="glow" ${s.glow?'checked':''} />
+                ✦ Efecto Glow en el texto
+              </label>
+              <div class="glow-sub ${s.glow?'':'sc-hidden'}" id="glow-sub-${id}">
+                <div class="sc-row" style="margin-top:0.45rem">
+                  <div class="sc-field">
+                    <label>Color del glow</label>
+                    <input type="color" data-sid="${id}" data-sp="glowColor"
+                      value="${s.glowColor||'#c5a46a'}" />
+                  </div>
+                  <div class="sc-field">
+                    <label>Intensidad
+                      <span class="sc-val" id="d-${id}-gl">${s.glowSize||8}px</span>
+                    </label>
+                    <input type="range" min="2" max="50" step="1"
+                      data-sid="${id}" data-sp="glowSize"
+                      value="${s.glowSize||8}" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="sc-reset-all" data-sid="${id}">↺ Quitar todos los estilos</button>
+          </div>
+        </details>`;
+      }
+
+      function buildStylesHtml() {
+        return `<div class="editor-section">
+          <div class="editor-section-title">Estilos de Texto</div>
+          <p style="font-size:0.68rem;color:#706a60;line-height:1.5;margin-bottom:0.6rem">
+            Color, fuente, tamaño y glow por elemento. Los cambios se ven en tiempo real.
+          </p>
+          ${textStyleGroups.map(g => `
+            <details class="style-group">
+              <summary>${g.section}</summary>
+              <div class="style-group-body">
+                ${g.elements.map(el => buildElementCard(el)).join('')}
+              </div>
+            </details>
+          `).join('')}
+        </div>`;
+      }
+
       /* ── Galería ─────────────────────────────────────────── */
       function buildGalleryCard(img, i) {
         return `<div class="gallery-card" data-idx="${i}">
@@ -3190,7 +3776,8 @@
           `<div class="editor-section">
             <div class="editor-section-title">Galería de fotos</div>
             <div id="editorGallerySection">${buildGallerySection()}</div>
-          </div>`;
+          </div>` + buildStylesHtml();
+        applyAllStyles(); /* re-aplicar estilos inline tras rebuild */
       }
       rebuildBody();
 
@@ -3252,6 +3839,74 @@
           renderTimer = setTimeout(render, 80);
         }
         /* Galería — editar alt */
+        if (el.dataset.galt !== undefined) {
+          siteContent.galleryImages[+el.dataset.galt].alt = el.value;
+        }
+        /* Estilos — range + color pickers disparan 'input' */
+        if (el.dataset.sid && el.dataset.sp) handleStyleCtrl(el);
+      });
+
+      /* ── Handler compartido para inputs de estilo ────────── */
+      function handleStyleCtrl(el) {
+        if (!el.dataset.sid || !el.dataset.sp) return;
+        const sid = el.dataset.sid;
+        const sp  = el.dataset.sp;
+        if (!_elementStyles[sid]) _elementStyles[sid] = {};
+        const s = _elementStyles[sid];
+
+        if (sp === 'color') {
+          /* Color: siempre activo al mover el picker */
+          s.color = el.value;
+          el.style.opacity = '1';
+          const hint = el.nextElementSibling;
+          if (hint) hint.textContent = 'Personalizado';
+        } else if (sp === 'fontFamily') {
+          s.fontFamily = el.value;
+          /* Cargar fuente extra si aún no está en el DOM */
+          if (el.value && el.value !== 'cormorant' && el.value !== 'jost') {
+            loadEditorFont(el.value);
+          }
+        } else if (sp === 'fontWeight') {
+          s.fontWeight = el.value;
+        } else if (sp === 'fontSize') {
+          const unitSel = bodyEl.querySelector(`[data-sid="${sid}"][data-sp="fontSizeUnit"]`);
+          const unit = unitSel ? unitSel.value : 'rem';
+          const num  = parseFloat(el.value).toFixed(2).replace(/\.?0+$/,'');
+          s.fontSize = num + unit;
+          el.style.opacity = '1';
+          const disp = bodyEl.querySelector(`#d-${sid}-sz`);
+          if (disp) disp.textContent = s.fontSize;
+        } else if (sp === 'fontSizeUnit') {
+          const rng = bodyEl.querySelector(`[data-sid="${sid}"][data-sp="fontSize"]`);
+          const num = rng ? parseFloat(rng.value).toFixed(2).replace(/\.?0+$/,'') : parseFloat(s.fontSize||1.5);
+          s.fontSize = num + el.value;
+          const disp = bodyEl.querySelector(`#d-${sid}-sz`);
+          if (disp) disp.textContent = s.fontSize;
+        } else if (sp === 'letterSpacing') {
+          s.letterSpacing = parseFloat(el.value).toFixed(3) + 'em';
+          const disp = bodyEl.querySelector(`#d-${sid}-ls`);
+          if (disp) disp.textContent = s.letterSpacing;
+        } else if (sp === 'glow') {
+          s.glow = el.checked;
+          const sub = bodyEl.querySelector(`#glow-sub-${sid}`);
+          if (sub) sub.classList.toggle('sc-hidden', !el.checked);
+        } else if (sp === 'glowColor') {
+          s.glowColor = el.value;
+        } else if (sp === 'glowSize') {
+          s.glowSize = +el.value;
+          const disp = bodyEl.querySelector(`#d-${sid}-gl`);
+          if (disp) disp.textContent = el.value + 'px';
+        }
+
+        applyElementStyle(sid, s);
+        saveStylesToStorage();
+        flashSaved();
+      }
+
+      /* change: selects, checkboxes — NO disparan 'input' */
+      bodyEl.addEventListener('change', e => {
+        const el = e.target;
+        if (el.dataset.sid && el.dataset.sp) handleStyleCtrl(el);
         if (el.dataset.galt !== undefined) {
           siteContent.galleryImages[+el.dataset.galt].alt = el.value;
         }
@@ -3320,6 +3975,54 @@
           renderGallery();
           const cards = bodyEl.querySelectorAll('.gallery-card');
           cards[cards.length - 1]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        /* ── Reset de propiedad individual de estilo ─────── */
+        const resetBtn = e.target.closest('.sc-reset[data-sid]');
+        if (resetBtn) {
+          const sid = resetBtn.dataset.sid;
+          const sp  = resetBtn.dataset.sp;
+          if (_elementStyles[sid]) {
+            if (sp === 'fontSize') {
+              _elementStyles[sid].fontSize = '';
+              const rng = bodyEl.querySelector(`[data-sid="${sid}"][data-sp="fontSize"]`);
+              if (rng) { rng.value = 1.5; rng.style.opacity = '0.35'; }
+              const disp = bodyEl.querySelector(`#d-${sid}-sz`);
+              if (disp) disp.textContent = '— auto —';
+            } else if (sp === 'letterSpacing') {
+              _elementStyles[sid].letterSpacing = '';
+              const rng = bodyEl.querySelector(`[data-sid="${sid}"][data-sp="letterSpacing"]`);
+              if (rng) rng.value = 0;
+              const disp = bodyEl.querySelector(`#d-${sid}-ls`);
+              if (disp) disp.textContent = '0em';
+            } else if (sp === 'color') {
+              _elementStyles[sid].color = '';
+              const pic  = bodyEl.querySelector(`[data-sid="${sid}"][data-sp="color"]`);
+              const hint = pic ? pic.nextElementSibling : null;
+              if (pic)  pic.style.opacity = '0.45';
+              if (hint) hint.textContent  = 'Sin cambios — clic para personalizar';
+            }
+            applyElementStyle(sid, _elementStyles[sid]);
+            saveStylesToStorage();
+            flashSaved();
+          }
+        }
+
+        /* ── Reset ALL estilos de un elemento ────────────── */
+        const resetAll = e.target.closest('.sc-reset-all[data-sid]');
+        if (resetAll) {
+          const sid = resetAll.dataset.sid;
+          _elementStyles[sid] = {};
+          applyElementStyle(sid, {});
+          saveStylesToStorage();
+          /* Reconstruir solo la sección de estilos — más ligero que rebuildBody */
+          const stylesWrap = bodyEl.querySelector('.editor-section:last-child');
+          if (stylesWrap) {
+            stylesWrap.outerHTML = buildStylesHtml().trim();
+          } else {
+            rebuildBody();
+          }
+          flashSaved();
         }
       });
 
@@ -3449,14 +4152,14 @@
         btn.textContent = 'Guardando…';
         try {
           const colors = {};
-          ['--c-bg','--c-bg-alt','--c-gold','--c-rose','--c-sage','--c-text','--c-envelope'].forEach(v => {
+          ['--c-bg','--c-bg-alt','--c-gold','--c-gold-dim','--c-text','--c-text-mid','--c-text-muted','--c-envelope'].forEach(v => {
             const val = document.documentElement.style.getPropertyValue(v).trim();
             if (val) colors[v] = val;
           });
           const res = await fetch('/api/save-state', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ siteContent: stripBase64(siteContent), colors })
+            body: JSON.stringify({ siteContent: stripBase64(siteContent), colors, elementStyles: _elementStyles })
           });
           if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || `Error ${res.status}`);
           btn.textContent = '✓ Guardado';
@@ -3480,13 +4183,14 @@
         try {
           const res = await fetch('/api/save-state');
           if (!res.ok) return;
-          const { siteContent: sc, colors } = await res.json();
+          const { siteContent: sc, colors, elementStyles: es } = await res.json();
           if (sc) Object.assign(siteContent, sc);
           if (colors) {
             Object.entries(colors).forEach(([k, v]) => {
               document.documentElement.style.setProperty(k, v);
             });
           }
+          if (es) { Object.assign(_elementStyles, es); saveStylesToStorage(); }
           saveToStorage();
           render();
           rebuildBody();
@@ -3504,13 +4208,22 @@
           newConfig + ';'
         );
 
-        /* 2. Inyectar colores CSS editados como bloque :root */
-        const _cssVars = ['--c-bg','--c-bg-alt','--c-gold','--c-rose','--c-sage','--c-text','--c-envelope'];
+        /* 2. Inyectar colores CSS editados + estilos de elementos */
+        const _cssVars = ['--c-bg','--c-bg-alt','--c-gold','--c-gold-dim','--c-text','--c-text-mid','--c-text-muted','--c-envelope'];
         const _overrides = _cssVars
           .map(v => { const val = document.documentElement.style.getPropertyValue(v).trim(); return val ? `    ${v}: ${val};` : ''; })
           .filter(Boolean).join('\n');
-        if (_overrides) {
-          html = html.replace('</head>', `  <style>:root {\n${_overrides}\n  }</style>\n</head>`);
+        const _elemCSS = buildElementStylesCSS();
+        let _extraStyle = '';
+        if (_overrides) _extraStyle += `:root {\n${_overrides}\n  }\n  `;
+        if (_elemCSS)   _extraStyle += _elemCSS + '\n  ';
+        if (_extraStyle.trim()) {
+          html = html.replace('</head>', `  <style>\n  ${_extraStyle}</style>\n</head>`);
+        }
+        /* 2b. Inyectar links de fuentes adicionales usadas */
+        const _extraFonts = getExtraFontLinks();
+        if (_extraFonts) {
+          html = html.replace('</head>', _extraFonts + '</head>');
         }
 
         /* 3. Eliminar llamada a restoreFromStorage() — invitados no deben cargar caché local */
@@ -3629,6 +4342,7 @@
       _initialHTML = document.documentElement.outerHTML; /* DOM completo, antes de render */
       restoreFromStorage(); /* restaurar cambios guardados antes de pintar */
       render();
+      applyAllStyles(); /* aplicar estilos inline guardados */
       initTheme();
       initHeroBg();
       initAnimations();
@@ -3666,7 +4380,7 @@
       <!-- campos generados por JS -->
     </div>
     <div class="editor-save-bar">
-      <span id="editorSaveIndicator" style="opacity:0;transition:opacity 0.4s;font-family:var(--f-sans);font-size:0.7rem;color:var(--c-sage)">✓ Cambios guardados</span>
+      <span id="editorSaveIndicator" style="opacity:0;transition:opacity 0.4s;font-family:var(--f-sans);font-size:0.7rem;color:#7a9488">✓ Cambios guardados</span>
       <button class="editor-btn-clear" id="editorClearStorage" title="Borrar cambios guardados y restaurar valores originales">↺ Limpiar</button>
     </div>
     <div class="editor-footer">
@@ -3675,34 +4389,39 @@
       <button class="editor-btn editor-btn--primary" id="editorExport">⬇ Descargar HTML</button>
     </div>
 
-    <!-- Publicar directo a GitHub / Vercel -->
-    <div class="editor-publish">
-      <div class="editor-publish-title">🚀 Publicar invitación</div>
+    <!-- Publicar directo a GitHub / Vercel — colapsable -->
+    <details class="editor-publish" id="editorPublishDetails">
+      <summary class="editor-publish-toggle">
+        🚀 Publicar invitación
+        <span style="font-size:0.65rem;opacity:0.5;margin-left:auto">▸</span>
+      </summary>
+      <div class="editor-publish-inner">
 
-      <div class="editor-field" style="gap:0.25rem">
-        <label style="font-size:0.67rem;color:#706a60">URL de la invitación</label>
-        <div class="editor-publish-row" style="align-items:center;gap:0.3rem">
-          <span style="font-size:0.72rem;color:#555048;white-space:nowrap">tu-url.vercel.app /</span>
-          <input class="editor-publish-input" id="editorSlug"
-                 type="text" placeholder="sofia-y-mateo" spellcheck="false"
-                 autocomplete="off" style="min-width:0" />
+        <div class="editor-field" style="gap:0.25rem">
+          <label style="font-size:0.67rem;color:#706a60">URL de la invitación</label>
+          <div class="editor-publish-row" style="align-items:center;gap:0.3rem">
+            <span style="font-size:0.72rem;color:#555048;white-space:nowrap">tu-url.vercel.app /</span>
+            <input class="editor-publish-input" id="editorSlug"
+                   type="text" placeholder="sofia-y-mateo" spellcheck="false"
+                   autocomplete="off" style="min-width:0" />
+          </div>
         </div>
+
+        <button class="editor-publish-btn" id="editorPublishBtn" style="width:100%">
+          Publicar ahora
+        </button>
+
+        <div class="editor-publish-status" id="editorPublishStatus"></div>
+        <a id="editorPublishLink" href="#" target="_blank" hidden
+           style="font-size:0.75rem;color:var(--c-gold);word-break:break-all;text-decoration:none">
+        </a>
+
+        <p class="editor-publish-help">
+          Crea una URL nueva por cada pareja. Para editar una invitación ya publicada,
+          usa el mismo slug y vuelve a publicar.
+        </p>
       </div>
-
-      <button class="editor-publish-btn" id="editorPublishBtn" style="width:100%">
-        Publicar ahora
-      </button>
-
-      <div class="editor-publish-status" id="editorPublishStatus"></div>
-      <a id="editorPublishLink" href="#" target="_blank" hidden
-         style="font-size:0.75rem;color:var(--c-gold);word-break:break-all;text-decoration:none">
-      </a>
-
-      <p class="editor-publish-help">
-        Crea una URL nueva por cada pareja. Para editar una invitación ya publicada,
-        usa el mismo slug y vuelve a publicar.
-      </p>
-    </div>
+    </details>
   </aside>
   <!-- EDITOR:E -->
 
