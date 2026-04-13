@@ -1263,15 +1263,31 @@
     
 
   </style>
-  <style>:root {
+  <style>
+  :root {
     --c-bg: #111118;
     --c-bg-alt: #1d1d28;
-    --c-gold: #ffb13d;
-    --c-rose: #b80000;
-    --c-sage: #00ff88;
+    --c-gold: #feb74d;
     --c-text: #fffbf5;
     --c-envelope: #12121c;
-  }</style>
+  }
+    #heroEyebrow { color:#feb74d; font-size:1.3rem }
+  #heroIntro { color:#fef8d7; font-size:1.1rem; font-family:'Lora', Georgia, serif; font-weight:500 }
+  #heroDate { color:#efe6c8; font-size:0.8rem; font-weight:500 }
+  #announceBody { font-size:1.2rem; font-family:'EB Garamond', Georgia, serif }
+  #storyBody { font-size:1.2rem; font-family:'EB Garamond', Georgia, serif }
+  #evMonth { font-size:1.5rem }
+  #evYear { font-size:1.45rem }
+  #evDay { font-family:'EB Garamond', Georgia, serif }
+  #ceremonyTime { font-size:2.1rem; font-family:'EB Garamond', Georgia, serif }
+  #receptionTime { font-size:2.1rem; font-family:'EB Garamond', Georgia, serif }
+  #dressCodeSub { font-weight:500; text-shadow:0 0 8px #c5a46a,0 0 16px #c5a46a55 }
+  #dressCodeNote { color:#ffffff }
+  #rsvpSub { font-weight:500; text-shadow:0 0 8px #c5a46a,0 0 16px #c5a46a55 }
+  #rsvpNote { color:#ffffff }
+  #closingAttrib { text-shadow:0 0 8px #c5a46a,0 0 16px #c5a46a55 }
+  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
 </head>
 <body>
 
@@ -1780,6 +1796,8 @@
     /* ── Persistencia en localStorage ────────────────────────── */
     const _STORAGE_KEY   = 'inv_content';
     const _COLORS_KEY    = 'inv_colors';
+    const _STYLES_KEY    = 'inv_styles';
+    let   _elementStyles = {};
 
     function saveToStorage() {
       try {
@@ -1794,6 +1812,10 @@
       } catch(e) {}
     }
 
+    function saveStylesToStorage() {
+      try { localStorage.setItem(_STYLES_KEY, JSON.stringify(_elementStyles)); } catch(e) {}
+    }
+
     function restoreFromStorage() {
       try {
         const saved = localStorage.getItem(_STORAGE_KEY);
@@ -1802,13 +1824,62 @@
         const colors = JSON.parse(localStorage.getItem(_COLORS_KEY) || '{}');
         const root   = document.documentElement;
         Object.entries(colors).forEach(([k, v]) => root.style.setProperty(k, v));
+
+        const styles = localStorage.getItem(_STYLES_KEY);
+        if (styles) {
+          _elementStyles = JSON.parse(styles);
+          /* Se aplican inline después de render() en DOMContentLoaded */
+        }
       } catch(e) {}
+    }
+
+    /* Mapa de fuentes: clave → CSS font-family */
+    const _FONT_MAP = {
+      ''            : '',
+      'cormorant'   : "'Cormorant Garamond', Georgia, serif",
+      'jost'        : "'Jost', system-ui, sans-serif",
+      'playfair'    : "'Playfair Display', Georgia, serif",
+      'montserrat'  : "'Montserrat', system-ui, sans-serif",
+      'lora'        : "'Lora', Georgia, serif",
+      'dancing'     : "'Dancing Script', cursive",
+      'great-vibes' : "'Great Vibes', cursive",
+      'libre-bask'  : "'Libre Baskerville', Georgia, serif",
+      'raleway'     : "'Raleway', system-ui, sans-serif",
+      'cinzel'      : "'Cinzel', serif",
+      'eb-garamond' : "'EB Garamond', Georgia, serif",
+      'josefin'     : "'Josefin Sans', system-ui, sans-serif",
+      'sacramento'  : "'Sacramento', cursive",
+      'bodoni'      : "'Bodoni Moda', Georgia, serif",
+      'crimson'     : "'Crimson Pro', Georgia, serif",
+      'nunito'      : "'Nunito', system-ui, sans-serif",
+    };
+
+    function applyElementStyle(id, s) {
+      const el = document.getElementById(id);
+      if (!el || !s) return;
+      el.style.color         = s.color        || '';
+      el.style.fontSize      = s.fontSize      || '';
+      el.style.fontFamily    = _FONT_MAP[s.fontFamily || ''] || '';
+      el.style.fontWeight    = s.fontWeight    || '';
+      el.style.letterSpacing = s.letterSpacing || '';
+      if (s.glow) {
+        const gc = s.glowColor || '#c5a46a';
+        const gs = +(s.glowSize || 8);
+        el.style.textShadow  = `0 0 ${gs}px ${gc}, 0 0 ${gs * 2}px ${gc}55`;
+      } else {
+        el.style.textShadow  = '';
+      }
+    }
+
+    function applyAllStyles() {
+      Object.entries(_elementStyles).forEach(([id, s]) => applyElementStyle(id, s));
     }
 
     function clearStorage() {
       try {
         localStorage.removeItem(_STORAGE_KEY);
         localStorage.removeItem(_COLORS_KEY);
+        localStorage.removeItem(_STYLES_KEY);
       } catch(e) {}
     }
 
@@ -2449,6 +2520,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       _initialHTML = document.documentElement.outerHTML; /* DOM completo, antes de render */
       render();
+      applyAllStyles(); /* aplicar estilos inline guardados */
       initTheme();
       initHeroBg();
       initAnimations();
