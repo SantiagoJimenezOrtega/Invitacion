@@ -318,6 +318,8 @@
       font-size: 0.6rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
+      text-align: center;
+      display: block;
     }
     .scroll-cue__arrow {
       animation: bob 2.2s ease-in-out infinite;
@@ -1207,6 +1209,8 @@
       color: var(--c-text-muted);
       display: flex;
       align-items: center;
+      justify-content: center;
+      text-align: center;
       gap: 0.6rem;
       /* Entrada retrasada + pulso continuo */
       animation: hintAppear 0.9s ease 1.5s both,
@@ -1915,8 +1919,8 @@
     </div>
 
     <!-- Texto flotante en la parte inferior -->
-    <p class="env-hint" aria-hidden="true">
-      ✦  Toca para abrir  ✦
+    <p class="env-hint" id="envHint" aria-hidden="true">
+      <span id="envHintText">✦  Toca para abrir  ✦</span>
     </p>
 
   </div>
@@ -1973,7 +1977,7 @@
 
     <!-- Indicador de deslizar -->
     <div class="scroll-cue anim-fade d5" id="scrollCue" role="button" tabindex="0" aria-label="Desliza hacia abajo para ver la invitación">
-      <span class="scroll-cue__label">Desliza</span>
+      <span class="scroll-cue__label" id="scrollCueLabel">Desliza</span>
       <span class="scroll-cue__arrow" aria-hidden="true">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 5v14M5 12l7 7 7-7"></path>
@@ -2593,7 +2597,11 @@
       musicSrc: "",
 
       /* ── WhatsApp configuration ──────────────────────────── */
-      whatsappNumber: "573000000000" // Reemplaza con tu número (código de país + número) sin espacios ni símbolos
+      whatsappNumber: "573000000000", // Reemplaza con tu número (código de país + número) sin espacios ni símbolos
+
+      /* ── Textos de instrucción ────────────────────────────── */
+      envHintText:   "✦  Toca para abrir  ✦",
+      scrollCueText: "Desliza"
 
     };
     
@@ -2745,6 +2753,10 @@
 
       /* Footer */
       setText('footerTxt', c.footerText);
+
+      /* Instrucciones */
+      setText('envHintText',   c.envHintText   || '✦  Toca para abrir  ✦');
+      setText('scrollCueLabel', c.scrollCueText || 'Desliza');
 
       /* Sello del sobre */
       const sealEl = document.getElementById('envSealTxt');
@@ -3239,7 +3251,10 @@
           `      /* ── Footer ───────────────────────────────────────────── */\n` +
           `      footerText: ${q('footerText')},\n\n` +
           `      /* ── Música de fondo ──────────────────────────────────── */\n` +
-          `      musicSrc: ${q('musicSrc')}\n\n` +
+          `      musicSrc: c: ${q('musicSrc')},\n\n` +
+          `      /* ══ Textos de instrucción ═══════════ */\n` +
+          `      envHintText:   ${q('envHintText')},\n` +
+          `      scrollCueText: ${q('scrollCueText')}\n\n` +
           `    };`;
       }
 
@@ -3360,6 +3375,10 @@
           { key: 'closingAttrib',  label: 'Atribución' },
           { key: 'closingCtaTxt',  label: 'Texto secundario' },
           { key: 'closingBtnText', label: 'Texto del botón' },
+        ]},
+        { title: 'Instrucciones de navegación', fields: [
+          { key: 'envHintText',   label: 'Texto del sobre (ej: ✦ Toca para abrir ✦)' },
+          { key: 'scrollCueText', label: 'Texto "Desliza" del hero' },
         ]},
         { title: 'Footer & meta', fields: [
           { key: 'footerText', label: 'Texto del footer' },
@@ -3520,6 +3539,10 @@
           { id: 'closingQuote',  label: 'Cierre › Cita' },
           { id: 'closingAttrib', label: 'Cierre › Atribución' },
           { id: 'closingCtaTxt', label: 'Cierre › Texto secundario' },
+        ]},
+        { section: 'Instrucciones', elements: [
+          { id: 'envHintText',    label: 'Sobre › "Toca para abrir"' },
+          { id: 'scrollCueLabel', label: 'Hero › "Desliza"' },
         ]},
         { section: 'Footer', elements: [
           { id: 'footerTxt', label: 'Footer › Texto del pie de página' },
