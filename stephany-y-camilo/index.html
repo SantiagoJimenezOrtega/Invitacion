@@ -318,6 +318,8 @@
       font-size: 0.6rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
+      text-align: center;
+      display: block;
     }
     .scroll-cue__arrow {
       animation: bob 2.2s ease-in-out infinite;
@@ -1207,6 +1209,8 @@
       color: var(--c-text-muted);
       display: flex;
       align-items: center;
+      justify-content: center;
+      text-align: center;
       gap: 0.6rem;
       /* Entrada retrasada + pulso continuo */
       animation: hintAppear 0.9s ease 1.5s both,
@@ -1269,7 +1273,7 @@
     --c-bg-alt: #1d1d28;
     --c-gold: #feb74d;
     --c-text: #fffbf5;
-    --c-envelope: #12121c;
+    --c-envelope: #342d67;
   }
     #heroEyebrow { color:#feb74d; font-size:1.3rem }
   #heroIntro { color:#fef8d7; font-size:1.1rem; font-family:'Lora', Georgia, serif; font-weight:500 }
@@ -1286,6 +1290,8 @@
   #rsvpSub { font-weight:500; text-shadow:0 0 8px #c5a46a,0 0 16px #c5a46a55 }
   #rsvpNote { color:#ffffff }
   #closingAttrib { text-shadow:0 0 8px #c5a46a,0 0 16px #c5a46a55 }
+  #scrollCueLabel { color:#c0baaf; font-size:0.75rem; text-shadow:0 0 8px #c5a46a,0 0 16px #c5a46a55 }
+  #envHintText { color:#b4ab9d; font-size:1.5rem; text-shadow:0 0 8px #c5a46a,0 0 16px #c5a46a55 }
   </style>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
 </head>
@@ -1322,8 +1328,8 @@
     </div>
 
     <!-- Texto flotante en la parte inferior -->
-    <p class="env-hint" aria-hidden="true">
-      ✦  Toca para abrir  ✦
+    <p class="env-hint" id="envHint" aria-hidden="true">
+      <span id="envHintText">✦  Toca para abrir  ✦</span>
     </p>
 
   </div>
@@ -1380,7 +1386,7 @@
 
     <!-- Indicador de deslizar -->
     <div class="scroll-cue anim-fade d5" id="scrollCue" role="button" tabindex="0" aria-label="Desliza hacia abajo para ver la invitación">
-      <span class="scroll-cue__label">Desliza</span>
+      <span class="scroll-cue__label" id="scrollCueLabel">Desliza</span>
       <span class="scroll-cue__arrow" aria-hidden="true">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 5v14M5 12l7 7 7-7"></path>
@@ -1937,7 +1943,7 @@
                 "alt": "Mesa de celebración decorada"
         },
         {
-                "src": "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/gallery-4.jpg",
+                "src": "",
                 "alt": "Pareja celebrando su boda"
         },
         {
@@ -2004,7 +2010,11 @@
       footerText: "Con amor · Stephany & Camilo · 2026",
 
       /* ── Música de fondo ──────────────────────────────────── */
-      musicSrc: "https://raw.githubusercontent.com/SantiagoJimenezOrtega/Invitacion/main/stephany-y-camilo/music.mp3"
+      musicSrc: c: "",
+
+      /* ══ Textos de instrucción ═══════════ */
+      envHintText:   "✦  Toca para abrir  ✦",
+      scrollCueText: "Desliza"
 
     };;
     
@@ -2156,6 +2166,10 @@
 
       /* Footer */
       setText('footerTxt', c.footerText);
+
+      /* Instrucciones */
+      setText('envHintText',   c.envHintText   || '✦  Toca para abrir  ✦');
+      setText('scrollCueLabel', c.scrollCueText || 'Desliza');
 
       /* Sello del sobre */
       const sealEl = document.getElementById('envSealTxt');
