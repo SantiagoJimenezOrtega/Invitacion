@@ -224,53 +224,6 @@
     /* ═══════════════════════════════════════════════════════════
        BOTÓN TEMA (esquina superior derecha)
        ═══════════════════════════════════════════════════════════ */
-    .theme-btn {
-      position: fixed;
-      top: 1.1rem;
-      right: 1.1rem;
-      z-index: 200;
-      width: 40px;
-      height: 40px;
-      border-radius: var(--r-full);
-      border: 1px solid var(--c-gold-dim);
-      background: var(--c-surface);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--c-gold);
-      transition: background var(--t-base), color var(--t-base), border-color var(--t-base), box-shadow var(--t-base);
-      box-shadow: var(--sh-soft);
-    }
-
-    .theme-btn:hover {
-      background: var(--c-gold);
-      color: #fff;
-      border-color: var(--c-gold);
-    }
-
-    .theme-btn:focus-visible {
-      outline: 2px solid var(--c-gold);
-      outline-offset: 3px;
-    }
-
-    .theme-btn .i-sun {
-      display: none;
-    }
-
-    .theme-btn .i-moon {
-      display: block;
-    }
-
-    [data-theme="dark"] .theme-btn .i-sun {
-      display: block;
-    }
-
-    [data-theme="dark"] .theme-btn .i-moon {
-      display: none;
-    }
 
     /* ═══════════════════════════════════════════════════════════
        SECCIÓN 1 — HERO / PORTADA
@@ -1683,27 +1636,6 @@
 
   </div>
 
-  <!-- ════════════════════════════════════════════════════════════
-       BOTÓN DE MODO OSCURO
-       ════════════════════════════════════════════════════════════ -->
-  <button class="theme-btn" id="themeBtn" aria-label="Cambiar entre modo claro y oscuro" hidden="">
-    <!-- Luna (visible en modo claro) -->
-    <svg class="i-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
-    <!-- Sol (visible en modo oscuro) -->
-    <svg class="i-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-  </button>
 
   <!-- ════════════════════════════════════════════════════════════
        SECCIÓN 1 — HERO / PORTADA
@@ -2853,32 +2785,65 @@
       function unlockAudio() {
         try {
           const Ctx = window.AudioContext || window.webkitAudioContext;
-          if (Ctx) { const ctx = new Ctx(); ctx.resume(); ctx.close(); }
+          if (Ctx) { const ctx = new Ctx(); ctx.resume(); }
         } catch (_) { }
+      }
+
+      function setPlayingUI(state) {
+        playing = state;
+        if (state) {
+          btn.textContent = '❚❚';
+          btn.classList.add('playing');
+          btn.setAttribute('aria-label', 'Pausar música');
+        } else {
+          btn.textContent = '♪';
+          btn.classList.remove('playing');
+          btn.setAttribute('aria-label', 'Reproducir música');
+        }
+      }
+
+      function startAudio() {
+        const p = audio.play();
+        if (p !== undefined) {
+          p.then(() => { setPlayingUI(true); }).catch(() => { setPlayingUI(false); });
+        } else {
+          setPlayingUI(true); /* navegadores antiguos sin promesa */
+        }
       }
 
       function toggleMusic() {
         if (playing) {
           audio.pause();
-          btn.textContent = '♪';
-          btn.classList.remove('playing');
-          btn.setAttribute('aria-label', 'Reproducir música');
+          setPlayingUI(false);
         } else {
-          audio.play().catch(() => { });
-          btn.textContent = '❚❚';
-          btn.classList.add('playing');
-          btn.setAttribute('aria-label', 'Pausar música');
+          startAudio();
         }
-        playing = !playing;
       }
 
       btn.addEventListener('click', toggleMusic);
 
-      /* Llamado por initEnvelope — dentro del handler de gesto del usuario */
+      /* Llamado por initEnvelope — dentro del handler de gesto del usuario.
+         Si el play falla (política de autoplay muy estricta), registra un
+         retry para la primera interacción posterior al abrir el sobre. */
       _musicAutoStart = () => {
-        if (!playing) {
-          unlockAudio();   /* desbloquea iOS antes de play */
-          toggleMusic();
+        if (playing) return;
+        unlockAudio();
+        const p = audio.play();
+        if (p !== undefined) {
+          p.then(() => {
+            setPlayingUI(true);
+          }).catch(() => {
+            /* Autoplay bloqueado en este dispositivo — retry en el primer
+               toque/click después de que el sobre se cierre             */
+            setPlayingUI(false);
+            const retry = () => {
+              if (!playing) { unlockAudio(); startAudio(); }
+            };
+            document.addEventListener('touchstart', retry, { once: true, passive: true });
+            document.addEventListener('click',      retry, { once: true });
+          });
+        } else {
+          setPlayingUI(true);
         }
       };
     }
